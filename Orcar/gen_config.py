@@ -5,6 +5,7 @@ from google.oauth2 import service_account
 from llama_index.core.llms.llm import LLM
 from llama_index.llms.anthropic import Anthropic
 from llama_index.llms.openai import OpenAI
+from llama_index.llms.openai.utils import ALL_AVAILABLE_MODELS, CHAT_MODELS
 from llama_index.llms.vertex import Vertex
 
 from .utils import VertexAnthropicWithCredentials
@@ -32,6 +33,25 @@ class Config:
         raise KeyError(
             f"Cannot find {index} in either cfg file '{self.file_path}' or env variables"
         )
+
+
+def _get_optional_config(orcar_config: Config, *keys: str) -> str | None:
+    """Return the first configured non-empty value without exposing secrets."""
+    for key in keys:
+        try:
+            value = orcar_config[key]
+        except KeyError:
+            continue
+        if value:
+            return value
+    return None
+
+
+def _register_openai_compat_model(model: str) -> None:
+    """Teach older LlamaIndex metadata about newer OpenAI-compatible model IDs."""
+    if model not in ALL_AVAILABLE_MODELS:
+        ALL_AVAILABLE_MODELS[model] = 200_000
+        CHAT_MODELS[model] = 200_000
 
 
 def get_llm(**kwargs) -> LLM:
@@ -63,8 +83,24 @@ def get_llm(**kwargs) -> LLM:
         else:
             kwargs["api_key"] = orcar_config["ANTHROPIC_API_KEY"]
             LLM_func = Anthropic
-    elif model.startswith("gpt"):
+    elif model.startswith("gpt") or model not in {None, ""}:
         kwargs["api_key"] = orcar_config["OPENAI_API_KEY"]
+        _register_openai_compat_model(model)
+        api_base = _get_optional_config(
+            orcar_config,
+            "OPENAI_BASE_URL",
+            "OPENAI_API_BASE",
+            "BASE_URL",
+            "API_BASE_URL",
+            "OPENAI_API_BASE_URL",
+        )
+        if api_base:
+            # LlamaIndex appends /chat/completions itself. Accept a value from
+            # proxy configuration that already contains that endpoint suffix.
+            api_base = api_base.rstrip("/")
+            if api_base.endswith("/chat/completions"):
+                api_base = api_base[: -len("/chat/completions")]
+            kwargs["api_base"] = api_base
         LLM_func = OpenAI
     elif model.startswith("gemini"):
         # Load Google Cloud credentials

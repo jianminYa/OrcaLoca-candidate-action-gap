@@ -143,6 +143,7 @@ class OrcarAgent:
         search_input = SearchInput(
             problem_statement=self.inst["problem_statement"],
             trace_analysis_output=trace_analysis_output,
+            instance_id=self.inst_id,
         )
 
         # Create SearchAgent with config_path

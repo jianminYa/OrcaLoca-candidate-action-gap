@@ -84,7 +84,13 @@ class TokenCounter:
     def __init__(self, llm: LLM) -> None:
         model = llm.metadata.model_name
         if isinstance(llm, OpenAI):
-            self.encoding = tiktoken.encoding_for_model(model)
+            try:
+                self.encoding = tiktoken.encoding_for_model(model)
+            except KeyError:
+                # New OpenAI-compatible model IDs may not be known to this
+                # tiktoken release; use the current GPT-family encoding for
+                # local accounting while preserving the API model name.
+                self.encoding = tiktoken.get_encoding("o200k_base")
         elif isinstance(llm, Anthropic):
             self.encoding = llm.tokenizer
         elif isinstance(llm, Vertex):

@@ -57,6 +57,19 @@ logger_action_history = get_logger("action_history")
 logger_queue = get_logger("search_queue")
 
 
+def _append_disambiguation_diagnostic(event: Dict[str, Any]) -> None:
+    """Append selection diagnostics without affecting agent behavior."""
+    diagnostic_path = os.environ.get("ORCAR_DISAMBIGUATION_DIAGNOSTIC_PATH")
+    if not diagnostic_path:
+        return
+    parent = os.path.dirname(os.path.abspath(diagnostic_path))
+    if parent:
+        os.makedirs(parent, exist_ok=True)
+    with open(diagnostic_path, "a", encoding="utf-8") as handle:
+        json.dump(event, handle, ensure_ascii=False, sort_keys=True)
+        handle.write("\n")
+
+
 def parse_search_input_step(input: SearchInput, task: Task) -> None:
     trace_analysis_output = input.trace_analysis_output
     suspicious_code_from_tracer = trace_analysis_output.suspicious_code_from_tracer
@@ -232,6 +245,7 @@ class SearchWorker(BaseAgentWorker):
             "last_observation": last_observation,
             "instruct_memory": instruct_memory,
             "token_cnts": list(),
+            "disambiguation_event_count": 0,
         }
         task.extra_state.update(task_state)
 
@@ -885,12 +899,37 @@ class SearchWorker(BaseAgentWorker):
             return False
 
         if is_disambiguation:
+            task.extra_state["disambiguation_event_count"] += 1
+            event_id = task.extra_state["disambiguation_event_count"]
+            instance_id = getattr(self._search_input, "instance_id", "")
+
+            def event_base(event_type: str) -> Dict[str, Any]:
+                return {
+                    "instance_id": instance_id,
+                    "event_id": event_id,
+                    "event_type": event_type,
+                    "search_action": search_action,
+                    "search_action_input": search_action_input,
+                    "ranking_applied": False,
+                    "raw_candidates": [],
+                    "scored_candidates": [],
+                    "post_threshold_candidates": [],
+                    "selected_actions": [],
+                    "score_threshold": self._config_dict["score_threshold"],
+                    "top_k_disambiguation": self._config_dict[
+                        "top_k_disambiguation"
+                    ],
+                }
+
             # if is_class, we don't score
             is_class = check_action_is_class(search_action)
             if is_class:
                 class_name = search_action_input["class_name"]
                 file_paths = self._search_manager._get_disambiguous_classes(class_name)
                 if len(file_paths) == 0:
+                    event = event_base("class_unranked")
+                    event["skip_reason"] = "no_raw_candidates"
+                    _append_disambiguation_diagnostic(event)
                     return []
                 search_steps = []
                 for file_path in file_paths:
@@ -903,6 +942,18 @@ class SearchWorker(BaseAgentWorker):
                             },
                         )
                     )
+                event = event_base("class_unranked")
+                event["raw_candidates"] = list(file_paths)
+                event["post_threshold_candidates"] = list(file_paths)
+                event["selected_actions"] = [
+                    {
+                        "search_action": action.search_action,
+                        "search_action_input": action.search_action_input,
+                        "canonical_entity": action.get_search_input(),
+                    }
+                    for action in search_steps
+                ]
+                _append_disambiguation_diagnostic(event)
                 return search_steps
             # if is_file, we don't score
             is_file = check_action_is_file(search_action)
@@ -911,6 +962,9 @@ class SearchWorker(BaseAgentWorker):
                 # we don't have directory_path since we got the disambiguation
                 file_paths = self._search_manager._get_disambiguous_files(file_name)
                 if len(file_paths) == 0:
+                    event = event_base("file_unranked")
+                    event["skip_reason"] = "no_raw_candidates"
+                    _append_disambiguation_diagnostic(event)
                     return []
                 search_steps = []
                 for file_path in file_paths:
@@ -925,6 +979,18 @@ class SearchWorker(BaseAgentWorker):
                             },
                         )
                     )
+                event = event_base("file_unranked")
+                event["raw_candidates"] = list(file_paths)
+                event["post_threshold_candidates"] = list(file_paths)
+                event["selected_actions"] = [
+                    {
+                        "search_action": action.search_action,
+                        "search_action_input": action.search_action_input,
+                        "canonical_entity": action.get_search_input(),
+                    }
+                    for action in search_steps
+                ]
+                _append_disambiguation_diagnostic(event)
                 return search_steps
             # score the methods
             # three cases:
@@ -956,6 +1022,9 @@ class SearchWorker(BaseAgentWorker):
                     )
 
             if len(disambiguated_methods) == 0:
+                event = event_base("ranked_callable_method")
+                event["skip_reason"] = "no_raw_candidates"
+                _append_disambiguation_diagnostic(event)
                 return []
 
             # package the list of disambiguation into a list of ChatMessage
@@ -975,7 +1044,16 @@ class SearchWorker(BaseAgentWorker):
             results = []
             for i, dis in enumerate(disambiguated_methods):
                 results.append({"disambiguated_method": dis, "score": scores[i]})
-            sorted_results = sorted(results, key=lambda x: x["score"], reverse=True)
+            ranked_results = sorted(results, key=lambda x: x["score"], reverse=True)
+            scored_candidates = [
+                {
+                    "candidate": result["disambiguated_method"],
+                    "score": result["score"],
+                    "rank": rank + 1,
+                }
+                for rank, result in enumerate(ranked_results)
+            ]
+            sorted_results = ranked_results
             # prune scores less than self._config_dict["score_threshold"]
             sorted_results = [
                 result
@@ -987,6 +1065,26 @@ class SearchWorker(BaseAgentWorker):
             if len(sorted_results) <= top_k:
                 top_k = 1  # only one disambiguation
             if len(sorted_results) == 0:
+                event = event_base("ranked_callable_method")
+                event["ranking_applied"] = True
+                event["raw_candidates"] = list(disambiguated_methods)
+                event["scored_candidates"] = scored_candidates
+                event["post_threshold_candidates"] = []
+                event["effective_top_k"] = top_k
+                event["candidate_diagnostics"] = [
+                    {
+                        "candidate": result["disambiguated_method"],
+                        "score": result["score"],
+                        "rank": rank,
+                        "passed_threshold": False,
+                        "selected_by_top_k": False,
+                        "action_generated": False,
+                        "drop_stage": "threshold",
+                    }
+                    for rank, result in enumerate(ranked_results, start=1)
+                ]
+                event["skip_reason"] = "all_candidates_below_threshold"
+                _append_disambiguation_diagnostic(event)
                 return []
             search_steps = []
             # please note, the disambiguated_method is the node name
@@ -1022,6 +1120,55 @@ class SearchWorker(BaseAgentWorker):
                             },
                         )
                     )
+            selected_candidate_names = [
+                result["disambiguated_method"]
+                for result in sorted_results[:top_k]
+            ]
+            generated_action_names = {
+                action.get_search_input() for action in search_steps
+            }
+            threshold = self._config_dict["score_threshold"]
+            candidate_diagnostics = []
+            for rank, result in enumerate(ranked_results, start=1):
+                candidate = result["disambiguated_method"]
+                score = result["score"]
+                if score <= threshold:
+                    drop_stage = "threshold"
+                elif candidate not in selected_candidate_names:
+                    drop_stage = "top_k"
+                elif candidate not in generated_action_names:
+                    drop_stage = "action_generation"
+                else:
+                    drop_stage = None
+                candidate_diagnostics.append(
+                    {
+                        "candidate": candidate,
+                        "score": score,
+                        "rank": rank,
+                        "passed_threshold": score > threshold,
+                        "selected_by_top_k": candidate in selected_candidate_names,
+                        "action_generated": candidate in generated_action_names,
+                        "drop_stage": drop_stage,
+                    }
+                )
+            event = event_base("ranked_callable_method")
+            event["ranking_applied"] = True
+            event["raw_candidates"] = list(disambiguated_methods)
+            event["scored_candidates"] = scored_candidates
+            event["post_threshold_candidates"] = [
+                result["disambiguated_method"] for result in sorted_results
+            ]
+            event["effective_top_k"] = top_k
+            event["candidate_diagnostics"] = candidate_diagnostics
+            event["selected_actions"] = [
+                {
+                    "search_action": action.search_action,
+                    "search_action_input": action.search_action_input,
+                    "canonical_entity": action.get_search_input(),
+                }
+                for action in search_steps
+            ]
+            _append_disambiguation_diagnostic(event)
             return search_steps
         return []
 

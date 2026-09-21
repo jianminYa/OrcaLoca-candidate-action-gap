@@ -401,6 +401,7 @@ class SearchInput(BaseModel):
 
     problem_statement: str
     trace_analysis_output: TraceAnalysisOutput
+    instance_id: str = ""
 
     def get_content(self) -> str:
         """Get content."""
