@@ -1,0 +1,28 @@
+{
+  "dataset": "SWE-bench_common",
+  "num_instances": 93,
+  "final_stage": "search",
+  "model": "ep-64pmfvfo",
+  "api_provider": "OpenAI-compatible proxy configured in proxy.txt",
+  "temperature": 0.1,
+  "max_tokens": 4096,
+  "openai_timeout_seconds": 60,
+  "docker_image": "hejiaz/swe-agent:latest",
+  "persistent_container": true,
+  "score_threshold": 75,
+  "top_k_disambiguation": 3,
+  "score_decomposition": {
+    "class": true,
+    "file": true,
+    "disambiguation": true
+  },
+  "priority": {
+    "enable": true,
+    "basic": 1,
+    "decomposition": 2,
+    "related_file": 2
+  },
+  "source_commit": "e3e097898074470d636233db9c22b129bd959415",
+  "diagnostic_env_var": "ORCAR_DISAMBIGUATION_DIAGNOSTIC_PATH",
+  "secrets": "not stored"
+}

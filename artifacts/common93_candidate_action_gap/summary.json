@@ -1,0 +1,98 @@
+{
+  "dataset": "SWE-bench Common",
+  "num_instances": 93,
+  "ranked_disambiguation_events": 22,
+  "gold_available_events": 7,
+  "gap_events": 3,
+  "candidate_to_action_gap_rate": 0.42857142857142855,
+  "gap_by_stage": {
+    "threshold": 3,
+    "top_k": 0,
+    "action_generation": 0
+  },
+  "all_disambiguation_events": 27,
+  "unranked_file_events": 0,
+  "unranked_class_events": 5,
+  "instance_stats": {
+    "django__django-11133": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "django__django-13158": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "django__django-13315": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "matplotlib__matplotlib-23299": {
+      "ranked": 1,
+      "gold_available": 1,
+      "gaps": 1
+    },
+    "matplotlib__matplotlib-23476": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "psf__requests-2317": {
+      "ranked": 2,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "scikit-learn__scikit-learn-14894": {
+      "ranked": 1,
+      "gold_available": 1,
+      "gaps": 0
+    },
+    "sympy__sympy-12419": {
+      "ranked": 1,
+      "gold_available": 1,
+      "gaps": 0
+    },
+    "sympy__sympy-12481": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "sympy__sympy-13031": {
+      "ranked": 2,
+      "gold_available": 1,
+      "gaps": 1
+    },
+    "sympy__sympy-13647": {
+      "ranked": 2,
+      "gold_available": 1,
+      "gaps": 1
+    },
+    "sympy__sympy-16792": {
+      "ranked": 1,
+      "gold_available": 1,
+      "gaps": 0
+    },
+    "sympy__sympy-18698": {
+      "ranked": 4,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "sympy__sympy-21379": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    },
+    "sympy__sympy-24066": {
+      "ranked": 1,
+      "gold_available": 1,
+      "gaps": 0
+    },
+    "sympy__sympy-23262": {
+      "ranked": 1,
+      "gold_available": 0,
+      "gaps": 0
+    }
+  }
+}

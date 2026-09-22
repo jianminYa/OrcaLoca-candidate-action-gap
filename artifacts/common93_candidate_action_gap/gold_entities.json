@@ -1,0 +1,5687 @@
+{
+  "astropy__astropy-12907": {
+    "instance_id": "astropy__astropy-12907",
+    "repo": "astropy/astropy",
+    "base_commit": "d16bfe05a744909de4b27f5875fe0d4ed41ce607",
+    "callable_entities": [
+      {
+        "entity": "astropy/modeling/separable.py::_cstack",
+        "kind": "function",
+        "file_path": "astropy/modeling/separable.py",
+        "class_name": "",
+        "function_name": "_cstack",
+        "diff_node_chain": [
+          {
+            "node_name": "_cstack",
+            "node_type": "FunctionDef",
+            "lineno": 219,
+            "end_lineno": 247
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "astropy/modeling/separable.py",
+          "diff_nodes": [
+            {
+              "node_name": "_cstack",
+              "node_type": "FunctionDef",
+              "lineno": 219,
+              "end_lineno": 247
+            }
+          ],
+          "lineno": 245,
+          "end_lineno": 245
+        }
+      ]
+    }
+  },
+  "astropy__astropy-14182": {
+    "instance_id": "astropy__astropy-14182",
+    "repo": "astropy/astropy",
+    "base_commit": "a5917978be39d13cd90b517e1de4e7a539ffaa48",
+    "callable_entities": [
+      {
+        "entity": "astropy/io/ascii/rst.py::RST::__init__",
+        "kind": "method",
+        "file_path": "astropy/io/ascii/rst.py",
+        "class_name": "RST",
+        "function_name": "__init__",
+        "diff_node_chain": [
+          {
+            "node_name": "RST",
+            "node_type": "ClassDef",
+            "lineno": 35,
+            "end_lineno": 66
+          },
+          {
+            "node_name": "__init__",
+            "node_type": "FunctionDef",
+            "lineno": 60,
+            "end_lineno": 61
+          }
+        ]
+      },
+      {
+        "entity": "astropy/io/ascii/rst.py::RST::write",
+        "kind": "method",
+        "file_path": "astropy/io/ascii/rst.py",
+        "class_name": "RST",
+        "function_name": "write",
+        "diff_node_chain": [
+          {
+            "node_name": "RST",
+            "node_type": "ClassDef",
+            "lineno": 35,
+            "end_lineno": 66
+          },
+          {
+            "node_name": "write",
+            "node_type": "FunctionDef",
+            "lineno": 63,
+            "end_lineno": 66
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "astropy/io/ascii/rst.py::SimpleRSTData",
+        "kind": "class",
+        "file_path": "astropy/io/ascii/rst.py",
+        "class_name": "SimpleRSTData",
+        "diff_node_chain": [
+          {
+            "node_name": "SimpleRSTData",
+            "node_type": "ClassDef",
+            "lineno": 29,
+            "end_lineno": 32
+          }
+        ]
+      },
+      {
+        "entity": "astropy/io/ascii/rst.py::RST",
+        "kind": "class",
+        "file_path": "astropy/io/ascii/rst.py",
+        "class_name": "RST",
+        "diff_node_chain": [
+          {
+            "node_name": "RST",
+            "node_type": "ClassDef",
+            "lineno": 35,
+            "end_lineno": 66
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "astropy/io/ascii/rst.py",
+          "diff_nodes": [
+            {
+              "node_name": "SimpleRSTData",
+              "node_type": "ClassDef",
+              "lineno": 29,
+              "end_lineno": 32
+            }
+          ],
+          "lineno": 30,
+          "end_lineno": 30
+        },
+        {
+          "file": "astropy/io/ascii/rst.py",
+          "diff_nodes": [
+            {
+              "node_name": "RST",
+              "node_type": "ClassDef",
+              "lineno": 35,
+              "end_lineno": 66
+            }
+          ],
+          "lineno": 42,
+          "end_lineno": 47
+        },
+        {
+          "file": "astropy/io/ascii/rst.py",
+          "diff_nodes": [
+            {
+              "node_name": "RST",
+              "node_type": "ClassDef",
+              "lineno": 35,
+              "end_lineno": 66
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 60,
+              "end_lineno": 61
+            }
+          ],
+          "lineno": 60,
+          "end_lineno": 61
+        },
+        {
+          "file": "astropy/io/ascii/rst.py",
+          "diff_nodes": [
+            {
+              "node_name": "RST",
+              "node_type": "ClassDef",
+              "lineno": 35,
+              "end_lineno": 66
+            },
+            {
+              "node_name": "write",
+              "node_type": "FunctionDef",
+              "lineno": 63,
+              "end_lineno": 66
+            }
+          ],
+          "lineno": 65,
+          "end_lineno": 65
+        }
+      ]
+    }
+  },
+  "astropy__astropy-14365": {
+    "instance_id": "astropy__astropy-14365",
+    "repo": "astropy/astropy",
+    "base_commit": "7269fa3e33e8d02485a647da91a5a2a60a06af61",
+    "callable_entities": [
+      {
+        "entity": "astropy/io/ascii/qdp.py::_line_type",
+        "kind": "function",
+        "file_path": "astropy/io/ascii/qdp.py",
+        "class_name": "",
+        "function_name": "_line_type",
+        "diff_node_chain": [
+          {
+            "node_name": "_line_type",
+            "node_type": "FunctionDef",
+            "lineno": 20,
+            "end_lineno": 85
+          }
+        ]
+      },
+      {
+        "entity": "astropy/io/ascii/qdp.py::_get_tables_from_qdp_file",
+        "kind": "function",
+        "file_path": "astropy/io/ascii/qdp.py",
+        "class_name": "",
+        "function_name": "_get_tables_from_qdp_file",
+        "diff_node_chain": [
+          {
+            "node_name": "_get_tables_from_qdp_file",
+            "node_type": "FunctionDef",
+            "lineno": 237,
+            "end_lineno": 342
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "astropy/io/ascii/qdp.py",
+          "diff_nodes": [
+            {
+              "node_name": "_line_type",
+              "node_type": "FunctionDef",
+              "lineno": 20,
+              "end_lineno": 85
+            }
+          ],
+          "lineno": 71,
+          "end_lineno": 71
+        },
+        {
+          "file": "astropy/io/ascii/qdp.py",
+          "diff_nodes": [
+            {
+              "node_name": "_get_tables_from_qdp_file",
+              "node_type": "FunctionDef",
+              "lineno": 237,
+              "end_lineno": 342
+            }
+          ],
+          "lineno": 309,
+          "end_lineno": 309
+        }
+      ]
+    }
+  },
+  "astropy__astropy-14995": {
+    "instance_id": "astropy__astropy-14995",
+    "repo": "astropy/astropy",
+    "base_commit": "b16c7d12ccbc7b2d20364b89fb44285bcbfede54",
+    "callable_entities": [
+      {
+        "entity": "astropy/nddata/mixins/ndarithmetic.py::NDArithmeticMixin::_arithmetic_mask",
+        "kind": "method",
+        "file_path": "astropy/nddata/mixins/ndarithmetic.py",
+        "class_name": "NDArithmeticMixin",
+        "function_name": "_arithmetic_mask",
+        "diff_node_chain": [
+          {
+            "node_name": "NDArithmeticMixin",
+            "node_type": "ClassDef",
+            "lineno": 103,
+            "end_lineno": 750
+          },
+          {
+            "node_name": "_arithmetic_mask",
+            "node_type": "FunctionDef",
+            "lineno": 485,
+            "end_lineno": 527
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "astropy/nddata/mixins/ndarithmetic.py",
+          "diff_nodes": [
+            {
+              "node_name": "NDArithmeticMixin",
+              "node_type": "ClassDef",
+              "lineno": 103,
+              "end_lineno": 750
+            },
+            {
+              "node_name": "_arithmetic_mask",
+              "node_type": "FunctionDef",
+              "lineno": 485,
+              "end_lineno": 527
+            }
+          ],
+          "lineno": 523,
+          "end_lineno": 523
+        },
+        {
+          "file": "astropy/nddata/mixins/ndarithmetic.py",
+          "diff_nodes": [
+            {
+              "node_name": "NDArithmeticMixin",
+              "node_type": "ClassDef",
+              "lineno": 103,
+              "end_lineno": 750
+            },
+            {
+              "node_name": "_arithmetic_mask",
+              "node_type": "FunctionDef",
+              "lineno": 485,
+              "end_lineno": 527
+            }
+          ],
+          "lineno": 526,
+          "end_lineno": 526
+        }
+      ]
+    }
+  },
+  "django__django-10914": {
+    "instance_id": "django__django-10914",
+    "repo": "django/django",
+    "base_commit": "e7fd69d051eaa67cb17f172a39b57253e9cb831a",
+    "callable_entities": [],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/conf/global_settings.py",
+          "diff_nodes": [],
+          "lineno": 307,
+          "end_lineno": 307
+        }
+      ]
+    }
+  },
+  "django__django-11099": {
+    "instance_id": "django__django-11099",
+    "repo": "django/django",
+    "base_commit": "d26b2424437dabeeca94d7900b37d2df4410da0c",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "django/contrib/auth/validators.py::ASCIIUsernameValidator",
+        "kind": "class",
+        "file_path": "django/contrib/auth/validators.py",
+        "class_name": "ASCIIUsernameValidator",
+        "diff_node_chain": [
+          {
+            "node_name": "ASCIIUsernameValidator",
+            "node_type": "ClassDef",
+            "lineno": 9,
+            "end_lineno": 15
+          }
+        ]
+      },
+      {
+        "entity": "django/contrib/auth/validators.py::UnicodeUsernameValidator",
+        "kind": "class",
+        "file_path": "django/contrib/auth/validators.py",
+        "class_name": "UnicodeUsernameValidator",
+        "diff_node_chain": [
+          {
+            "node_name": "UnicodeUsernameValidator",
+            "node_type": "ClassDef",
+            "lineno": 19,
+            "end_lineno": 25
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/auth/validators.py",
+          "diff_nodes": [
+            {
+              "node_name": "ASCIIUsernameValidator",
+              "node_type": "ClassDef",
+              "lineno": 9,
+              "end_lineno": 15
+            }
+          ],
+          "lineno": 10,
+          "end_lineno": 10
+        },
+        {
+          "file": "django/contrib/auth/validators.py",
+          "diff_nodes": [
+            {
+              "node_name": "UnicodeUsernameValidator",
+              "node_type": "ClassDef",
+              "lineno": 19,
+              "end_lineno": 25
+            }
+          ],
+          "lineno": 20,
+          "end_lineno": 20
+        }
+      ]
+    }
+  },
+  "django__django-11133": {
+    "instance_id": "django__django-11133",
+    "repo": "django/django",
+    "base_commit": "879cc3da6249e920b8d54518a0ae06de835d7373",
+    "callable_entities": [
+      {
+        "entity": "django/http/response.py::HttpResponseBase::make_bytes",
+        "kind": "method",
+        "file_path": "django/http/response.py",
+        "class_name": "HttpResponseBase",
+        "function_name": "make_bytes",
+        "diff_node_chain": [
+          {
+            "node_name": "HttpResponseBase",
+            "node_type": "ClassDef",
+            "lineno": 28,
+            "end_lineno": 275
+          },
+          {
+            "node_name": "make_bytes",
+            "node_type": "FunctionDef",
+            "lineno": 223,
+            "end_lineno": 237
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/http/response.py",
+          "diff_nodes": [
+            {
+              "node_name": "HttpResponseBase",
+              "node_type": "ClassDef",
+              "lineno": 28,
+              "end_lineno": 275
+            },
+            {
+              "node_name": "make_bytes",
+              "node_type": "FunctionDef",
+              "lineno": 223,
+              "end_lineno": 237
+            }
+          ],
+          "lineno": 232,
+          "end_lineno": 232
+        }
+      ]
+    }
+  },
+  "django__django-11179": {
+    "instance_id": "django__django-11179",
+    "repo": "django/django",
+    "base_commit": "19fc6376ce67d01ca37a91ef2f55ef769f50513a",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/deletion.py::Collector::delete",
+        "kind": "method",
+        "file_path": "django/db/models/deletion.py",
+        "class_name": "Collector",
+        "function_name": "delete",
+        "diff_node_chain": [
+          {
+            "node_name": "Collector",
+            "node_type": "ClassDef",
+            "lineno": 63,
+            "end_lineno": 327
+          },
+          {
+            "node_name": "delete",
+            "node_type": "FunctionDef",
+            "lineno": 262,
+            "end_lineno": 327
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/deletion.py",
+          "diff_nodes": [
+            {
+              "node_name": "Collector",
+              "node_type": "ClassDef",
+              "lineno": 63,
+              "end_lineno": 327
+            },
+            {
+              "node_name": "delete",
+              "node_type": "FunctionDef",
+              "lineno": 262,
+              "end_lineno": 327
+            }
+          ],
+          "lineno": 279,
+          "end_lineno": 279
+        }
+      ]
+    }
+  },
+  "django__django-11815": {
+    "instance_id": "django__django-11815",
+    "repo": "django/django",
+    "base_commit": "e02f67ef2d03d48128e7a118bf75f0418e24e8ac",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/serializer.py::EnumSerializer::serialize",
+        "kind": "method",
+        "file_path": "django/db/migrations/serializer.py",
+        "class_name": "EnumSerializer",
+        "function_name": "serialize",
+        "diff_node_chain": [
+          {
+            "node_name": "EnumSerializer",
+            "node_type": "ClassDef",
+            "lineno": 119,
+            "end_lineno": 125
+          },
+          {
+            "node_name": "serialize",
+            "node_type": "FunctionDef",
+            "lineno": 120,
+            "end_lineno": 125
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/serializer.py",
+          "diff_nodes": [
+            {
+              "node_name": "EnumSerializer",
+              "node_type": "ClassDef",
+              "lineno": 119,
+              "end_lineno": 125
+            },
+            {
+              "node_name": "serialize",
+              "node_type": "FunctionDef",
+              "lineno": 120,
+              "end_lineno": 125
+            }
+          ],
+          "lineno": 123,
+          "end_lineno": 125
+        }
+      ]
+    }
+  },
+  "django__django-11848": {
+    "instance_id": "django__django-11848",
+    "repo": "django/django",
+    "base_commit": "f0adf3b9b7a19cdee05368ff0c0c2d087f011180",
+    "callable_entities": [
+      {
+        "entity": "django/utils/http.py::parse_http_date",
+        "kind": "function",
+        "file_path": "django/utils/http.py",
+        "class_name": "",
+        "function_name": "parse_http_date",
+        "diff_node_chain": [
+          {
+            "node_name": "parse_http_date",
+            "node_type": "FunctionDef",
+            "lineno": 158,
+            "end_lineno": 191
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/utils/http.py",
+          "diff_nodes": [
+            {
+              "node_name": "parse_http_date",
+              "node_type": "FunctionDef",
+              "lineno": 158,
+              "end_lineno": 191
+            }
+          ],
+          "lineno": 179,
+          "end_lineno": 180
+        },
+        {
+          "file": "django/utils/http.py",
+          "diff_nodes": [
+            {
+              "node_name": "parse_http_date",
+              "node_type": "FunctionDef",
+              "lineno": 158,
+              "end_lineno": 191
+            }
+          ],
+          "lineno": 182,
+          "end_lineno": 182
+        }
+      ]
+    }
+  },
+  "django__django-11964": {
+    "instance_id": "django__django-11964",
+    "repo": "django/django",
+    "base_commit": "fc2b1cc926e34041953738e58fa6ad3053059b22",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "django/db/models/enums.py::Choices",
+        "kind": "class",
+        "file_path": "django/db/models/enums.py",
+        "class_name": "Choices",
+        "diff_node_chain": [
+          {
+            "node_name": "Choices",
+            "node_type": "ClassDef",
+            "lineno": 61,
+            "end_lineno": 63
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/enums.py",
+          "diff_nodes": [
+            {
+              "node_name": "Choices",
+              "node_type": "ClassDef",
+              "lineno": 61,
+              "end_lineno": 63
+            }
+          ],
+          "lineno": 63,
+          "end_lineno": 63
+        }
+      ]
+    }
+  },
+  "django__django-11999": {
+    "instance_id": "django__django-11999",
+    "repo": "django/django",
+    "base_commit": "84633905273fc916e3d17883810d9969c03f73c2",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/fields/__init__.py::Field::contribute_to_class",
+        "kind": "method",
+        "file_path": "django/db/models/fields/__init__.py",
+        "class_name": "Field",
+        "function_name": "contribute_to_class",
+        "diff_node_chain": [
+          {
+            "node_name": "Field",
+            "node_type": "ClassDef",
+            "lineno": 85,
+            "end_lineno": 919
+          },
+          {
+            "node_name": "contribute_to_class",
+            "node_type": "FunctionDef",
+            "lineno": 749,
+            "end_lineno": 767
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/fields/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "Field",
+              "node_type": "ClassDef",
+              "lineno": 85,
+              "end_lineno": 919
+            },
+            {
+              "node_name": "contribute_to_class",
+              "node_type": "FunctionDef",
+              "lineno": 749,
+              "end_lineno": 767
+            }
+          ],
+          "lineno": 766,
+          "end_lineno": 767
+        }
+      ]
+    }
+  },
+  "django__django-12125": {
+    "instance_id": "django__django-12125",
+    "repo": "django/django",
+    "base_commit": "89d41cba392b759732ba9f1db4ff29ed47da6a56",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/serializer.py::TypeSerializer::serialize",
+        "kind": "method",
+        "file_path": "django/db/migrations/serializer.py",
+        "class_name": "TypeSerializer",
+        "function_name": "serialize",
+        "diff_node_chain": [
+          {
+            "node_name": "TypeSerializer",
+            "node_type": "ClassDef",
+            "lineno": 258,
+            "end_lineno": 272
+          },
+          {
+            "node_name": "serialize",
+            "node_type": "FunctionDef",
+            "lineno": 259,
+            "end_lineno": 272
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/serializer.py",
+          "diff_nodes": [
+            {
+              "node_name": "TypeSerializer",
+              "node_type": "ClassDef",
+              "lineno": 258,
+              "end_lineno": 272
+            },
+            {
+              "node_name": "serialize",
+              "node_type": "FunctionDef",
+              "lineno": 259,
+              "end_lineno": 272
+            }
+          ],
+          "lineno": 272,
+          "end_lineno": 272
+        }
+      ]
+    }
+  },
+  "django__django-12308": {
+    "instance_id": "django__django-12308",
+    "repo": "django/django",
+    "base_commit": "2e0f04507b17362239ba49830d26fec504d46978",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/admin/utils.py::display_for_field",
+        "kind": "function",
+        "file_path": "django/contrib/admin/utils.py",
+        "class_name": "",
+        "function_name": "display_for_field",
+        "diff_node_chain": [
+          {
+            "node_name": "display_for_field",
+            "node_type": "FunctionDef",
+            "lineno": 380,
+            "end_lineno": 402
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/admin/utils.py",
+          "diff_nodes": [
+            {
+              "node_name": "display_for_field",
+              "node_type": "FunctionDef",
+              "lineno": 380,
+              "end_lineno": 402
+            }
+          ],
+          "lineno": 400,
+          "end_lineno": 400
+        }
+      ]
+    }
+  },
+  "django__django-12708": {
+    "instance_id": "django__django-12708",
+    "repo": "django/django",
+    "base_commit": "447980e72ac01da1594dd3373a03ba40b7ee6f80",
+    "callable_entities": [
+      {
+        "entity": "django/db/backends/base/schema.py::BaseDatabaseSchemaEditor::alter_index_together",
+        "kind": "method",
+        "file_path": "django/db/backends/base/schema.py",
+        "class_name": "BaseDatabaseSchemaEditor",
+        "function_name": "alter_index_together",
+        "diff_node_chain": [
+          {
+            "node_name": "BaseDatabaseSchemaEditor",
+            "node_type": "ClassDef",
+            "lineno": 44,
+            "end_lineno": 1200
+          },
+          {
+            "node_name": "alter_index_together",
+            "node_type": "FunctionDef",
+            "lineno": 386,
+            "end_lineno": 400
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/backends/base/schema.py",
+          "diff_nodes": [
+            {
+              "node_name": "BaseDatabaseSchemaEditor",
+              "node_type": "ClassDef",
+              "lineno": 44,
+              "end_lineno": 1200
+            },
+            {
+              "node_name": "alter_index_together",
+              "node_type": "FunctionDef",
+              "lineno": 386,
+              "end_lineno": 400
+            }
+          ],
+          "lineno": 396,
+          "end_lineno": 396
+        }
+      ]
+    }
+  },
+  "django__django-13028": {
+    "instance_id": "django__django-13028",
+    "repo": "django/django",
+    "base_commit": "78ad4b4b0201003792bfdbf1a7781cbc9ee03539",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/sql/query.py::Query::check_filterable",
+        "kind": "method",
+        "file_path": "django/db/models/sql/query.py",
+        "class_name": "Query",
+        "function_name": "check_filterable",
+        "diff_node_chain": [
+          {
+            "node_name": "Query",
+            "node_type": "ClassDef",
+            "lineno": 136,
+            "end_lineno": 2296
+          },
+          {
+            "node_name": "check_filterable",
+            "node_type": "FunctionDef",
+            "lineno": 1125,
+            "end_lineno": 1134
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/sql/query.py",
+          "diff_nodes": [
+            {
+              "node_name": "Query",
+              "node_type": "ClassDef",
+              "lineno": 136,
+              "end_lineno": 2296
+            },
+            {
+              "node_name": "check_filterable",
+              "node_type": "FunctionDef",
+              "lineno": 1125,
+              "end_lineno": 1134
+            }
+          ],
+          "lineno": 1127,
+          "end_lineno": 1127
+        }
+      ]
+    }
+  },
+  "django__django-13033": {
+    "instance_id": "django__django-13033",
+    "repo": "django/django",
+    "base_commit": "a59de6e89e8dc1f3e71c9a5a5bbceb373ea5247e",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/sql/compiler.py::SQLCompiler::find_ordering_name",
+        "kind": "method",
+        "file_path": "django/db/models/sql/compiler.py",
+        "class_name": "SQLCompiler",
+        "function_name": "find_ordering_name",
+        "diff_node_chain": [
+          {
+            "node_name": "SQLCompiler",
+            "node_type": "ClassDef",
+            "lineno": 22,
+            "end_lineno": 1216
+          },
+          {
+            "node_name": "find_ordering_name",
+            "node_type": "FunctionDef",
+            "lineno": 715,
+            "end_lineno": 749
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/sql/compiler.py",
+          "diff_nodes": [
+            {
+              "node_name": "SQLCompiler",
+              "node_type": "ClassDef",
+              "lineno": 22,
+              "end_lineno": 1216
+            },
+            {
+              "node_name": "find_ordering_name",
+              "node_type": "FunctionDef",
+              "lineno": 715,
+              "end_lineno": 749
+            }
+          ],
+          "lineno": 730,
+          "end_lineno": 730
+        }
+      ]
+    }
+  },
+  "django__django-13158": {
+    "instance_id": "django__django-13158",
+    "repo": "django/django",
+    "base_commit": "7af8f4127397279d19ef7c7899e93018274e2f9b",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/sql/query.py::Query::clone",
+        "kind": "method",
+        "file_path": "django/db/models/sql/query.py",
+        "class_name": "Query",
+        "function_name": "clone",
+        "diff_node_chain": [
+          {
+            "node_name": "Query",
+            "node_type": "ClassDef",
+            "lineno": 136,
+            "end_lineno": 2306
+          },
+          {
+            "node_name": "clone",
+            "node_type": "FunctionDef",
+            "lineno": 288,
+            "end_lineno": 336
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "django/db/models/sql/query.py::Query",
+        "kind": "class",
+        "file_path": "django/db/models/sql/query.py",
+        "class_name": "Query",
+        "diff_node_chain": [
+          {
+            "node_name": "Query",
+            "node_type": "ClassDef",
+            "lineno": 136,
+            "end_lineno": 2306
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/sql/query.py",
+          "diff_nodes": [
+            {
+              "node_name": "Query",
+              "node_type": "ClassDef",
+              "lineno": 136,
+              "end_lineno": 2306
+            },
+            {
+              "node_name": "clone",
+              "node_type": "FunctionDef",
+              "lineno": 288,
+              "end_lineno": 336
+            }
+          ],
+          "lineno": 307,
+          "end_lineno": 307
+        },
+        {
+          "file": "django/db/models/sql/query.py",
+          "diff_nodes": [
+            {
+              "node_name": "Query",
+              "node_type": "ClassDef",
+              "lineno": 136,
+              "end_lineno": 2306
+            }
+          ],
+          "lineno": 1779,
+          "end_lineno": 1779
+        }
+      ]
+    }
+  },
+  "django__django-13315": {
+    "instance_id": "django__django-13315",
+    "repo": "django/django",
+    "base_commit": "36bc47069ce071e80c8129500de3b8664d2058a7",
+    "callable_entities": [
+      {
+        "entity": "django/forms/models.py::apply_limit_choices_to_to_formfield",
+        "kind": "function",
+        "file_path": "django/forms/models.py",
+        "class_name": "",
+        "function_name": "apply_limit_choices_to_to_formfield",
+        "diff_node_chain": [
+          {
+            "node_name": "apply_limit_choices_to_to_formfield",
+            "node_type": "FunctionDef",
+            "lineno": 98,
+            "end_lineno": 103
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/forms/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "apply_limit_choices_to_to_formfield",
+              "node_type": "FunctionDef",
+              "lineno": 98,
+              "end_lineno": 103
+            }
+          ],
+          "lineno": 99,
+          "end_lineno": 99
+        },
+        {
+          "file": "django/forms/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "apply_limit_choices_to_to_formfield",
+              "node_type": "FunctionDef",
+              "lineno": 98,
+              "end_lineno": 103
+            }
+          ],
+          "lineno": 102,
+          "end_lineno": 103
+        }
+      ]
+    }
+  },
+  "django__django-13401": {
+    "instance_id": "django__django-13401",
+    "repo": "django/django",
+    "base_commit": "453967477e3ddae704cd739eac2449c0e13d464c",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/fields/__init__.py::Field::__eq__",
+        "kind": "method",
+        "file_path": "django/db/models/fields/__init__.py",
+        "class_name": "Field",
+        "function_name": "__eq__",
+        "diff_node_chain": [
+          {
+            "node_name": "Field",
+            "node_type": "ClassDef",
+            "lineno": 85,
+            "end_lineno": 933
+          },
+          {
+            "node_name": "__eq__",
+            "node_type": "FunctionDef",
+            "lineno": 516,
+            "end_lineno": 520
+          }
+        ]
+      },
+      {
+        "entity": "django/db/models/fields/__init__.py::Field::__lt__",
+        "kind": "method",
+        "file_path": "django/db/models/fields/__init__.py",
+        "class_name": "Field",
+        "function_name": "__lt__",
+        "diff_node_chain": [
+          {
+            "node_name": "Field",
+            "node_type": "ClassDef",
+            "lineno": 85,
+            "end_lineno": 933
+          },
+          {
+            "node_name": "__lt__",
+            "node_type": "FunctionDef",
+            "lineno": 522,
+            "end_lineno": 526
+          }
+        ]
+      },
+      {
+        "entity": "django/db/models/fields/__init__.py::Field::__hash__",
+        "kind": "method",
+        "file_path": "django/db/models/fields/__init__.py",
+        "class_name": "Field",
+        "function_name": "__hash__",
+        "diff_node_chain": [
+          {
+            "node_name": "Field",
+            "node_type": "ClassDef",
+            "lineno": 85,
+            "end_lineno": 933
+          },
+          {
+            "node_name": "__hash__",
+            "node_type": "FunctionDef",
+            "lineno": 528,
+            "end_lineno": 529
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/fields/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "Field",
+              "node_type": "ClassDef",
+              "lineno": 85,
+              "end_lineno": 933
+            },
+            {
+              "node_name": "__eq__",
+              "node_type": "FunctionDef",
+              "lineno": 516,
+              "end_lineno": 520
+            }
+          ],
+          "lineno": 519,
+          "end_lineno": 519
+        },
+        {
+          "file": "django/db/models/fields/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "Field",
+              "node_type": "ClassDef",
+              "lineno": 85,
+              "end_lineno": 933
+            },
+            {
+              "node_name": "__lt__",
+              "node_type": "FunctionDef",
+              "lineno": 522,
+              "end_lineno": 526
+            }
+          ],
+          "lineno": 523,
+          "end_lineno": 523
+        },
+        {
+          "file": "django/db/models/fields/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "Field",
+              "node_type": "ClassDef",
+              "lineno": 85,
+              "end_lineno": 933
+            },
+            {
+              "node_name": "__lt__",
+              "node_type": "FunctionDef",
+              "lineno": 522,
+              "end_lineno": 526
+            }
+          ],
+          "lineno": 525,
+          "end_lineno": 525
+        },
+        {
+          "file": "django/db/models/fields/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "Field",
+              "node_type": "ClassDef",
+              "lineno": 85,
+              "end_lineno": 933
+            },
+            {
+              "node_name": "__hash__",
+              "node_type": "FunctionDef",
+              "lineno": 528,
+              "end_lineno": 529
+            }
+          ],
+          "lineno": 529,
+          "end_lineno": 529
+        }
+      ]
+    }
+  },
+  "django__django-13551": {
+    "instance_id": "django__django-13551",
+    "repo": "django/django",
+    "base_commit": "7f9e4524d6b23424cf44fbe1bf1f4e70f6bb066e",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/auth/tokens.py::PasswordResetTokenGenerator::_make_hash_value",
+        "kind": "method",
+        "file_path": "django/contrib/auth/tokens.py",
+        "class_name": "PasswordResetTokenGenerator",
+        "function_name": "_make_hash_value",
+        "diff_node_chain": [
+          {
+            "node_name": "PasswordResetTokenGenerator",
+            "node_type": "ClassDef",
+            "lineno": 8,
+            "end_lineno": 104
+          },
+          {
+            "node_name": "_make_hash_value",
+            "node_type": "FunctionDef",
+            "lineno": 79,
+            "end_lineno": 97
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/auth/tokens.py",
+          "diff_nodes": [
+            {
+              "node_name": "PasswordResetTokenGenerator",
+              "node_type": "ClassDef",
+              "lineno": 8,
+              "end_lineno": 104
+            },
+            {
+              "node_name": "_make_hash_value",
+              "node_type": "FunctionDef",
+              "lineno": 79,
+              "end_lineno": 97
+            }
+          ],
+          "lineno": 81,
+          "end_lineno": 83
+        },
+        {
+          "file": "django/contrib/auth/tokens.py",
+          "diff_nodes": [
+            {
+              "node_name": "PasswordResetTokenGenerator",
+              "node_type": "ClassDef",
+              "lineno": 8,
+              "end_lineno": 104
+            },
+            {
+              "node_name": "_make_hash_value",
+              "node_type": "FunctionDef",
+              "lineno": 79,
+              "end_lineno": 97
+            }
+          ],
+          "lineno": 97,
+          "end_lineno": 97
+        }
+      ]
+    }
+  },
+  "django__django-13590": {
+    "instance_id": "django__django-13590",
+    "repo": "django/django",
+    "base_commit": "755dbf39fcdc491fe9b588358303e259c7750be4",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/sql/query.py::Query::resolve_lookup_value",
+        "kind": "method",
+        "file_path": "django/db/models/sql/query.py",
+        "class_name": "Query",
+        "function_name": "resolve_lookup_value",
+        "diff_node_chain": [
+          {
+            "node_name": "Query",
+            "node_type": "ClassDef",
+            "lineno": 136,
+            "end_lineno": 2351
+          },
+          {
+            "node_name": "resolve_lookup_value",
+            "node_type": "FunctionDef",
+            "lineno": 1072,
+            "end_lineno": 1084
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/sql/query.py",
+          "diff_nodes": [
+            {
+              "node_name": "Query",
+              "node_type": "ClassDef",
+              "lineno": 136,
+              "end_lineno": 2351
+            },
+            {
+              "node_name": "resolve_lookup_value",
+              "node_type": "FunctionDef",
+              "lineno": 1072,
+              "end_lineno": 1084
+            }
+          ],
+          "lineno": 1080,
+          "end_lineno": 1080
+        },
+        {
+          "file": "django/db/models/sql/query.py",
+          "diff_nodes": [
+            {
+              "node_name": "Query",
+              "node_type": "ClassDef",
+              "lineno": 136,
+              "end_lineno": 2351
+            },
+            {
+              "node_name": "resolve_lookup_value",
+              "node_type": "FunctionDef",
+              "lineno": 1072,
+              "end_lineno": 1084
+            }
+          ],
+          "lineno": 1083,
+          "end_lineno": 1083
+        }
+      ]
+    }
+  },
+  "django__django-13658": {
+    "instance_id": "django__django-13658",
+    "repo": "django/django",
+    "base_commit": "0773837e15bb632afffb6848a58c59a791008fa1",
+    "callable_entities": [
+      {
+        "entity": "django/core/management/__init__.py::ManagementUtility::execute",
+        "kind": "method",
+        "file_path": "django/core/management/__init__.py",
+        "class_name": "ManagementUtility",
+        "function_name": "execute",
+        "diff_node_chain": [
+          {
+            "node_name": "ManagementUtility",
+            "node_type": "ClassDef",
+            "lineno": 184,
+            "end_lineno": 408
+          },
+          {
+            "node_name": "execute",
+            "node_type": "FunctionDef",
+            "lineno": 334,
+            "end_lineno": 408
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/core/management/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "ManagementUtility",
+              "node_type": "ClassDef",
+              "lineno": 184,
+              "end_lineno": 408
+            },
+            {
+              "node_name": "execute",
+              "node_type": "FunctionDef",
+              "lineno": 334,
+              "end_lineno": 408
+            }
+          ],
+          "lineno": 347,
+          "end_lineno": 347
+        }
+      ]
+    }
+  },
+  "django__django-13925": {
+    "instance_id": "django__django-13925",
+    "repo": "django/django",
+    "base_commit": "0c42cdf0d2422f4c080e93594d5d15381d6e955e",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/base.py::Model::_check_default_pk",
+        "kind": "method",
+        "file_path": "django/db/models/base.py",
+        "class_name": "Model",
+        "function_name": "_check_default_pk",
+        "diff_node_chain": [
+          {
+            "node_name": "Model",
+            "node_type": "ClassDef",
+            "lineno": 404,
+            "end_lineno": 2086
+          },
+          {
+            "node_name": "_check_default_pk",
+            "node_type": "FunctionDef",
+            "lineno": 1299,
+            "end_lineno": 1320
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/base.py",
+          "diff_nodes": [
+            {
+              "node_name": "Model",
+              "node_type": "ClassDef",
+              "lineno": 404,
+              "end_lineno": 2086
+            },
+            {
+              "node_name": "_check_default_pk",
+              "node_type": "FunctionDef",
+              "lineno": 1299,
+              "end_lineno": 1320
+            }
+          ],
+          "lineno": 1301,
+          "end_lineno": 1301
+        }
+      ]
+    }
+  },
+  "django__django-13933": {
+    "instance_id": "django__django-13933",
+    "repo": "django/django",
+    "base_commit": "42e8cf47c7ee2db238bf91197ea398126c546741",
+    "callable_entities": [
+      {
+        "entity": "django/forms/models.py::ModelChoiceField::to_python",
+        "kind": "method",
+        "file_path": "django/forms/models.py",
+        "class_name": "ModelChoiceField",
+        "function_name": "to_python",
+        "diff_node_chain": [
+          {
+            "node_name": "ModelChoiceField",
+            "node_type": "ClassDef",
+            "lineno": 1186,
+            "end_lineno": 1298
+          },
+          {
+            "node_name": "to_python",
+            "node_type": "FunctionDef",
+            "lineno": 1278,
+            "end_lineno": 1288
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/forms/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "ModelChoiceField",
+              "node_type": "ClassDef",
+              "lineno": 1186,
+              "end_lineno": 1298
+            },
+            {
+              "node_name": "to_python",
+              "node_type": "FunctionDef",
+              "lineno": 1278,
+              "end_lineno": 1288
+            }
+          ],
+          "lineno": 1287,
+          "end_lineno": 1287
+        }
+      ]
+    }
+  },
+  "django__django-13964": {
+    "instance_id": "django__django-13964",
+    "repo": "django/django",
+    "base_commit": "f39634ff229887bf7790c069d0c411b38494ca38",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/base.py::Model::_prepare_related_fields_for_save",
+        "kind": "method",
+        "file_path": "django/db/models/base.py",
+        "class_name": "Model",
+        "function_name": "_prepare_related_fields_for_save",
+        "diff_node_chain": [
+          {
+            "node_name": "Model",
+            "node_type": "ClassDef",
+            "lineno": 404,
+            "end_lineno": 2091
+          },
+          {
+            "node_name": "_prepare_related_fields_for_save",
+            "node_type": "FunctionDef",
+            "lineno": 911,
+            "end_lineno": 943
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/base.py",
+          "diff_nodes": [
+            {
+              "node_name": "Model",
+              "node_type": "ClassDef",
+              "lineno": 404,
+              "end_lineno": 2091
+            },
+            {
+              "node_name": "_prepare_related_fields_for_save",
+              "node_type": "FunctionDef",
+              "lineno": 911,
+              "end_lineno": 943
+            }
+          ],
+          "lineno": 936,
+          "end_lineno": 936
+        }
+      ]
+    }
+  },
+  "django__django-14017": {
+    "instance_id": "django__django-14017",
+    "repo": "django/django",
+    "base_commit": "466920f6d726eee90d5566e0a9948e92b33a122e",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/query_utils.py::Q::_combine",
+        "kind": "method",
+        "file_path": "django/db/models/query_utils.py",
+        "class_name": "Q",
+        "function_name": "_combine",
+        "diff_node_chain": [
+          {
+            "node_name": "Q",
+            "node_type": "ClassDef",
+            "lineno": 28,
+            "end_lineno": 97
+          },
+          {
+            "node_name": "_combine",
+            "node_type": "FunctionDef",
+            "lineno": 42,
+            "end_lineno": 59
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/query_utils.py",
+          "diff_nodes": [
+            {
+              "node_name": "Q",
+              "node_type": "ClassDef",
+              "lineno": 28,
+              "end_lineno": 97
+            },
+            {
+              "node_name": "_combine",
+              "node_type": "FunctionDef",
+              "lineno": 42,
+              "end_lineno": 59
+            }
+          ],
+          "lineno": 43,
+          "end_lineno": 43
+        }
+      ]
+    }
+  },
+  "django__django-14155": {
+    "instance_id": "django__django-14155",
+    "repo": "django/django",
+    "base_commit": "2f13c476abe4ba787b6cb71131818341911f43cc",
+    "callable_entities": [
+      {
+        "entity": "django/urls/resolvers.py::ResolverMatch::__repr__",
+        "kind": "method",
+        "file_path": "django/urls/resolvers.py",
+        "class_name": "ResolverMatch",
+        "function_name": "__repr__",
+        "diff_node_chain": [
+          {
+            "node_name": "ResolverMatch",
+            "node_type": "ClassDef",
+            "lineno": 32,
+            "end_lineno": 65
+          },
+          {
+            "node_name": "__repr__",
+            "node_type": "FunctionDef",
+            "lineno": 61,
+            "end_lineno": 65
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/urls/resolvers.py",
+          "diff_nodes": [
+            {
+              "node_name": "ResolverMatch",
+              "node_type": "ClassDef",
+              "lineno": 32,
+              "end_lineno": 65
+            },
+            {
+              "node_name": "__repr__",
+              "node_type": "FunctionDef",
+              "lineno": 61,
+              "end_lineno": 65
+            }
+          ],
+          "lineno": 62,
+          "end_lineno": 64
+        }
+      ]
+    }
+  },
+  "django__django-14238": {
+    "instance_id": "django__django-14238",
+    "repo": "django/django",
+    "base_commit": "30e123ed351317b7527f632b3b7dc4e81e850449",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/fields/__init__.py::AutoFieldMeta::__subclasscheck__",
+        "kind": "method",
+        "file_path": "django/db/models/fields/__init__.py",
+        "class_name": "AutoFieldMeta",
+        "function_name": "__subclasscheck__",
+        "diff_node_chain": [
+          {
+            "node_name": "AutoFieldMeta",
+            "node_type": "ClassDef",
+            "lineno": 2502,
+            "end_lineno": 2527
+          },
+          {
+            "node_name": "__subclasscheck__",
+            "node_type": "FunctionDef",
+            "lineno": 2526,
+            "end_lineno": 2527
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/fields/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "AutoFieldMeta",
+              "node_type": "ClassDef",
+              "lineno": 2502,
+              "end_lineno": 2527
+            },
+            {
+              "node_name": "__subclasscheck__",
+              "node_type": "FunctionDef",
+              "lineno": 2526,
+              "end_lineno": 2527
+            }
+          ],
+          "lineno": 2527,
+          "end_lineno": 2527
+        }
+      ]
+    }
+  },
+  "django__django-14534": {
+    "instance_id": "django__django-14534",
+    "repo": "django/django",
+    "base_commit": "910ecd1b8df7678f45c3d507dde6bcb1faafa243",
+    "callable_entities": [
+      {
+        "entity": "django/forms/boundfield.py::BoundWidget::id_for_label",
+        "kind": "method",
+        "file_path": "django/forms/boundfield.py",
+        "class_name": "BoundWidget",
+        "function_name": "id_for_label",
+        "diff_node_chain": [
+          {
+            "node_name": "BoundWidget",
+            "node_type": "ClassDef",
+            "lineno": 247,
+            "end_lineno": 284
+          },
+          {
+            "node_name": "id_for_label",
+            "node_type": "FunctionDef",
+            "lineno": 279,
+            "end_lineno": 280
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/forms/boundfield.py",
+          "diff_nodes": [
+            {
+              "node_name": "BoundWidget",
+              "node_type": "ClassDef",
+              "lineno": 247,
+              "end_lineno": 284
+            },
+            {
+              "node_name": "id_for_label",
+              "node_type": "FunctionDef",
+              "lineno": 279,
+              "end_lineno": 280
+            }
+          ],
+          "lineno": 280,
+          "end_lineno": 280
+        }
+      ]
+    }
+  },
+  "django__django-14580": {
+    "instance_id": "django__django-14580",
+    "repo": "django/django",
+    "base_commit": "36fa071d6ebd18a61c4d7f1b5c9d17106134bd44",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/serializer.py::TypeSerializer::serialize",
+        "kind": "method",
+        "file_path": "django/db/migrations/serializer.py",
+        "class_name": "TypeSerializer",
+        "function_name": "serialize",
+        "diff_node_chain": [
+          {
+            "node_name": "TypeSerializer",
+            "node_type": "ClassDef",
+            "lineno": 273,
+            "end_lineno": 287
+          },
+          {
+            "node_name": "serialize",
+            "node_type": "FunctionDef",
+            "lineno": 274,
+            "end_lineno": 287
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/serializer.py",
+          "diff_nodes": [
+            {
+              "node_name": "TypeSerializer",
+              "node_type": "ClassDef",
+              "lineno": 273,
+              "end_lineno": 287
+            },
+            {
+              "node_name": "serialize",
+              "node_type": "FunctionDef",
+              "lineno": 274,
+              "end_lineno": 287
+            }
+          ],
+          "lineno": 276,
+          "end_lineno": 276
+        }
+      ]
+    }
+  },
+  "django__django-14608": {
+    "instance_id": "django__django-14608",
+    "repo": "django/django",
+    "base_commit": "7f33c1e22dbc34a7afae7967783725b10f1f13b1",
+    "callable_entities": [
+      {
+        "entity": "django/forms/formsets.py::BaseFormSet::full_clean",
+        "kind": "method",
+        "file_path": "django/forms/formsets.py",
+        "class_name": "BaseFormSet",
+        "function_name": "full_clean",
+        "diff_node_chain": [
+          {
+            "node_name": "BaseFormSet",
+            "node_type": "ClassDef",
+            "lineno": 54,
+            "end_lineno": 457
+          },
+          {
+            "node_name": "full_clean",
+            "node_type": "FunctionDef",
+            "lineno": 330,
+            "end_lineno": 383
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/forms/formsets.py",
+          "diff_nodes": [
+            {
+              "node_name": "BaseFormSet",
+              "node_type": "ClassDef",
+              "lineno": 54,
+              "end_lineno": 457
+            },
+            {
+              "node_name": "full_clean",
+              "node_type": "FunctionDef",
+              "lineno": 330,
+              "end_lineno": 383
+            }
+          ],
+          "lineno": 336,
+          "end_lineno": 336
+        },
+        {
+          "file": "django/forms/formsets.py",
+          "diff_nodes": [
+            {
+              "node_name": "BaseFormSet",
+              "node_type": "ClassDef",
+              "lineno": 54,
+              "end_lineno": 457
+            },
+            {
+              "node_name": "full_clean",
+              "node_type": "FunctionDef",
+              "lineno": 330,
+              "end_lineno": 383
+            }
+          ],
+          "lineno": 383,
+          "end_lineno": 383
+        }
+      ]
+    }
+  },
+  "django__django-14672": {
+    "instance_id": "django__django-14672",
+    "repo": "django/django",
+    "base_commit": "00ea883ef56fb5e092cbe4a6f7ff2e7470886ac4",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/fields/reverse_related.py::ManyToManyRel::identity",
+        "kind": "method",
+        "file_path": "django/db/models/fields/reverse_related.py",
+        "class_name": "ManyToManyRel",
+        "function_name": "identity",
+        "diff_node_chain": [
+          {
+            "node_name": "ManyToManyRel",
+            "node_type": "ClassDef",
+            "lineno": 280,
+            "end_lineno": 330
+          },
+          {
+            "node_name": "identity",
+            "node_type": "FunctionDef",
+            "lineno": 310,
+            "end_lineno": 315
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/fields/reverse_related.py",
+          "diff_nodes": [
+            {
+              "node_name": "ManyToManyRel",
+              "node_type": "ClassDef",
+              "lineno": 280,
+              "end_lineno": 330
+            },
+            {
+              "node_name": "identity",
+              "node_type": "FunctionDef",
+              "lineno": 310,
+              "end_lineno": 315
+            }
+          ],
+          "lineno": 313,
+          "end_lineno": 313
+        }
+      ]
+    }
+  },
+  "django__django-14752": {
+    "instance_id": "django__django-14752",
+    "repo": "django/django",
+    "base_commit": "b64db05b9cedd96905d637a2d824cbbf428e40e7",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView::get",
+        "kind": "method",
+        "file_path": "django/contrib/admin/views/autocomplete.py",
+        "class_name": "AutocompleteJsonView",
+        "function_name": "get",
+        "diff_node_chain": [
+          {
+            "node_name": "AutocompleteJsonView",
+            "node_type": "ClassDef",
+            "lineno": 7,
+            "end_lineno": 102
+          },
+          {
+            "node_name": "get",
+            "node_type": "FunctionDef",
+            "lineno": 12,
+            "end_lineno": 33
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "django/contrib/admin/views/autocomplete.py::AutocompleteJsonView",
+        "kind": "class",
+        "file_path": "django/contrib/admin/views/autocomplete.py",
+        "class_name": "AutocompleteJsonView",
+        "diff_node_chain": [
+          {
+            "node_name": "AutocompleteJsonView",
+            "node_type": "ClassDef",
+            "lineno": 7,
+            "end_lineno": 102
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/admin/views/autocomplete.py",
+          "diff_nodes": [
+            {
+              "node_name": "AutocompleteJsonView",
+              "node_type": "ClassDef",
+              "lineno": 7,
+              "end_lineno": 102
+            },
+            {
+              "node_name": "get",
+              "node_type": "FunctionDef",
+              "lineno": 12,
+              "end_lineno": 33
+            }
+          ],
+          "lineno": 14,
+          "end_lineno": 14
+        },
+        {
+          "file": "django/contrib/admin/views/autocomplete.py",
+          "diff_nodes": [
+            {
+              "node_name": "AutocompleteJsonView",
+              "node_type": "ClassDef",
+              "lineno": 7,
+              "end_lineno": 102
+            },
+            {
+              "node_name": "get",
+              "node_type": "FunctionDef",
+              "lineno": 12,
+              "end_lineno": 33
+            }
+          ],
+          "lineno": 29,
+          "end_lineno": 29
+        },
+        {
+          "file": "django/contrib/admin/views/autocomplete.py",
+          "diff_nodes": [
+            {
+              "node_name": "AutocompleteJsonView",
+              "node_type": "ClassDef",
+              "lineno": 7,
+              "end_lineno": 102
+            }
+          ],
+          "lineno": 33,
+          "end_lineno": 33
+        }
+      ]
+    }
+  },
+  "django__django-14787": {
+    "instance_id": "django__django-14787",
+    "repo": "django/django",
+    "base_commit": "004b4620f6f4ad87261e149898940f2dcd5757ef",
+    "callable_entities": [
+      {
+        "entity": "django/utils/decorators.py::_wrapper",
+        "kind": "function",
+        "file_path": "django/utils/decorators.py",
+        "class_name": "",
+        "function_name": "_wrapper",
+        "diff_node_chain": [
+          {
+            "node_name": "_multi_decorate",
+            "node_type": "FunctionDef",
+            "lineno": 22,
+            "end_lineno": 50
+          },
+          {
+            "node_name": "_wrapper",
+            "node_type": "FunctionDef",
+            "lineno": 35,
+            "end_lineno": 43
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/utils/decorators.py",
+          "diff_nodes": [
+            {
+              "node_name": "_multi_decorate",
+              "node_type": "FunctionDef",
+              "lineno": 22,
+              "end_lineno": 50
+            },
+            {
+              "node_name": "_wrapper",
+              "node_type": "FunctionDef",
+              "lineno": 35,
+              "end_lineno": 43
+            }
+          ],
+          "lineno": 40,
+          "end_lineno": 40
+        }
+      ]
+    }
+  },
+  "django__django-14855": {
+    "instance_id": "django__django-14855",
+    "repo": "django/django",
+    "base_commit": "475cffd1d64c690cdad16ede4d5e81985738ceb4",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/admin/helpers.py::AdminReadonlyField::get_admin_url",
+        "kind": "method",
+        "file_path": "django/contrib/admin/helpers.py",
+        "class_name": "AdminReadonlyField",
+        "function_name": "get_admin_url",
+        "diff_node_chain": [
+          {
+            "node_name": "AdminReadonlyField",
+            "node_type": "ClassDef",
+            "lineno": 160,
+            "end_lineno": 250
+          },
+          {
+            "node_name": "get_admin_url",
+            "node_type": "FunctionDef",
+            "lineno": 206,
+            "end_lineno": 215
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/admin/helpers.py",
+          "diff_nodes": [
+            {
+              "node_name": "AdminReadonlyField",
+              "node_type": "ClassDef",
+              "lineno": 160,
+              "end_lineno": 250
+            },
+            {
+              "node_name": "get_admin_url",
+              "node_type": "FunctionDef",
+              "lineno": 206,
+              "end_lineno": 215
+            }
+          ],
+          "lineno": 212,
+          "end_lineno": 212
+        }
+      ]
+    }
+  },
+  "django__django-14915": {
+    "instance_id": "django__django-14915",
+    "repo": "django/django",
+    "base_commit": "903aaa35e5ceaa33bfc9b19b7f6da65ce5a91dd4",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "django/forms/models.py::ModelChoiceIteratorValue",
+        "kind": "class",
+        "file_path": "django/forms/models.py",
+        "class_name": "ModelChoiceIteratorValue",
+        "diff_node_chain": [
+          {
+            "node_name": "ModelChoiceIteratorValue",
+            "node_type": "ClassDef",
+            "lineno": 1161,
+            "end_lineno": 1172
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/forms/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "ModelChoiceIteratorValue",
+              "node_type": "ClassDef",
+              "lineno": 1161,
+              "end_lineno": 1172
+            }
+          ],
+          "lineno": 1167,
+          "end_lineno": 1167
+        }
+      ]
+    }
+  },
+  "django__django-14999": {
+    "instance_id": "django__django-14999",
+    "repo": "django/django",
+    "base_commit": "a754b82dac511475b6276039471ccd17cc64aeb8",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/operations/models.py::RenameModel::database_forwards",
+        "kind": "method",
+        "file_path": "django/db/migrations/operations/models.py",
+        "class_name": "RenameModel",
+        "function_name": "database_forwards",
+        "diff_node_chain": [
+          {
+            "node_name": "RenameModel",
+            "node_type": "ClassDef",
+            "lineno": 289,
+            "end_lineno": 406
+          },
+          {
+            "node_name": "database_forwards",
+            "node_type": "FunctionDef",
+            "lineno": 319,
+            "end_lineno": 368
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/operations/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "RenameModel",
+              "node_type": "ClassDef",
+              "lineno": 289,
+              "end_lineno": 406
+            },
+            {
+              "node_name": "database_forwards",
+              "node_type": "FunctionDef",
+              "lineno": 319,
+              "end_lineno": 368
+            }
+          ],
+          "lineno": 322,
+          "end_lineno": 322
+        },
+        {
+          "file": "django/db/migrations/operations/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "RenameModel",
+              "node_type": "ClassDef",
+              "lineno": 289,
+              "end_lineno": 406
+            },
+            {
+              "node_name": "database_forwards",
+              "node_type": "FunctionDef",
+              "lineno": 319,
+              "end_lineno": 368
+            }
+          ],
+          "lineno": 324,
+          "end_lineno": 328
+        }
+      ]
+    }
+  },
+  "django__django-15252": {
+    "instance_id": "django__django-15252",
+    "repo": "django/django",
+    "base_commit": "361bb8f786f112ee275be136795c0b1ecefff928",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/executor.py::MigrationExecutor::migrate",
+        "kind": "method",
+        "file_path": "django/db/migrations/executor.py",
+        "class_name": "MigrationExecutor",
+        "function_name": "migrate",
+        "diff_node_chain": [
+          {
+            "node_name": "MigrationExecutor",
+            "node_type": "ClassDef",
+            "lineno": 10,
+            "end_lineno": 381
+          },
+          {
+            "node_name": "migrate",
+            "node_type": "FunctionDef",
+            "lineno": 91,
+            "end_lineno": 134
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/executor.py",
+          "diff_nodes": [
+            {
+              "node_name": "MigrationExecutor",
+              "node_type": "ClassDef",
+              "lineno": 10,
+              "end_lineno": 381
+            },
+            {
+              "node_name": "migrate",
+              "node_type": "FunctionDef",
+              "lineno": 91,
+              "end_lineno": 134
+            }
+          ],
+          "lineno": 99,
+          "end_lineno": 100
+        }
+      ]
+    }
+  },
+  "django__django-15695": {
+    "instance_id": "django__django-15695",
+    "repo": "django/django",
+    "base_commit": "647480166bfe7532e8c471fef0146e3a17e6c0c9",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/operations/models.py::RenameIndex::database_forwards",
+        "kind": "method",
+        "file_path": "django/db/migrations/operations/models.py",
+        "class_name": "RenameIndex",
+        "function_name": "database_forwards",
+        "diff_node_chain": [
+          {
+            "node_name": "RenameIndex",
+            "node_type": "ClassDef",
+            "lineno": 879,
+            "end_lineno": 1022
+          },
+          {
+            "node_name": "database_forwards",
+            "node_type": "FunctionDef",
+            "lineno": 934,
+            "end_lineno": 966
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/operations/models.py",
+          "diff_nodes": [
+            {
+              "node_name": "RenameIndex",
+              "node_type": "ClassDef",
+              "lineno": 879,
+              "end_lineno": 1022
+            },
+            {
+              "node_name": "database_forwards",
+              "node_type": "FunctionDef",
+              "lineno": 934,
+              "end_lineno": 966
+            }
+          ],
+          "lineno": 962,
+          "end_lineno": 962
+        }
+      ]
+    }
+  },
+  "django__django-15814": {
+    "instance_id": "django__django-15814",
+    "repo": "django/django",
+    "base_commit": "5eb6a2b33d70b9889e1cafa12594ad6f80773d3a",
+    "callable_entities": [
+      {
+        "entity": "django/db/models/sql/query.py::Query::deferred_to_data",
+        "kind": "method",
+        "file_path": "django/db/models/sql/query.py",
+        "class_name": "Query",
+        "function_name": "deferred_to_data",
+        "diff_node_chain": [
+          {
+            "node_name": "Query",
+            "node_type": "ClassDef",
+            "lineno": 158,
+            "end_lineno": 2568
+          },
+          {
+            "node_name": "deferred_to_data",
+            "node_type": "FunctionDef",
+            "lineno": 721,
+            "end_lineno": 802
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/models/sql/query.py",
+          "diff_nodes": [
+            {
+              "node_name": "Query",
+              "node_type": "ClassDef",
+              "lineno": 158,
+              "end_lineno": 2568
+            },
+            {
+              "node_name": "deferred_to_data",
+              "node_type": "FunctionDef",
+              "lineno": 721,
+              "end_lineno": 802
+            }
+          ],
+          "lineno": 750,
+          "end_lineno": 750
+        }
+      ]
+    }
+  },
+  "django__django-15851": {
+    "instance_id": "django__django-15851",
+    "repo": "django/django",
+    "base_commit": "b4817d20b9e55df30be0b1b2ca8c8bb6d61aab07",
+    "callable_entities": [
+      {
+        "entity": "django/db/backends/postgresql/client.py::DatabaseClient::settings_to_cmd_args_env",
+        "kind": "method",
+        "file_path": "django/db/backends/postgresql/client.py",
+        "class_name": "DatabaseClient",
+        "function_name": "settings_to_cmd_args_env",
+        "diff_node_chain": [
+          {
+            "node_name": "DatabaseClient",
+            "node_type": "ClassDef",
+            "lineno": 6,
+            "end_lineno": 64
+          },
+          {
+            "node_name": "settings_to_cmd_args_env",
+            "node_type": "FunctionDef",
+            "lineno": 10,
+            "end_lineno": 54
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/backends/postgresql/client.py",
+          "diff_nodes": [
+            {
+              "node_name": "DatabaseClient",
+              "node_type": "ClassDef",
+              "lineno": 6,
+              "end_lineno": 64
+            },
+            {
+              "node_name": "settings_to_cmd_args_env",
+              "node_type": "FunctionDef",
+              "lineno": 10,
+              "end_lineno": 54
+            }
+          ],
+          "lineno": 34,
+          "end_lineno": 34
+        },
+        {
+          "file": "django/db/backends/postgresql/client.py",
+          "diff_nodes": [
+            {
+              "node_name": "DatabaseClient",
+              "node_type": "ClassDef",
+              "lineno": 6,
+              "end_lineno": 64
+            },
+            {
+              "node_name": "settings_to_cmd_args_env",
+              "node_type": "FunctionDef",
+              "lineno": 10,
+              "end_lineno": 54
+            }
+          ],
+          "lineno": 37,
+          "end_lineno": 37
+        }
+      ]
+    }
+  },
+  "django__django-16139": {
+    "instance_id": "django__django-16139",
+    "repo": "django/django",
+    "base_commit": "d559cb02da30f74debbb1fc3a46de0df134d2d80",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/auth/forms.py::UserChangeForm::__init__",
+        "kind": "method",
+        "file_path": "django/contrib/auth/forms.py",
+        "class_name": "UserChangeForm",
+        "function_name": "__init__",
+        "diff_node_chain": [
+          {
+            "node_name": "UserChangeForm",
+            "node_type": "ClassDef",
+            "lineno": 147,
+            "end_lineno": 171
+          },
+          {
+            "node_name": "__init__",
+            "node_type": "FunctionDef",
+            "lineno": 162,
+            "end_lineno": 171
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/auth/forms.py",
+          "diff_nodes": [
+            {
+              "node_name": "UserChangeForm",
+              "node_type": "ClassDef",
+              "lineno": 147,
+              "end_lineno": 171
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 162,
+              "end_lineno": 171
+            }
+          ],
+          "lineno": 166,
+          "end_lineno": 166
+        }
+      ]
+    }
+  },
+  "django__django-16255": {
+    "instance_id": "django__django-16255",
+    "repo": "django/django",
+    "base_commit": "444b6da7cc229a58a2c476a52e45233001dc7073",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/sitemaps/__init__.py::Sitemap::get_latest_lastmod",
+        "kind": "method",
+        "file_path": "django/contrib/sitemaps/__init__.py",
+        "class_name": "Sitemap",
+        "function_name": "get_latest_lastmod",
+        "diff_node_chain": [
+          {
+            "node_name": "Sitemap",
+            "node_type": "ClassDef",
+            "lineno": 61,
+            "end_lineno": 228
+          },
+          {
+            "node_name": "get_latest_lastmod",
+            "node_type": "FunctionDef",
+            "lineno": 165,
+            "end_lineno": 174
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/sitemaps/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "Sitemap",
+              "node_type": "ClassDef",
+              "lineno": 61,
+              "end_lineno": 228
+            },
+            {
+              "node_name": "get_latest_lastmod",
+              "node_type": "FunctionDef",
+              "lineno": 165,
+              "end_lineno": 174
+            }
+          ],
+          "lineno": 170,
+          "end_lineno": 170
+        }
+      ]
+    }
+  },
+  "django__django-16527": {
+    "instance_id": "django__django-16527",
+    "repo": "django/django",
+    "base_commit": "bd366ca2aeffa869b7dbc0b0aa01caea75e6dc31",
+    "callable_entities": [
+      {
+        "entity": "django/contrib/admin/templatetags/admin_modify.py::submit_row",
+        "kind": "function",
+        "file_path": "django/contrib/admin/templatetags/admin_modify.py",
+        "class_name": "",
+        "function_name": "submit_row",
+        "diff_node_chain": [
+          {
+            "node_name": "submit_row",
+            "node_type": "FunctionDef",
+            "lineno": 61,
+            "end_lineno": 112
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/contrib/admin/templatetags/admin_modify.py",
+          "diff_nodes": [
+            {
+              "node_name": "submit_row",
+              "node_type": "FunctionDef",
+              "lineno": 61,
+              "end_lineno": 112
+            }
+          ],
+          "lineno": 103,
+          "end_lineno": 103
+        }
+      ]
+    }
+  },
+  "django__django-16595": {
+    "instance_id": "django__django-16595",
+    "repo": "django/django",
+    "base_commit": "f9fe062de5fc0896d6bbbf3f260b5c44473b3c77",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/operations/fields.py::AlterField::reduce",
+        "kind": "method",
+        "file_path": "django/db/migrations/operations/fields.py",
+        "class_name": "AlterField",
+        "function_name": "reduce",
+        "diff_node_chain": [
+          {
+            "node_name": "AlterField",
+            "node_type": "ClassDef",
+            "lineno": 198,
+            "end_lineno": 267
+          },
+          {
+            "node_name": "reduce",
+            "node_type": "FunctionDef",
+            "lineno": 249,
+            "end_lineno": 267
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/operations/fields.py",
+          "diff_nodes": [
+            {
+              "node_name": "AlterField",
+              "node_type": "ClassDef",
+              "lineno": 198,
+              "end_lineno": 267
+            },
+            {
+              "node_name": "reduce",
+              "node_type": "FunctionDef",
+              "lineno": 249,
+              "end_lineno": 267
+            }
+          ],
+          "lineno": 250,
+          "end_lineno": 252
+        }
+      ]
+    }
+  },
+  "django__django-17087": {
+    "instance_id": "django__django-17087",
+    "repo": "django/django",
+    "base_commit": "4a72da71001f154ea60906a2f74898d32b7322a7",
+    "callable_entities": [
+      {
+        "entity": "django/db/migrations/serializer.py::FunctionTypeSerializer::serialize",
+        "kind": "method",
+        "file_path": "django/db/migrations/serializer.py",
+        "class_name": "FunctionTypeSerializer",
+        "function_name": "serialize",
+        "diff_node_chain": [
+          {
+            "node_name": "FunctionTypeSerializer",
+            "node_type": "ClassDef",
+            "lineno": 164,
+            "end_lineno": 189
+          },
+          {
+            "node_name": "serialize",
+            "node_type": "FunctionDef",
+            "lineno": 165,
+            "end_lineno": 189
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "django/db/migrations/serializer.py",
+          "diff_nodes": [
+            {
+              "node_name": "FunctionTypeSerializer",
+              "node_type": "ClassDef",
+              "lineno": 164,
+              "end_lineno": 189
+            },
+            {
+              "node_name": "serialize",
+              "node_type": "FunctionDef",
+              "lineno": 165,
+              "end_lineno": 189
+            }
+          ],
+          "lineno": 171,
+          "end_lineno": 171
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-23299": {
+    "instance_id": "matplotlib__matplotlib-23299",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "3eadeacc06c9f2ddcdac6ae39819faa9fbee9e39",
+    "callable_entities": [
+      {
+        "entity": "lib/matplotlib/__init__.py::rc_context",
+        "kind": "function",
+        "file_path": "lib/matplotlib/__init__.py",
+        "class_name": "",
+        "function_name": "rc_context",
+        "diff_node_chain": [
+          {
+            "node_name": "rc_context",
+            "node_type": "FunctionDef",
+            "lineno": 1058,
+            "end_lineno": 1098
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/matplotlib/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "rc_context",
+              "node_type": "FunctionDef",
+              "lineno": 1058,
+              "end_lineno": 1098
+            }
+          ],
+          "lineno": 1060,
+          "end_lineno": 1060
+        },
+        {
+          "file": "lib/matplotlib/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "rc_context",
+              "node_type": "FunctionDef",
+              "lineno": 1058,
+              "end_lineno": 1098
+            }
+          ],
+          "lineno": 1090,
+          "end_lineno": 1090
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-23314": {
+    "instance_id": "matplotlib__matplotlib-23314",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "97fc1154992f64cfb2f86321155a7404efeb2d8a",
+    "callable_entities": [
+      {
+        "entity": "lib/mpl_toolkits/mplot3d/axes3d.py::Axes3D::draw",
+        "kind": "method",
+        "file_path": "lib/mpl_toolkits/mplot3d/axes3d.py",
+        "class_name": "Axes3D",
+        "function_name": "draw",
+        "diff_node_chain": [
+          {
+            "node_name": "Axes3D",
+            "node_type": "ClassDef",
+            "lineno": 45,
+            "end_lineno": 3232
+          },
+          {
+            "node_name": "draw",
+            "node_type": "FunctionDef",
+            "lineno": 389,
+            "end_lineno": 444
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/mpl_toolkits/mplot3d/axes3d.py",
+          "diff_nodes": [
+            {
+              "node_name": "Axes3D",
+              "node_type": "ClassDef",
+              "lineno": 45,
+              "end_lineno": 3232
+            },
+            {
+              "node_name": "draw",
+              "node_type": "FunctionDef",
+              "lineno": 389,
+              "end_lineno": 444
+            }
+          ],
+          "lineno": 389,
+          "end_lineno": 389
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-23476": {
+    "instance_id": "matplotlib__matplotlib-23476",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "33a0599711d26dc2b79f851c6daed4947df7c167",
+    "callable_entities": [
+      {
+        "entity": "lib/matplotlib/figure.py::Figure::__getstate__",
+        "kind": "method",
+        "file_path": "lib/matplotlib/figure.py",
+        "class_name": "Figure",
+        "function_name": "__getstate__",
+        "diff_node_chain": [
+          {
+            "node_name": "Figure",
+            "node_type": "ClassDef",
+            "lineno": 2213,
+            "end_lineno": 3363
+          },
+          {
+            "node_name": "__getstate__",
+            "node_type": "FunctionDef",
+            "lineno": 3015,
+            "end_lineno": 3033
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/matplotlib/figure.py",
+          "diff_nodes": [
+            {
+              "node_name": "Figure",
+              "node_type": "ClassDef",
+              "lineno": 2213,
+              "end_lineno": 3363
+            },
+            {
+              "node_name": "__getstate__",
+              "node_type": "FunctionDef",
+              "lineno": 3015,
+              "end_lineno": 3033
+            }
+          ],
+          "lineno": 3024,
+          "end_lineno": 3024
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-24149": {
+    "instance_id": "matplotlib__matplotlib-24149",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "af39f1edffcd828f05cfdd04f2e59506bb4a27bc",
+    "callable_entities": [
+      {
+        "entity": "lib/matplotlib/axes/_axes.py::Axes::_convert_dx",
+        "kind": "method",
+        "file_path": "lib/matplotlib/axes/_axes.py",
+        "class_name": "Axes",
+        "function_name": "_convert_dx",
+        "diff_node_chain": [
+          {
+            "node_name": "Axes",
+            "node_type": "ClassDef",
+            "lineno": 47,
+            "end_lineno": 8237
+          },
+          {
+            "node_name": "_convert_dx",
+            "node_type": "FunctionDef",
+            "lineno": 2153,
+            "end_lineno": 2202
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/matplotlib/axes/_axes.py",
+          "diff_nodes": [
+            {
+              "node_name": "Axes",
+              "node_type": "ClassDef",
+              "lineno": 47,
+              "end_lineno": 8237
+            },
+            {
+              "node_name": "_convert_dx",
+              "node_type": "FunctionDef",
+              "lineno": 2153,
+              "end_lineno": 2202
+            }
+          ],
+          "lineno": 2184,
+          "end_lineno": 2184
+        },
+        {
+          "file": "lib/matplotlib/axes/_axes.py",
+          "diff_nodes": [
+            {
+              "node_name": "Axes",
+              "node_type": "ClassDef",
+              "lineno": 47,
+              "end_lineno": 8237
+            },
+            {
+              "node_name": "_convert_dx",
+              "node_type": "FunctionDef",
+              "lineno": 2153,
+              "end_lineno": 2202
+            }
+          ],
+          "lineno": 2189,
+          "end_lineno": 2189
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-24970": {
+    "instance_id": "matplotlib__matplotlib-24970",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "a3011dfd1aaa2487cce8aa7369475533133ef777",
+    "callable_entities": [
+      {
+        "entity": "lib/matplotlib/colors.py::Colormap::__call__",
+        "kind": "method",
+        "file_path": "lib/matplotlib/colors.py",
+        "class_name": "Colormap",
+        "function_name": "__call__",
+        "diff_node_chain": [
+          {
+            "node_name": "Colormap",
+            "node_type": "ClassDef",
+            "lineno": 647,
+            "end_lineno": 945
+          },
+          {
+            "node_name": "__call__",
+            "node_type": "FunctionDef",
+            "lineno": 683,
+            "end_lineno": 759
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/matplotlib/colors.py",
+          "diff_nodes": [
+            {
+              "node_name": "Colormap",
+              "node_type": "ClassDef",
+              "lineno": 647,
+              "end_lineno": 945
+            },
+            {
+              "node_name": "__call__",
+              "node_type": "FunctionDef",
+              "lineno": 683,
+              "end_lineno": 759
+            }
+          ],
+          "lineno": 718,
+          "end_lineno": 727
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-25311": {
+    "instance_id": "matplotlib__matplotlib-25311",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "430fb1db88843300fb4baae3edc499bbfe073b0c",
+    "callable_entities": [
+      {
+        "entity": "lib/matplotlib/offsetbox.py::DraggableBase::__init__",
+        "kind": "method",
+        "file_path": "lib/matplotlib/offsetbox.py",
+        "class_name": "DraggableBase",
+        "function_name": "__init__",
+        "diff_node_chain": [
+          {
+            "node_name": "DraggableBase",
+            "node_type": "ClassDef",
+            "lineno": 1474,
+            "end_lineno": 1581
+          },
+          {
+            "node_name": "__init__",
+            "node_type": "FunctionDef",
+            "lineno": 1503,
+            "end_lineno": 1515
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "lib/matplotlib/offsetbox.py::DraggableBase",
+        "kind": "class",
+        "file_path": "lib/matplotlib/offsetbox.py",
+        "class_name": "DraggableBase",
+        "diff_node_chain": [
+          {
+            "node_name": "DraggableBase",
+            "node_type": "ClassDef",
+            "lineno": 1474,
+            "end_lineno": 1581
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/matplotlib/offsetbox.py",
+          "diff_nodes": [
+            {
+              "node_name": "DraggableBase",
+              "node_type": "ClassDef",
+              "lineno": 1474,
+              "end_lineno": 1581
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 1503,
+              "end_lineno": 1515
+            }
+          ],
+          "lineno": 1508,
+          "end_lineno": 1508
+        },
+        {
+          "file": "lib/matplotlib/offsetbox.py",
+          "diff_nodes": [
+            {
+              "node_name": "DraggableBase",
+              "node_type": "ClassDef",
+              "lineno": 1474,
+              "end_lineno": 1581
+            }
+          ],
+          "lineno": 1515,
+          "end_lineno": 1515
+        }
+      ]
+    }
+  },
+  "matplotlib__matplotlib-25332": {
+    "instance_id": "matplotlib__matplotlib-25332",
+    "repo": "matplotlib/matplotlib",
+    "base_commit": "66ba515e671638971bd11a34cff12c107a437e0b",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "lib/matplotlib/cbook.py::Grouper",
+        "kind": "class",
+        "file_path": "lib/matplotlib/cbook.py",
+        "class_name": "Grouper",
+        "diff_node_chain": [
+          {
+            "node_name": "Grouper",
+            "node_type": "ClassDef",
+            "lineno": 754,
+            "end_lineno": 847
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "lib/matplotlib/cbook.py",
+          "diff_nodes": [
+            {
+              "node_name": "Grouper",
+              "node_type": "ClassDef",
+              "lineno": 754,
+              "end_lineno": 847
+            }
+          ],
+          "lineno": 789,
+          "end_lineno": 789
+        }
+      ]
+    }
+  },
+  "psf__requests-2317": {
+    "instance_id": "psf__requests-2317",
+    "repo": "psf/requests",
+    "base_commit": "091991be0da19de9108dbe5e3752917fea3d7fdc",
+    "callable_entities": [
+      {
+        "entity": "requests/sessions.py::Session::request",
+        "kind": "method",
+        "file_path": "requests/sessions.py",
+        "class_name": "Session",
+        "function_name": "request",
+        "diff_node_chain": [
+          {
+            "node_name": "Session",
+            "node_type": "ClassDef",
+            "lineno": 260,
+            "end_lineno": 665
+          },
+          {
+            "node_name": "request",
+            "node_type": "FunctionDef",
+            "lineno": 378,
+            "end_lineno": 459
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "requests/sessions.py",
+          "diff_nodes": [],
+          "lineno": 16,
+          "end_lineno": 16
+        },
+        {
+          "file": "requests/sessions.py",
+          "diff_nodes": [
+            {
+              "node_name": "Session",
+              "node_type": "ClassDef",
+              "lineno": 260,
+              "end_lineno": 665
+            },
+            {
+              "node_name": "request",
+              "node_type": "FunctionDef",
+              "lineno": 378,
+              "end_lineno": 459
+            }
+          ],
+          "lineno": 428,
+          "end_lineno": 428
+        }
+      ]
+    }
+  },
+  "pydata__xarray-4094": {
+    "instance_id": "pydata__xarray-4094",
+    "repo": "pydata/xarray",
+    "base_commit": "a64cf2d5476e7bbda099b34c40b7be1880dbd39a",
+    "callable_entities": [
+      {
+        "entity": "xarray/core/dataarray.py::DataArray::to_unstacked_dataset",
+        "kind": "method",
+        "file_path": "xarray/core/dataarray.py",
+        "class_name": "DataArray",
+        "function_name": "to_unstacked_dataset",
+        "diff_node_chain": [
+          {
+            "node_name": "DataArray",
+            "node_type": "ClassDef",
+            "lineno": 215,
+            "end_lineno": 3824
+          },
+          {
+            "node_name": "to_unstacked_dataset",
+            "node_type": "FunctionDef",
+            "lineno": 1901,
+            "end_lineno": 1967
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "xarray/core/dataarray.py",
+          "diff_nodes": [
+            {
+              "node_name": "DataArray",
+              "node_type": "ClassDef",
+              "lineno": 215,
+              "end_lineno": 3824
+            },
+            {
+              "node_name": "to_unstacked_dataset",
+              "node_type": "FunctionDef",
+              "lineno": 1901,
+              "end_lineno": 1967
+            }
+          ],
+          "lineno": 1964,
+          "end_lineno": 1964
+        }
+      ]
+    }
+  },
+  "pylint-dev__pylint-7080": {
+    "instance_id": "pylint-dev__pylint-7080",
+    "repo": "pylint-dev/pylint",
+    "base_commit": "3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0",
+    "callable_entities": [
+      {
+        "entity": "pylint/lint/expand_modules.py::_is_ignored_file",
+        "kind": "function",
+        "file_path": "pylint/lint/expand_modules.py",
+        "class_name": "",
+        "function_name": "_is_ignored_file",
+        "diff_node_chain": [
+          {
+            "node_name": "_is_ignored_file",
+            "node_type": "FunctionDef",
+            "lineno": 49,
+            "end_lineno": 60
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "pylint/lint/expand_modules.py",
+          "diff_nodes": [
+            {
+              "node_name": "_is_ignored_file",
+              "node_type": "FunctionDef",
+              "lineno": 49,
+              "end_lineno": 60
+            }
+          ],
+          "lineno": 54,
+          "end_lineno": 54
+        }
+      ]
+    }
+  },
+  "pytest-dev__pytest-7432": {
+    "instance_id": "pytest-dev__pytest-7432",
+    "repo": "pytest-dev/pytest",
+    "base_commit": "e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+    "callable_entities": [
+      {
+        "entity": "src/_pytest/skipping.py::pytest_runtest_makereport",
+        "kind": "function",
+        "file_path": "src/_pytest/skipping.py",
+        "class_name": "",
+        "function_name": "pytest_runtest_makereport",
+        "diff_node_chain": [
+          {
+            "node_name": "pytest_runtest_makereport",
+            "node_type": "FunctionDef",
+            "lineno": 261,
+            "end_lineno": 305
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_makereport",
+              "node_type": "FunctionDef",
+              "lineno": 261,
+              "end_lineno": 305
+            }
+          ],
+          "lineno": 294,
+          "end_lineno": 294
+        }
+      ]
+    }
+  },
+  "pytest-dev__pytest-7490": {
+    "instance_id": "pytest-dev__pytest-7490",
+    "repo": "pytest-dev/pytest",
+    "base_commit": "7f7a36478abe7dd1fa993b115d22606aa0e35e88",
+    "callable_entities": [
+      {
+        "entity": "src/_pytest/skipping.py::pytest_runtest_setup",
+        "kind": "function",
+        "file_path": "src/_pytest/skipping.py",
+        "class_name": "",
+        "function_name": "pytest_runtest_setup",
+        "diff_node_chain": [
+          {
+            "node_name": "pytest_runtest_setup",
+            "node_type": "FunctionDef",
+            "lineno": 233,
+            "end_lineno": 244
+          }
+        ]
+      },
+      {
+        "entity": "src/_pytest/skipping.py::pytest_runtest_call",
+        "kind": "function",
+        "file_path": "src/_pytest/skipping.py",
+        "class_name": "",
+        "function_name": "pytest_runtest_call",
+        "diff_node_chain": [
+          {
+            "node_name": "pytest_runtest_call",
+            "node_type": "FunctionDef",
+            "lineno": 248,
+            "end_lineno": 257
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_setup",
+              "node_type": "FunctionDef",
+              "lineno": 233,
+              "end_lineno": 244
+            }
+          ],
+          "lineno": 234,
+          "end_lineno": 235
+        },
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_setup",
+              "node_type": "FunctionDef",
+              "lineno": 233,
+              "end_lineno": 244
+            }
+          ],
+          "lineno": 236,
+          "end_lineno": 236
+        },
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_setup",
+              "node_type": "FunctionDef",
+              "lineno": 233,
+              "end_lineno": 244
+            }
+          ],
+          "lineno": 238,
+          "end_lineno": 238
+        },
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_setup",
+              "node_type": "FunctionDef",
+              "lineno": 233,
+              "end_lineno": 244
+            }
+          ],
+          "lineno": 241,
+          "end_lineno": 244
+        },
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_call",
+              "node_type": "FunctionDef",
+              "lineno": 248,
+              "end_lineno": 257
+            }
+          ],
+          "lineno": 253,
+          "end_lineno": 255
+        },
+        {
+          "file": "src/_pytest/skipping.py",
+          "diff_nodes": [
+            {
+              "node_name": "pytest_runtest_call",
+              "node_type": "FunctionDef",
+              "lineno": 248,
+              "end_lineno": 257
+            }
+          ],
+          "lineno": 257,
+          "end_lineno": 257
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-10297": {
+    "instance_id": "scikit-learn__scikit-learn-10297",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "b90661d6a46aa3619d3eec94d5281f5888add501",
+    "callable_entities": [
+      {
+        "entity": "sklearn/linear_model/ridge.py::RidgeClassifierCV::__init__",
+        "kind": "method",
+        "file_path": "sklearn/linear_model/ridge.py",
+        "class_name": "RidgeClassifierCV",
+        "function_name": "__init__",
+        "diff_node_chain": [
+          {
+            "node_name": "RidgeClassifierCV",
+            "node_type": "ClassDef",
+            "lineno": 1247,
+            "end_lineno": 1381
+          },
+          {
+            "node_name": "__init__",
+            "node_type": "FunctionDef",
+            "lineno": 1335,
+            "end_lineno": 1340
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "sklearn/linear_model/ridge.py::RidgeCV",
+        "kind": "class",
+        "file_path": "sklearn/linear_model/ridge.py",
+        "class_name": "RidgeCV",
+        "diff_node_chain": [
+          {
+            "node_name": "RidgeCV",
+            "node_type": "ClassDef",
+            "lineno": 1147,
+            "end_lineno": 1244
+          }
+        ]
+      },
+      {
+        "entity": "sklearn/linear_model/ridge.py::RidgeClassifierCV",
+        "kind": "class",
+        "file_path": "sklearn/linear_model/ridge.py",
+        "class_name": "RidgeClassifierCV",
+        "diff_node_chain": [
+          {
+            "node_name": "RidgeClassifierCV",
+            "node_type": "ClassDef",
+            "lineno": 1247,
+            "end_lineno": 1381
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/linear_model/ridge.py",
+          "diff_nodes": [
+            {
+              "node_name": "RidgeCV",
+              "node_type": "ClassDef",
+              "lineno": 1147,
+              "end_lineno": 1244
+            }
+          ],
+          "lineno": 1215,
+          "end_lineno": 1216
+        },
+        {
+          "file": "sklearn/linear_model/ridge.py",
+          "diff_nodes": [
+            {
+              "node_name": "RidgeCV",
+              "node_type": "ClassDef",
+              "lineno": 1147,
+              "end_lineno": 1244
+            }
+          ],
+          "lineno": 1223,
+          "end_lineno": 1226
+        },
+        {
+          "file": "sklearn/linear_model/ridge.py",
+          "diff_nodes": [
+            {
+              "node_name": "RidgeClassifierCV",
+              "node_type": "ClassDef",
+              "lineno": 1247,
+              "end_lineno": 1381
+            }
+          ],
+          "lineno": 1302,
+          "end_lineno": 1302
+        },
+        {
+          "file": "sklearn/linear_model/ridge.py",
+          "diff_nodes": [
+            {
+              "node_name": "RidgeClassifierCV",
+              "node_type": "ClassDef",
+              "lineno": 1247,
+              "end_lineno": 1381
+            }
+          ],
+          "lineno": 1306,
+          "end_lineno": 1311
+        },
+        {
+          "file": "sklearn/linear_model/ridge.py",
+          "diff_nodes": [
+            {
+              "node_name": "RidgeClassifierCV",
+              "node_type": "ClassDef",
+              "lineno": 1247,
+              "end_lineno": 1381
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 1335,
+              "end_lineno": 1340
+            }
+          ],
+          "lineno": 1336,
+          "end_lineno": 1336
+        },
+        {
+          "file": "sklearn/linear_model/ridge.py",
+          "diff_nodes": [
+            {
+              "node_name": "RidgeClassifierCV",
+              "node_type": "ClassDef",
+              "lineno": 1247,
+              "end_lineno": 1381
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 1335,
+              "end_lineno": 1340
+            }
+          ],
+          "lineno": 1339,
+          "end_lineno": 1339
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-13142": {
+    "instance_id": "scikit-learn__scikit-learn-13142",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "1c8668b0a021832386470ddf740d834e02c66f69",
+    "callable_entities": [
+      {
+        "entity": "sklearn/mixture/base.py::BaseMixture::fit_predict",
+        "kind": "method",
+        "file_path": "sklearn/mixture/base.py",
+        "class_name": "BaseMixture",
+        "function_name": "fit_predict",
+        "diff_node_chain": [
+          {
+            "node_name": "BaseMixture",
+            "node_type": "ClassDef",
+            "lineno": 64,
+            "end_lineno": 536
+          },
+          {
+            "node_name": "fit_predict",
+            "node_type": "FunctionDef",
+            "lineno": 194,
+            "end_lineno": 276
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/mixture/base.py",
+          "diff_nodes": [
+            {
+              "node_name": "BaseMixture",
+              "node_type": "ClassDef",
+              "lineno": 64,
+              "end_lineno": 536
+            },
+            {
+              "node_name": "fit_predict",
+              "node_type": "FunctionDef",
+              "lineno": 194,
+              "end_lineno": 276
+            }
+          ],
+          "lineno": 260,
+          "end_lineno": 264
+        },
+        {
+          "file": "sklearn/mixture/base.py",
+          "diff_nodes": [
+            {
+              "node_name": "BaseMixture",
+              "node_type": "ClassDef",
+              "lineno": 64,
+              "end_lineno": 536
+            },
+            {
+              "node_name": "fit_predict",
+              "node_type": "FunctionDef",
+              "lineno": 194,
+              "end_lineno": 276
+            }
+          ],
+          "lineno": 274,
+          "end_lineno": 274
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-13439": {
+    "instance_id": "scikit-learn__scikit-learn-13439",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "a62775e99f2a5ea3d51db7160fad783f6cd8a4c5",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "sklearn/pipeline.py::Pipeline",
+        "kind": "class",
+        "file_path": "sklearn/pipeline.py",
+        "class_name": "Pipeline",
+        "diff_node_chain": [
+          {
+            "node_name": "Pipeline",
+            "node_type": "ClassDef",
+            "lineno": 29,
+            "end_lineno": 562
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/pipeline.py",
+          "diff_nodes": [
+            {
+              "node_name": "Pipeline",
+              "node_type": "ClassDef",
+              "lineno": 29,
+              "end_lineno": 562
+            }
+          ],
+          "lineno": 200,
+          "end_lineno": 200
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-13496": {
+    "instance_id": "scikit-learn__scikit-learn-13496",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "3aefc834dce72e850bff48689bea3c7dff5f3fad",
+    "callable_entities": [
+      {
+        "entity": "sklearn/ensemble/iforest.py::IsolationForest::__init__",
+        "kind": "method",
+        "file_path": "sklearn/ensemble/iforest.py",
+        "class_name": "IsolationForest",
+        "function_name": "__init__",
+        "diff_node_chain": [
+          {
+            "node_name": "IsolationForest",
+            "node_type": "ClassDef",
+            "lineno": 29,
+            "end_lineno": 474
+          },
+          {
+            "node_name": "__init__",
+            "node_type": "FunctionDef",
+            "lineno": 167,
+            "end_lineno": 193
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "sklearn/ensemble/iforest.py::IsolationForest",
+        "kind": "class",
+        "file_path": "sklearn/ensemble/iforest.py",
+        "class_name": "IsolationForest",
+        "diff_node_chain": [
+          {
+            "node_name": "IsolationForest",
+            "node_type": "ClassDef",
+            "lineno": 29,
+            "end_lineno": 474
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/ensemble/iforest.py",
+          "diff_nodes": [
+            {
+              "node_name": "IsolationForest",
+              "node_type": "ClassDef",
+              "lineno": 29,
+              "end_lineno": 474
+            }
+          ],
+          "lineno": 121,
+          "end_lineno": 121
+        },
+        {
+          "file": "sklearn/ensemble/iforest.py",
+          "diff_nodes": [
+            {
+              "node_name": "IsolationForest",
+              "node_type": "ClassDef",
+              "lineno": 29,
+              "end_lineno": 474
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 167,
+              "end_lineno": 193
+            }
+          ],
+          "lineno": 176,
+          "end_lineno": 176
+        },
+        {
+          "file": "sklearn/ensemble/iforest.py",
+          "diff_nodes": [
+            {
+              "node_name": "IsolationForest",
+              "node_type": "ClassDef",
+              "lineno": 29,
+              "end_lineno": 474
+            },
+            {
+              "node_name": "__init__",
+              "node_type": "FunctionDef",
+              "lineno": 167,
+              "end_lineno": 193
+            }
+          ],
+          "lineno": 187,
+          "end_lineno": 187
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-13779": {
+    "instance_id": "scikit-learn__scikit-learn-13779",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "b34751b7ed02b2cfcc36037fb729d4360480a299",
+    "callable_entities": [
+      {
+        "entity": "sklearn/ensemble/voting.py::_BaseVoting::fit",
+        "kind": "method",
+        "file_path": "sklearn/ensemble/voting.py",
+        "class_name": "_BaseVoting",
+        "function_name": "fit",
+        "diff_node_chain": [
+          {
+            "node_name": "_BaseVoting",
+            "node_type": "ClassDef",
+            "lineno": 39,
+            "end_lineno": 135
+          },
+          {
+            "node_name": "fit",
+            "node_type": "FunctionDef",
+            "lineno": 64,
+            "end_lineno": 101
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/ensemble/voting.py",
+          "diff_nodes": [
+            {
+              "node_name": "_BaseVoting",
+              "node_type": "ClassDef",
+              "lineno": 39,
+              "end_lineno": 135
+            },
+            {
+              "node_name": "fit",
+              "node_type": "FunctionDef",
+              "lineno": 64,
+              "end_lineno": 101
+            }
+          ],
+          "lineno": 80,
+          "end_lineno": 80
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-14087": {
+    "instance_id": "scikit-learn__scikit-learn-14087",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "a5743ed36fbd3fbc8e351bdab16561fbfca7dfa1",
+    "callable_entities": [
+      {
+        "entity": "sklearn/linear_model/logistic.py::LogisticRegressionCV::fit",
+        "kind": "method",
+        "file_path": "sklearn/linear_model/logistic.py",
+        "class_name": "LogisticRegressionCV",
+        "function_name": "fit",
+        "diff_node_chain": [
+          {
+            "node_name": "LogisticRegressionCV",
+            "node_type": "ClassDef",
+            "lineno": 1670,
+            "end_lineno": 2246
+          },
+          {
+            "node_name": "fit",
+            "node_type": "FunctionDef",
+            "lineno": 1936,
+            "end_lineno": 2212
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/linear_model/logistic.py",
+          "diff_nodes": [
+            {
+              "node_name": "LogisticRegressionCV",
+              "node_type": "ClassDef",
+              "lineno": 1670,
+              "end_lineno": 2246
+            },
+            {
+              "node_name": "fit",
+              "node_type": "FunctionDef",
+              "lineno": 1936,
+              "end_lineno": 2212
+            }
+          ],
+          "lineno": 2173,
+          "end_lineno": 2173
+        },
+        {
+          "file": "sklearn/linear_model/logistic.py",
+          "diff_nodes": [
+            {
+              "node_name": "LogisticRegressionCV",
+              "node_type": "ClassDef",
+              "lineno": 1670,
+              "end_lineno": 2246
+            },
+            {
+              "node_name": "fit",
+              "node_type": "FunctionDef",
+              "lineno": 1936,
+              "end_lineno": 2212
+            }
+          ],
+          "lineno": 2183,
+          "end_lineno": 2184
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-14894": {
+    "instance_id": "scikit-learn__scikit-learn-14894",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "fdbaa58acbead5a254f2e6d597dc1ab3b947f4c6",
+    "callable_entities": [
+      {
+        "entity": "sklearn/svm/base.py::BaseLibSVM::_sparse_fit",
+        "kind": "method",
+        "file_path": "sklearn/svm/base.py",
+        "class_name": "BaseLibSVM",
+        "function_name": "_sparse_fit",
+        "diff_node_chain": [
+          {
+            "node_name": "BaseLibSVM",
+            "node_type": "ClassDef",
+            "lineno": 58,
+            "end_lineno": 500
+          },
+          {
+            "node_name": "_sparse_fit",
+            "node_type": "FunctionDef",
+            "lineno": 261,
+            "end_lineno": 294
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/svm/base.py",
+          "diff_nodes": [
+            {
+              "node_name": "BaseLibSVM",
+              "node_type": "ClassDef",
+              "lineno": 58,
+              "end_lineno": 500
+            },
+            {
+              "node_name": "_sparse_fit",
+              "node_type": "FunctionDef",
+              "lineno": 261,
+              "end_lineno": 294
+            }
+          ],
+          "lineno": 290,
+          "end_lineno": 294
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-14983": {
+    "instance_id": "scikit-learn__scikit-learn-14983",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "06632c0d185128a53c57ccc73b25b6408e90bb89",
+    "callable_entities": [
+      {
+        "entity": "sklearn/model_selection/_split.py::_build_repr",
+        "kind": "function",
+        "file_path": "sklearn/model_selection/_split.py",
+        "class_name": "",
+        "function_name": "_build_repr",
+        "diff_node_chain": [
+          {
+            "node_name": "_build_repr",
+            "node_type": "FunctionDef",
+            "lineno": 2138,
+            "end_lineno": 2168
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "sklearn/model_selection/_split.py::_RepeatedSplits",
+        "kind": "class",
+        "file_path": "sklearn/model_selection/_split.py",
+        "class_name": "_RepeatedSplits",
+        "diff_node_chain": [
+          {
+            "node_name": "_RepeatedSplits",
+            "node_type": "ClassDef",
+            "lineno": 1066,
+            "end_lineno": 1164
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/model_selection/_split.py",
+          "diff_nodes": [
+            {
+              "node_name": "_RepeatedSplits",
+              "node_type": "ClassDef",
+              "lineno": 1066,
+              "end_lineno": 1164
+            }
+          ],
+          "lineno": 1164,
+          "end_lineno": 1164
+        },
+        {
+          "file": "sklearn/model_selection/_split.py",
+          "diff_nodes": [
+            {
+              "node_name": "_build_repr",
+              "node_type": "FunctionDef",
+              "lineno": 2138,
+              "end_lineno": 2168
+            }
+          ],
+          "lineno": 2160,
+          "end_lineno": 2160
+        }
+      ]
+    }
+  },
+  "scikit-learn__scikit-learn-25747": {
+    "instance_id": "scikit-learn__scikit-learn-25747",
+    "repo": "scikit-learn/scikit-learn",
+    "base_commit": "2c867b8f822eb7a684f0d5c4359e4426e1c9cfe0",
+    "callable_entities": [
+      {
+        "entity": "sklearn/utils/_set_output.py::_wrap_in_pandas_container",
+        "kind": "function",
+        "file_path": "sklearn/utils/_set_output.py",
+        "class_name": "",
+        "function_name": "_wrap_in_pandas_container",
+        "diff_node_chain": [
+          {
+            "node_name": "_wrap_in_pandas_container",
+            "node_type": "FunctionDef",
+            "lineno": 10,
+            "end_lineno": 62
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sklearn/utils/_set_output.py",
+          "diff_nodes": [
+            {
+              "node_name": "_wrap_in_pandas_container",
+              "node_type": "FunctionDef",
+              "lineno": 10,
+              "end_lineno": 62
+            }
+          ],
+          "lineno": 37,
+          "end_lineno": 37
+        },
+        {
+          "file": "sklearn/utils/_set_output.py",
+          "diff_nodes": [
+            {
+              "node_name": "_wrap_in_pandas_container",
+              "node_type": "FunctionDef",
+              "lineno": 10,
+              "end_lineno": 62
+            }
+          ],
+          "lineno": 58,
+          "end_lineno": 59
+        }
+      ]
+    }
+  },
+  "sphinx-doc__sphinx-11445": {
+    "instance_id": "sphinx-doc__sphinx-11445",
+    "repo": "sphinx-doc/sphinx",
+    "base_commit": "71db08c05197545944949d5aa76cd340e7143627",
+    "callable_entities": [
+      {
+        "entity": "sphinx/util/rst.py::prepend_prolog",
+        "kind": "function",
+        "file_path": "sphinx/util/rst.py",
+        "class_name": "",
+        "function_name": "prepend_prolog",
+        "diff_node_chain": [
+          {
+            "node_name": "prepend_prolog",
+            "node_type": "FunctionDef",
+            "lineno": 78,
+            "end_lineno": 97
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sphinx/util/rst.py",
+          "diff_nodes": [],
+          "lineno": 12,
+          "end_lineno": 12
+        },
+        {
+          "file": "sphinx/util/rst.py",
+          "diff_nodes": [],
+          "lineno": 15,
+          "end_lineno": 15
+        },
+        {
+          "file": "sphinx/util/rst.py",
+          "diff_nodes": [],
+          "lineno": 20,
+          "end_lineno": 25
+        },
+        {
+          "file": "sphinx/util/rst.py",
+          "diff_nodes": [],
+          "lineno": 28,
+          "end_lineno": 28
+        },
+        {
+          "file": "sphinx/util/rst.py",
+          "diff_nodes": [
+            {
+              "node_name": "prepend_prolog",
+              "node_type": "FunctionDef",
+              "lineno": 78,
+              "end_lineno": 97
+            }
+          ],
+          "lineno": 83,
+          "end_lineno": 83
+        },
+        {
+          "file": "sphinx/util/rst.py",
+          "diff_nodes": [
+            {
+              "node_name": "prepend_prolog",
+              "node_type": "FunctionDef",
+              "lineno": 78,
+              "end_lineno": 97
+            }
+          ],
+          "lineno": 93,
+          "end_lineno": 93
+        }
+      ]
+    }
+  },
+  "sphinx-doc__sphinx-8595": {
+    "instance_id": "sphinx-doc__sphinx-8595",
+    "repo": "sphinx-doc/sphinx",
+    "base_commit": "b19bce971e82f2497d67fdacdeca8db08ae0ba56",
+    "callable_entities": [
+      {
+        "entity": "sphinx/ext/autodoc/__init__.py::ModuleDocumenter::get_object_members",
+        "kind": "method",
+        "file_path": "sphinx/ext/autodoc/__init__.py",
+        "class_name": "ModuleDocumenter",
+        "function_name": "get_object_members",
+        "diff_node_chain": [
+          {
+            "node_name": "ModuleDocumenter",
+            "node_type": "ClassDef",
+            "lineno": 971,
+            "end_lineno": 1117
+          },
+          {
+            "node_name": "get_object_members",
+            "node_type": "FunctionDef",
+            "lineno": 1074,
+            "end_lineno": 1098
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sphinx/ext/autodoc/__init__.py",
+          "diff_nodes": [
+            {
+              "node_name": "ModuleDocumenter",
+              "node_type": "ClassDef",
+              "lineno": 971,
+              "end_lineno": 1117
+            },
+            {
+              "node_name": "get_object_members",
+              "node_type": "FunctionDef",
+              "lineno": 1074,
+              "end_lineno": 1098
+            }
+          ],
+          "lineno": 1077,
+          "end_lineno": 1077
+        }
+      ]
+    }
+  },
+  "sphinx-doc__sphinx-8721": {
+    "instance_id": "sphinx-doc__sphinx-8721",
+    "repo": "sphinx-doc/sphinx",
+    "base_commit": "82ef497a8c88f0f6e50d84520e7276bfbf65025d",
+    "callable_entities": [
+      {
+        "entity": "sphinx/ext/viewcode.py::collect_pages",
+        "kind": "function",
+        "file_path": "sphinx/ext/viewcode.py",
+        "class_name": "",
+        "function_name": "collect_pages",
+        "diff_node_chain": [
+          {
+            "node_name": "collect_pages",
+            "node_type": "FunctionDef",
+            "lineno": 181,
+            "end_lineno": 276
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sphinx/ext/viewcode.py",
+          "diff_nodes": [
+            {
+              "node_name": "collect_pages",
+              "node_type": "FunctionDef",
+              "lineno": 181,
+              "end_lineno": 276
+            }
+          ],
+          "lineno": 184,
+          "end_lineno": 184
+        }
+      ]
+    }
+  },
+  "sympy__sympy-12419": {
+    "instance_id": "sympy__sympy-12419",
+    "repo": "sympy/sympy",
+    "base_commit": "479939f8c65c8c2908bbedc959549a257a7c0b0b",
+    "callable_entities": [
+      {
+        "entity": "sympy/matrices/expressions/matexpr.py::MatrixElement::_eval_derivative",
+        "kind": "method",
+        "file_path": "sympy/matrices/expressions/matexpr.py",
+        "class_name": "MatrixElement",
+        "function_name": "_eval_derivative",
+        "diff_node_chain": [
+          {
+            "node_name": "MatrixElement",
+            "node_type": "ClassDef",
+            "lineno": 342,
+            "end_lineno": 379
+          },
+          {
+            "node_name": "_eval_derivative",
+            "node_type": "FunctionDef",
+            "lineno": 368,
+            "end_lineno": 379
+          }
+        ]
+      },
+      {
+        "entity": "sympy/matrices/expressions/matexpr.py::Identity::_entry",
+        "kind": "method",
+        "file_path": "sympy/matrices/expressions/matexpr.py",
+        "class_name": "Identity",
+        "function_name": "_entry",
+        "diff_node_chain": [
+          {
+            "node_name": "Identity",
+            "node_type": "ClassDef",
+            "lineno": 439,
+            "end_lineno": 485
+          },
+          {
+            "node_name": "_entry",
+            "node_type": "FunctionDef",
+            "lineno": 478,
+            "end_lineno": 482
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [
+      {
+        "entity": "sympy/matrices/expressions/matexpr.py::Identity",
+        "kind": "class",
+        "file_path": "sympy/matrices/expressions/matexpr.py",
+        "class_name": "Identity",
+        "diff_node_chain": [
+          {
+            "node_name": "Identity",
+            "node_type": "ClassDef",
+            "lineno": 439,
+            "end_lineno": 485
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [],
+          "lineno": 5,
+          "end_lineno": 5
+        },
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [],
+          "lineno": 9,
+          "end_lineno": 9
+        },
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [
+            {
+              "node_name": "MatrixElement",
+              "node_type": "ClassDef",
+              "lineno": 342,
+              "end_lineno": 379
+            },
+            {
+              "node_name": "_eval_derivative",
+              "node_type": "FunctionDef",
+              "lineno": 368,
+              "end_lineno": 379
+            }
+          ],
+          "lineno": 378,
+          "end_lineno": 378
+        },
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [
+            {
+              "node_name": "Identity",
+              "node_type": "ClassDef",
+              "lineno": 439,
+              "end_lineno": 485
+            },
+            {
+              "node_name": "_entry",
+              "node_type": "FunctionDef",
+              "lineno": 478,
+              "end_lineno": 482
+            }
+          ],
+          "lineno": 479,
+          "end_lineno": 479
+        },
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [
+            {
+              "node_name": "Identity",
+              "node_type": "ClassDef",
+              "lineno": 439,
+              "end_lineno": 485
+            },
+            {
+              "node_name": "_entry",
+              "node_type": "FunctionDef",
+              "lineno": 478,
+              "end_lineno": 482
+            }
+          ],
+          "lineno": 481,
+          "end_lineno": 481
+        },
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [
+            {
+              "node_name": "Identity",
+              "node_type": "ClassDef",
+              "lineno": 439,
+              "end_lineno": 485
+            }
+          ],
+          "lineno": 482,
+          "end_lineno": 482
+        }
+      ]
+    }
+  },
+  "sympy__sympy-12481": {
+    "instance_id": "sympy__sympy-12481",
+    "repo": "sympy/sympy",
+    "base_commit": "c807dfe7569692cad24f02a08477b70c1679a4dd",
+    "callable_entities": [
+      {
+        "entity": "sympy/combinatorics/permutations.py::Permutation::__new__",
+        "kind": "method",
+        "file_path": "sympy/combinatorics/permutations.py",
+        "class_name": "Permutation",
+        "function_name": "__new__",
+        "diff_node_chain": [
+          {
+            "node_name": "Permutation",
+            "node_type": "ClassDef",
+            "lineno": 464,
+            "end_lineno": 2799
+          },
+          {
+            "node_name": "__new__",
+            "node_type": "FunctionDef",
+            "lineno": 801,
+            "end_lineno": 929
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/combinatorics/permutations.py",
+          "diff_nodes": [
+            {
+              "node_name": "Permutation",
+              "node_type": "ClassDef",
+              "lineno": 464,
+              "end_lineno": 2799
+            },
+            {
+              "node_name": "__new__",
+              "node_type": "FunctionDef",
+              "lineno": 801,
+              "end_lineno": 929
+            }
+          ],
+          "lineno": 898,
+          "end_lineno": 903
+        }
+      ]
+    }
+  },
+  "sympy__sympy-13031": {
+    "instance_id": "sympy__sympy-13031",
+    "repo": "sympy/sympy",
+    "base_commit": "2dfa7457f20ee187fbb09b5b6a1631da4458388c",
+    "callable_entities": [
+      {
+        "entity": "sympy/matrices/sparse.py::MutableSparseMatrix::col_join",
+        "kind": "method",
+        "file_path": "sympy/matrices/sparse.py",
+        "class_name": "MutableSparseMatrix",
+        "function_name": "col_join",
+        "diff_node_chain": [
+          {
+            "node_name": "MutableSparseMatrix",
+            "node_type": "ClassDef",
+            "lineno": 847,
+            "end_lineno": 1299
+          },
+          {
+            "node_name": "col_join",
+            "node_type": "FunctionDef",
+            "lineno": 949,
+            "end_lineno": 1007
+          }
+        ]
+      },
+      {
+        "entity": "sympy/matrices/sparse.py::MutableSparseMatrix::row_join",
+        "kind": "method",
+        "file_path": "sympy/matrices/sparse.py",
+        "class_name": "MutableSparseMatrix",
+        "function_name": "row_join",
+        "diff_node_chain": [
+          {
+            "node_name": "MutableSparseMatrix",
+            "node_type": "ClassDef",
+            "lineno": 847,
+            "end_lineno": 1299
+          },
+          {
+            "node_name": "row_join",
+            "node_type": "FunctionDef",
+            "lineno": 1159,
+            "end_lineno": 1213
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/matrices/sparse.py",
+          "diff_nodes": [
+            {
+              "node_name": "MutableSparseMatrix",
+              "node_type": "ClassDef",
+              "lineno": 847,
+              "end_lineno": 1299
+            },
+            {
+              "node_name": "col_join",
+              "node_type": "FunctionDef",
+              "lineno": 949,
+              "end_lineno": 1007
+            }
+          ],
+          "lineno": 988,
+          "end_lineno": 989
+        },
+        {
+          "file": "sympy/matrices/sparse.py",
+          "diff_nodes": [
+            {
+              "node_name": "MutableSparseMatrix",
+              "node_type": "ClassDef",
+              "lineno": 847,
+              "end_lineno": 1299
+            },
+            {
+              "node_name": "row_join",
+              "node_type": "FunctionDef",
+              "lineno": 1159,
+              "end_lineno": 1213
+            }
+          ],
+          "lineno": 1194,
+          "end_lineno": 1195
+        }
+      ]
+    }
+  },
+  "sympy__sympy-13480": {
+    "instance_id": "sympy__sympy-13480",
+    "repo": "sympy/sympy",
+    "base_commit": "f57fe3f4b3f2cab225749e1b3b38ae1bf80b62f0",
+    "callable_entities": [
+      {
+        "entity": "sympy/functions/elementary/hyperbolic.py::coth::eval",
+        "kind": "method",
+        "file_path": "sympy/functions/elementary/hyperbolic.py",
+        "class_name": "coth",
+        "function_name": "eval",
+        "diff_node_chain": [
+          {
+            "node_name": "coth",
+            "node_type": "ClassDef",
+            "lineno": 537,
+            "end_lineno": 667
+          },
+          {
+            "node_name": "eval",
+            "node_type": "FunctionDef",
+            "lineno": 557,
+            "end_lineno": 607
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/functions/elementary/hyperbolic.py",
+          "diff_nodes": [
+            {
+              "node_name": "coth",
+              "node_type": "ClassDef",
+              "lineno": 537,
+              "end_lineno": 667
+            },
+            {
+              "node_name": "eval",
+              "node_type": "FunctionDef",
+              "lineno": 557,
+              "end_lineno": 607
+            }
+          ],
+          "lineno": 590,
+          "end_lineno": 590
+        }
+      ]
+    }
+  },
+  "sympy__sympy-13647": {
+    "instance_id": "sympy__sympy-13647",
+    "repo": "sympy/sympy",
+    "base_commit": "67e3c956083d0128a621f65ee86a7dacd4f9f19f",
+    "callable_entities": [
+      {
+        "entity": "sympy/matrices/common.py::MatrixShaping::entry",
+        "kind": "method",
+        "file_path": "sympy/matrices/common.py",
+        "class_name": "MatrixShaping",
+        "function_name": "entry",
+        "diff_node_chain": [
+          {
+            "node_name": "MatrixShaping",
+            "node_type": "ClassDef",
+            "lineno": 73,
+            "end_lineno": 604
+          },
+          {
+            "node_name": "_eval_col_insert",
+            "node_type": "FunctionDef",
+            "lineno": 81,
+            "end_lineno": 92
+          },
+          {
+            "node_name": "entry",
+            "node_type": "FunctionDef",
+            "lineno": 84,
+            "end_lineno": 89
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/matrices/common.py",
+          "diff_nodes": [
+            {
+              "node_name": "MatrixShaping",
+              "node_type": "ClassDef",
+              "lineno": 73,
+              "end_lineno": 604
+            },
+            {
+              "node_name": "_eval_col_insert",
+              "node_type": "FunctionDef",
+              "lineno": 81,
+              "end_lineno": 92
+            },
+            {
+              "node_name": "entry",
+              "node_type": "FunctionDef",
+              "lineno": 84,
+              "end_lineno": 89
+            }
+          ],
+          "lineno": 89,
+          "end_lineno": 89
+        }
+      ]
+    }
+  },
+  "sympy__sympy-15345": {
+    "instance_id": "sympy__sympy-15345",
+    "repo": "sympy/sympy",
+    "base_commit": "9ef28fba5b4d6d0168237c9c005a550e6dc27d81",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "sympy/printing/mathematica.py::MCodePrinter",
+        "kind": "class",
+        "file_path": "sympy/printing/mathematica.py",
+        "class_name": "MCodePrinter",
+        "diff_node_chain": [
+          {
+            "node_name": "MCodePrinter",
+            "node_type": "ClassDef",
+            "lineno": 38,
+            "end_lineno": 117
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/printing/mathematica.py",
+          "diff_nodes": [],
+          "lineno": 34,
+          "end_lineno": 34
+        },
+        {
+          "file": "sympy/printing/mathematica.py",
+          "diff_nodes": [
+            {
+              "node_name": "MCodePrinter",
+              "node_type": "ClassDef",
+              "lineno": 38,
+              "end_lineno": 117
+            }
+          ],
+          "lineno": 102,
+          "end_lineno": 102
+        }
+      ]
+    }
+  },
+  "sympy__sympy-16792": {
+    "instance_id": "sympy__sympy-16792",
+    "repo": "sympy/sympy",
+    "base_commit": "09786a173e7a0a488f46dd6000177c23e5d24eed",
+    "callable_entities": [
+      {
+        "entity": "sympy/utilities/codegen.py::CodeGen::routine",
+        "kind": "method",
+        "file_path": "sympy/utilities/codegen.py",
+        "class_name": "CodeGen",
+        "function_name": "routine",
+        "diff_node_chain": [
+          {
+            "node_name": "CodeGen",
+            "node_type": "ClassDef",
+            "lineno": 539,
+            "end_lineno": 841
+          },
+          {
+            "node_name": "routine",
+            "node_type": "FunctionDef",
+            "lineno": 577,
+            "end_lineno": 745
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/utilities/codegen.py",
+          "diff_nodes": [
+            {
+              "node_name": "CodeGen",
+              "node_type": "ClassDef",
+              "lineno": 539,
+              "end_lineno": 841
+            },
+            {
+              "node_name": "routine",
+              "node_type": "FunctionDef",
+              "lineno": 577,
+              "end_lineno": 745
+            }
+          ],
+          "lineno": 697,
+          "end_lineno": 697
+        },
+        {
+          "file": "sympy/utilities/codegen.py",
+          "diff_nodes": [
+            {
+              "node_name": "CodeGen",
+              "node_type": "ClassDef",
+              "lineno": 539,
+              "end_lineno": 841
+            },
+            {
+              "node_name": "routine",
+              "node_type": "FunctionDef",
+              "lineno": 577,
+              "end_lineno": 745
+            }
+          ],
+          "lineno": 706,
+          "end_lineno": 706
+        },
+        {
+          "file": "sympy/utilities/codegen.py",
+          "diff_nodes": [
+            {
+              "node_name": "CodeGen",
+              "node_type": "ClassDef",
+              "lineno": 539,
+              "end_lineno": 841
+            },
+            {
+              "node_name": "routine",
+              "node_type": "FunctionDef",
+              "lineno": 577,
+              "end_lineno": 745
+            }
+          ],
+          "lineno": 708,
+          "end_lineno": 710
+        },
+        {
+          "file": "sympy/utilities/codegen.py",
+          "diff_nodes": [
+            {
+              "node_name": "CodeGen",
+              "node_type": "ClassDef",
+              "lineno": 539,
+              "end_lineno": 841
+            },
+            {
+              "node_name": "routine",
+              "node_type": "FunctionDef",
+              "lineno": 577,
+              "end_lineno": 745
+            }
+          ],
+          "lineno": 742,
+          "end_lineno": 742
+        }
+      ]
+    }
+  },
+  "sympy__sympy-17139": {
+    "instance_id": "sympy__sympy-17139",
+    "repo": "sympy/sympy",
+    "base_commit": "1d3327b8e90a186df6972991963a5ae87053259d",
+    "callable_entities": [
+      {
+        "entity": "sympy/simplify/fu.py::_f",
+        "kind": "function",
+        "file_path": "sympy/simplify/fu.py",
+        "class_name": "",
+        "function_name": "_f",
+        "diff_node_chain": [
+          {
+            "node_name": "_TR56",
+            "node_type": "FunctionDef",
+            "lineno": 470,
+            "end_lineno": 524
+          },
+          {
+            "node_name": "_f",
+            "node_type": "FunctionDef",
+            "lineno": 496,
+            "end_lineno": 522
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/simplify/fu.py",
+          "diff_nodes": [
+            {
+              "node_name": "_TR56",
+              "node_type": "FunctionDef",
+              "lineno": 470,
+              "end_lineno": 524
+            },
+            {
+              "node_name": "_f",
+              "node_type": "FunctionDef",
+              "lineno": 496,
+              "end_lineno": 522
+            }
+          ],
+          "lineno": 502,
+          "end_lineno": 502
+        }
+      ]
+    }
+  },
+  "sympy__sympy-17630": {
+    "instance_id": "sympy__sympy-17630",
+    "repo": "sympy/sympy",
+    "base_commit": "58e78209c8577b9890e957b624466e5beed7eb08",
+    "callable_entities": [
+      {
+        "entity": "sympy/matrices/expressions/matexpr.py::_postprocessor",
+        "kind": "function",
+        "file_path": "sympy/matrices/expressions/matexpr.py",
+        "class_name": "",
+        "function_name": "_postprocessor",
+        "diff_node_chain": [
+          {
+            "node_name": "get_postprocessor",
+            "node_type": "FunctionDef",
+            "lineno": 597,
+            "end_lineno": 631
+          },
+          {
+            "node_name": "_postprocessor",
+            "node_type": "FunctionDef",
+            "lineno": 598,
+            "end_lineno": 630
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/matrices/expressions/matexpr.py",
+          "diff_nodes": [
+            {
+              "node_name": "get_postprocessor",
+              "node_type": "FunctionDef",
+              "lineno": 597,
+              "end_lineno": 631
+            },
+            {
+              "node_name": "_postprocessor",
+              "node_type": "FunctionDef",
+              "lineno": 598,
+              "end_lineno": 630
+            }
+          ],
+          "lineno": 628,
+          "end_lineno": 628
+        }
+      ]
+    }
+  },
+  "sympy__sympy-17655": {
+    "instance_id": "sympy__sympy-17655",
+    "repo": "sympy/sympy",
+    "base_commit": "f5e965947af2410ded92cfad987aaf45262ea434",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "sympy/geometry/point.py::Point",
+        "kind": "class",
+        "file_path": "sympy/geometry/point.py",
+        "class_name": "Point",
+        "diff_node_chain": [
+          {
+            "node_name": "Point",
+            "node_type": "ClassDef",
+            "lineno": 41,
+            "end_lineno": 855
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/geometry/point.py",
+          "diff_nodes": [
+            {
+              "node_name": "Point",
+              "node_type": "ClassDef",
+              "lineno": 41,
+              "end_lineno": 855
+            }
+          ],
+          "lineno": 279,
+          "end_lineno": 279
+        }
+      ]
+    }
+  },
+  "sympy__sympy-18189": {
+    "instance_id": "sympy__sympy-18189",
+    "repo": "sympy/sympy",
+    "base_commit": "1923822ddf8265199dbd9ef9ce09641d3fd042b9",
+    "callable_entities": [
+      {
+        "entity": "sympy/solvers/diophantine.py::diophantine",
+        "kind": "function",
+        "file_path": "sympy/solvers/diophantine.py",
+        "class_name": "",
+        "function_name": "diophantine",
+        "diff_node_chain": [
+          {
+            "node_name": "diophantine",
+            "node_type": "FunctionDef",
+            "lineno": 101,
+            "end_lineno": 351
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/solvers/diophantine.py",
+          "diff_nodes": [
+            {
+              "node_name": "diophantine",
+              "node_type": "FunctionDef",
+              "lineno": 101,
+              "end_lineno": 351
+            }
+          ],
+          "lineno": 185,
+          "end_lineno": 185
+        }
+      ]
+    }
+  },
+  "sympy__sympy-18199": {
+    "instance_id": "sympy__sympy-18199",
+    "repo": "sympy/sympy",
+    "base_commit": "ba80d1e493f21431b4bf729b3e0452cd47eb9566",
+    "callable_entities": [
+      {
+        "entity": "sympy/ntheory/residue_ntheory.py::nthroot_mod",
+        "kind": "function",
+        "file_path": "sympy/ntheory/residue_ntheory.py",
+        "class_name": "",
+        "function_name": "nthroot_mod",
+        "diff_node_chain": [
+          {
+            "node_name": "nthroot_mod",
+            "node_type": "FunctionDef",
+            "lineno": 746,
+            "end_lineno": 807
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/ntheory/residue_ntheory.py",
+          "diff_nodes": [],
+          "lineno": 4,
+          "end_lineno": 4
+        },
+        {
+          "file": "sympy/ntheory/residue_ntheory.py",
+          "diff_nodes": [],
+          "lineno": 743,
+          "end_lineno": 743
+        },
+        {
+          "file": "sympy/ntheory/residue_ntheory.py",
+          "diff_nodes": [
+            {
+              "node_name": "nthroot_mod",
+              "node_type": "FunctionDef",
+              "lineno": 746,
+              "end_lineno": 807
+            }
+          ],
+          "lineno": 773,
+          "end_lineno": 773
+        },
+        {
+          "file": "sympy/ntheory/residue_ntheory.py",
+          "diff_nodes": [
+            {
+              "node_name": "nthroot_mod",
+              "node_type": "FunctionDef",
+              "lineno": 746,
+              "end_lineno": 807
+            }
+          ],
+          "lineno": 776,
+          "end_lineno": 778
+        }
+      ]
+    }
+  },
+  "sympy__sympy-18698": {
+    "instance_id": "sympy__sympy-18698",
+    "repo": "sympy/sympy",
+    "base_commit": "3dff1b98a78f28c953ae2140b69356b8391e399c",
+    "callable_entities": [
+      {
+        "entity": "sympy/polys/polytools.py::_symbolic_factor_list",
+        "kind": "function",
+        "file_path": "sympy/polys/polytools.py",
+        "class_name": "",
+        "function_name": "_symbolic_factor_list",
+        "diff_node_chain": [
+          {
+            "node_name": "_symbolic_factor_list",
+            "node_type": "FunctionDef",
+            "lineno": 5898,
+            "end_lineno": 5953
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/polys/polytools.py",
+          "diff_nodes": [],
+          "lineno": 5,
+          "end_lineno": 5
+        },
+        {
+          "file": "sympy/polys/polytools.py",
+          "diff_nodes": [
+            {
+              "node_name": "_symbolic_factor_list",
+              "node_type": "FunctionDef",
+              "lineno": 5898,
+              "end_lineno": 5953
+            }
+          ],
+          "lineno": 5908,
+          "end_lineno": 5911
+        },
+        {
+          "file": "sympy/polys/polytools.py",
+          "diff_nodes": [
+            {
+              "node_name": "_symbolic_factor_list",
+              "node_type": "FunctionDef",
+              "lineno": 5898,
+              "end_lineno": 5953
+            }
+          ],
+          "lineno": 5951,
+          "end_lineno": 5951
+        }
+      ]
+    }
+  },
+  "sympy__sympy-20154": {
+    "instance_id": "sympy__sympy-20154",
+    "repo": "sympy/sympy",
+    "base_commit": "bdb49c4abfb35554a3c8ce761696ffff3bb837fe",
+    "callable_entities": [
+      {
+        "entity": "sympy/utilities/iterables.py::partitions",
+        "kind": "function",
+        "file_path": "sympy/utilities/iterables.py",
+        "class_name": "",
+        "function_name": "partitions",
+        "diff_node_chain": [
+          {
+            "node_name": "partitions",
+            "node_type": "FunctionDef",
+            "lineno": 1696,
+            "end_lineno": 1847
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/utilities/iterables.py",
+          "diff_nodes": [
+            {
+              "node_name": "partitions",
+              "node_type": "FunctionDef",
+              "lineno": 1696,
+              "end_lineno": 1847
+            }
+          ],
+          "lineno": 1741,
+          "end_lineno": 1755
+        },
+        {
+          "file": "sympy/utilities/iterables.py",
+          "diff_nodes": [
+            {
+              "node_name": "partitions",
+              "node_type": "FunctionDef",
+              "lineno": 1696,
+              "end_lineno": 1847
+            }
+          ],
+          "lineno": 1805,
+          "end_lineno": 1805
+        },
+        {
+          "file": "sympy/utilities/iterables.py",
+          "diff_nodes": [
+            {
+              "node_name": "partitions",
+              "node_type": "FunctionDef",
+              "lineno": 1696,
+              "end_lineno": 1847
+            }
+          ],
+          "lineno": 1807,
+          "end_lineno": 1807
+        },
+        {
+          "file": "sympy/utilities/iterables.py",
+          "diff_nodes": [
+            {
+              "node_name": "partitions",
+              "node_type": "FunctionDef",
+              "lineno": 1696,
+              "end_lineno": 1847
+            }
+          ],
+          "lineno": 1845,
+          "end_lineno": 1845
+        },
+        {
+          "file": "sympy/utilities/iterables.py",
+          "diff_nodes": [
+            {
+              "node_name": "partitions",
+              "node_type": "FunctionDef",
+              "lineno": 1696,
+              "end_lineno": 1847
+            }
+          ],
+          "lineno": 1847,
+          "end_lineno": 1847
+        }
+      ]
+    }
+  },
+  "sympy__sympy-20590": {
+    "instance_id": "sympy__sympy-20590",
+    "repo": "sympy/sympy",
+    "base_commit": "cffd4e0f86fefd4802349a9f9b19ed70934ea354",
+    "callable_entities": [],
+    "non_callable_entities": [
+      {
+        "entity": "sympy/core/_print_helpers.py::Printable",
+        "kind": "class",
+        "file_path": "sympy/core/_print_helpers.py",
+        "class_name": "Printable",
+        "diff_node_chain": [
+          {
+            "node_name": "Printable",
+            "node_type": "ClassDef",
+            "lineno": 8,
+            "end_lineno": 60
+          }
+        ]
+      }
+    ],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/core/_print_helpers.py",
+          "diff_nodes": [
+            {
+              "node_name": "Printable",
+              "node_type": "ClassDef",
+              "lineno": 8,
+              "end_lineno": 60
+            }
+          ],
+          "lineno": 18,
+          "end_lineno": 18
+        }
+      ]
+    }
+  },
+  "sympy__sympy-21379": {
+    "instance_id": "sympy__sympy-21379",
+    "repo": "sympy/sympy",
+    "base_commit": "624217179aaf8d094e6ff75b7493ad1ee47599b0",
+    "callable_entities": [
+      {
+        "entity": "sympy/core/mod.py::Mod::eval",
+        "kind": "method",
+        "file_path": "sympy/core/mod.py",
+        "class_name": "Mod",
+        "function_name": "eval",
+        "diff_node_chain": [
+          {
+            "node_name": "Mod",
+            "node_type": "ClassDef",
+            "lineno": 6,
+            "end_lineno": 239
+          },
+          {
+            "node_name": "eval",
+            "node_type": "FunctionDef",
+            "lineno": 38,
+            "end_lineno": 221
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/core/mod.py",
+          "diff_nodes": [
+            {
+              "node_name": "Mod",
+              "node_type": "ClassDef",
+              "lineno": 6,
+              "end_lineno": 239
+            },
+            {
+              "node_name": "eval",
+              "node_type": "FunctionDef",
+              "lineno": 38,
+              "end_lineno": 221
+            }
+          ],
+          "lineno": 42,
+          "end_lineno": 42
+        },
+        {
+          "file": "sympy/core/mod.py",
+          "diff_nodes": [
+            {
+              "node_name": "Mod",
+              "node_type": "ClassDef",
+              "lineno": 6,
+              "end_lineno": 239
+            },
+            {
+              "node_name": "eval",
+              "node_type": "FunctionDef",
+              "lineno": 38,
+              "end_lineno": 221
+            }
+          ],
+          "lineno": 169,
+          "end_lineno": 172
+        }
+      ]
+    }
+  },
+  "sympy__sympy-21612": {
+    "instance_id": "sympy__sympy-21612",
+    "repo": "sympy/sympy",
+    "base_commit": "b4777fdcef467b7132c055f8ac2c9a5059e6a145",
+    "callable_entities": [
+      {
+        "entity": "sympy/printing/str.py::StrPrinter::_print_Mul",
+        "kind": "method",
+        "file_path": "sympy/printing/str.py",
+        "class_name": "StrPrinter",
+        "function_name": "_print_Mul",
+        "diff_node_chain": [
+          {
+            "node_name": "StrPrinter",
+            "node_type": "ClassDef",
+            "lineno": 18,
+            "end_lineno": 947
+          },
+          {
+            "node_name": "_print_Mul",
+            "node_type": "FunctionDef",
+            "lineno": 249,
+            "end_lineno": 363
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/printing/str.py",
+          "diff_nodes": [
+            {
+              "node_name": "StrPrinter",
+              "node_type": "ClassDef",
+              "lineno": 18,
+              "end_lineno": 947
+            },
+            {
+              "node_name": "_print_Mul",
+              "node_type": "FunctionDef",
+              "lineno": 249,
+              "end_lineno": 363
+            }
+          ],
+          "lineno": 336,
+          "end_lineno": 336
+        }
+      ]
+    }
+  },
+  "sympy__sympy-21847": {
+    "instance_id": "sympy__sympy-21847",
+    "repo": "sympy/sympy",
+    "base_commit": "d9b18c518d64d0ebe8e35a98c2fb519938b9b151",
+    "callable_entities": [
+      {
+        "entity": "sympy/polys/monomials.py::itermonomials",
+        "kind": "function",
+        "file_path": "sympy/polys/monomials.py",
+        "class_name": "",
+        "function_name": "itermonomials",
+        "diff_node_chain": [
+          {
+            "node_name": "itermonomials",
+            "node_type": "FunctionDef",
+            "lineno": 15,
+            "end_lineno": 152
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/polys/monomials.py",
+          "diff_nodes": [
+            {
+              "node_name": "itermonomials",
+              "node_type": "FunctionDef",
+              "lineno": 15,
+              "end_lineno": 152
+            }
+          ],
+          "lineno": 130,
+          "end_lineno": 130
+        },
+        {
+          "file": "sympy/polys/monomials.py",
+          "diff_nodes": [
+            {
+              "node_name": "itermonomials",
+              "node_type": "FunctionDef",
+              "lineno": 15,
+              "end_lineno": 152
+            }
+          ],
+          "lineno": 142,
+          "end_lineno": 142
+        }
+      ]
+    }
+  },
+  "sympy__sympy-22714": {
+    "instance_id": "sympy__sympy-22714",
+    "repo": "sympy/sympy",
+    "base_commit": "3ff4717b6aef6086e78f01cdfa06f64ae23aed7e",
+    "callable_entities": [
+      {
+        "entity": "sympy/geometry/point.py::Point::__new__",
+        "kind": "method",
+        "file_path": "sympy/geometry/point.py",
+        "class_name": "Point",
+        "function_name": "__new__",
+        "diff_node_chain": [
+          {
+            "node_name": "Point",
+            "node_type": "ClassDef",
+            "lineno": 42,
+            "end_lineno": 857
+          },
+          {
+            "node_name": "__new__",
+            "node_type": "FunctionDef",
+            "lineno": 109,
+            "end_lineno": 179
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/geometry/point.py",
+          "diff_nodes": [
+            {
+              "node_name": "Point",
+              "node_type": "ClassDef",
+              "lineno": 42,
+              "end_lineno": 857
+            },
+            {
+              "node_name": "__new__",
+              "node_type": "FunctionDef",
+              "lineno": 109,
+              "end_lineno": 179
+            }
+          ],
+          "lineno": 155,
+          "end_lineno": 155
+        }
+      ]
+    }
+  },
+  "sympy__sympy-23262": {
+    "instance_id": "sympy__sympy-23262",
+    "repo": "sympy/sympy",
+    "base_commit": "fdc707f73a65a429935c01532cd3970d3355eab6",
+    "callable_entities": [
+      {
+        "entity": "sympy/utilities/lambdify.py::_recursive_to_string",
+        "kind": "function",
+        "file_path": "sympy/utilities/lambdify.py",
+        "class_name": "",
+        "function_name": "_recursive_to_string",
+        "diff_node_chain": [
+          {
+            "node_name": "_recursive_to_string",
+            "node_type": "FunctionDef",
+            "lineno": 948,
+            "end_lineno": 968
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/utilities/lambdify.py",
+          "diff_nodes": [
+            {
+              "node_name": "_recursive_to_string",
+              "node_type": "FunctionDef",
+              "lineno": 948,
+              "end_lineno": 968
+            }
+          ],
+          "lineno": 959,
+          "end_lineno": 959
+        },
+        {
+          "file": "sympy/utilities/lambdify.py",
+          "diff_nodes": [
+            {
+              "node_name": "_recursive_to_string",
+              "node_type": "FunctionDef",
+              "lineno": 948,
+              "end_lineno": 968
+            }
+          ],
+          "lineno": 961,
+          "end_lineno": 961
+        }
+      ]
+    }
+  },
+  "sympy__sympy-24066": {
+    "instance_id": "sympy__sympy-24066",
+    "repo": "sympy/sympy",
+    "base_commit": "514579c655bf22e2af14f0743376ae1d7befe345",
+    "callable_entities": [
+      {
+        "entity": "sympy/physics/units/unitsystem.py::UnitSystem::_collect_factor_and_dimension",
+        "kind": "method",
+        "file_path": "sympy/physics/units/unitsystem.py",
+        "class_name": "UnitSystem",
+        "function_name": "_collect_factor_and_dimension",
+        "diff_node_chain": [
+          {
+            "node_name": "UnitSystem",
+            "node_type": "ClassDef",
+            "lineno": 18,
+            "end_lineno": 206
+          },
+          {
+            "node_name": "_collect_factor_and_dimension",
+            "node_type": "FunctionDef",
+            "lineno": 152,
+            "end_lineno": 200
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/physics/units/unitsystem.py",
+          "diff_nodes": [
+            {
+              "node_name": "UnitSystem",
+              "node_type": "ClassDef",
+              "lineno": 18,
+              "end_lineno": 206
+            },
+            {
+              "node_name": "_collect_factor_and_dimension",
+              "node_type": "FunctionDef",
+              "lineno": 152,
+              "end_lineno": 200
+            }
+          ],
+          "lineno": 193,
+          "end_lineno": 196
+        }
+      ]
+    }
+  },
+  "sympy__sympy-24213": {
+    "instance_id": "sympy__sympy-24213",
+    "repo": "sympy/sympy",
+    "base_commit": "e8c22f6eac7314be8d92590bfff92ced79ee03e2",
+    "callable_entities": [
+      {
+        "entity": "sympy/physics/units/unitsystem.py::UnitSystem::_collect_factor_and_dimension",
+        "kind": "method",
+        "file_path": "sympy/physics/units/unitsystem.py",
+        "class_name": "UnitSystem",
+        "function_name": "_collect_factor_and_dimension",
+        "diff_node_chain": [
+          {
+            "node_name": "UnitSystem",
+            "node_type": "ClassDef",
+            "lineno": 18,
+            "end_lineno": 205
+          },
+          {
+            "node_name": "_collect_factor_and_dimension",
+            "node_type": "FunctionDef",
+            "lineno": 152,
+            "end_lineno": 199
+          }
+        ]
+      }
+    ],
+    "non_callable_entities": [],
+    "parsed_patch": {
+      "diff_locs": [
+        {
+          "file": "sympy/physics/units/unitsystem.py",
+          "diff_nodes": [
+            {
+              "node_name": "UnitSystem",
+              "node_type": "ClassDef",
+              "lineno": 18,
+              "end_lineno": 205
+            },
+            {
+              "node_name": "_collect_factor_and_dimension",
+              "node_type": "FunctionDef",
+              "lineno": 152,
+              "end_lineno": 199
+            }
+          ],
+          "lineno": 178,
+          "end_lineno": 178
+        }
+      ]
+    }
+  }
+}
