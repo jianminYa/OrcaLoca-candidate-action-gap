@@ -44,7 +44,7 @@ Gap Event: (G ∩ C) != ∅ AND (G ∩ C) ∩ A == ∅
 - `top_k`：gold 通过 threshold，但不在保留的 top-k 中；
 - `action_generation`：gold 已进入 selected ranking，但没有生成对应 action。
 
-本次结果为 threshold 3、top-k 0、action generation 0。
+本次 Gap stage 计数为 threshold 3、top-k 0、action generation 0。这里的 3/0/0 是 Gap 原因的事件数量，不是配置值；实际运行配置为 `score_threshold=75`、`top_k_disambiguation=3`。
 
 ## 可复现入口
 

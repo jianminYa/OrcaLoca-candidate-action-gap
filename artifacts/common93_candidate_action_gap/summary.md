@@ -51,7 +51,9 @@ All three are produced by the scorer threshold stage:
 | action generation | 0 |
 
 The observed implementation uses a strict `score > 75` retention condition,
-so the two gold scores equal to 75 are dropped as well. No Gap case requires a
+so the two gold scores equal to 75 are dropped as well. The stage counts are
+Gap-cause counts, not configuration values: the run used
+`score_threshold=75` and `top_k_disambiguation=3`. No Gap case requires a
 top-k or action-construction explanation.
 
 ## RQ3

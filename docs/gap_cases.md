@@ -34,4 +34,4 @@
 
 ## 共同结论
 
-三个 Gap 都是 threshold stage，top-k 和 action generation 均为 0。后续恢复只能报告为“当前保存诊断流中未观察到”，不能升级为“永久丢失”。
+三个 Gap 都是 threshold stage；Gap stage 计数为 threshold=3、top-k=0、action generation=0。这里的 0 不是 `top_k_disambiguation=0`，而是没有 Gap 由该阶段造成。后续恢复只能报告为“当前保存诊断流中未观察到”，不能升级为“永久丢失”。

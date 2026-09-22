@@ -119,10 +119,13 @@ gold-available events         = 7
 gap events                    = 3
 Gap Rate                      = 3 / 7 = 42.86%
 
-threshold                     = 3
-top-k                         = 0
-action generation             = 0
+Gap stage counts:
+  threshold                   = 3
+  top-k                       = 0
+  action generation           = 0
 ```
+
+注意：上面三个数字是 Gap 原因的计数，不是运行配置。实际运行配置仍为 `score_threshold=75`、`top_k_disambiguation=3`。
 
 ### 指标含义与统计单位
 
@@ -134,9 +137,9 @@ action generation             = 0
 | `gold_available_events` | 7 | event | ranked event 的 `raw_candidates` 中至少包含一个精确 gold entity 的次数 |
 | `gap_events` | 3 | event | gold 在 `raw_candidates` 中，但没有对应 `selected_action` 的次数 |
 | `candidate_to_action_gap_rate` | 42.86% | event / event | `3 / 7`；表示 gold-available ranked events 中发生 Gap 的比例 |
-| `gap_by_stage.threshold` | 3 | event | gold score 未超过 threshold，被 threshold 丢弃 |
-| `gap_by_stage.top_k` | 0 | event | gold 通过 threshold，但未进入 top-k；本次没有观察到 |
-| `gap_by_stage.action_generation` | 0 | event | gold 已被选中，但构造 precise action 失败；本次没有观察到 |
+| `gap_by_stage.threshold` | 3 | event | 3 个 Gap 中有 3 个在 threshold 阶段丢失；不是 `score_threshold` 参数值 |
+| `gap_by_stage.top_k` | 0 | event | 没有 Gap 是“通过 threshold 但未进入 top-3”造成的；不是 `top_k_disambiguation=0` |
+| `gap_by_stage.action_generation` | 0 | event | 没有 Gap 是“已被选中但构造 precise action 失败”造成的 |
 
 这里的 `event` 不是模型调用、候选数量或 instance。它表示一次具体的歧义决策点：某个搜索 action 查询索引后返回多个匹配位置，OrcaLoca 随后调用 `_disambiguation_ranking()`。同一个 instance 可以有多个 event；一次返回 24 个候选的位置仍然只算 1 个 event。
 
@@ -175,15 +178,15 @@ observed later-recovered cases = 0 / 3
 
 Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93_runtime_logs/`](artifacts/common93_runtime_logs/)。其中包含 1,674 个主运行日志文件、183 个最终输出文件，以及 162 个补充/重试日志文件，总大小约 54 MiB。目录和 SHA-256 校验值见 [`MANIFEST.md`](artifacts/common93_runtime_logs/MANIFEST.md) 和 [`SHA256SUMS`](artifacts/common93_runtime_logs/SHA256SUMS)。
 
-README 中下面的链接指向仓库内的相对 Git symbolic links，便于直接查看关键案例；它们不是服务器外部路径：
+`key_logs/` 中保留了仓库内的相对 Git symbolic links；但为避免 GitHub 页面只显示软链接目标字符串，下面 README 表格直接链接到已经实际上传的日志文件，而不是只链接到软链接名称：
 
 | Gap case | Search Agent | Action history | Search queue | CodeScorer |
 |---|---|---|---|---|
-| `matplotlib__matplotlib-23299` | [`search_agent`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.code_scorer.log) |
-| `sympy__sympy-13031` | [`search_agent`](artifacts/common93_runtime_logs/key_logs/sympy-13031.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/key_logs/sympy-13031.action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/key_logs/sympy-13031.search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/key_logs/sympy-13031.code_scorer.log) |
-| `sympy__sympy-13647` | [`search_agent`](artifacts/common93_runtime_logs/key_logs/sympy-13647.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/key_logs/sympy-13647.action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/key_logs/sympy-13647.search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/key_logs/sympy-13647.code_scorer.log) |
+| `matplotlib__matplotlib-23299` | [`search_agent`](artifacts/common93_runtime_logs/primary_runtime_logs/matplotlib__matplotlib-23299/Orcar.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/primary_runtime_logs/matplotlib__matplotlib-23299/action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/primary_runtime_logs/matplotlib__matplotlib-23299/search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/primary_runtime_logs/matplotlib__matplotlib-23299/Orcar.code_scorer.log) |
+| `sympy__sympy-13031` | [`search_agent`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13031/Orcar.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13031/action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13031/search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13031/Orcar.code_scorer.log) |
+| `sympy__sympy-13647` | [`search_agent`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13647/Orcar.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13647/action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13647/search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/primary_runtime_logs/sympy__sympy-13647/Orcar.code_scorer.log) |
 
-主诊断流和结果的快捷链接：[`disambiguation_events.jsonl`](artifacts/common93_runtime_logs/key_logs/structured-disambiguation-events.jsonl)、[`summary.json`](artifacts/common93_runtime_logs/key_logs/summary.json)。
+主诊断流和结果的快捷链接：[`disambiguation_events.jsonl`](artifacts/common93_candidate_action_gap/disambiguation_events.jsonl)、[`summary.json`](artifacts/common93_candidate_action_gap/summary.json)。
 
 ## 11. 仓库结构
 
