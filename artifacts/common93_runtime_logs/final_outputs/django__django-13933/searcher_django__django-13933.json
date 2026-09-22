@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe `validate` method in ModelChoiceField simply delegates to `Field.validate`, so it doesn't raise any ValidationError for invalid_choice. The bug is entirely in the `to_python` method where `raise ValidationError(self.error_messages['invalid_choice'], code='invalid_choice')` is called without passing `params={'value': value}`. Additionally, the `default_error_messages` dict for ModelChoiceField needs to include `%(value)s` in the 'invalid_choice' message. The search queue is empty and I have enough context to identify the bug locations.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/forms/models.py",
+            "class_name": "ModelChoiceField",
+            "method_name": "to_python"
+        }
+    ]
+}

@@ -1,0 +1,85 @@
+[2026-09-21 13:01:09,223 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 1
+)
+[2026-09-21 13:01:20,092 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}: 1
+)
+[2026-09-21 13:01:36,360 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}: 1
+)
+[2026-09-21 13:02:21,362 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'storage.py', 'directory_path': 'django/core/files'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': '_save', 'file_path': 'django/core/files/storage.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}: 1
+)
+[2026-09-21 13:02:42,139 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'storage.py', 'directory_path': 'django/core/files'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': '_save', 'file_path': 'django/core/files/storage.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}: 1
+)
+[2026-09-21 13:02:56,947 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'storage.py', 'directory_path': 'django/core/files'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': '_save', 'file_path': 'django/core/files/storage.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}: 2
+)
+[2026-09-21 13:03:18,699 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'storage.py', 'directory_path': 'django/core/files'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': '_save', 'file_path': 'django/core/files/storage.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}: 2
+)

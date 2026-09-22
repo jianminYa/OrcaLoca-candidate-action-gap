@@ -1,0 +1,7 @@
+[2026-09-22 08:06:56,060 - Orcar.environment.benchmark - INFO] Setting up env for inst pytest-dev__pytest-7490...
+[2026-09-22 08:07:02,945 - Orcar.environment.benchmark - INFO] Repo pytest-dev__pytest already cached
+[2026-09-22 08:07:02,946 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pytest-dev__pytest to base commit: 7f7a36478abe7dd1fa993b115d22606aa0e35e88
+[2026-09-22 08:07:15,509 - Orcar.environment.benchmark - INFO] Env pytest-dev__pytest__6.0 not found, installing
+[2026-09-22 08:07:25,275 - Orcar.environment.benchmark - INFO] Installing pytest-dev/pytest at base commit...
+[2026-09-22 08:07:34,182 - Orcar.environment.benchmark - INFO] Installation step took 28.73 seconds
+[2026-09-22 08:08:27,208 - Orcar.environment.benchmark - INFO] Copying file to host: docker cp orcar_swe_bench_run_ctr_safe://tmp/tracer_output_pytest-dev__pytest-7490.json /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_pytest-dev__pytest-7490.json

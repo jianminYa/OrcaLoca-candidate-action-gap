@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nI now have the complete picture of the bug. The root cause is in `rc_context`'s finally block which uses `dict.update(rcParams, orig)` to restore rcParams. This bypasses `RcParams.__setitem__` entirely, so the guard that prevents overwriting 'backend' with `_auto_backend_sentinel` when backend is already set is completely bypassed. The sentinel value gets restored. Then when `get_backend()` is called, `RcParams.__getitem__` detects the sentinel and calls `plt.switch_backend(_auto_backend_sentinel)`, which calls `close('all')` unconditionally as its first action, destroying all figures from Gcf.figs. The fix should be in either: (1) `rc_context` to not restore the backend sentinel value, or (2) `switch_backend` to not call `close('all')` when the backend hasn't actually changed. The search queue is empty, so I have enough context.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "lib/matplotlib/__init__.py",
+            "class_name": "",
+            "method_name": "rc_context"
+        },
+        {
+            "file_path": "lib/matplotlib/pyplot.py",
+            "class_name": "",
+            "method_name": "switch_backend"
+        }
+    ]
+}

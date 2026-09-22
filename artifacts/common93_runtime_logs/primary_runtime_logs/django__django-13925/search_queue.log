@@ -1,0 +1,70 @@
+[2026-09-22 04:19:56,852 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'W042'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_check_default_pk'}
+)
+[2026-09-22 04:20:08,925 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_check_default_pk'}
+)
+[2026-09-22 04:20:25,080 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/base.py', 'source_code': 'auto_created'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/options.py', 'source_code': 'auto_created'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:20:45,454 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/base.py', 'source_code': 'auto_created'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/options.py', 'source_code': 'auto_created'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:21:02,617 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/options.py', 'source_code': 'auto_created'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:21:29,269 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/base.py', 'source_code': 'parent_link'}
+)
+[2026-09-22 04:21:45,334 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/base.py', 'source_code': 'parent_link'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'options.py', 'directory_path': 'django/db/models'}
+)
+[2026-09-22 04:22:02,630 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'options.py', 'directory_path': 'django/db/models'}
+)
+[2026-09-22 04:22:28,930 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': 'contribute_to_class', 'file_path': 'django/db/models/options.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/options.py', 'source_code': 'self.parents'}
+)
+[2026-09-22 04:22:50,195 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/options.py', 'source_code': 'self.parents'}
+)

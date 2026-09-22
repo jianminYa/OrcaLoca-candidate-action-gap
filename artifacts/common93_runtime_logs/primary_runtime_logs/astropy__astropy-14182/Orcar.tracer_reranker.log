@@ -1,0 +1,896 @@
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/table/connect.py' lineno=127 funcname='__call__' classname='TableWrite'
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO]     def __call__(self, *args, serialize_method=None, **kwargs):
+        instance = self._instance
+        with serialize_method_as(instance, serialize_method):
+            self.registry.write(instance, *args, **kwargs)
+
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/registry/core.py' lineno=342 funcname='write' classname='UnifiedOutputRegistry'
+[2026-09-21 12:34:25,794 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO]     def write(self, data, *args, format=None, **kwargs):
+        """
+        Write out data.
+
+        Parameters
+        ----------
+        data : object
+            The data to write.
+        *args
+            The arguments passed to this method depend on the format.
+        format : str or None
+        **kwargs
+            The arguments passed to this method depend on the format.
+
+        Returns
+        -------
+        object or None
+            The output of the registered writer. Most often `None`.
+
+            .. versionadded:: 4.3
+        """
+        # Expand a tilde-prefixed path if present in args[0]
+        args = _expand_user_in_args(args)
+
+        if format is None:
+            path = None
+            fileobj = None
+            if len(args):
+                if isinstance(args[0], PATH_TYPES):
+                    # path might be a os.PathLike object
+                    if isinstance(args[0], os.PathLike):
+                        args = (os.fspath(args[0]),) + args[1:]
+                    path = args[0]
+                    fileobj = None
+                elif hasattr(args[0], "read"):
+                    path = None
+                    fileobj = args[0]
+
+            format = self._get_valid_format(
+                "write", data.__class__, path, fileobj, args, kwargs
+            )
+
+        writer = self.get_writer(format, data.__class__)
+        return writer(data, *args, **kwargs)
+
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/connect.py' lineno=22 funcname='io_write' classname=''
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] def io_write(format, table, filename, **kwargs):
+    from .ui import write
+
+    if format != "ascii":
+        format = re.sub(r"^ascii\.", "", format)
+        kwargs["format"] = format
+    return write(table, filename, **kwargs)
+
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/ui.py' lineno=921 funcname='write' classname=''
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] def write(
+    table,
+    output=None,
+    format=None,
+    Writer=None,
+    fast_writer=True,
+    *,
+    overwrite=False,
+    **kwargs,
+):
+    # Docstring inserted below
+
+    _validate_read_write_kwargs(
+        "write", format=format, fast_writer=fast_writer, overwrite=overwrite, **kwargs
+    )
+
+    if isinstance(output, (str, bytes, os.PathLike)):
+        output = os.path.expanduser(output)
+        if not overwrite and os.path.lexists(output):
+            raise OSError(NOT_OVERWRITING_MSG.format(output))
+
+    if output is None:
+        output = sys.stdout
+
+    # Ensure that `table` is a Table subclass.
+    names = kwargs.get("names")
+    if isinstance(table, Table):
+        # While we are only going to read data from columns, we may need to
+        # to adjust info attributes such as format, so we make a shallow copy.
+        table = table.__class__(table, names=names, copy=False)
+    else:
+        # Otherwise, create a table from the input.
+        table = Table(table, names=names, copy=False)
+
+    table0 = table[:0].copy()
+    core._apply_include_exclude_names(
+        table0,
+        kwargs.get("names"),
+        kwargs.get("include_names"),
+        kwargs.get("exclude_names"),
+    )
+    diff_format_with_names = set(kwargs.get("formats", [])) - set(table0.colnames)
+
+    if diff_format_with_names:
+        warnings.warn(
+            "The key(s) {} specified in the formats argument do not match a column"
+            " name.".format(diff_format_with_names),
+            AstropyWarning,
+        )
+
+    if table.has_mixin_columns:
+        fast_writer = False
+
+    Writer = _get_format_class(format, Writer, "Writer")
+    writer = get_writer(Writer=Writer, fast_writer=fast_writer, **kwargs)
+    if writer._format_name in core.FAST_CLASSES:
+        writer.write(table, output)
+        return
+
+    lines = writer.write(table)
+
+    # Write the lines to output
+    outstr = os.linesep.join(lines)
+    if not hasattr(output, "write"):
+        # NOTE: we need to specify newline='', otherwise the default
+        # behavior is for Python to translate \r\n (which we write because
+        # of os.linesep) into \r\r\n. Specifying newline='' disables any
+        # auto-translation.
+        output = open(output, "w", newline="")
+        output.write(outstr)
+        output.write(os.linesep)
+        output.close()
+    else:
+        output.write(outstr)
+        output.write(os.linesep)
+
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/ui.py' lineno=864 funcname='get_writer' classname=''
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] def get_writer(Writer=None, fast_writer=True, **kwargs):
+    """
+    Initialize a table writer allowing for common customizations.  Most of the
+    default behavior for various parameters is determined by the Writer class.
+
+    Parameters
+    ----------
+    Writer : ``Writer``
+        Writer class (DEPRECATED). Defaults to :class:`Basic`.
+    delimiter : str
+        Column delimiter string
+    comment : str
+        String defining a comment line in table
+    quotechar : str
+        One-character string to quote fields containing special characters
+    formats : dict
+        Dictionary of format specifiers or formatting functions
+    strip_whitespace : bool
+        Strip surrounding whitespace from column values.
+    names : list
+        List of names corresponding to each data column
+    include_names : list
+        List of names to include in output.
+    exclude_names : list
+        List of names to exclude from output (applied after ``include_names``)
+    fast_writer : bool
+        Whether to use the fast Cython writer.
+
+    Returns
+    -------
+    writer : `~astropy.io.ascii.BaseReader` subclass
+        ASCII format writer instance
+    """
+    if Writer is None:
+        Writer = basic.Basic
+    if "strip_whitespace" not in kwargs:
+        kwargs["strip_whitespace"] = True
+    writer = core._get_writer(Writer, fast_writer, **kwargs)
+
+    # Handle the corner case of wanting to disable writing table comments for the
+    # commented_header format.  This format *requires* a string for `write_comment`
+    # because that is used for the header column row, so it is not possible to
+    # set the input `comment` to None.  Without adding a new keyword or assuming
+    # a default comment character, there is no other option but to tell user to
+    # simply remove the meta['comments'].
+    if isinstance(
+        writer, (basic.CommentedHeader, fastbasic.FastCommentedHeader)
+    ) and not isinstance(kwargs.get("comment", ""), str):
+        raise ValueError(
+            "for the commented_header writer you must supply a string\n"
+            "value for the `comment` keyword.  In order to disable writing\n"
+            "table comments use `del t.meta['comments']` prior to writing."
+        )
+
+    return writer
+
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/core.py' lineno=1793 funcname='_get_writer' classname='WhitespaceSplitter'
+[2026-09-21 12:34:25,795 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] def _get_writer(Writer, fast_writer, **kwargs):
+    """Initialize a table writer allowing for common customizations. This
+    routine is for internal (package) use only and is useful because it depends
+    only on the "core" module."""
+
+    from .fastbasic import FastBasic
+
+    # A value of None for fill_values imply getting the default string
+    # representation of masked values (depending on the writer class), but the
+    # machinery expects a list.  The easiest here is to just pop the value off,
+    # i.e. fill_values=None is the same as not providing it at all.
+    if "fill_values" in kwargs and kwargs["fill_values"] is None:
+        del kwargs["fill_values"]
+
+    if issubclass(Writer, FastBasic):  # Fast writers handle args separately
+        return Writer(**kwargs)
+    elif fast_writer and f"fast_{Writer._format_name}" in FAST_CLASSES:
+        # Switch to fast writer
+        kwargs["fast_writer"] = fast_writer
+        return FAST_CLASSES[f"fast_{Writer._format_name}"](**kwargs)
+
+    writer_kwargs = {k: v for k, v in kwargs.items() if k not in extra_writer_pars}
+    writer = Writer(**writer_kwargs)
+
+    if "delimiter" in kwargs:
+        writer.header.splitter.delimiter = kwargs["delimiter"]
+        writer.data.splitter.delimiter = kwargs["delimiter"]
+    if "comment" in kwargs:
+        writer.header.write_comment = kwargs["comment"]
+        writer.data.write_comment = kwargs["comment"]
+    if "quotechar" in kwargs:
+        writer.header.splitter.quotechar = kwargs["quotechar"]
+        writer.data.splitter.quotechar = kwargs["quotechar"]
+    if "formats" in kwargs:
+        writer.data.formats = kwargs["formats"]
+    if "strip_whitespace" in kwargs:
+        if kwargs["strip_whitespace"]:
+            # Restore the default SplitterClass process_val method which strips
+            # whitespace.  This may have been changed in the Writer
+            # initialization (e.g. Rdb and Tab)
+            writer.data.splitter.process_val = operator.methodcaller("strip", " \t")
+        else:
+            writer.data.splitter.process_val = None
+    if "names" in kwargs:
+        writer.header.names = kwargs["names"]
+    if "include_names" in kwargs:
+        writer.include_names = kwargs["include_names"]
+    if "exclude_names" in kwargs:
+        writer.exclude_names = kwargs["exclude_names"]
+    if "fill_values" in kwargs:
+        # Prepend user-specified values to the class default.
+        with suppress(TypeError, IndexError):
+            # Test if it looks like (match, replace_string, optional_colname),
+            # in which case make it a list
+            kwargs["fill_values"][1] + ""
+            kwargs["fill_values"] = [kwargs["fill_values"]]
+        writer.data.fill_values = kwargs["fill_values"] + writer.data.fill_values
+    if "fill_include_names" in kwargs:
+        writer.data.fill_include_names = kwargs["fill_include_names"]
+    if "fill_exclude_names" in kwargs:
+        writer.data.fill_exclude_names = kwargs["fill_exclude_names"]
+    return writer
+
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/rst.py' lineno=60 funcname='__init__' classname='RST'
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] LLM score: 85 / 100
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO]     def __init__(self):
+        super().__init__(delimiter_pad=None, bookend=False)
+
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/core.py' lineno=1337 funcname='__init__' classname='BaseReader'
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] LLM score: 40 / 100
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO]     def __init__(self):
+        self.header = self.header_class()
+        self.data = self.data_class()
+        self.inputter = self.inputter_class()
+        self.outputter = self.outputter_class()
+        # Data and Header instances benefit from a little cross-coupling.  Header may need to
+        # know about number of data columns for auto-column name generation and Data may
+        # need to know about header (e.g. for fixed-width tables where widths are spec'd in header.
+        self.data.header = self.header
+        self.header.data = self.data
+
+        # Metadata, consisting of table-level meta and column-level meta.  The latter
+        # could include information about column type, description, formatting, etc,
+        # depending on the table meta format.
+        self.meta = OrderedDict(table=OrderedDict(), cols=OrderedDict())
+
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/core.py' lineno=586 funcname='__init__' classname='BaseHeader'
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO]     def __init__(self):
+        self.splitter = self.splitter_class()
+
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/core.py' lineno=799 funcname='__init__' classname='BaseData'
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] LLM score: 40 / 100
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO]     def __init__(self):
+        # Need to make sure fill_values list is instance attribute, not class attribute.
+        # On read, this will be overwritten by the default in the ui.read (thus, in
+        # the current implementation there can be no different default for different
+        # Readers). On write, ui.py does not specify a default, so this line here matters.
+        self.fill_values = copy.copy(self.fill_values)
+        self.formats = copy.copy(self.formats)
+        self.splitter = self.splitter_class()
+
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/registry/core.py' lineno=15 funcname='_expand_user_in_args' classname=''
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] def _expand_user_in_args(args):
+    # Conservatively attempt to apply `os.path.expanduser` to the first
+    # argument, which can be either a path or the contents of a table.
+    if len(args) and isinstance(args[0], PATH_TYPES):
+        ex_user = os.path.expanduser(args[0])
+        if ex_user != args[0] and os.path.exists(os.path.dirname(ex_user)):
+            args = (ex_user,) + args[1:]
+    return args
+
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-21 12:34:25,796 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/registry/core.py' lineno=314 funcname='get_writer' classname='UnifiedOutputRegistry'
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO]     def get_writer(self, data_format, data_class):
+        """Get writer for ``data_format``.
+
+        Parameters
+        ----------
+        data_format : str
+            The data format identifier. This is the string that is used to
+            specify the data type when reading/writing.
+        data_class : class
+            The class of the object that can be written.
+
+        Returns
+        -------
+        writer : callable
+            The registered writer function for this format and class.
+        """
+        writers = [(fmt, cls) for fmt, cls in self._writers if fmt == data_format]
+        for writer_format, writer_class in writers:
+            if self._is_best_match(data_class, writer_class, writers):
+                return self._writers[(writer_format, writer_class)][0]
+        else:
+            format_table_str = self._get_format_table_str(data_class, "Write")
+            raise IORegistryError(
+                f"No writer defined for format '{data_format}' and class"
+                f" '{data_class.__name__}'.\n\nThe available formats"
+                f" are:\n\n{format_table_str}"
+            )
+
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/ui.py' lineno=215 funcname='_validate_read_write_kwargs' classname=''
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] def _validate_read_write_kwargs(read_write, **kwargs):
+    """Validate types of keyword arg inputs to read() or write()."""
+
+    def is_ducktype(val, cls):
+        """Check if ``val`` is an instance of ``cls`` or "seems" like one:
+        ``cls(val) == val`` does not raise and exception and is `True`. In
+        this way you can pass in ``np.int16(2)`` and have that count as `int`.
+
+        This has a special-case of ``cls`` being 'list-like', meaning it is
+        an iterable but not a string.
+        """
+        if cls == "list-like":
+            ok = not isinstance(val, str) and isinstance(val, collections.abc.Iterable)
+        else:
+            ok = isinstance(val, cls)
+            if not ok:
+                # See if ``val`` walks and quacks like a ``cls```.
+                try:
+                    new_val = cls(val)
+                    assert new_val == val
+                except Exception:
+                    ok = False
+                else:
+                    ok = True
+        return ok
+
+    kwarg_types = READ_KWARG_TYPES if read_write == "read" else WRITE_KWARG_TYPES
+
+    for arg, val in kwargs.items():
+        # Kwarg type checking is opt-in, so kwargs not in the list are considered OK.
+        # This reflects that some readers allow additional arguments that may not
+        # be well-specified, e.g. ```__init__(self, **kwargs)`` is an option.
+        if arg not in kwarg_types or val is None:
+            continue
+
+        # Single type or tuple of types for this arg (like isinstance())
+        types = kwarg_types[arg]
+        err_msg = (
+            f"{read_write}() argument '{arg}' must be a "
+            f"{types} object, got {type(val)} instead"
+        )
+
+        # Force `types` to be a tuple for the any() check below
+        if not isinstance(types, tuple):
+            types = (types,)
+
+        if not any(is_ducktype(val, cls) for cls in types):
+            raise TypeError(err_msg)
+
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/ui.py' lineno=187 funcname='_get_format_class' classname=''
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] def _get_format_class(format, ReaderWriter, label):
+    if format is not None and ReaderWriter is not None:
+        raise ValueError(f"Cannot supply both format and {label} keywords")
+
+    if format is not None:
+        if format in core.FORMAT_CLASSES:
+            ReaderWriter = core.FORMAT_CLASSES[format]
+        else:
+            raise ValueError(
+                "ASCII format {!r} not in allowed list {}".format(
+                    format, sorted(core.FORMAT_CLASSES)
+                )
+            )
+    return ReaderWriter
+
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/ui.py' lineno=218 funcname='is_ducktype' classname=''
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO]     def is_ducktype(val, cls):
+        """Check if ``val`` is an instance of ``cls`` or "seems" like one:
+        ``cls(val) == val`` does not raise and exception and is `True`. In
+        this way you can pass in ``np.int16(2)`` and have that count as `int`.
+
+        This has a special-case of ``cls`` being 'list-like', meaning it is
+        an iterable but not a string.
+        """
+        if cls == "list-like":
+            ok = not isinstance(val, str) and isinstance(val, collections.abc.Iterable)
+        else:
+            ok = isinstance(val, cls)
+            if not ok:
+                # See if ``val`` walks and quacks like a ``cls```.
+                try:
+                    new_val = cls(val)
+                    assert new_val == val
+                except Exception:
+                    ok = False
+                else:
+                    ok = True
+        return ok
+
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/registry/interface.py' lineno=50 funcname='registry' classname='UnifiedReadWrite'
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO]     @property
+    def registry(self):
+        """Unified I/O registry instance."""
+        return self._registry
+
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/table/table.py' lineno=686 funcname='__init__' classname='Table'
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO]     def __init__(
+        self,
+        data=None,
+        masked=False,
+        names=None,
+        dtype=None,
+        meta=None,
+        copy=True,
+        rows=None,
+        copy_indices=True,
+        units=None,
+        descriptions=None,
+        **kwargs,
+    ):
+        # Set up a placeholder empty table
+        self._set_masked(masked)
+        self.columns = self.TableColumns()
+        self.formatter = self.TableFormatter()
+        self._copy_indices = True  # copy indices from this Table by default
+        self._init_indices = copy_indices  # whether to copy indices in init
+        self.primary_key = None
+
+        # Must copy if dtype are changing
+        if not copy and dtype is not None:
+            raise ValueError("Cannot specify dtype when copy=False")
+
+        # Specifies list of names found for the case of initializing table with
+        # a list of dict. If data are not list of dict then this is None.
+        names_from_list_of_dict = None
+
+        # Row-oriented input, e.g. list of lists or list of tuples, list of
+        # dict, Row instance.  Set data to something that the subsequent code
+        # will parse correctly.
+        if rows is not None:
+            if data is not None:
+                raise ValueError("Cannot supply both `data` and `rows` values")
+            if isinstance(rows, types.GeneratorType):
+                # Without this then the all(..) test below uses up the generator
+                rows = list(rows)
+
+            # Get column names if `rows` is a list of dict, otherwise this is None
+            names_from_list_of_dict = _get_names_from_list_of_dict(rows)
+            if names_from_list_of_dict:
+                data = rows
+            elif isinstance(rows, self.Row):
+                data = rows
+            else:
+                data = list(zip(*rows))
+
+        # Infer the type of the input data and set up the initialization
+        # function, number of columns, and potentially the default col names
+
+        default_names = None
+
+        # Handle custom (subclass) table attributes that are stored in meta.
+        # These are defined as class attributes using the TableAttribute
+        # descriptor.  Any such attributes get removed from kwargs here and
+        # stored for use after the table is otherwise initialized. Any values
+        # provided via kwargs will have precedence over existing values from
+        # meta (e.g. from data as a Table or meta via kwargs).
+        meta_table_attrs = {}
+        if kwargs:
+            for attr in list(kwargs):
+                descr = getattr(self.__class__, attr, None)
+                if isinstance(descr, TableAttribute):
+                    meta_table_attrs[attr] = kwargs.pop(attr)
+
+        if hasattr(data, "__astropy_table__"):
+            # Data object implements the __astropy_table__ interface method.
+            # Calling that method returns an appropriate instance of
+            # self.__class__ and respects the `copy` arg.  The returned
+            # Table object should NOT then be copied.
+            data = data.__astropy_table__(self.__class__, copy, **kwargs)
+            copy = False
+        elif kwargs:
+            raise TypeError(
+                "__init__() got unexpected keyword argument {!r}".format(
+                    list(kwargs.keys())[0]
+                )
+            )
+
+        if isinstance(data, np.ndarray) and data.shape == (0,) and not data.dtype.names:
+            data = None
+
+        if isinstance(data, self.Row):
+            data = data._table[data._index : data._index + 1]
+
+        if isinstance(data, (list, tuple)):
+            # Get column names from `data` if it is a list of dict, otherwise this is None.
+            # This might be previously defined if `rows` was supplied as an init arg.
+            names_from_list_of_dict = (
+                names_from_list_of_dict or _get_names_from_list_of_dict(data)
+            )
+            if names_from_list_of_dict:
+                init_func = self._init_from_list_of_dicts
+                n_cols = len(names_from_list_of_dict)
+            else:
+                init_func = self._init_from_list
+                n_cols = len(data)
+
+        elif isinstance(data, np.ndarray):
+            if data.dtype.names:
+                init_func = self._init_from_ndarray  # _struct
+                n_cols = len(data.dtype.names)
+                default_names = data.dtype.names
+            else:
+                init_func = self._init_from_ndarray  # _homog
+                if data.shape == ():
+                    raise ValueError("Can not initialize a Table with a scalar")
+                elif len(data.shape) == 1:
+                    data = data[np.newaxis, :]
+                n_cols = data.shape[1]
+
+        elif isinstance(data, Mapping):
+            init_func = self._init_from_dict
+            default_names = list(data)
+            n_cols = len(default_names)
+
+        elif isinstance(data, Table):
+            # If user-input meta is None then use data.meta (if non-trivial)
+            if meta is None and data.meta:
+                # At this point do NOT deepcopy data.meta as this will happen after
+                # table init_func() is called.  But for table input the table meta
+                # gets a key copy here if copy=False because later a direct object ref
+                # is used.
+                meta = data.meta if copy else data.meta.copy()
+
+            # Handle indices on input table. Copy primary key and don't copy indices
+            # if the input Table is in non-copy mode.
+            self.primary_key = data.primary_key
+            self._init_indices = self._init_indices and data._copy_indices
+
+            # Extract default names, n_cols, and then overwrite ``data`` to be the
+            # table columns so we can use _init_from_list.
+            default_names = data.colnames
+            n_cols = len(default_names)
+            data = list(data.columns.values())
+
+            init_func = self._init_from_list
+
+        elif data is None:
+            if names is None:
+                if dtype is None:
+                    # Table was initialized as `t = Table()`. Set up for empty
+                    # table with names=[], data=[], and n_cols=0.
+                    # self._init_from_list() will simply return, giving the
+                    # expected empty table.
+                    names = []
+                else:
+                    try:
+                        # No data nor names but dtype is available.  This must be
+                        # valid to initialize a structured array.
+                        dtype = np.dtype(dtype)
+                        names = dtype.names
+                        dtype = [dtype[name] for name in names]
+                    except Exception:
+                        raise ValueError(
+                            "dtype was specified but could not be "
+                            "parsed for column names"
+                        )
+            # names is guaranteed to be set at this point
+            init_func = self._init_from_list
+            n_cols = len(names)
+            data = [[]] * n_cols
+
+        else:
+            raise ValueError(f"Data type {type(data)} not allowed to init Table")
+
+        # Set up defaults if names and/or dtype are not specified.
+        # A value of None means the actual value will be inferred
+        # within the appropriate initialization routine, either from
+        # existing specification or auto-generated.
+
+        if dtype is None:
+            dtype = [None] * n_cols
+        elif isinstance(dtype, np.dtype):
+            if default_names is None:
+                default_names = dtype.names
+            # Convert a numpy dtype input to a list of dtypes for later use.
+            dtype = [dtype[name] for name in dtype.names]
+
+        if names is None:
+            names = default_names or [None] * n_cols
+
+        names = [None if name is None else str(name) for name in names]
+
+        self._check_names_dtype(names, dtype, n_cols)
+
+        # Finally do the real initialization
+        init_func(data, names, dtype, n_cols, copy)
+
+        # Set table meta.  If copy=True then deepcopy meta otherwise use the
+        # user-supplied meta directly.
+        if meta is not None:
+            self.meta = deepcopy(meta) if copy else meta
+
+        # Update meta with TableAttributes supplied as kwargs in Table init.
+        # This takes precedence over previously-defined meta.
+        if meta_table_attrs:
+            for attr, value in meta_table_attrs.items():
+                setattr(self, attr, value)
+
+        # Whatever happens above, the masked property should be set to a boolean
+        if self.masked not in (None, True, False):
+            raise TypeError("masked property must be None, True or False")
+
+        self._set_column_attribute("unit", units)
+        self._set_column_attribute("description", descriptions)
+
+[2026-09-21 12:34:25,797 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/table/table.py' lineno=2068 funcname='__getitem__' classname='Table'
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO]     def __getitem__(self, item):
+        if isinstance(item, str):
+            return self.columns[item]
+        elif isinstance(item, (int, np.integer)):
+            return self.Row(self, item)
+        elif (
+            isinstance(item, np.ndarray) and item.shape == () and item.dtype.kind == "i"
+        ):
+            return self.Row(self, item.item())
+        elif self._is_list_or_tuple_of_str(item):
+            out = self.__class__(
+                [self[x] for x in item], copy_indices=self._copy_indices
+            )
+            out._groups = groups.TableGroups(
+                out, indices=self.groups._indices, keys=self.groups._keys
+            )
+            out.meta = self.meta.copy()  # Shallow copy for meta
+            return out
+        elif (isinstance(item, np.ndarray) and item.size == 0) or (
+            isinstance(item, (tuple, list)) and not item
+        ):
+            # If item is an empty array/list/tuple then return the table with no rows
+            return self._new_from_slice([])
+        elif (
+            isinstance(item, slice)
+            or isinstance(item, np.ndarray)
+            or isinstance(item, list)
+            or isinstance(item, tuple)
+            and all(isinstance(x, np.ndarray) for x in item)
+        ):
+            # here for the many ways to give a slice; a tuple of ndarray
+            # is produced by np.where, as in t[np.where(t['a'] > 2)]
+            # For all, a new table is constructed with slice of all columns
+            return self._new_from_slice(item)
+        else:
+            raise ValueError(f"Illegal type {type(item)} for table item access")
+
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/table/table.py' lineno=3648 funcname='copy' classname='Table'
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO]     def copy(self, copy_data=True):
+        """
+        Return a copy of the table.
+
+        Parameters
+        ----------
+        copy_data : bool
+            If `True` (the default), copy the underlying data array.
+            Otherwise, use the same data array. The ``meta`` is always
+            deepcopied regardless of the value for ``copy_data``.
+        """
+        out = self.__class__(self, copy=copy_data)
+
+        # If the current table is grouped then do the same in the copy
+        if hasattr(self, "_groups"):
+            out._groups = groups.TableGroups(
+                out, indices=self._groups._indices, keys=self._groups._keys
+            )
+        return out
+
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/core.py' lineno=1258 funcname='_apply_include_exclude_names' classname='MetaBaseReader'
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] def _apply_include_exclude_names(table, names, include_names, exclude_names):
+    """
+    Apply names, include_names and exclude_names to a table or BaseHeader.
+
+    For the latter this relies on BaseHeader implementing ``colnames``,
+    ``rename_column``, and ``remove_columns``.
+
+    Parameters
+    ----------
+    table : `~astropy.table.Table`, `~astropy.io.ascii.BaseHeader`
+        Input table or BaseHeader subclass instance
+    names : list
+        List of names to override those in table (set to None to use existing names)
+    include_names : list
+        List of names to include in output
+    exclude_names : list
+        List of names to exclude from output (applied after ``include_names``)
+
+    """
+
+    def rename_columns(table, names):
+        # Rename table column names to those passed by user
+        # Temporarily rename with names that are not in `names` or `table.colnames`.
+        # This ensures that rename succeeds regardless of existing names.
+        xxxs = "x" * max(len(name) for name in list(names) + list(table.colnames))
+        for ii, colname in enumerate(table.colnames):
+            table.rename_column(colname, xxxs + str(ii))
+
+        for ii, name in enumerate(names):
+            table.rename_column(xxxs + str(ii), name)
+
+    if names is not None:
+        rename_columns(table, names)
+    else:
+        colnames_uniq = _deduplicate_names(table.colnames)
+        if colnames_uniq != list(table.colnames):
+            rename_columns(table, colnames_uniq)
+
+    names_set = set(table.colnames)
+
+    if include_names is not None:
+        names_set.intersection_update(include_names)
+    if exclude_names is not None:
+        names_set.difference_update(exclude_names)
+    if names_set != set(table.colnames):
+        remove_names = set(table.colnames) - names_set
+        table.remove_columns(remove_names)
+
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/table/table.py' lineno=2228 funcname='colnames' classname='Table'
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO]     @property
+    def colnames(self):
+        return list(self.columns.keys())
+
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/table/table.py' lineno=1647 funcname='has_mixin_columns' classname='Table'
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO]     @property
+    def has_mixin_columns(self):
+        """
+        True if table has any mixin columns (defined as columns that are not Column
+        subclasses).
+        """
+        return any(has_info_class(col, MixinInfo) for col in self.columns.values())
+
+[2026-09-21 12:34:25,798 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/rst.py' lineno=63 funcname='write' classname='RST'
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] LLM score: 62 / 100
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO]     def write(self, lines):
+        lines = super().write(lines)
+        lines = [lines[1]] + lines + [lines[1]]
+        return lines
+
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/core.py' lineno=1535 funcname='write' classname='BaseReader'
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO]     def write(self, table):
+        """
+        Write ``table`` as list of strings.
+
+        Parameters
+        ----------
+        table : `~astropy.table.Table`
+            Input table data.
+
+        Returns
+        -------
+        lines : list
+            List of strings corresponding to ASCII table
+
+        """
+
+        # Check column names before altering
+        self.header.cols = list(table.columns.values())
+        self.header.check_column_names(self.names, self.strict_names, False)
+
+        # In-place update of columns in input ``table`` to reflect column
+        # filtering.  Note that ``table`` is guaranteed to be a copy of the
+        # original user-supplied table.
+        _apply_include_exclude_names(
+            table, self.names, self.include_names, self.exclude_names
+        )
+
+        # This is a hook to allow updating the table columns after name
+        # filtering but before setting up to write the data.  This is currently
+        # only used by ECSV and is otherwise just a pass-through.
+        table = self.update_table_data(table)
+
+        # Check that table column dimensions are supported by this format class.
+        # Most formats support only 1-d columns, but some like ECSV support N-d.
+        self._check_multidim_table(table)
+
+        # Now use altered columns
+        new_cols = list(table.columns.values())
+        # link information about the columns to the writer object (i.e. self)
+        self.header.cols = new_cols
+        self.data.cols = new_cols
+        self.header.table_meta = table.meta
+
+        # Write header and data to lines list
+        lines = []
+        self.write_header(lines, table.meta)
+        self.data.write(lines)
+
+        return lines
+
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/io/ascii/fixedwidth.py' lineno=339 funcname='__init__' classname='FixedWidth'
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO]     def __init__(
+        self,
+        col_starts=None,
+        col_ends=None,
+        delimiter_pad=" ",
+        bookend=True,
+        header_rows=None,
+    ):
+        if header_rows is None:
+            header_rows = ["name"]
+        super().__init__()
+        self.data.splitter.delimiter_pad = delimiter_pad
+        self.data.splitter.bookend = bookend
+        self.header.col_starts = col_starts
+        self.header.col_ends = col_ends
+        self.header.header_rows = header_rows
+        self.data.header_rows = header_rows
+        if self.data.start_line is None:
+            self.data.start_line = len(header_rows)
+
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] ['__call__', 'write', 'io_write', 'write', 'get_writer', '_get_writer', '__init__', '__init__', '__init__', '__init__', '_expand_user_in_args', 'get_writer', '_validate_read_write_kwargs', '_get_format_class', 'is_ducktype', 'registry', '__init__', '__getitem__', 'copy', '_apply_include_exclude_names', 'colnames', 'has_mixin_columns', 'write', 'write', '__init__']
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] [('__call__', 2), ('write', 2), ('io_write', 2), ('write', 10), ('get_writer', 15), ('_get_writer', 30), ('__init__', 85), ('__init__', 40), ('__init__', 72), ('__init__', 40), ('_expand_user_in_args', 2), ('get_writer', 2), ('_validate_read_write_kwargs', 10), ('_get_format_class', 2), ('is_ducktype', 2), ('registry', 0), ('__init__', 5), ('__getitem__', 2), ('copy', 2), ('_apply_include_exclude_names', 2), ('colnames', 1), ('has_mixin_columns', 1), ('write', 62), ('write', 15), ('__init__', 15)]
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-21 12:34:25,799 - Orcar.tracer_reranker - INFO] [('__init__', 85), ('__init__', 72), ('__init__', 40), ('__init__', 40), ('_get_writer', 30), ('get_writer', 15), ('write', 10), ('__call__', 2), ('write', 2), ('io_write', 2), ('write', 62), ('_validate_read_write_kwargs', 10), ('_expand_user_in_args', 2), ('get_writer', 2), ('_get_format_class', 2), ('write', 15), ('__init__', 15), ('__init__', 5), ('is_ducktype', 2), ('__getitem__', 2), ('copy', 2), ('_apply_include_exclude_names', 2), ('colnames', 1), ('has_mixin_columns', 1), ('registry', 0)]
+[2026-09-21 12:34:25,800 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-21 12:34:25,800 - Orcar.tracer_reranker - INFO] [('__init__', 85), ('__init__', 72), ('write', 62)]

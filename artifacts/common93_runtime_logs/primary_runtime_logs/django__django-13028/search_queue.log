@@ -1,0 +1,17 @@
+[2026-09-22 03:18:58,031 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'check_filterable', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 03:19:22,073 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'build_filter', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 03:19:57,290 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'build_filter', 'file_path': 'django/db/models/sql/query.py'}
+)

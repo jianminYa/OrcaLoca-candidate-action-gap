@@ -1,0 +1,37 @@
+[2026-09-22 09:19:25,797 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}
+)
+[2026-09-22 09:19:38,009 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}
+)
+[2026-09-22 09:19:58,173 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}
+)
+[2026-09-22 09:20:16,273 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_BaseVoting', 'file_path': 'sklearn/ensemble/voting.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}
+)
+[2026-09-22 09:20:39,964 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}
+)

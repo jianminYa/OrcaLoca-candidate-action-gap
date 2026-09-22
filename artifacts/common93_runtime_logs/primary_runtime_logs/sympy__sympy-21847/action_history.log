@@ -1,0 +1,26 @@
+[2026-09-22 13:16:48,471 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'itermonomials', 'file_path': 'sympy/polys/monomials.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'itermonomials'}: 1
+)
+[2026-09-22 13:17:01,805 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'itermonomials', 'file_path': 'sympy/polys/monomials.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'itermonomials'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'monomials.py', 'directory_path': 'sympy/polys'}: 1
+)
+[2026-09-22 13:17:14,797 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'itermonomials', 'file_path': 'sympy/polys/monomials.py'})]
+[2026-09-22 13:17:25,143 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'itermonomials', 'file_path': 'sympy/polys/monomials.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'itermonomials'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'monomials.py', 'directory_path': 'sympy/polys'}: 1
+)

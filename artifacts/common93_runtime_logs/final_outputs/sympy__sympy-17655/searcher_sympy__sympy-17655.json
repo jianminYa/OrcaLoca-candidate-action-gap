@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe `__add__` method confirms the issue: when `other` is a `Mul` expression (like `2.0*Point2D(1,1)`), it tries `Point(other, evaluate=False)` which fails because `Mul` is not a sequence of coordinates. The root cause is that the Point class defines `__mul__` but not `__rmul__`. When Python evaluates `sympify(2.0) * point2`, it first tries `Float.__mul__(point2)` which returns NotImplemented, then looks for `point2.__rmul__(2.0)`. Since `__rmul__` is not defined on Point, SymPy's base class creates a symbolic `Mul(2.0, Point2D(1,1))` instead of delegating to Point's `__mul__`. The fix is to add `__rmul__ = __mul__` to the Point class. Let me verify there's no existing `__rmul__` by checking the Point class structure.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/geometry/point.py",
+            "class_name": "Point",
+            "method_name": "__mul__"
+        }
+    ]
+}

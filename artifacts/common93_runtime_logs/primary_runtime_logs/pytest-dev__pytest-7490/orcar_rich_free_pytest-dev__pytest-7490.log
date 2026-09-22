@@ -1,0 +1,115 @@
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Hit:1 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Reading package lists...
+Building dependency tree...
+Reading state information...
+98 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.9ubuntu3).
+0 upgraded, 0 newly installed, 0 to remove and 98 not upgraded.
+Source:      /root/miniconda3/envs/python3.9
+Destination: /root/miniconda3/envs/pytest-dev__pytest__6.0
+Packages: 20
+Files: 0
+
+Downloading and Extracting Packages: ...working... done
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate pytest-dev__pytest__6.0
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Collecting attrs==23.1.0
+  Using cached attrs-23.1.0-py3-none-any.whl.metadata (11 kB)
+Collecting iniconfig==2.0.0
+  Downloading iniconfig-2.0.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting more-itertools==10.1.0
+  Using cached more_itertools-10.1.0-py3-none-any.whl.metadata (33 kB)
+Collecting packaging==23.1
+  Using cached packaging-23.1-py3-none-any.whl.metadata (3.1 kB)
+Collecting pluggy==0.13.1
+  Using cached pluggy-0.13.1-py2.py3-none-any.whl.metadata (15 kB)
+Collecting py==1.11.0
+  Using cached py-1.11.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Collecting toml==0.10.2
+  Using cached toml-0.10.2-py2.py3-none-any.whl.metadata (7.1 kB)
+Using cached attrs-23.1.0-py3-none-any.whl (61 kB)
+Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+Using cached more_itertools-10.1.0-py3-none-any.whl (55 kB)
+Using cached packaging-23.1-py3-none-any.whl (48 kB)
+Using cached pluggy-0.13.1-py2.py3-none-any.whl (18 kB)
+Using cached py-1.11.0-py2.py3-none-any.whl (98 kB)
+Using cached toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Installing collected packages: toml, py, pluggy, packaging, more-itertools, iniconfig, attrs
+Successfully installed attrs-23.1.0 iniconfig-2.0.0 more-itertools-10.1.0 packaging-23.1 pluggy-0.13.1 py-1.11.0 toml-0.10.2
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Obtaining file:///pytest-dev__pytest
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: attrs>=17.4.0 in /root/miniconda3/envs/pytest-dev__pytest__6.0/lib/python3.9/site-packages (from pytest==6.0.1.dev180+g634cde950) (23.1.0)
+Requirement already satisfied: iniconfig in /root/miniconda3/envs/pytest-dev__pytest__6.0/lib/python3.9/site-packages (from pytest==6.0.1.dev180+g634cde950) (2.0.0)
+Requirement already satisfied: packaging in /root/miniconda3/envs/pytest-dev__pytest__6.0/lib/python3.9/site-packages (from pytest==6.0.1.dev180+g634cde950) (23.1)
+Requirement already satisfied: pluggy<1.0,>=0.12 in /root/miniconda3/envs/pytest-dev__pytest__6.0/lib/python3.9/site-packages (from pytest==6.0.1.dev180+g634cde950) (0.13.1)
+Requirement already satisfied: py>=1.8.2 in /root/miniconda3/envs/pytest-dev__pytest__6.0/lib/python3.9/site-packages (from pytest==6.0.1.dev180+g634cde950) (1.11.0)
+Requirement already satisfied: toml in /root/miniconda3/envs/pytest-dev__pytest__6.0/lib/python3.9/site-packages (from pytest==6.0.1.dev180+g634cde950) (0.10.2)
+Building wheels for collected packages: pytest
+  Building editable for pytest (pyproject.toml): started
+  Building editable for pytest (pyproject.toml): finished with status 'done'
+  Created wheel for pytest: filename=pytest-6.0.1.dev180+g634cde950-0.editable-py3-none-any.whl size=5140 sha256=ba1c834bc0d6c395ed3f8ae0c084498ff7ab360ad27fe8ca730170e3f0289b72
+  Stored in directory: /tmp/pip-ephem-wheel-cache-yenwyyz3/wheels/70/4b/f2/4cc8cb63496891a381f40866d96042a653f71ae5714aa0c25b
+Successfully built pytest
+Installing collected packages: pytest
+Successfully installed pytest-6.0.1.dev180+g634cde950
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Collecting viztracer
+  Using cached viztracer-1.0.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+Collecting objprint>=0.3.0 (from viztracer)
+  Using cached objprint-0.3.0-py3-none-any.whl.metadata (25 kB)
+Using cached viztracer-1.0.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.4 MB)
+Using cached objprint-0.3.0-py3-none-any.whl (41 kB)
+Installing collected packages: objprint, viztracer
+Successfully installed objprint-0.3.0 viztracer-1.0.4
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+/tmp/tracer_output_pytest-dev__pytest-7490.json
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2243.73it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2295.51it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2021.89it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2218.85it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2337.01it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2367.75it/s]

@@ -1,0 +1,48 @@
+[2026-09-21 16:43:55,563 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}
+)
+[2026-09-21 16:44:05,427 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}
+)
+[2026-09-21 16:44:19,901 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}
+)
+[2026-09-21 16:44:41,403 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'HttpResponse', 'file_path': 'django/http/response.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}
+)
+[2026-09-21 16:44:57,071 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}
+)
+[2026-09-21 16:44:57,080 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'} search_content='File Path: django/http/response.py \nMethod Content: \n    def make_bytes(self, value):\n        """Turn a value into a bytestring encoded in the output charset."""\n        # Per PEP 3333, this response body must be bytes. To avoid returning\n        # an instance of a subclass, this function returns `bytes(value)`.\n        # This doesn\'t make a copy when `value` already contains bytes.\n\n        # Handle string types -- we can\'t rely on force_bytes here because:\n        # - Python attempts str conversion first\n        # - when self._charset != \'utf-8\' it re-encodes the content\n        if isinstance(value, bytes):\n            return bytes(value)\n        if isinstance(value, str):\n            return bytes(value.encode(self.charset))\n        # Handle non-string types.\n        return str(value).encode(self.charset)\n'

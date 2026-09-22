@@ -1,0 +1,6 @@
+[2026-09-21 17:15:23,316 - Orcar.agent - INFO] Current container subprocess: 142530
+[2026-09-21 17:15:46,231 - Orcar.agent - INFO] Raw Trace Analysis output:
+[2026-09-21 17:15:46,231 - Orcar.agent - INFO] summary='' suspicious_code=[] suspicious_code_from_tracer=[] related_source_code='' is_reproduce_pass=False reproduce_code='' env_reproduce_path=''
+[2026-09-21 17:15:46,231 - Orcar.agent - INFO] Current container subprocess: 142530
+[2026-09-21 17:17:05,877 - Orcar.agent - INFO] Standard output format
+[2026-09-21 17:17:05,877 - Orcar.agent - INFO] conclusion="<Observation>\nFound the exact bug location. In `Field.contribute_to_class`, when `self.choices is not None`, the code unconditionally calls `setattr(cls, 'get_%s_display' % self.name, partialmethod(cls._get_FIELD_display, field=self))`. This overwrites any user-defined `get_FOO_display` method on the model class, making it impossible to override. The fix should check whether the class already has a user-defined method before setting it. The context is sufficient to identify the bug.\n</Observation>" bug_locations=[BugLocations(file_path='django/db/models/fields/__init__.py', class_name='Field', method_name='contribute_to_class')]

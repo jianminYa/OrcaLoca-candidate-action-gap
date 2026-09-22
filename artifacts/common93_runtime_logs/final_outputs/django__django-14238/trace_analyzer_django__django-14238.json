@@ -1,0 +1,58 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "execute_from_command_line",
+            "file_path": "django/core/management/__init__.py"
+        },
+        {
+            "keyword": "execute",
+            "file_path": "django/core/management/__init__.py"
+        },
+        {
+            "keyword": "_prepare",
+            "file_path": "django/db/models/base.py"
+        },
+        {
+            "keyword": "setup",
+            "file_path": "django/__init__.py"
+        },
+        {
+            "keyword": "_get_default_pk_class",
+            "file_path": "django/db/models/options.py"
+        },
+        {
+            "keyword": "import_models",
+            "file_path": "django/apps/config.py"
+        },
+        {
+            "keyword": "BigAutoField",
+            "file_path": "django/db/models/fields/__init__.py"
+        },
+        {
+            "keyword": "MyBigAutoField",
+            "file_path": ""
+        },
+        {
+            "keyword": "populate",
+            "file_path": "django/apps/registry.py"
+        },
+        {
+            "keyword": "_prepare",
+            "file_path": "django/db/models/options.py"
+        },
+        {
+            "keyword": "AutoField",
+            "file_path": "django/db/models/fields/__init__.py"
+        },
+        {
+            "keyword": "__new__",
+            "file_path": "django/db/models/base.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import django\nfrom django.conf import settings\n\nsettings.configure(\n    DEFAULT_AUTO_FIELD='myapp.MyBigAutoField',\n    INSTALLED_APPS=['django.contrib.contenttypes'],\n    DATABASES={'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': ':memory:'}},\n)\n\n# We don't call django.setup() because we want to test the subclass check directly\nfrom django.db import models\n\nclass MyBigAutoField(models.BigAutoField):\n    pass\n\n# Test the subclass check that causes the issue\nresult = issubclass(MyBigAutoField, models.AutoField)\nprint(f\"issubclass(MyBigAutoField, models.AutoField) = {result}\")\n\nif not result:\n    raise ValueError(\n        \"Primary key 'example.core.models.MyBigAutoField' referred by \"\n        \"DEFAULT_AUTO_FIELD must subclass AutoField.\"\n    )\nelse:\n    print(\"No issue: MyBigAutoField is recognized as a subclass of AutoField.\")\n",
+    "env_reproduce_path": "/django__django/reproducer_django__django-14238.py"
+}

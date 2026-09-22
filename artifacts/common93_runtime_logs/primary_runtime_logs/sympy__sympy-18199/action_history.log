@@ -1,0 +1,47 @@
+[2026-09-22 11:47:31,002 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'nthroot_mod'}: 1
+)
+[2026-09-22 11:47:46,143 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'nthroot_mod'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'residue_ntheory.py', 'directory_path': 'sympy/ntheory'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_nthpow_residue'}: 1
+)
+[2026-09-22 11:50:08,207 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'nthroot_mod'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'residue_ntheory.py', 'directory_path': 'sympy/ntheory'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_nthpow_residue'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_nthroot_mod1'}: 1
+)
+[2026-09-22 11:50:40,895 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'nthroot_mod'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'residue_ntheory.py', 'directory_path': 'sympy/ntheory'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_nthpow_residue'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_nthroot_mod1'}: 1
+)
+[2026-09-22 11:51:27,736 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'nthroot_mod'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'residue_ntheory.py', 'directory_path': 'sympy/ntheory'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_nthpow_residue'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_nthroot_mod1'}: 1
+)

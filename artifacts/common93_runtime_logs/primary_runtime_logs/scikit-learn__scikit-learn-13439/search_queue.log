@@ -1,0 +1,17 @@
+[2026-09-22 08:54:15,861 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Pipeline', 'file_path': 'sklearn/pipeline.py'}
+)
+[2026-09-22 08:54:40,763 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'pipeline.py', 'directory_path': 'sklearn'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pipeline', 'method_name': '__getitem__', 'file_path': 'sklearn/pipeline.py'}
+)
+[2026-09-22 08:55:02,635 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pipeline', 'method_name': '__getitem__', 'file_path': 'sklearn/pipeline.py'}
+)

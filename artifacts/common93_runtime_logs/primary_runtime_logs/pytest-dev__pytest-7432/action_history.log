@@ -1,0 +1,20 @@
+[2026-09-22 08:06:11,118 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 1
+)
+[2026-09-22 08:06:23,429 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+)
+[2026-09-22 08:06:37,133 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'})]
+[2026-09-22 08:06:47,833 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+)

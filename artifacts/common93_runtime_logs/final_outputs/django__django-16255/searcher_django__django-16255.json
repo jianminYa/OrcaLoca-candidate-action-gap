@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is confirmed in the `get_latest_lastmod` method of the `Sitemap` class in `django/contrib/sitemaps/__init__.py`. When `self.items()` returns an empty sequence and `self.lastmod` is callable, `max([])` raises a `ValueError` that is not caught by the existing `except TypeError` clause. The fix is to change `except TypeError` to `except (TypeError, ValueError)`. The search queue is empty, so we have all the information needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/contrib/sitemaps/__init__.py",
+            "class_name": "Sitemap",
+            "method_name": "get_latest_lastmod"
+        }
+    ]
+}

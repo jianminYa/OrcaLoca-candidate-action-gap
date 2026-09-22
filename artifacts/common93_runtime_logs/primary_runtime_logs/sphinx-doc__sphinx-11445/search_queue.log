@@ -1,0 +1,42 @@
+[2026-09-22 09:57:52,224 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}
+)
+[2026-09-22 09:58:07,129 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'sphinx/util'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}
+)
+[2026-09-22 09:58:28,102 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/util/rst.py', 'source_code': 'docinfo_re = re.compile'}
+)
+[2026-09-22 09:58:41,335 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'}
+  Value: 2, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/util/rst.py', 'source_code': 'docinfo_re = re.compile'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}
+)
+[2026-09-22 09:58:41,340 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'} search_content='File Path: sphinx/util/rst.py \nQuery Type: function \nCode Snippet: \ndef prepend_prolog(content: StringList, prolog: str) -> None:\n    """Prepend a string to content body as prolog."""\n    if prolog:\n        pos = 0\n        for line in content:\n            if docinfo_re.match(line):\n                pos += 1\n            else:\n                break\n\n        if pos > 0:\n            # insert a blank line after docinfo\n            content.insert(pos, \'\', \'<generated>\', 0)\n            pos += 1\n\n        # insert prolog (after docinfo if exists)\n        for lineno, line in enumerate(prolog.splitlines()):\n            content.insert(pos + lineno, line, \'<rst_prolog>\', lineno)\n\n        content.insert(pos + lineno + 1, \'\', \'<generated>\', 0)\n'
+[2026-09-22 09:58:53,366 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}
+)

@@ -1,0 +1,19 @@
+[2026-09-22 14:00:04,529 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Point', 'method_name': '__new__', 'file_path': 'sympy/geometry/point.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Point2D', 'method_name': '__new__', 'file_path': 'sympy/geometry/point.py'}
+)
+[2026-09-22 14:00:24,173 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'point.py', 'directory_path': 'sympy/geometry'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Point2D', 'method_name': '__new__', 'file_path': 'sympy/geometry/point.py'}
+)
+[2026-09-22 14:00:36,078 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Point2D', 'method_name': '__new__', 'file_path': 'sympy/geometry/point.py'}
+)

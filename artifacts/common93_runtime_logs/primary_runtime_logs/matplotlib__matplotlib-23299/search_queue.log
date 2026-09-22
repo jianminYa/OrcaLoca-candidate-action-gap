@@ -1,0 +1,153 @@
+[2026-09-22 05:48:29,145 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}
+)
+[2026-09-22 05:48:41,747 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:48:58,777 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:49:19,166 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:49:45,589 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}
+)
+[2026-09-22 05:50:43,097 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}
+)
+[2026-09-22 05:53:27,356 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:53:43,236 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:54:01,608 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:54:18,574 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}
+)
+[2026-09-22 05:54:18,590 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'switch_backend'} search_content='File Path: lib/matplotlib/pyplot.py \nQuery Type: function \nCode Snippet: \ndef switch_backend(newbackend):\n    """\n    Close all open figures and set the Matplotlib backend.\n\n    The argument is case-insensitive.  Switching to an interactive backend is\n    possible only if no event loop for another interactive backend has started.\n    Switching to and from non-interactive backends is always possible.\n\n    Parameters\n    ----------\n    newbackend : str\n        The name of the backend to use.\n    """\n    global _backend_mod\n    # make sure the init is pulled up so we can assign to it later\n    import matplotlib.backends\n    close("all")\n\n    if newbackend is rcsetup._auto_backend_sentinel:\n        current_framework = cbook._get_running_interactive_framework()\n        mapping = {\'qt\': \'qtagg\',\n                   \'gtk3\': \'gtk3agg\',\n                   \'gtk4\': \'gtk4agg\',\n                   \'wx\': \'wxagg\',\n                   \'tk\': \'tkagg\',\n                   \'macosx\': \'macosx\',\n                   \'headless\': \'agg\'}\n\n        best_guess = mapping.get(current_framework, None)\n        if best_guess is not None:\n            candidates = [best_guess]\n        else:\n            candidates = []\n        candidates += [\n            "macosx", "qtagg", "gtk4agg", "gtk3agg", "tkagg", "wxagg"]\n\n        # Don\'t try to fallback on the cairo-based backends as they each have\n        # an additional dependency (pycairo) over the agg-based backend, and\n        # are of worse quality.\n        for candidate in candidates:\n            try:\n                switch_backend(candidate)\n            except ImportError:\n                continue\n            else:\n                rcParamsOrig[\'backend\'] = candidate\n                return\n        else:\n            # Switching to Agg should always succeed; if it doesn\'t, let the\n            # exception propagate out.\n            switch_backend("agg")\n            rcParamsOrig["backend"] = "agg"\n            return\n\n    backend_mod = importlib.import_module(\n        cbook._backend_module_name(newbackend))\n    canvas_class = backend_mod.FigureCanvas\n\n    required_framework = _get_required_interactive_framework(backend_mod)\n    if required_framework is not None:\n        current_framework = cbook._get_running_interactive_framework()\n        if (current_framework and required_framework\n                and current_framework != required_framework):\n            raise ImportError(\n                "Cannot load backend {!r} which requires the {!r} interactive "\n                "framework, as {!r} is currently running".format(\n                    newbackend, required_framework, current_framework))\n\n    # Load the new_figure_manager(), draw_if_interactive(), and show()\n    # functions from the backend.\n\n    # Classically, backends can directly export these functions.  This should\n    # keep working for backcompat.\n    new_figure_manager = getattr(backend_mod, "new_figure_manager", None)\n    # draw_if_interactive = getattr(backend_mod, "draw_if_interactive", None)\n    # show = getattr(backend_mod, "show", None)\n    # In that classical approach, backends are implemented as modules, but\n    # "inherit" default method implementations from backend_bases._Backend.\n    # This is achieved by creating a "class" that inherits from\n    # backend_bases._Backend and whose body is filled with the module globals.\n    class backend_mod(matplotlib.backend_bases._Backend):\n        locals().update(vars(backend_mod))\n\n    # However, the newer approach for defining new_figure_manager (and, in\n    # the future, draw_if_interactive and show) is to derive them from canvas\n    # methods.  In that case, also update backend_mod accordingly.\n    if new_figure_manager is None:\n        def new_figure_manager_given_figure(num, figure):\n            return canvas_class.new_manager(figure, num)\n\n        def new_figure_manager(num, *args, FigureClass=Figure, **kwargs):\n            fig = FigureClass(*args, **kwargs)\n            return new_figure_manager_given_figure(num, fig)\n\n        backend_mod.new_figure_manager_given_figure = \\\n            new_figure_manager_given_figure\n        backend_mod.new_figure_manager = new_figure_manager\n\n    _log.debug("Loaded backend %s version %s.",\n               newbackend, backend_mod.backend_version)\n\n    rcParams[\'backend\'] = rcParamsDefault[\'backend\'] = newbackend\n    _backend_mod = backend_mod\n    for func_name in ["new_figure_manager", "draw_if_interactive", "show"]:\n        globals()[func_name].__signature__ = inspect.signature(\n            getattr(backend_mod, func_name))\n\n    # Need to keep a global reference to the backend for compatibility reasons.\n    # See https://github.com/matplotlib/matplotlib/issues/6092\n    matplotlib.backends.backend = newbackend\n\n    # make sure the repl display hook is installed in case we become\n    # interactive\n    install_repl_displayhook()\n'
+[2026-09-22 05:54:18,605 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'get_backend'} search_content='File Path: lib/matplotlib/__init__.py \nQuery Type: function \nCode Snippet: \ndef get_backend():\n    """\n    Return the name of the current backend.\n\n    See Also\n    --------\n    matplotlib.use\n    """\n    return rcParams[\'backend\']\n'
+[2026-09-22 05:54:49,670 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_pylab_helpers.py', 'directory_path': 'lib/matplotlib'}
+)

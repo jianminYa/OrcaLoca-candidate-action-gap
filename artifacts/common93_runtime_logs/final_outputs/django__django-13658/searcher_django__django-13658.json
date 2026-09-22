@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI can now see the exact bug location. In the ManagementUtility.execute() method at django/core/management/__init__.py, line `parser = CommandParser(usage='%(prog)s subcommand [options] [args]', add_help=False, allow_abbrev=False)` creates a CommandParser without passing `prog=self.prog_name`. This causes the parser to default to using `sys.argv[0]` for the prog value, instead of using the already-computed `self.prog_name` which correctly handles cases like `__main__.py` and custom argv values. The fix is to add `prog=self.prog_name` to the CommandParser constructor call. The context is sufficient to identify the bug location.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/core/management/__init__.py",
+            "class_name": "ManagementUtility",
+            "method_name": "execute"
+        }
+    ]
+}

@@ -1,0 +1,86 @@
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1991.13it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights:  92%|█████████▏| 183/199 [00:00<00:00, 1827.49it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1860.97it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights:  93%|█████████▎| 185/199 [00:00<00:00, 1846.70it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1911.56it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights:  92%|█████████▏| 184/199 [00:00<00:00, 1832.51it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1879.44it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights:  83%|████████▎ | 165/199 [00:00<00:00, 1649.59it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1697.23it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights:  92%|█████████▏| 184/199 [00:00<00:00, 1819.78it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1894.55it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2151.23it/s]
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 285, in run_agents
+    search_output = self.run_search_agent(trace_analysis_output)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 160, in run_search_agent
+    search_agent_chat_response: AgentChatResponse = self.search_agent.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 695, in chat
+    chat_response = self._chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 627, in _chat
+    cur_step_output = self._run_step(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 423, in _run_step
+    cur_step_output = self.agent_worker.run_step(step, task, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/search_agent.py", line 1549, in run_step
+    return self._run_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/search_agent.py", line 1433, in _run_step
+    chat_response = self._llm.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/llms/callbacks.py", line 175, in wrapped_llm_chat
+    f_return_val = f(_self, messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 386, in chat
+    return chat_fn(messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 112, in wrapper
+    return retry(f)(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 482, in _chat
+    response = client.chat.completions.create(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'type': 'invalid_request_error', 'code': '400001', 'message': 'The request is invalid: Invalid request parameters. Please check your input and try again.. Please check the request body, required fields, and request format.', 'message_zh': '请求不合法：Invalid request parameters. Please check your input and try again.，请检查请求体、必填字段及请求格式是否正确。', 'source': 'client', 'request_id': '6d86a389-2d4f-40ae-80cc-8df6dd2fc1c7'}}

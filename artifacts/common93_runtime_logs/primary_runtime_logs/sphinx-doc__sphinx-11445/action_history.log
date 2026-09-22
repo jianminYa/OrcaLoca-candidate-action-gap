@@ -1,0 +1,79 @@
+[2026-09-22 09:57:49,221 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}: 1
+)
+[2026-09-22 09:58:05,069 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'sphinx/util'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}: 1
+)
+[2026-09-22 09:58:13,479 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'})]
+[2026-09-22 09:58:25,743 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'sphinx/util'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/util/rst.py', 'source_code': 'docinfo_re = re.compile'}: 1
+)
+[2026-09-22 09:58:38,812 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'sphinx/util'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/util/rst.py', 'source_code': 'docinfo_re = re.compile'}: 2
+)
+[2026-09-22 09:58:51,050 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'sphinx/util'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/util/rst.py', 'source_code': 'docinfo_re = re.compile'}: 2
+)
+[2026-09-22 09:59:04,729 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rst_prolog'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'sphinx/util'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'docinfo_re'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'prepend_prolog', 'file_path': 'sphinx/util/rst.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/util/rst.py', 'source_code': 'docinfo_re = re.compile'}: 2
+)

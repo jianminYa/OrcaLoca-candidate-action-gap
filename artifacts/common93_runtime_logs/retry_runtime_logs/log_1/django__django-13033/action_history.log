@@ -1,0 +1,85 @@
+[2026-09-22 03:43:54,193 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+)
+[2026-09-22 03:44:09,928 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+)
+[2026-09-22 03:44:49,046 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+)
+[2026-09-22 03:47:06,278 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+)
+[2026-09-22 03:47:31,894 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+)
+[2026-09-22 03:48:32,654 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_order_dir'}: 1
+)
+[2026-09-22 03:49:21,963 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_order_dir'}: 1
+)

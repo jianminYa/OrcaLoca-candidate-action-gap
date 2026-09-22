@@ -1,0 +1,50 @@
+[2026-09-22 05:02:39,596 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}
+)
+[2026-09-22 05:02:49,135 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}
+)
+[2026-09-22 05:03:03,658 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'decorators.py', 'directory_path': 'django/utils'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}
+)
+[2026-09-22 05:03:16,024 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'decorators.py', 'directory_path': 'django/utils'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}
+)
+[2026-09-22 05:03:40,938 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate', 'file_path': 'django/utils/decorators.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}
+)
+[2026-09-22 05:03:54,415 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate', 'file_path': 'django/utils/decorators.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}
+)
+[2026-09-22 05:03:54,420 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': '_multi_decorate', 'file_path': 'django/utils/decorators.py'} search_content='File Path: django/utils/decorators.py \nQuery Type: function \nCode Snippet: \ndef _multi_decorate(decorators, method):\n    """\n    Decorate `method` with one or more function decorators. `decorators` can be\n    a single decorator or an iterable of decorators.\n    """\n    if hasattr(decorators, \'__iter__\'):\n        # Apply a list/tuple of decorators if \'decorators\' is one. Decorator\n        # functions are applied so that the call order is the same as the\n        # order in which they appear in the iterable.\n        decorators = decorators[::-1]\n    else:\n        decorators = [decorators]\n\n    def _wrapper(self, *args, **kwargs):\n        # bound_method has the signature that \'decorator\' expects i.e. no\n        # \'self\' argument, but it\'s a closure over self so it can call\n        # \'func\'. Also, wrap method.__get__() in a function because new\n        # attributes can\'t be set on bound method objects, only on functions.\n        bound_method = partial(method.__get__(self, type(self)))\n        for dec in decorators:\n            bound_method = dec(bound_method)\n        return bound_method(*args, **kwargs)\n\n    # Copy any attributes that a decorator adds to the function it decorates.\n    for dec in decorators:\n        _update_method_wrapper(_wrapper, dec)\n    # Preserve any existing attributes of \'method\', including the name.\n    update_wrapper(_wrapper, method)\n    return _wrapper\n'
+[2026-09-22 05:03:54,426 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': '_wrapper', 'file_path': 'django/utils/decorators.py'} search_content="File Path: django/utils/decorators.py \nQuery Type: function \nCode Snippet: \n    def _wrapper(self, *args, **kwargs):\n        # bound_method has the signature that 'decorator' expects i.e. no\n        # 'self' argument, but it's a closure over self so it can call\n        # 'func'. Also, wrap method.__get__() in a function because new\n        # attributes can't be set on bound method objects, only on functions.\n        bound_method = partial(method.__get__(self, type(self)))\n        for dec in decorators:\n            bound_method = dec(bound_method)\n        return bound_method(*args, **kwargs)\n"

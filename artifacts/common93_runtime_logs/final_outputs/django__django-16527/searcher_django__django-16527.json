@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly confirmed in the `submit_row` function in `django/contrib/admin/templatetags/admin_modify.py`. The `show_save_as_new` context variable at line 102 is missing a check for `has_add_permission`. Since 'Save as new' creates a new object, it should require add permission. The current code is `not is_popup and has_change_permission and change and save_as`, but it should also include `and has_add_permission`. The context is sufficient to identify the bug location - no further searching is needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/contrib/admin/templatetags/admin_modify.py",
+            "class_name": "",
+            "method_name": "submit_row"
+        }
+    ]
+}

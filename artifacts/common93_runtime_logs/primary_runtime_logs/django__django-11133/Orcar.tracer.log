@@ -1,0 +1,15 @@
+[2026-09-21 16:43:36,151 - Orcar.tracer - INFO] sensitivity_dict: {'HttpResponse': {'/django__django/django/http/response.py'}, 'make_bytes': {'/django__django/django/http/response.py'}, 'content': {'/django__django/django/http/response.py'}}
+[2026-09-21 16:43:36,152 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_django__django-11133.json
+[2026-09-21 16:43:36,155 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-21 16:43:36,158 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-21 16:43:36,158 - Orcar.tracer - INFO] Func 000/005
+[2026-09-21 16:43:36,158 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/http/response.py', lineno=305, funcname='content'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=22, absolute_layer=2, called_by=[]), (0, 0, 2, 22))
+[2026-09-21 16:43:36,158 - Orcar.tracer - INFO] Func 001/005
+[2026-09-21 16:43:36,158 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/http/response.py', lineno=309, funcname='content'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=18, absolute_layer=3, called_by=[]), (0, 0, 3, 18))
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] Func 002/005
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/http/response.py', lineno=223, funcname='make_bytes'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=19, absolute_layer=4, called_by=[]), (0, 0, 4, 19))
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] Func 003/005
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/http/response.py', lineno=75, funcname='charset'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=1, absolute_calling_index=20, absolute_layer=5, called_by=[FuncSign(filename='/django__django/django/http/response.py', lineno=223, funcname='make_bytes')]), (0, 1, 5, 20))
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] Func 004/005
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/http/response.py', lineno=154, funcname='get'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=2, absolute_calling_index=21, absolute_layer=6, called_by=[FuncSign(filename='/django__django/django/http/response.py', lineno=223, funcname='make_bytes'), FuncSign(filename='/django__django/django/http/response.py', lineno=75, funcname='charset')]), (0, 2, 6, 21))
+[2026-09-21 16:43:36,159 - Orcar.tracer - INFO] Finished tracer output parsing

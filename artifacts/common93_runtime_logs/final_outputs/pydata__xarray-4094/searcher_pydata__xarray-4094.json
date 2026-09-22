@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI now have both `to_stacked_array` and `to_unstacked_dataset` implementations. Let me trace through the MCVE:\\n\\n1. `arr = xr.DataArray(np.arange(3), coords=[('x', [0, 1, 2])])` - shape (3,), dim 'x'\\n2. `data = xr.Dataset({'a': arr, 'b': arr})` - both variables have only dim 'x'\\n3. `stacked = data.to_stacked_array('y', sample_dims=['x'])` - here `stacking_dims = ()` (empty, since all dims are sample_dims). In `ensure_stackable`, `expand_dims = {'variable'}`, and it stacks `{y: ('variable',)}`. So the resulting MultiIndex 'y' has only one level: 'variable' with values ['a', 'b']. The stacked array has shape (3, 2) with dims ('x', 'y').\\n4. `stacked.to_unstacked_dataset('y')` - iterates over variables ['a', 'b']. For variable 'a': `self.sel({'variable': 'a'})` selects along the 'y' MultiIndex where variable='a'. This gives a DataArray with dim 'x' and shape (3,). But since the MultiIndex 'y' had only one level, after selection the 'y' dimension has size 1. `squeeze(drop=True)` drops the 'y' dimension. However, the key issue is that after `sel({variable_dim: 'a'})`, the 'y' coordinate still exists (as a scalar or with different values for 'a' vs 'b'). When creating `Dataset(data_dict)`, the conflicting 'y' coordinate values between the two DataArrays cause a MergeError.\\n\\nThe fix should be in `to_unstacked_dataset` - after squeezing, the stacked dimension coordinate (dim='y' in this case) should be dropped from each variable. The line `data_dict[k] = self.sel({variable_dim: k}).squeeze(drop=True)` needs to also drop the `dim` coordinate to avoid conflicts.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "xarray/core/dataarray.py",
+            "class_name": "DataArray",
+            "method_name": "to_unstacked_dataset"
+        }
+    ]
+}

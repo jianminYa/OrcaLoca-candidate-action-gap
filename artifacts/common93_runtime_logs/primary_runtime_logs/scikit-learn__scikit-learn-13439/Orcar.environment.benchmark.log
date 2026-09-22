@@ -1,0 +1,4 @@
+[2026-09-22 08:52:39,583 - Orcar.environment.benchmark - INFO] Setting up env for inst scikit-learn__scikit-learn-13439...
+[2026-09-22 08:52:46,405 - Orcar.environment.benchmark - INFO] Repo scikit-learn__scikit-learn already cached
+[2026-09-22 08:52:46,405 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn to base commit: a62775e99f2a5ea3d51db7160fad783f6cd8a4c5
+[2026-09-22 08:53:55,261 - Orcar.environment.benchmark - INFO] Copying file to host: docker cp orcar_swe_bench_run_ctr_safe://tmp/tracer_output_scikit-learn__scikit-learn-13439.json /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_scikit-learn__scikit-learn-13439.json

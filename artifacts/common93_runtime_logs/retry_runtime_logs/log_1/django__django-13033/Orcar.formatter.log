@@ -1,0 +1,40 @@
+[2026-09-22 03:43:43,247 - Orcar.formatter - INFO] Found tokenizer for model 'ep-64pmfvfo'
+[2026-09-22 03:44:12,070 - Orcar.formatter - INFO] Found tokenizer for model 'ep-64pmfvfo'
+[2026-09-22 03:44:14,711 - Orcar.formatter - WARNING] count_achat retry 1/3: 
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/formatter.py", line 156, in count_achat
+    response = await llm.achat(messages)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 369, in async_wrapper
+    result = await func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/llms/callbacks.py", line 76, in wrapped_async_llm_chat
+    f_return_val = await f(_self, messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 688, in achat
+    return await achat_fn(messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 193, in async_wrapped
+    return await copy(fn, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 112, in __call__
+    do = await self.iter(retry_state=retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 157, in iter
+    result = await action(retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/_utils.py", line 111, in inner
+    return call(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 116, in __call__
+    result = await fn(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 743, in _achat
+    response = await aclient.chat.completions.create(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 2585, in create
+    return await self._post(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'type': 'invalid_request_error', 'code': '400001', 'message': 'The request is invalid: Invalid request parameters. Please check your input and try again.. Please check the request body, required fields, and request format.', 'message_zh': '请求不合法：Invalid request parameters. Please check your input and try again.，请检查请求体、必填字段及请求格式是否正确。', 'source': 'client', 'request_id': 'e6cba365-1dc8-4ffe-8756-de11004048c5'}}
+
+[2026-09-22 03:47:08,650 - Orcar.formatter - INFO] Found tokenizer for model 'ep-64pmfvfo'
+[2026-09-22 03:49:51,614 - Orcar.formatter - INFO] Found tokenizer for model 'ep-64pmfvfo'

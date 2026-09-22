@@ -1,0 +1,40 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "Point2D",
+            "file_path": ""
+        },
+        {
+            "keyword": "sympify",
+            "file_path": "sympy/core/sympify.py"
+        },
+        {
+            "keyword": "parse_expr",
+            "file_path": "sympy/parsing/sympy_parser.py"
+        },
+        {
+            "keyword": "S",
+            "file_path": ""
+        },
+        {
+            "keyword": "evaluate",
+            "file_path": ""
+        },
+        {
+            "keyword": "eval_expr",
+            "file_path": "sympy/parsing/sympy_parser.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "__new__",
+            "file_path": "sympy/geometry/point.py",
+            "class_name": "Point"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import sympy as sp\nwith sp.evaluate(False):\n    sp.S('Point2D(Integer(1),Integer(2))')",
+    "env_reproduce_path": "/sympy__sympy/reproducer_sympy__sympy-22714.py"
+}

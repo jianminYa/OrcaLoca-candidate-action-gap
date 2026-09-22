@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nNow I have the complete picture of the bug. When `alter_index_together` deletes an index, it calls `_delete_composed_index(model, fields, {'index': True}, self.sql_delete_index)`. The `_delete_composed_index` method then calls `_constraint_names(model, columns, exclude=meta_constraint_names | meta_index_names, index=True)`. The problem is that when there's a `unique_together` on the same fields, the unique constraint also has `index=True` in the database introspection results (because unique constraints typically create indexes). So `_constraint_names` with `index=True` returns both the index_together index AND the unique_together constraint, resulting in 2 matches instead of 1, causing the ValueError. The fix should be in `_delete_composed_index` or `alter_index_together` to also pass `unique=False` to `_constraint_names` to filter out unique constraints when deleting a plain index. The `_constraint_names` method already supports a `unique` parameter that could be used for this filtering.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/backends/base/schema.py",
+            "class_name": "BaseDatabaseSchemaEditor",
+            "method_name": "alter_index_together"
+        },
+        {
+            "file_path": "django/db/backends/base/schema.py",
+            "class_name": "BaseDatabaseSchemaEditor",
+            "method_name": "_delete_composed_index"
+        }
+    ]
+}

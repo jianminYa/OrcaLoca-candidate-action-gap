@@ -1,0 +1,28 @@
+[2026-09-22 03:54:31,284 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}
+)
+[2026-09-22 03:54:46,256 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}
+)
+[2026-09-22 03:55:02,172 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}
+)
+[2026-09-22 03:55:31,969 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}
+)

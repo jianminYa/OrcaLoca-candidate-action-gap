@@ -1,0 +1,34 @@
+[2026-09-22 05:32:24,259 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce'}: 1
+)
+[2026-09-22 05:32:36,522 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/db/migrations/operations'}: 2
+)
+[2026-09-22 05:32:46,137 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'AlterField', 'file_path': 'django/db/migrations/operations/fields.py'})]
+[2026-09-22 05:32:58,124 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/db/migrations/operations'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'AlterField', 'file_path': 'django/db/migrations/operations/fields.py'}: 1
+)
+[2026-09-22 05:33:10,474 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'AlterField', 'method_name': 'reduce', 'file_path': 'django/db/migrations/operations/fields.py'})]
+[2026-09-22 05:33:18,605 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/db/migrations/operations'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'AlterField', 'file_path': 'django/db/migrations/operations/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce', 'file_path': 'django/db/migrations/operations/fields.py'}: 1
+)

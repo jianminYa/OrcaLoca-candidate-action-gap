@@ -1,0 +1,35 @@
+[2026-09-22 09:26:29,816 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseLibSVM', 'method_name': '_sparse_fit', 'file_path': 'sklearn/svm/base.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}: 1
+)
+[2026-09-22 09:26:44,332 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseLibSVM', 'method_name': '_sparse_fit', 'file_path': 'sklearn/svm/base.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/svm'}: 1
+)
+[2026-09-22 09:27:12,876 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseLibSVM', 'method_name': '_sparse_fit', 'file_path': 'sklearn/svm/base.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/svm'}: 1
+)
+[2026-09-22 09:27:24,346 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'BaseLibSVM', 'method_name': '_sparse_fit', 'file_path': 'sklearn/svm/base.py'})]
+[2026-09-22 09:27:32,619 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseLibSVM', 'method_name': '_sparse_fit', 'file_path': 'sklearn/svm/base.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/svm'}: 1
+)

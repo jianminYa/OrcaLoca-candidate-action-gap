@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is now clearly identified in the `diophantine` function in `sympy/solvers/diophantine.py`. When `syms` is provided and `syms != var` (i.e., the user-specified symbol order differs from the default alphabetical order), the function does a recursive call at the line `return {tuple([t[dict_sym_index[i]] for i in var]) for t in diophantine(eq, param)}`. This recursive call only passes `eq` and `param` but does NOT pass `permute=permute`. This means the inner call returns only the base solution `{(2, 3)}`, which then gets reordered to `{(3, 2)}`. The permutation logic at the bottom of the function is never reached because the function returns early from the syms-reordering block. When syms=(m,n) matches the alphabetical order of var, syms == var so the early return is skipped, and the permutation logic at the bottom runs correctly producing all 8 results. The search queue items are redundant since we already have the full source code.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/solvers/diophantine.py",
+            "class_name": "",
+            "method_name": "diophantine"
+        }
+    ]
+}

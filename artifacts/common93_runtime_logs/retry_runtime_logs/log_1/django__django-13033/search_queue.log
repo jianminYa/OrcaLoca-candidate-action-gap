@@ -1,0 +1,40 @@
+[2026-09-22 03:43:56,944 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_order_by', 'file_path': 'django/db/models/sql/compiler.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 03:44:12,064 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 03:44:51,338 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_ref', 'file_path': 'django/db/models/sql/query.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 03:47:08,642 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 03:47:34,252 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'find_ordering_name', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 03:48:35,358 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_order_dir'}
+)

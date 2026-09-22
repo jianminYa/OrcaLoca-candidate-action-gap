@@ -1,0 +1,30 @@
+[2026-09-22 04:08:05,643 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__eq__', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__hash__', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__lt__', 'file_path': 'django/db/models/fields/__init__.py'}
+)
+[2026-09-22 04:08:16,278 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__hash__', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__lt__', 'file_path': 'django/db/models/fields/__init__.py'}
+)
+[2026-09-22 04:09:38,851 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__hash__', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__lt__', 'file_path': 'django/db/models/fields/__init__.py'}
+)
+[2026-09-22 04:09:50,462 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__lt__', 'file_path': 'django/db/models/fields/__init__.py'}
+)

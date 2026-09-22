@@ -1,0 +1,74 @@
+[2026-09-22 03:04:19,405 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_unique_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+)
+[2026-09-22 03:04:40,879 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_unique_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}: 1
+)
+[2026-09-22 03:05:20,852 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_unique_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}: 1
+)
+[2026-09-22 03:05:46,994 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_unique_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}: 1
+)
+[2026-09-22 03:06:09,031 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_unique_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}: 2
+)
+[2026-09-22 03:06:45,717 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_delete_composed_index', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_index_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': 'alter_unique_together', 'file_path': 'django/db/backends/base/schema.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'schema.py', 'directory_path': 'django/db/backends/base'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseDatabaseSchemaEditor', 'method_name': '_constraint_names', 'file_path': 'django/db/backends/base/schema.py'}: 2
+)

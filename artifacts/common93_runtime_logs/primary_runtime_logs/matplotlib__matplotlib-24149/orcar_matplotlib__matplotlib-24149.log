@@ -1,0 +1,363 @@
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:2 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Reading package lists...
+Building dependency tree...
+Reading state information...
+All packages are up to date.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.9ubuntu3).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Channels:
+ - conda-forge
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... 
+
+
+done
+Installing pip dependencies: ...working... Ran pip subprocess with arguments:
+['/root/miniconda3/envs/matplotlib__matplotlib__3.6/bin/python', '-m', 'pip', 'install', '-U', '-r', '/root/condaenv.l32e4puj.requirements.txt', '--exists-action=b']
+Pip subprocess output:
+Collecting mpl-sphinx-theme (from -r /root/condaenv.l32e4puj.requirements.txt (line 1))
+  Using cached mpl_sphinx_theme-3.11.0-py3-none-any.whl.metadata (2.4 kB)
+Collecting sphinxcontrib-svg2pdfconverter (from -r /root/condaenv.l32e4puj.requirements.txt (line 2))
+  Using cached sphinxcontrib_svg2pdfconverter-2.1.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pikepdf (from -r /root/condaenv.l32e4puj.requirements.txt (line 3))
+  Using cached pikepdf-10.13.0.post1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+Collecting pydata-sphinx-theme==0.18.0 (from mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1))
+  Using cached pydata_sphinx_theme-0.18.0-py3-none-any.whl.metadata (6.0 kB)
+Collecting matplotlib (from mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1))
+  Using cached matplotlib-3.11.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (80 kB)
+Requirement already satisfied: sphinx-design in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (0.7.0)
+Requirement already satisfied: sphinx<10,>=8.0 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (9.0.4)
+Requirement already satisfied: beautifulsoup4 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (4.15.0)
+Requirement already satisfied: docutils!=0.17.0 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (0.22.4)
+Requirement already satisfied: Babel in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.18.0)
+Requirement already satisfied: pygments>=2.7 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.21.0)
+Requirement already satisfied: accessible-pygments in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (0.0.5)
+Requirement already satisfied: typing-extensions in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (4.16.0)
+Requirement already satisfied: sphinxcontrib-applehelp>=1.0.7 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: sphinxcontrib-devhelp>=1.0.6 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: sphinxcontrib-htmlhelp>=2.0.6 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.1.0)
+Requirement already satisfied: sphinxcontrib-jsmath>=1.0.1 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (1.0.1)
+Requirement already satisfied: sphinxcontrib-qthelp>=1.0.6 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: sphinxcontrib-serializinghtml>=1.1.9 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: Jinja2>=3.1 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: snowballstemmer>=2.2 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (3.1.1)
+Requirement already satisfied: alabaster>=0.7.14 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (1.0.0)
+Requirement already satisfied: imagesize>=1.3 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.0.1)
+Requirement already satisfied: requests>=2.30.0 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.34.2)
+Requirement already satisfied: roman-numerals>=1.0.0 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (4.1.0)
+Requirement already satisfied: packaging>=23.0 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (26.3)
+Requirement already satisfied: Pillow>=10.0.1 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pikepdf->-r /root/condaenv.l32e4puj.requirements.txt (line 3)) (12.3.0)
+Collecting lxml>=4.8 (from pikepdf->-r /root/condaenv.l32e4puj.requirements.txt (line 3))
+  Using cached lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Requirement already satisfied: MarkupSafe>=2.0 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from Jinja2>=3.1->sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (3.0.3)
+Requirement already satisfied: charset_normalizer<4,>=2 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from requests>=2.30.0->sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (3.5.1)
+Requirement already satisfied: idna<4,>=2.5 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from requests>=2.30.0->sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from requests>=2.30.0->sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from requests>=2.30.0->sphinx<10,>=8.0->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2026.7.22)
+Requirement already satisfied: soupsieve>=1.6.1 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from beautifulsoup4->pydata-sphinx-theme==0.18.0->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.9.2)
+Requirement already satisfied: contourpy>=1.0.1 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (1.3.3)
+Requirement already satisfied: cycler>=0.10 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (0.12.1)
+Requirement already satisfied: fonttools>=4.28.2 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (4.65.0)
+Requirement already satisfied: kiwisolver>=1.3.1 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (1.5.1)
+Requirement already satisfied: numpy>=1.25 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.4.6)
+Requirement already satisfied: pyparsing>=3 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (3.3.2)
+Requirement already satisfied: python-dateutil>=2.7 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (2.9.0.post0)
+Requirement already satisfied: six>=1.5 in ./miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from python-dateutil>=2.7->matplotlib->mpl-sphinx-theme->-r /root/condaenv.l32e4puj.requirements.txt (line 1)) (1.17.0)
+Using cached mpl_sphinx_theme-3.11.0-py3-none-any.whl (52 kB)
+Using cached pydata_sphinx_theme-0.18.0-py3-none-any.whl (6.2 MB)
+Using cached sphinxcontrib_svg2pdfconverter-2.1.0-py3-none-any.whl (9.3 kB)
+Using cached pikepdf-10.13.0.post1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (2.3 MB)
+Using cached lxml-6.1.3-cp311-cp311-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.2 MB)
+Using cached matplotlib-3.11.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)
+Installing collected packages: lxml, pikepdf, matplotlib, sphinxcontrib-svg2pdfconverter, pydata-sphinx-theme, mpl-sphinx-theme
+  Attempting uninstall: pydata-sphinx-theme
+    Found existing installation: pydata-sphinx-theme 0.21.0
+    Uninstalling pydata-sphinx-theme-0.21.0:
+      Successfully uninstalled pydata-sphinx-theme-0.21.0
+
+Successfully installed lxml-6.1.3 matplotlib-3.11.2 mpl-sphinx-theme-3.11.0 pikepdf-10.13.0.post1 pydata-sphinx-theme-0.18.0 sphinxcontrib-svg2pdfconverter-2.1.0
+
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate matplotlib__matplotlib__3.6
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Collecting contourpy==1.1.0
+  Using cached contourpy-1.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.7 kB)
+Collecting cycler==0.11.0
+  Using cached cycler-0.11.0-py3-none-any.whl.metadata (785 bytes)
+Collecting fonttools==4.42.1
+  Using cached fonttools-4.42.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (150 kB)
+Collecting ghostscript
+  Using cached ghostscript-0.8.1-py3-none-any.whl.metadata (4.4 kB)
+Collecting kiwisolver==1.4.5
+  Using cached kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+Collecting numpy==1.25.2
+  Using cached numpy-1.25.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.6 kB)
+Collecting packaging==23.1
+  Using cached packaging-23.1-py3-none-any.whl.metadata (3.1 kB)
+Collecting pillow==10.0.0
+  Using cached Pillow-10.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Requirement already satisfied: pikepdf in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (10.13.0.post1)
+Collecting pyparsing==3.0.9
+  Using cached pyparsing-3.0.9-py3-none-any.whl.metadata (4.2 kB)
+Collecting python-dateutil==2.8.2
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl.metadata (8.2 kB)
+Collecting six==1.16.0
+  Using cached six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting setuptools==68.1.2
+  Using cached setuptools-68.1.2-py3-none-any.whl.metadata (6.2 kB)
+Collecting setuptools-scm==7.1.0
+  Using cached setuptools_scm-7.1.0-py3-none-any.whl.metadata (24 kB)
+Collecting typing-extensions==4.7.1
+  Using cached typing_extensions-4.7.1-py3-none-any.whl.metadata (3.1 kB)
+INFO: pip is looking at multiple versions of pikepdf to determine which version is compatible with other requirements. This could take a while.
+Collecting pikepdf
+  Using cached pikepdf-10.12.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+  Using cached pikepdf-10.11.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.10.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.9.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.9.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.8.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.7.3-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+INFO: pip is still looking at multiple versions of pikepdf to determine which version is compatible with other requirements. This could take a while.
+  Using cached pikepdf-10.7.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.7.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+  Using cached pikepdf-10.6.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+  Using cached pikepdf-10.5.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+  Using cached pikepdf-10.5.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+  Using cached pikepdf-10.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.4 kB)
+  Using cached pikepdf-10.2.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+  Using cached pikepdf-10.1.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+  Using cached pikepdf-10.0.3-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+  Using cached pikepdf-10.0.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+  Using cached pikepdf-10.0.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+  Using cached pikepdf-10.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+  Using cached pikepdf-9.11.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.10.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.10.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.10.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.9.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.8.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.7.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.5.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.5.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.4.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.4.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.3.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.2.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+  Using cached pikepdf-9.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.2 kB)
+  Using cached pikepdf-9.0.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.15.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.15.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.14.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.13.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.12.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.11.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.11.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.11.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.10.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.10.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.5 kB)
+  Using cached pikepdf-8.8.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.7.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.7.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.5.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.5.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.5.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.6 kB)
+  Using cached pikepdf-8.4.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.7 kB)
+Collecting deprecation (from pikepdf)
+  Using cached deprecation-2.1.0-py2.py3-none-any.whl.metadata (4.6 kB)
+Requirement already satisfied: lxml>=4.8 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from pikepdf) (6.1.3)
+Using cached contourpy-1.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (300 kB)
+Using cached cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Using cached fonttools-4.42.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.9 MB)
+Using cached kiwisolver-1.4.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.4 MB)
+Using cached numpy-1.25.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+Using cached packaging-23.1-py3-none-any.whl (48 kB)
+Using cached Pillow-10.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (3.4 MB)
+Using cached pyparsing-3.0.9-py3-none-any.whl (98 kB)
+Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Using cached setuptools-68.1.2-py3-none-any.whl (805 kB)
+Using cached setuptools_scm-7.1.0-py3-none-any.whl (43 kB)
+Using cached typing_extensions-4.7.1-py3-none-any.whl (33 kB)
+Using cached ghostscript-0.8.1-py3-none-any.whl (25 kB)
+Using cached pikepdf-8.4.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.3 MB)
+Using cached deprecation-2.1.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: ghostscript, typing-extensions, six, setuptools, pyparsing, pillow, packaging, numpy, kiwisolver, fonttools, cycler, setuptools-scm, python-dateutil, deprecation, contourpy, pikepdf
+  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.16.0
+    Uninstalling typing_extensions-4.16.0:
+      Successfully uninstalled typing_extensions-4.16.0
+  Attempting uninstall: six
+    Found existing installation: six 1.17.0
+    Uninstalling six-1.17.0:
+      Successfully uninstalled six-1.17.0
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 84.0.0
+    Uninstalling setuptools-84.0.0:
+      Successfully uninstalled setuptools-84.0.0
+  Attempting uninstall: pyparsing
+    Found existing installation: pyparsing 3.3.2
+    Uninstalling pyparsing-3.3.2:
+      Successfully uninstalled pyparsing-3.3.2
+  Attempting uninstall: pillow
+    Found existing installation: pillow 12.3.0
+    Uninstalling pillow-12.3.0:
+      Successfully uninstalled pillow-12.3.0
+  Attempting uninstall: packaging
+    Found existing installation: packaging 26.3
+    Uninstalling packaging-26.3:
+      Successfully uninstalled packaging-26.3
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.4.6
+    Uninstalling numpy-2.4.6:
+      Successfully uninstalled numpy-2.4.6
+  Attempting uninstall: kiwisolver
+    Found existing installation: kiwisolver 1.5.1
+    Uninstalling kiwisolver-1.5.1:
+      Successfully uninstalled kiwisolver-1.5.1
+  Attempting uninstall: fonttools
+    Found existing installation: fonttools 4.65.0
+    Uninstalling fonttools-4.65.0:
+      Successfully uninstalled fonttools-4.65.0
+  Attempting uninstall: cycler
+    Found existing installation: cycler 0.12.1
+    Uninstalling cycler-0.12.1:
+      Successfully uninstalled cycler-0.12.1
+  Attempting uninstall: setuptools-scm
+    Found existing installation: setuptools-scm 10.2.3
+    Uninstalling setuptools-scm-10.2.3:
+      Successfully uninstalled setuptools-scm-10.2.3
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.9.0.post0
+    Uninstalling python-dateutil-2.9.0.post0:
+      Successfully uninstalled python-dateutil-2.9.0.post0
+  Attempting uninstall: contourpy
+    Found existing installation: contourpy 1.3.3
+    Uninstalling contourpy-1.3.3:
+      Successfully uninstalled contourpy-1.3.3
+  Attempting uninstall: pikepdf
+    Found existing installation: pikepdf 10.13.0.post1
+    Uninstalling pikepdf-10.13.0.post1:
+      Successfully uninstalled pikepdf-10.13.0.post1
+
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+sip 6.10.0 requires setuptools>=69.5, but you have setuptools 68.1.2 which is incompatible.
+wheel 0.48.0 requires packaging>=24.0, but you have packaging 23.1 which is incompatible.
+vcs-versioning 2.3.4 requires packaging>=26.2, but you have packaging 23.1 which is incompatible.
+jupyter-client 8.10.0 requires typing-extensions>=4.13.0, but you have typing-extensions 4.7.1 which is incompatible.
+pandas 3.0.6 requires numpy>=1.26.0; python_version < "3.14", but you have numpy 1.25.2 which is incompatible.
+Successfully installed contourpy-1.1.0 cycler-0.11.0 deprecation-2.1.0 fonttools-4.42.1 ghostscript-0.8.1 kiwisolver-1.4.5 numpy-1.25.2 packaging-23.1 pikepdf-8.4.1 pillow-10.0.0 pyparsing-3.0.9 python-dateutil-2.8.2 setuptools-68.1.2 setuptools-scm-7.1.0 six-1.16.0 typing-extensions-4.7.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Hit:1 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+cm-super is already the newest version (0.3.4-17).
+dvipng is already the newest version (1.15-1.1).
+texlive is already the newest version (2021.20220204-1).
+texlive-fonts-recommended is already the newest version (2021.20220204-1).
+texlive-latex-extra is already the newest version (2021.20220204-1).
+texlive-luatex is already the newest version (2021.20220204-1).
+texlive-xetex is already the newest version (2021.20220204-1).
+ffmpeg is already the newest version (7:4.4.2-0ubuntu0.22.04.1).
+imagemagick is already the newest version (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Obtaining file:///matplotlib__matplotlib
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: contourpy>=1.0.1 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (1.1.0)
+Requirement already satisfied: cycler>=0.10 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (4.42.1)
+Requirement already satisfied: kiwisolver>=1.0.1 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (1.4.5)
+Requirement already satisfied: numpy>=1.21 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (1.25.2)
+Requirement already satisfied: packaging>=20.0 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (23.1)
+Requirement already satisfied: pillow>=6.2.0 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (10.0.0)
+Requirement already satisfied: pyparsing>=2.3.1 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (3.0.9)
+Requirement already satisfied: python-dateutil>=2.7 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (2.8.2)
+Requirement already satisfied: setuptools_scm>=7 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from matplotlib==3.7.0.dev1599+g73909bcb4) (7.1.0)
+Requirement already satisfied: six>=1.5 in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from python-dateutil>=2.7->matplotlib==3.7.0.dev1599+g73909bcb4) (1.16.0)
+Requirement already satisfied: setuptools in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.7.0.dev1599+g73909bcb4) (68.1.2)
+Requirement already satisfied: typing-extensions in /root/miniconda3/envs/matplotlib__matplotlib__3.6/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.7.0.dev1599+g73909bcb4) (4.7.1)
+Building wheels for collected packages: matplotlib
+  Building editable for matplotlib (pyproject.toml): started
+  Building editable for matplotlib (pyproject.toml): still running...
+  Building editable for matplotlib (pyproject.toml): finished with status 'done'
+  Created wheel for matplotlib: filename=matplotlib-3.7.0.dev1599+g73909bcb4-0.editable-cp311-cp311-linux_x86_64.whl size=23410 sha256=a006031c2c38f3383345d34b82c637124e11b562ebd6d0bde4ed1db652df05a6
+  Stored in directory: /tmp/pip-ephem-wheel-cache-jtggdb7b/wheels/fe/41/ee/bc61399737e54759af08a39a87b62f04b2d0ccbd18a22bd4e8
+Successfully built matplotlib
+Installing collected packages: matplotlib
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.11.2
+    Uninstalling matplotlib-3.11.2:
+      Successfully uninstalled matplotlib-3.11.2
+Successfully installed matplotlib-3.7.0.dev1599+g73909bcb4
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Collecting viztracer
+  Using cached viztracer-1.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (13 kB)
+Collecting objprint>=0.3.0 (from viztracer)
+  Using cached objprint-0.3.0-py3-none-any.whl.metadata (25 kB)
+Using cached viztracer-1.1.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (15.9 MB)
+Using cached objprint-0.3.0-py3-none-any.whl (41 kB)
+Installing collected packages: objprint, viztracer
+
+Successfully installed objprint-0.3.0 viztracer-1.1.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+/tmp/tracer_output_matplotlib__matplotlib-24149.json
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2241.47it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2214.36it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2096.75it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2280.75it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2433.71it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2366.51it/s]

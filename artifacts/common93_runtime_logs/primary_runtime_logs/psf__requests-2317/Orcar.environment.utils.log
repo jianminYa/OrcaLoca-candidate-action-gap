@@ -1,0 +1,6 @@
+[2026-09-22 07:05:44,326 - Orcar.environment.utils - DEBUG] Run command in container: git clone https://github.com/psf/requests.git psf__requests
+[2026-09-22 07:05:57,481 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 07:06:05,870 - Orcar.environment.utils - DEBUG] Run command in container: conda create --name psf__requests__2.4 --clone python3.9
+[2026-09-22 07:06:36,292 - Orcar.environment.utils - DEBUG] Run command in container: conda install pytest -y
+[2026-09-22 07:08:34,905 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install .
+[2026-09-22 07:08:39,371 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer

@@ -1,0 +1,37 @@
+[2026-09-22 11:07:39,522 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodeGen', 'method_name': 'routine', 'file_path': 'sympy/utilities/codegen.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'routine'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}: 1
+)
+[2026-09-22 11:07:55,604 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodeGen', 'method_name': 'routine', 'file_path': 'sympy/utilities/codegen.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'routine'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}: 1
+)
+[2026-09-22 11:08:03,785 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'CodeGen', 'method_name': 'routine', 'file_path': 'sympy/utilities/codegen.py'})]
+[2026-09-22 11:08:12,219 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodeGen', 'method_name': 'routine', 'file_path': 'sympy/utilities/codegen.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'routine'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}: 1
+)
+[2026-09-22 11:08:36,942 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodeGen', 'method_name': 'routine', 'file_path': 'sympy/utilities/codegen.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'routine'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}: 1
+)

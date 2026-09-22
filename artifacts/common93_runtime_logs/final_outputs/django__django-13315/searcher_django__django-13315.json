@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI now have a complete picture of the bug. The `apply_limit_choices_to_to_formfield` function in `django/forms/models.py` applies `complex_filter(limit_choices_to)` to the formfield's queryset but does NOT call `.distinct()`. When `limit_choices_to` involves a Q object with a join (e.g., filtering through a related model), the SQL query can produce duplicate rows, resulting in duplicate options in the form field. The fix should add `.distinct()` after applying `complex_filter()`. The search queue is empty and I have sufficient context to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/forms/models.py",
+            "class_name": "",
+            "method_name": "apply_limit_choices_to_to_formfield"
+        }
+    ]
+}

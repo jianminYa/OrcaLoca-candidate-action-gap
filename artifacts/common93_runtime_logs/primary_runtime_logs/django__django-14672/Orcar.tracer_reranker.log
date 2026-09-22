@@ -1,0 +1,66 @@
+[2026-09-22 04:53:58,853 - Orcar.tracer_reranker - INFO] Func 01/04
+[2026-09-22 04:53:58,853 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/fields/reverse_related.py' lineno=138 funcname='__hash__' classname='ForeignObjectRel'
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO]     def __hash__(self):
+        return hash(self.identity)
+
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] Func 02/04
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/fields/reverse_related.py' lineno=309 funcname='identity' classname='ManyToManyRel'
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] LLM score: 97 / 100
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO]     @property
+    def identity(self):
+        return super().identity + (
+            self.through,
+            self.through_fields,
+            self.db_constraint,
+        )
+
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] Func 03/04
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/fields/reverse_related.py' lineno=119 funcname='identity' classname='ForeignObjectRel'
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO]     @property
+    def identity(self):
+        return (
+            self.field,
+            self.model,
+            self.related_name,
+            self.related_query_name,
+            make_hashable(self.limit_choices_to),
+            self.parent_link,
+            self.on_delete,
+            self.symmetrical,
+            self.multiple,
+        )
+
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] Func 04/04
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/utils/hashable.py' lineno=4 funcname='make_hashable' classname=''
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] def make_hashable(value):
+    """
+    Attempt to make value hashable or raise a TypeError if it fails.
+
+    The returned value should generate the same hash for equal values.
+    """
+    if isinstance(value, dict):
+        return tuple([
+            (key, make_hashable(nested_value))
+            for key, nested_value in sorted(value.items())
+        ])
+    # Try hash to avoid converting a hashable iterable (e.g. string, frozenset)
+    # to a tuple.
+    try:
+        hash(value)
+    except TypeError:
+        if is_iterable(value):
+            return tuple(map(make_hashable, value))
+        # Non-hashable, non-iterable.
+        raise
+    return value
+
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] ['__hash__', 'identity', 'identity', 'make_hashable']
+[2026-09-22 04:53:58,854 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 04:53:58,855 - Orcar.tracer_reranker - INFO] [('__hash__', 5), ('identity', 97), ('identity', 25), ('make_hashable', 5)]
+[2026-09-22 04:53:58,855 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 04:53:58,855 - Orcar.tracer_reranker - INFO] [('identity', 97), ('identity', 25), ('__hash__', 5), ('make_hashable', 5)]
+[2026-09-22 04:53:58,855 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 04:53:58,855 - Orcar.tracer_reranker - INFO] [('identity', 97)]

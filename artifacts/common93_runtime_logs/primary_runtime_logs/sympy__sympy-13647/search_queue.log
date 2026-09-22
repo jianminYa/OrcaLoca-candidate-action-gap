@@ -1,0 +1,68 @@
+[2026-09-22 10:44:56,436 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_col_insert', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'entry', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_eval_col_insert'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'entry'}
+)
+[2026-09-22 10:45:08,557 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'common.py', 'directory_path': 'sympy/matrices'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'entry', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_eval_col_insert'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'entry'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_row_insert', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:45:33,858 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_row_insert', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'entry', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_eval_col_insert'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'entry'}
+)
+[2026-09-22 10:45:45,214 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'entry', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_eval_col_insert'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'entry'}
+)
+[2026-09-22 10:45:56,042 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_eval_col_insert'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'entry'}
+)
+[2026-09-22 10:46:14,910 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'entry'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_col_insert', 'file_path': 'sympy/matrices/sparse.py'}
+)
+[2026-09-22 10:46:49,260 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_col_insert', 'file_path': 'sympy/matrices/sparse.py'}
+)
+[2026-09-22 10:47:02,033 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'sparse.py', 'directory_path': 'sympy/matrices'}
+)

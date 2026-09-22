@@ -1,0 +1,187 @@
+[2026-09-22 04:04:17,563 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+)
+[2026-09-22 04:04:30,764 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 1
+)
+[2026-09-22 04:04:51,178 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 1
+)
+[2026-09-22 04:05:04,152 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+)
+[2026-09-22 04:05:28,716 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/db/models/fields/related.py'}: 1
+)
+[2026-09-22 04:05:51,981 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/forms/models.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/db/models/fields/related.py'}: 1
+)
+[2026-09-22 04:06:09,985 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'apply_limit_choices_to_to_formfield', 'file_path': 'django/forms/models.py'})]
+[2026-09-22 04:06:21,597 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/forms/models.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/db/models/fields/related.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield', 'file_path': 'django/forms/models.py'}: 1
+)
+[2026-09-22 04:06:36,090 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/forms/models.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/db/models/fields/related.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield', 'file_path': 'django/forms/models.py'}: 1
+)
+[2026-09-22 04:06:53,532 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/forms/models.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/db/models/fields/related.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield', 'file_path': 'django/forms/models.py'}: 1
+)
+[2026-09-22 04:07:09,430 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignKey', 'method_name': 'formfield'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'limit_choices_to'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_limit_choices_to'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'formfield'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/forms/models.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedField', 'method_name': 'get_limit_choices_to', 'file_path': 'django/db/models/fields/related.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'apply_limit_choices_to_to_formfield', 'file_path': 'django/forms/models.py'}: 1
+)

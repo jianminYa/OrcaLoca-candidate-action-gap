@@ -1,0 +1,18 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "xfail",
+            "file_path": ""
+        },
+        {
+            "keyword": "add_marker",
+            "file_path": ""
+        }
+    ],
+    "suspicious_code_from_tracer": [],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import subprocess\nimport sys\nimport textwrap\nimport os\n\n# Write the test file\ntest_content = textwrap.dedent(\"\"\"\nimport pytest\n\ndef test_xfail_test(request):\n    mark = pytest.mark.xfail(reason=\"xfail\")\n    request.node.add_marker(mark)\n    assert 0\n\"\"\")\n\ntest_file = \"test_xfail_dynamic.py\"\nwith open(test_file, \"w\") as f:\n    f.write(test_content)\n\ntry:\n    result = subprocess.run(\n        [sys.executable, \"-m\", \"pytest\", \"-rsx\", test_file, \"-v\"],\n        capture_output=True,\n        text=True\n    )\n    print(\"STDOUT:\")\n    print(result.stdout)\n    print(\"STDERR:\")\n    print(result.stderr)\n    print(\"Return code:\", result.returncode)\n    \n    # The issue is that with pytest 6.x, the test FAILS instead of being marked as xfail\n    if \"FAILED\" in result.stdout or \"assert 0\" in result.stdout:\n        print(\"\\nBUG REPRODUCED: Test failed instead of being marked as xfail\")\n    elif \"xfailed\" in result.stdout or \"XFAIL\" in result.stdout:\n        print(\"\\nBug NOT reproduced: Test correctly marked as xfail\")\nfinally:\n    os.unlink(test_file)\n",
+    "env_reproduce_path": "/pytest-dev__pytest/reproducer_pytest-dev__pytest-7490.py"
+}

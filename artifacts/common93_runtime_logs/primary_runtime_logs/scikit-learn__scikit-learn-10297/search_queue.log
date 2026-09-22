@@ -1,0 +1,39 @@
+[2026-09-22 08:23:48,446 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}
+)
+[2026-09-22 08:24:06,719 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}
+)
+[2026-09-22 08:24:21,031 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}
+)
+[2026-09-22 08:24:42,272 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}
+)
+[2026-09-22 08:25:11,059 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}
+)

@@ -1,0 +1,130 @@
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2278.24it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2372.06it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2410.62it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2189.81it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2312.21it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2320.13it/s]
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_backends/sync.py", line 126, in read
+    with map_exceptions(exc_map):
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 982, in request
+    response = self._client.send(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 285, in run_agents
+    search_output = self.run_search_agent(trace_analysis_output)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 160, in run_search_agent
+    search_agent_chat_response: AgentChatResponse = self.search_agent.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 695, in chat
+    chat_response = self._chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 627, in _chat
+    cur_step_output = self._run_step(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 423, in _run_step
+    cur_step_output = self.agent_worker.run_step(step, task, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/search_agent.py", line 1549, in run_step
+    return self._run_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/search_agent.py", line 1433, in _run_step
+    chat_response = self._llm.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/llms/callbacks.py", line 175, in wrapped_llm_chat
+    f_return_val = f(_self, messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 386, in chat
+    return chat_fn(messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 112, in wrapper
+    return retry(f)(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 482, in _chat
+    response = client.chat.completions.create(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1000, in request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.

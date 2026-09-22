@@ -1,0 +1,53 @@
+[2026-09-22 09:28:54,489 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedStratifiedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_RepeatedSplits', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+)
+[2026-09-22 09:29:23,133 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedStratifiedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_RepeatedSplits', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_split.py', 'directory_path': 'sklearn/model_selection'}: 1
+)
+[2026-09-22 09:29:58,507 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedStratifiedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_RepeatedSplits', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_split.py', 'directory_path': 'sklearn/model_selection'}: 1
+)
+[2026-09-22 09:30:17,256 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedStratifiedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_RepeatedSplits', 'file_path': 'sklearn/model_selection/_split.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_split.py', 'directory_path': 'sklearn/model_selection'}: 1
+)
+[2026-09-22 09:30:41,612 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'RepeatedStratifiedKFold', 'file_path': 'sklearn/model_selection/_split.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_RepeatedSplits', 'file_path': 'sklearn/model_selection/_split.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_split.py', 'directory_path': 'sklearn/model_selection'}: 1
+)

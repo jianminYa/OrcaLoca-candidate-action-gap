@@ -1,0 +1,7 @@
+[2026-09-22 03:49:53,828 - Orcar.environment.utils - DEBUG] Run command in container: git clone https://github.com/django/django.git django__django
+[2026-09-22 03:50:34,801 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 03:50:52,807 - Orcar.environment.utils - DEBUG] Run command in container: conda create -n django__django__3.1 python=3.6 -y
+[2026-09-22 03:53:04,619 - Orcar.environment.utils - DEBUG] Run command in container: pip install -r /root/requirements.txt
+[2026-09-22 03:53:40,456 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 03:53:44,756 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer
+[2026-09-22 03:55:55,671 - Orcar.environment.utils - INFO] Agent container paused

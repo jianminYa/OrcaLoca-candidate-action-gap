@@ -1,0 +1,603 @@
+[2026-09-22 10:51:35,976 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 10:51:35,976 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/mathematica.py' lineno=120 funcname='mathematica_code' classname='MCodePrinter'
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] def mathematica_code(expr, **settings):
+    r"""Converts an expr to a string of the Wolfram Mathematica code
+
+    Examples
+    ========
+
+    >>> from sympy import mathematica_code as mcode, symbols, sin
+    >>> x = symbols('x')
+    >>> mcode(sin(x).series(x).removeO())
+    '(1/120)*x^5 - 1/6*x^3 + x'
+    """
+    return MCodePrinter(settings).doprint(expr)
+
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/mathematica.py' lineno=56 funcname='__init__' classname='MCodePrinter'
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO]     def __init__(self, settings={}):
+        """Register function mappings supplied by user"""
+        CodePrinter.__init__(self, settings)
+        self.known_functions = dict(known_functions)
+        userfuncs = settings.get('user_functions', {})
+        for k, v in userfuncs.items():
+            if not isinstance(v, list):
+                userfuncs[k] = [(lambda *x: True, v)]
+                self.known_functions.update(userfuncs)
+
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/printer.py' lineno=247 funcname='doprint' classname='Printer'
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO]     def doprint(self, expr):
+        """Returns printer's representation for expr (as a string)"""
+        return self._str(self._print(expr))
+
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=60 funcname='__init__' classname='CodePrinter'
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO]     def __init__(self, settings=None):
+
+        super(CodePrinter, self).__init__(settings=settings)
+        if not hasattr(self, 'reserved_words'):
+            self.reserved_words = set()
+
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 10:51:35,977 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/printer.py' lineno=251 funcname='_print' classname='Printer'
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO]     def _print(self, expr, **kwargs):
+        """Internal dispatcher
+
+        Tries the following concepts to print an expression:
+            1. Let the object print itself if it knows how.
+            2. Take the best fitting method defined in the printer.
+            3. As fall-back use the emptyPrinter method for the printer.
+        """
+        self._print_level += 1
+        try:
+            # If the printer defines a name for a printing method
+            # (Printer.printmethod) and the object knows for itself how it
+            # should be printed, use that method.
+            if (self.printmethod and hasattr(expr, self.printmethod)
+                    and not isinstance(expr, BasicMeta)):
+                return getattr(expr, self.printmethod)(self, **kwargs)
+
+            # See if the class of expr is known, or if one of its super
+            # classes is known, and use that print function
+            # Exception: ignore the subclasses of Undefined, so that, e.g.,
+            # Function('gamma') does not get dispatched to _print_gamma
+            classes = type(expr).__mro__
+            if AppliedUndef in classes:
+                classes = classes[classes.index(AppliedUndef):]
+            if UndefinedFunction in classes:
+                classes = classes[classes.index(UndefinedFunction):]
+            # Another exception: if someone subclasses a known function, e.g.,
+            # gamma, and changes the name, then ignore _print_gamma
+            if Function in classes:
+                i = classes.index(Function)
+                classes = tuple(c for c in classes[:i] if \
+                    c.__name__ == classes[0].__name__ or \
+                    c.__name__.endswith("Base")) + classes[i:]
+            for cls in classes:
+                printmethod = '_print_' + cls.__name__
+                if hasattr(self, printmethod):
+                    return getattr(self, printmethod)(expr, **kwargs)
+            # Unknown object, fall back to the emptyPrinter.
+            return self.emptyPrinter(expr)
+        finally:
+            self._print_level -= 1
+
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/printer.py' lineno=211 funcname='__init__' classname='Printer'
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO]     def __init__(self, settings=None):
+        self._str = str
+
+        self._settings = self._default_settings.copy()
+        self._context = dict()  # mutable during printing
+
+        for key, val in self._global_settings.items():
+            if key in self._default_settings:
+                self._settings[key] = val
+
+        if settings is not None:
+            self._settings.update(settings)
+
+            if len(self._settings) > len(self._default_settings):
+                for key in self._settings:
+                    if key not in self._default_settings:
+                        raise TypeError("Unknown setting '%s'." % key)
+
+        # _print_level is the number of times self._print() was recursively
+        # called. See StrPrinter._print_Float() for an example of usage
+        self._print_level = 0
+
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=364 funcname='_print_Function' classname='CodePrinter'
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO]     def _print_Function(self, expr):
+        if expr.func.__name__ in self.known_functions:
+            cond_func = self.known_functions[expr.func.__name__]
+            func = None
+            if isinstance(cond_func, str):
+                func = cond_func
+            else:
+                for cond, func in cond_func:
+                    if cond(*expr.args):
+                        break
+            if func is not None:
+                try:
+                    return func(self, *[self.parenthesize(item, 0) for item in expr.args])
+                except TypeError:
+                    try:
+                        return func(*[self.parenthesize(item, 0) for item in expr.args])
+                    except TypeError:
+                        return "%s(%s)" % (func, self.stringify(expr.args, ", "))
+        elif hasattr(expr, '_imp_') and isinstance(expr._imp_, Lambda):
+            # inlined function
+            return self._print(expr._imp_(*expr.args))
+        elif expr.is_Function and self._settings.get('allow_unknown_functions', False):
+            return '%s(%s)' % (self._print(expr.func), ', '.join(map(self._print, expr.args)))
+        else:
+            return self._print_not_supported(expr)
+
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/function.py' lineno=307 funcname='func' classname='Application'
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO]     @property
+    def func(self):
+        return self.__class__
+
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 10:51:35,978 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=494 funcname='_print_not_supported' classname='CodePrinter'
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] LLM score: 20 / 100
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO]     def _print_not_supported(self, expr):
+        self._not_supported.add(expr)
+        return self.emptyPrinter(expr)
+
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=121 funcname='__hash__' classname='Basic'
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO]     def __hash__(self):
+        # hash cannot be cached using cache_it because infinite recurrence
+        # occurs as hash is needed for setting cache dictionary keys
+        h = self._mhash
+        if h is None:
+            h = hash((type(self).__name__,) + self._hashable_content())
+            self._mhash = h
+        return h
+
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=38 funcname='emptyPrinter' classname='StrPrinter'
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO]     def emptyPrinter(self, expr):
+        if isinstance(expr, str):
+            return expr
+        elif isinstance(expr, Basic):
+            if hasattr(expr, "args"):
+                return repr(expr)
+            else:
+                raise
+        else:
+            return str(expr)
+
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=130 funcname='_hashable_content' classname='Basic'
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO]     def _hashable_content(self):
+        """Return a tuple of information about self that can be used to
+        compute the hash. If a class defines additional attributes,
+        like ``name`` in Symbol, then this method should be updated
+        accordingly to return such relevant attributes.
+
+        Defining more than _hashable_content is necessary if __eq__ has
+        been defined by a class. See note about this in Basic.__eq__."""
+        return self._args
+
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/cache.py' lineno=91 funcname='wrapper' classname='_cache'
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO]             def wrapper(*args, **kwargs):
+                try:
+                    retval = cfunc(*args, **kwargs)
+                except TypeError:
+                    retval = func(*args, **kwargs)
+                return retval
+
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=403 funcname='__repr__' classname='Basic'
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,979 - Orcar.tracer_reranker - INFO]     def __repr__(self):
+        """Method to return the string representation.
+        Return the expression as a string.
+        """
+        from sympy.printing import sstr
+        return sstr(self, order=None)
+
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/operations.py' lineno=450 funcname='args' classname='LatticeOp'
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO]     @property
+    @cacheit
+    def args(self):
+        return tuple(ordered(self._argset))
+
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=842 funcname='sstr' classname='StrPrinter'
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] def sstr(expr, **settings):
+    """Returns the expression as a string.
+
+    For large expressions where speed is a concern, use the setting
+    order='none'. If abbrev=True setting is used then units are printed in
+    abbreviated form.
+
+    Examples
+    ========
+
+    >>> from sympy import symbols, Eq, sstr
+    >>> a, b = symbols('a b')
+    >>> sstr(Eq(a + b, 0))
+    'Eq(a + b, 0)'
+    """
+
+    p = StrPrinter(settings)
+    s = p.doprint(expr)
+
+    return s
+
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=562 funcname='ordered' classname='NotIterable'
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] def ordered(seq, keys=None, default=True, warn=False):
+    """Return an iterator of the seq where keys are used to break ties in
+    a conservative fashion: if, after applying a key, there are no ties
+    then no other keys will be computed.
+
+    Two default keys will be applied if 1) keys are not provided or 2) the
+    given keys don't resolve all ties (but only if `default` is True). The
+    two keys are `_nodes` (which places smaller expressions before large) and
+    `default_sort_key` which (if the `sort_key` for an object is defined
+    properly) should resolve any ties.
+
+    If ``warn`` is True then an error will be raised if there were no
+    keys remaining to break ties. This can be used if it was expected that
+    there should be no ties between items that are not identical.
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.iterables import ordered
+    >>> from sympy import count_ops
+    >>> from sympy.abc import x, y
+
+    The count_ops is not sufficient to break ties in this list and the first
+    two items appear in their original order (i.e. the sorting is stable):
+
+    >>> list(ordered([y + 2, x + 2, x**2 + y + 3],
+    ...    count_ops, default=False, warn=False))
+    ...
+    [y + 2, x + 2, x**2 + y + 3]
+
+    The default_sort_key allows the tie to be broken:
+
+    >>> list(ordered([y + 2, x + 2, x**2 + y + 3]))
+    ...
+    [x + 2, y + 2, x**2 + y + 3]
+
+    Here, sequences are sorted by length, then sum:
+
+    >>> seq, keys = [[[1, 2, 1], [0, 3, 1], [1, 1, 3], [2], [1]], [
+    ...    lambda x: len(x),
+    ...    lambda x: sum(x)]]
+    ...
+    >>> list(ordered(seq, keys, default=False, warn=False))
+    [[1], [2], [1, 2, 1], [0, 3, 1], [1, 1, 3]]
+
+    If ``warn`` is True, an error will be raised if there were not
+    enough keys to break ties:
+
+    >>> list(ordered(seq, keys, default=False, warn=True))
+    Traceback (most recent call last):
+    ...
+    ValueError: not enough keys to break ties
+
+
+    Notes
+    =====
+
+    The decorated sort is one of the fastest ways to sort a sequence for
+    which special item comparison is desired: the sequence is decorated,
+    sorted on the basis of the decoration (e.g. making all letters lower
+    case) and then undecorated. If one wants to break ties for items that
+    have the same decorated value, a second key can be used. But if the
+    second key is expensive to compute then it is inefficient to decorate
+    all items with both keys: only those items having identical first key
+    values need to be decorated. This function applies keys successively
+    only when needed to break ties. By yielding an iterator, use of the
+    tie-breaker is delayed as long as possible.
+
+    This function is best used in cases when use of the first key is
+    expected to be a good hashing function; if there are no unique hashes
+    from application of a key then that key should not have been used. The
+    exception, however, is that even if there are many collisions, if the
+    first group is small and one does not need to process all items in the
+    list then time will not be wasted sorting what one was not interested
+    in. For example, if one were looking for the minimum in a list and
+    there were several criteria used to define the sort order, then this
+    function would be good at returning that quickly if the first group
+    of candidates is small relative to the number of items being processed.
+
+    """
+    d = defaultdict(list)
+    if keys:
+        if not isinstance(keys, (list, tuple)):
+            keys = [keys]
+        keys = list(keys)
+        f = keys.pop(0)
+        for a in seq:
+            d[f(a)].append(a)
+    else:
+        if not default:
+            raise ValueError('if default=False then keys must be provided')
+        d[None].extend(seq)
+
+    for k in sorted(d.keys()):
+        if len(d[k]) > 1:
+            if keys:
+                d[k] = ordered(d[k], keys, default, warn)
+            elif default:
+                d[k] = ordered(d[k], (_nodes, default_sort_key,),
+                               default=False, warn=warn)
+            elif warn:
+                from sympy.utilities.iterables import uniq
+                u = list(uniq(d[k]))
+                if len(u) > 1:
+                    raise ValueError(
+                        'not enough keys to break ties: %s' % u)
+        for v in d[k]:
+            yield v
+        d.pop(k)
+
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=543 funcname='_nodes' classname='NotIterable'
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] def _nodes(e):
+    """
+    A helper for ordered() which returns the node count of ``e`` which
+    for Basic objects is the number of Basic nodes in the expression tree
+    but for other objects is 1 (unless the object is an iterable or dict
+    for which the sum of nodes is returned).
+    """
+    from .basic import Basic
+
+    if isinstance(e, Basic):
+        return e.count(Basic)
+    elif iterable(e):
+        return 1 + sum(_nodes(ei) for ei in e)
+    elif isinstance(e, dict):
+        return 1 + sum(_nodes(k) + _nodes(v) for k, v in e.items())
+    else:
+        return 1
+
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=222 funcname='_print_LatticeOp' classname='StrPrinter'
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO]     def _print_LatticeOp(self, expr):
+        args = sorted(expr.args, key=default_sort_key)
+        return expr.func.__name__ + "(%s)" % ", ".join(self._print(arg) for arg in args)
+
+[2026-09-22 10:51:35,980 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1460 funcname='count' classname='Basic'
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO]     def count(self, query):
+        """Count the number of matching subexpressions. """
+        query = _make_find_query(query)
+        return sum(bool(query(sub)) for sub in preorder_traversal(self))
+
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=381 funcname='default_sort_key' classname='NotIterable'
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] def default_sort_key(item, order=None):
+    """Return a key that can be used for sorting.
+
+    The key has the structure:
+
+    (class_key, (len(args), args), exponent.sort_key(), coefficient)
+
+    This key is supplied by the sort_key routine of Basic objects when
+    ``item`` is a Basic object or an object (other than a string) that
+    sympifies to a Basic object. Otherwise, this function produces the
+    key.
+
+    The ``order`` argument is passed along to the sort_key routine and is
+    used to determine how the terms *within* an expression are ordered.
+    (See examples below) ``order`` options are: 'lex', 'grlex', 'grevlex',
+    and reversed values of the same (e.g. 'rev-lex'). The default order
+    value is None (which translates to 'lex').
+
+    Examples
+    ========
+
+    >>> from sympy import S, I, default_sort_key, sin, cos, sqrt
+    >>> from sympy.core.function import UndefinedFunction
+    >>> from sympy.abc import x
+
+    The following are equivalent ways of getting the key for an object:
+
+    >>> x.sort_key() == default_sort_key(x)
+    True
+
+    Here are some examples of the key that is produced:
+
+    >>> default_sort_key(UndefinedFunction('f'))
+    ((0, 0, 'UndefinedFunction'), (1, ('f',)), ((1, 0, 'Number'),
+        (0, ()), (), 1), 1)
+    >>> default_sort_key('1')
+    ((0, 0, 'str'), (1, ('1',)), ((1, 0, 'Number'), (0, ()), (), 1), 1)
+    >>> default_sort_key(S.One)
+    ((1, 0, 'Number'), (0, ()), (), 1)
+    >>> default_sort_key(2)
+    ((1, 0, 'Number'), (0, ()), (), 2)
+
+
+    While sort_key is a method only defined for SymPy objects,
+    default_sort_key will accept anything as an argument so it is
+    more robust as a sorting key. For the following, using key=
+    lambda i: i.sort_key() would fail because 2 doesn't have a sort_key
+    method; that's why default_sort_key is used. Note, that it also
+    handles sympification of non-string items likes ints:
+
+    >>> a = [2, I, -I]
+    >>> sorted(a, key=default_sort_key)
+    [2, -I, I]
+
+    The returned key can be used anywhere that a key can be specified for
+    a function, e.g. sort, min, max, etc...:
+
+    >>> a.sort(key=default_sort_key); a[0]
+    2
+    >>> min(a, key=default_sort_key)
+    2
+
+    Note
+    ----
+
+    The key returned is useful for getting items into a canonical order
+    that will be the same across platforms. It is not directly useful for
+    sorting lists of expressions:
+
+    >>> a, b = x, 1/x
+
+    Since ``a`` has only 1 term, its value of sort_key is unaffected by
+    ``order``:
+
+    >>> a.sort_key() == a.sort_key('rev-lex')
+    True
+
+    If ``a`` and ``b`` are combined then the key will differ because there
+    are terms that can be ordered:
+
+    >>> eq = a + b
+    >>> eq.sort_key() == eq.sort_key('rev-lex')
+    False
+    >>> eq.as_ordered_terms()
+    [x, 1/x]
+    >>> eq.as_ordered_terms('rev-lex')
+    [1/x, x]
+
+    But since the keys for each of these terms are independent of ``order``'s
+    value, they don't sort differently when they appear separately in a list:
+
+    >>> sorted(eq.args, key=default_sort_key)
+    [1/x, x]
+    >>> sorted(eq.args, key=lambda i: default_sort_key(i, order='rev-lex'))
+    [1/x, x]
+
+    The order of terms obtained when using these keys is the order that would
+    be obtained if those terms were *factors* in a product.
+
+    Although it is useful for quickly putting expressions in canonical order,
+    it does not sort expressions based on their complexity defined by the
+    number of operations, power of variables and others:
+
+    >>> sorted([sin(x)*cos(x), sin(x)], key=default_sort_key)
+    [sin(x)*cos(x), sin(x)]
+    >>> sorted([x, x**2, sqrt(x), x**3], key=default_sort_key)
+    [sqrt(x), x, x**2, x**3]
+
+    See Also
+    ========
+
+    ordered, sympy.core.expr.as_ordered_factors, sympy.core.expr.as_ordered_terms
+
+    """
+
+    from .singleton import S
+    from .basic import Basic
+    from .sympify import sympify, SympifyError
+    from .compatibility import iterable
+
+    if isinstance(item, Basic):
+        return item.sort_key(order=order)
+
+    if iterable(item, exclude=string_types):
+        if isinstance(item, dict):
+            args = item.items()
+            unordered = True
+        elif isinstance(item, set):
+            args = item
+            unordered = True
+        else:
+            # e.g. tuple, list
+            args = list(item)
+            unordered = False
+
+        args = [default_sort_key(arg, order=order) for arg in args]
+
+        if unordered:
+            # e.g. dict, set
+            args = sorted(args)
+
+        cls_index, args = 10, (len(args), tuple(args))
+    else:
+        if not isinstance(item, string_types):
+            try:
+                item = sympify(item)
+            except SympifyError:
+                # e.g. lambda x: x
+                pass
+            else:
+                if isinstance(item, Basic):
+                    # e.g int -> Integer
+                    return default_sort_key(item)
+                # e.g. UndefinedFunction
+
+        # e.g. str
+        cls_index, args = 0, (1, (str(item),))
+
+    return (cls_index, 0, item.__class__.__name__
+            ), args, S.One.sort_key(), S.One
+
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2205 funcname='__hash__' classname='Integer'
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO]     def __hash__(self):
+        return hash(self.p)
+
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1960 funcname='_make_find_query' classname='preorder_traversal'
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] def _make_find_query(query):
+    """Convert the argument of Basic.find() into a callable"""
+    try:
+        query = sympify(query)
+    except SympifyError:
+        pass
+    if isinstance(query, type):
+        return lambda expr: isinstance(expr, query)
+    elif isinstance(query, Basic):
+        return lambda expr: expr.match(query) is not None
+    return query
+
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1903 funcname='__init__' classname='preorder_traversal'
+[2026-09-22 10:51:35,981 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO]     def __init__(self, node, keys=None):
+        self._skip_flag = False
+        self._pt = self._preorder_traversal(node, keys)
+
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1956 funcname='__iter__' classname='preorder_traversal'
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO]     def __iter__(self):
+        return self
+
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] ['mathematica_code', '__init__', 'doprint', '__init__', '_print', '__init__', '_print_Function', 'func', '_print_not_supported', '__hash__', 'emptyPrinter', '_hashable_content', 'wrapper', '__repr__', 'args', 'sstr', 'ordered', '_nodes', '_print_LatticeOp', 'count', 'default_sort_key', '__hash__', '_make_find_query', '__init__', '__iter__']
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] [('mathematica_code', 5), ('__init__', 15), ('doprint', 10), ('__init__', 2), ('_print', 15), ('__init__', 2), ('_print_Function', 50), ('func', 5), ('_print_not_supported', 20), ('__hash__', 2), ('emptyPrinter', 15), ('_hashable_content', 2), ('wrapper', 2), ('__repr__', 2), ('args', 5), ('sstr', 2), ('ordered', 2), ('_nodes', 2), ('_print_LatticeOp', 30), ('count', 1), ('default_sort_key', 2), ('__hash__', 1), ('_make_find_query', 1), ('__init__', 2), ('__iter__', 2)]
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] [('mathematica_code', 5), ('__init__', 15), ('doprint', 10), ('_print_Function', 50), ('_print', 15), ('__init__', 2), ('__init__', 2), ('_print_not_supported', 20), ('func', 5), ('emptyPrinter', 15), ('__hash__', 2), ('_hashable_content', 2), ('wrapper', 2), ('__repr__', 2), ('args', 5), ('sstr', 2), ('ordered', 2), ('_print_LatticeOp', 30), ('_nodes', 2), ('default_sort_key', 2), ('count', 1), ('__hash__', 1), ('__init__', 2), ('__iter__', 2), ('_make_find_query', 1)]
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 10:51:35,982 - Orcar.tracer_reranker - INFO] []

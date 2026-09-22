@@ -1,0 +1,21 @@
+[2026-09-22 05:32:27,803 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce'}
+)
+[2026-09-22 05:32:38,606 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/db/migrations/operations'}
+)
+[2026-09-22 05:33:00,331 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'AlterField', 'file_path': 'django/db/migrations/operations/fields.py'}
+)
+[2026-09-22 05:33:20,775 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AlterField', 'method_name': 'reduce', 'file_path': 'django/db/migrations/operations/fields.py'}
+)
+[2026-09-22 05:33:20,780 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'AlterField', 'method_name': 'reduce', 'file_path': 'django/db/migrations/operations/fields.py'} search_content='File Path: django/db/migrations/operations/fields.py \nMethod Content: \n    def reduce(self, operation, app_label):\n        if isinstance(operation, RemoveField) and self.is_same_field_operation(\n            operation\n        ):\n            return [operation]\n        elif (\n            isinstance(operation, RenameField)\n            and self.is_same_field_operation(operation)\n            and self.field.db_column is None\n        ):\n            return [\n                operation,\n                AlterField(\n                    model_name=self.model_name,\n                    name=operation.new_name,\n                    field=self.field,\n                ),\n            ]\n        return super().reduce(operation, app_label)\n'

@@ -1,0 +1,58 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "RST",
+            "file_path": "astropy/io/ascii/rst.py"
+        },
+        {
+            "keyword": "QTable",
+            "file_path": "astropy/table/__init__.py"
+        },
+        {
+            "keyword": "__call__",
+            "file_path": "astropy/table/connect.py"
+        },
+        {
+            "keyword": "_get_writer",
+            "file_path": "astropy/io/ascii/core.py"
+        },
+        {
+            "keyword": "FixedWidth",
+            "file_path": "astropy/io/ascii/fixedwidth.py"
+        },
+        {
+            "keyword": "get_writer",
+            "file_path": "astropy/io/ascii/ui.py"
+        },
+        {
+            "keyword": "header_rows",
+            "file_path": ""
+        },
+        {
+            "keyword": "io_write",
+            "file_path": "astropy/io/ascii/connect.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "__init__",
+            "file_path": "astropy/io/ascii/rst.py",
+            "class_name": "RST"
+        },
+        {
+            "keyword": "__init__",
+            "file_path": "astropy/io/ascii/core.py",
+            "class_name": "BaseHeader"
+        },
+        {
+            "keyword": "write",
+            "file_path": "astropy/io/ascii/rst.py",
+            "class_name": "RST"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "from astropy.table import QTable\nimport astropy.units as u\nimport sys\ntbl = QTable({'wave': [350,950]*u.nm, 'response': [0.7, 1.2]*u.count})\ntbl.write(sys.stdout,  format=\"ascii.rst\")\ntbl.write(sys.stdout,  format=\"ascii.fixed_width\", header_rows=[\"name\", \"unit\"])\ntbl.write(sys.stdout,  format=\"ascii.rst\", header_rows=[\"name\", \"unit\"])",
+    "env_reproduce_path": "/astropy__astropy/reproducer_astropy__astropy-14182.py"
+}

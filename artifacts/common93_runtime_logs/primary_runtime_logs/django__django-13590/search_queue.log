@@ -1,0 +1,10 @@
+[2026-09-22 04:13:26,132 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_lookup_value', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 04:13:40,385 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+)

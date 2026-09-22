@@ -1,0 +1,20 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "LogisticRegressionCV",
+            "file_path": "sklearn/linear_model/logistic.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "fit",
+            "file_path": "sklearn/linear_model/logistic.py",
+            "class_name": "LogisticRegressionCV"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import sys\nimport sklearn\nfrom sklearn.linear_model import LogisticRegressionCV\nimport numpy as np\n\nnp.random.seed(29)\nX = np.random.normal(size=(1000, 3))\nbeta = np.random.normal(size=3)\nintercept = np.random.normal(size=None)\ny = np.sign(intercept + X @ beta)\n\nLogisticRegressionCV(\ncv=5,\nsolver='saga', # same error with 'liblinear'\ntol=1e-2,\nrefit=False).fit(X, y)",
+    "env_reproduce_path": "/scikit-learn__scikit-learn/reproducer_scikit-learn__scikit-learn-14087.py"
+}

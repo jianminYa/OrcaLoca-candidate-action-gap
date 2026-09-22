@@ -1,0 +1,14 @@
+[2026-09-22 09:59:28,108 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 09:59:36,103 - Orcar.environment.utils - DEBUG] Run command in container: conda create --name sphinx-doc__sphinx__3.5 --clone python3.9
+[2026-09-22 09:59:42,814 - Orcar.environment.utils - DEBUG] Run command in container: source activate sphinx-doc__sphinx__3.5 && pip install tox==4.16.0 tox-current-env==0.0.11
+[2026-09-22 09:59:47,780 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/pytest/pytest -rA/' tox.ini
+[2026-09-22 09:59:48,642 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/Jinja2>=2.3/Jinja2<3.0/' setup.py
+[2026-09-22 09:59:49,487 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/sphinxcontrib-applehelp/sphinxcontrib-applehelp<=1.0.7/' setup.py
+[2026-09-22 09:59:50,368 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/sphinxcontrib-devhelp/sphinxcontrib-devhelp<=1.0.5/' setup.py
+[2026-09-22 09:59:51,256 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/sphinxcontrib-qthelp/sphinxcontrib-qthelp<=1.0.6/' setup.py
+[2026-09-22 09:59:52,152 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/alabaster>=0.7,<0.8/alabaster>=0.7,<0.7.12/' setup.py
+[2026-09-22 09:59:53,023 - Orcar.environment.utils - DEBUG] Run command in container: sed -i "s/'packaging',/'packaging', 'markupsafe<=2.0.1',/" setup.py
+[2026-09-22 09:59:53,886 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/sphinxcontrib-htmlhelp/sphinxcontrib-htmlhelp<=2.0.4/' setup.py
+[2026-09-22 09:59:54,780 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/sphinxcontrib-serializinghtml/sphinxcontrib-serializinghtml<=1.1.9/' setup.py
+[2026-09-22 09:59:55,626 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .[test]
+[2026-09-22 10:00:10,090 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer

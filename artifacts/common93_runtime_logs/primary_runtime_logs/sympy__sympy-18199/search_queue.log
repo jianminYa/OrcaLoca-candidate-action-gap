@@ -1,0 +1,24 @@
+[2026-09-22 11:47:33,128 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'nthroot_mod'}
+)
+[2026-09-22 11:47:48,463 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'residue_ntheory.py', 'directory_path': 'sympy/ntheory'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'is_nthpow_residue'}
+)
+[2026-09-22 11:50:10,703 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'is_nthpow_residue'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_nthroot_mod1'}
+)
+[2026-09-22 11:50:43,386 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_nthroot_mod1'}
+)

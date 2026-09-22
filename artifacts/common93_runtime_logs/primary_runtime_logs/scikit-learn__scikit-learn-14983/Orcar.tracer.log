@@ -1,0 +1,5 @@
+[2026-09-22 09:28:33,531 - Orcar.tracer - INFO] sensitivity_dict: {'RepeatedStratifiedKFold': {'/scikit-learn__scikit-learn/sklearn/model_selection/_split.py'}, 'RepeatedKFold': {'/scikit-learn__scikit-learn/sklearn/model_selection/_split.py'}}
+[2026-09-22 09:28:33,532 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_scikit-learn__scikit-learn-14983.json
+[2026-09-22 09:28:33,532 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 09:28:33,533 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 09:28:33,533 - Orcar.tracer - INFO] Finished tracer output parsing

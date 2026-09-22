@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI now have a clear picture of the bug. In `Point.__new__` at line `if any(a.is_number and im(a) for a in coords):`, when `with evaluate(False)` is active, the `im()` function called on `Integer(1)` or `Integer(2)` returns an unevaluated `im(1)` expression instead of `S.Zero`. Since any non-zero SymPy expression is truthy in a boolean context, this unevaluated `im(1)` expression evaluates to `True`, causing the `ValueError('Imaginary coordinates are not permitted.')` to be raised incorrectly. The fix should change the check to something like `if any(a.is_number and im(a).is_zero is False for a in coords):` or use `im(a) != 0` with proper evaluation, or wrap the `im(a)` call to force evaluation. The `coords = Tuple(*coords)` line earlier also creates the Tuple without evaluation when `evaluate=False` is globally set, but the main issue is the `im(a)` check.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/geometry/point.py",
+            "class_name": "Point",
+            "method_name": "__new__"
+        }
+    ]
+}

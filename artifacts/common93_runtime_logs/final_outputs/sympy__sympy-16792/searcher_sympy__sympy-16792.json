@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly located in the `routine` method of `CodeGen` class in `sympy/utilities/codegen.py`. When `argument_sequence` is provided and a symbol from that sequence doesn't appear in the expression (and thus isn't in `name_arg_dict`), the code falls into the `except KeyError` block at line `new_args.append(InputArgument(symbol))`. This creates a plain `InputArgument(symbol)` without any dimension metadata. So when `symbol` is a `MatrixSymbol` (like `x` with shape (2,1)), it gets treated as a scalar (`double x`) instead of an array (`double *x`). The fix should check if the symbol is a `MatrixSymbol` or `IndexedBase` and create the `InputArgument` with appropriate dimensions metadata, similar to how it's done earlier in the method where `array_symbols` is populated.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/utilities/codegen.py",
+            "class_name": "CodeGen",
+            "method_name": "routine"
+        }
+    ]
+}

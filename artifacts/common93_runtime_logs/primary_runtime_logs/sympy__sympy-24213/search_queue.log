@@ -1,0 +1,72 @@
+[2026-09-22 14:20:49,059 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension', 'file_path': 'sympy/physics/units/unitsystem.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+)
+[2026-09-22 14:21:02,220 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'unitsystem.py', 'directory_path': 'sympy/physics/units'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'is_dimensionless'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'equivalent_dims'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': 'get_dimension_system'}
+)
+[2026-09-22 14:21:13,507 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'is_dimensionless'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'equivalent_dims'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': 'get_dimension_system'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+)
+[2026-09-22 14:21:25,000 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'equivalent_dims'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': 'get_dimension_system'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dimensions.py', 'directory_path': 'sympy/physics/units'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'get_dimensional_dependencies'}
+)
+[2026-09-22 14:21:35,615 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': 'get_dimension_system'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dimensions.py', 'directory_path': 'sympy/physics/units'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'get_dimensional_dependencies'}
+)
+[2026-09-22 14:21:44,820 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dimensions.py', 'directory_path': 'sympy/physics/units'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'get_dimensional_dependencies'}
+)
+[2026-09-22 14:21:58,734 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DimensionSystem', 'method_name': 'get_dimensional_dependencies'}
+)
+[2026-09-22 14:21:58,742 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'UnitSystem', 'method_name': '_collect_factor_and_dimension'} search_content='File Path: sympy/physics/units/unitsystem.py \nMethod Content: \n    def _collect_factor_and_dimension(self, expr):\n        """\n        Return tuple with scale factor expression and dimension expression.\n        """\n        from sympy.physics.units import Quantity\n        if isinstance(expr, Quantity):\n            return expr.scale_factor, expr.dimension\n        elif isinstance(expr, Mul):\n            factor = 1\n            dimension = Dimension(1)\n            for arg in expr.args:\n                arg_factor, arg_dim = self._collect_factor_and_dimension(arg)\n                factor *= arg_factor\n                dimension *= arg_dim\n            return factor, dimension\n        elif isinstance(expr, Pow):\n            factor, dim = self._collect_factor_and_dimension(expr.base)\n            exp_factor, exp_dim = self._collect_factor_and_dimension(expr.exp)\n            if self.get_dimension_system().is_dimensionless(exp_dim):\n                exp_dim = 1\n            return factor ** exp_factor, dim ** (exp_factor * exp_dim)\n        elif isinstance(expr, Add):\n            factor, dim = self._collect_factor_and_dimension(expr.args[0])\n            for addend in expr.args[1:]:\n                addend_factor, addend_dim = \\\n                    self._collect_factor_and_dimension(addend)\n                if dim != addend_dim:\n                    raise ValueError(\n                        \'Dimension of "{}" is {}, \'\n                        \'but it should be {}\'.format(\n                            addend, addend_dim, dim))\n                factor += addend_factor\n            return factor, dim\n        elif isinstance(expr, Derivative):\n            factor, dim = self._collect_factor_and_dimension(expr.args[0])\n            for independent, count in expr.variable_count:\n                ifactor, idim = self._collect_factor_and_dimension(independent)\n                factor /= ifactor**count\n                dim /= idim**count\n            return factor, dim\n        elif isinstance(expr, Function):\n            fds = [self._collect_factor_and_dimension(arg) for arg in expr.args]\n            dims = [Dimension(1) if self.get_dimension_system().is_dimensionless(d[1]) else d[1] for d in fds]\n            return (expr.func(*(f[0] for f in fds)), *dims)\n        elif isinstance(expr, Dimension):\n            return S.One, expr\n        else:\n            return expr, Dimension(1)\n'

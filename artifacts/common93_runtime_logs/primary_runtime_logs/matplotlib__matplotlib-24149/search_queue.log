@@ -1,0 +1,58 @@
+[2026-09-22 06:16:39,374 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx', 'file_path': 'lib/matplotlib/axes/_axes.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'GrouperView', 'method_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_safe_first_finite'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx'}
+)
+[2026-09-22 06:16:50,250 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_safe_first_finite'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_axes.py', 'directory_path': 'lib/matplotlib/axes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'GrouperView', 'method_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx'}
+)
+[2026-09-22 06:17:02,793 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_axes.py', 'directory_path': 'lib/matplotlib/axes'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib/cbook'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'GrouperView', 'method_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx'}
+)
+[2026-09-22 06:17:17,423 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib/cbook'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'GrouperView', 'method_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx'}
+)
+[2026-09-22 06:19:06,157 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'GrouperView', 'method_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx'}
+)
+[2026-09-22 06:19:06,170 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': '_safe_first_finite', 'file_path': 'lib/matplotlib/cbook/__init__.py'} search_content='File Path: lib/matplotlib/cbook/__init__.py \nQuery Type: function \nCode Snippet: \ndef _safe_first_finite(obj, *, skip_nonfinite=True):\n    """\n    Return the first non-None (and optionally finite) element in *obj*.\n\n    This is a method for internal use.\n\n    This is an type-independent way of obtaining the first non-None element,\n    supporting both index access and the iterator protocol.\n    The first non-None element will be obtained when skip_none is True.\n    """\n    def safe_isfinite(val):\n        if val is None:\n            return False\n        try:\n            return np.isfinite(val) if np.isscalar(val) else True\n        except TypeError:\n            # This is something that numpy can not make heads or tails\n            # of, assume "finite"\n            return True\n    if skip_nonfinite is False:\n        if isinstance(obj, collections.abc.Iterator):\n            # needed to accept `array.flat` as input.\n            # np.flatiter reports as an instance of collections.Iterator\n            # but can still be indexed via [].\n            # This has the side effect of re-setting the iterator, but\n            # that is acceptable.\n            try:\n                return obj[0]\n            except TypeError:\n                pass\n            raise RuntimeError("matplotlib does not support generators "\n                               "as input")\n        return next(iter(obj))\n    elif isinstance(obj, np.flatiter):\n        # TODO do the finite filtering on this\n        return obj[0]\n    elif isinstance(obj, collections.abc.Iterator):\n        raise RuntimeError("matplotlib does not "\n                           "support generators as input")\n    else:\n        return next(val for val in obj if safe_isfinite(val))\n'
+[2026-09-22 06:19:17,857 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes', 'method_name': '_convert_dx'}
+)
+[2026-09-22 06:19:17,862 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'Axes', 'method_name': '_convert_dx'} search_content='File Path: lib/matplotlib/axes/_axes.py \nMethod Content: \n    def _convert_dx(dx, x0, xconv, convert):\n        """\n        Small helper to do logic of width conversion flexibly.\n\n        *dx* and *x0* have units, but *xconv* has already been converted\n        to unitless (and is an ndarray).  This allows the *dx* to have units\n        that are different from *x0*, but are still accepted by the\n        ``__add__`` operator of *x0*.\n        """\n\n        # x should be an array...\n        assert type(xconv) is np.ndarray\n\n        if xconv.size == 0:\n            # xconv has already been converted, but maybe empty...\n            return convert(dx)\n\n        try:\n            # attempt to add the width to x0; this works for\n            # datetime+timedelta, for instance\n\n            # only use the first element of x and x0.  This saves\n            # having to be sure addition works across the whole\n            # vector.  This is particularly an issue if\n            # x0 and dx are lists so x0 + dx just concatenates the lists.\n            # We can\'t just cast x0 and dx to numpy arrays because that\n            # removes the units from unit packages like `pint` that\n            # wrap numpy arrays.\n            try:\n                x0 = cbook._safe_first_finite(x0)\n            except (TypeError, IndexError, KeyError):\n                pass\n\n            try:\n                x = cbook._safe_first_finite(xconv)\n            except (TypeError, IndexError, KeyError):\n                x = xconv\n\n            delist = False\n            if not np.iterable(dx):\n                dx = [dx]\n                delist = True\n            dx = [convert(x0 + ddx) - x for ddx in dx]\n            if delist:\n                dx = dx[0]\n        except (ValueError, TypeError, AttributeError):\n            # if the above fails (for any reason) just fallback to what\n            # we do by default and convert dx by itself.\n            dx = convert(dx)\n        return dx\n'

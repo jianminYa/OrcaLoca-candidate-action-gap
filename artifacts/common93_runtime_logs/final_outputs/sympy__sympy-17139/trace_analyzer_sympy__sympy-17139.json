@@ -1,0 +1,69 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "TR6",
+            "file_path": "sympy/simplify/fu.py"
+        },
+        {
+            "keyword": "simplify",
+            "file_path": ""
+        },
+        {
+            "keyword": "Symbol",
+            "file_path": ""
+        },
+        {
+            "keyword": "_futrig",
+            "file_path": "sympy/simplify/trigsimp.py"
+        },
+        {
+            "keyword": "trigsimp",
+            "file_path": "sympy/simplify/trigsimp.py"
+        },
+        {
+            "keyword": "bottom_up",
+            "file_path": "sympy/simplify/simplify.py"
+        },
+        {
+            "keyword": "minrule",
+            "file_path": "sympy/strategies/core.py"
+        },
+        {
+            "keyword": "chain_rl",
+            "file_path": "sympy/strategies/core.py"
+        },
+        {
+            "keyword": "cos",
+            "file_path": ""
+        },
+        {
+            "keyword": "simplify",
+            "file_path": "sympy/simplify/simplify.py"
+        },
+        {
+            "keyword": "futrig",
+            "file_path": "sympy/simplify/trigsimp.py"
+        },
+        {
+            "keyword": "__lt__",
+            "file_path": "sympy/core/expr.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "_TR56",
+            "file_path": "sympy/simplify/fu.py",
+            "class_name": ""
+        },
+        {
+            "keyword": "_f",
+            "file_path": "sympy/simplify/fu.py",
+            "class_name": ""
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "from sympy import *\nx = Symbol('x')\nprint(simplify(cos(x)**I))",
+    "env_reproduce_path": "/sympy__sympy/reproducer_sympy__sympy-17139.py"
+}

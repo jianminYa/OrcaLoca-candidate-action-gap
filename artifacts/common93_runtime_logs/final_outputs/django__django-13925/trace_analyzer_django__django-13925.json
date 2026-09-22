@@ -1,0 +1,26 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "default_auto_field",
+            "file_path": ""
+        },
+        {
+            "keyword": "W042",
+            "file_path": ""
+        },
+        {
+            "keyword": "DEFAULT_AUTO_FIELD",
+            "file_path": ""
+        },
+        {
+            "keyword": "AppConfig",
+            "file_path": ""
+        }
+    ],
+    "suspicious_code_from_tracer": [],
+    "related_source_code": "",
+    "is_reproduce_pass": false,
+    "reproduce_code": "",
+    "env_reproduce_path": ""
+}

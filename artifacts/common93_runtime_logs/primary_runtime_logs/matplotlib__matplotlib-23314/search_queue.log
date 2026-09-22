@@ -1,0 +1,84 @@
+[2026-09-22 05:57:37,583 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axes3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Path3DCollection', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/art3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 05:57:50,236 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'axes3d.py', 'directory_path': 'lib/mpl_toolkits/mplot3d'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Path3DCollection', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/art3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_AxesBase', 'method_name': 'draw', 'file_path': 'lib/matplotlib/axes/_base.py'}
+)
+[2026-09-22 05:58:07,673 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': '_AxesBase', 'method_name': 'draw', 'file_path': 'lib/matplotlib/axes/_base.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Path3DCollection', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/art3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 05:58:19,414 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_base.py', 'directory_path': 'lib/matplotlib/axes'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Path3DCollection', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/art3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 05:58:39,999 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Path3DCollection', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/art3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 05:58:54,298 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'art3d.py', 'directory_path': 'lib/mpl_toolkits/mplot3d'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 05:59:27,044 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axis', 'method_name': 'draw', 'file_path': 'lib/mpl_toolkits/mplot3d/axis3d.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 05:59:41,034 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'axis3d.py', 'directory_path': 'lib/mpl_toolkits/mplot3d'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 06:00:01,776 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Axes3D', 'method_name': 'draw'}
+)
+[2026-09-22 06:00:01,790 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'Axes3D', 'method_name': 'draw'} search_content='File Path: lib/mpl_toolkits/mplot3d/axes3d.py \nMethod Content: \n    def draw(self, renderer):\n        self._unstale_viewLim()\n\n        # draw the background patch\n        self.patch.draw(renderer)\n        self._frameon = False\n\n        # first, set the aspect\n        # this is duplicated from `axes._base._AxesBase.draw`\n        # but must be called before any of the artist are drawn as\n        # it adjusts the view limits and the size of the bounding box\n        # of the Axes\n        locator = self.get_axes_locator()\n        if locator:\n            pos = locator(self, renderer)\n            self.apply_aspect(pos)\n        else:\n            self.apply_aspect()\n\n        # add the projection matrix to the renderer\n        self.M = self.get_proj()\n\n        collections_and_patches = (\n            artist for artist in self._children\n            if isinstance(artist, (mcoll.Collection, mpatches.Patch))\n            and artist.get_visible())\n        if self.computed_zorder:\n            # Calculate projection of collections and patches and zorder\n            # them. Make sure they are drawn above the grids.\n            zorder_offset = max(axis.get_zorder()\n                                for axis in self._axis_map.values()) + 1\n            collection_zorder = patch_zorder = zorder_offset\n\n            for artist in sorted(collections_and_patches,\n                                 key=lambda artist: artist.do_3d_projection(),\n                                 reverse=True):\n                if isinstance(artist, mcoll.Collection):\n                    artist.zorder = collection_zorder\n                    collection_zorder += 1\n                elif isinstance(artist, mpatches.Patch):\n                    artist.zorder = patch_zorder\n                    patch_zorder += 1\n        else:\n            for artist in collections_and_patches:\n                artist.do_3d_projection()\n\n        if self._axis3don:\n            # Draw panes first\n            for axis in self._axis_map.values():\n                axis.draw_pane(renderer)\n            # Then axes\n            for axis in self._axis_map.values():\n                axis.draw(renderer)\n\n        # Then rest\n        super().draw(renderer)\n'

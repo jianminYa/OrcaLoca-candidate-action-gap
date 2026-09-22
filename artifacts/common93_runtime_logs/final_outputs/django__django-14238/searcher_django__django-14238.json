@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly identified. In `AutoFieldMeta.__subclasscheck__`, the check `subclass in self._subclasses` only tests for exact membership in the tuple `(BigAutoField, SmallAutoField)`. It does NOT check whether `subclass` is a subclass of any element in that tuple. So when `MyBigAutoField` (a subclass of `BigAutoField`) is checked via `issubclass(MyBigAutoField, AutoField)`, it fails because `MyBigAutoField` is not exactly `BigAutoField` or `SmallAutoField`. The `__instancecheck__` method correctly uses `isinstance(instance, self._subclasses)` which handles subclasses properly. The fix should change `subclass in self._subclasses` to `issubclass(subclass, self._subclasses)` in `__subclasscheck__`. All necessary context has been gathered.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/models/fields/__init__.py",
+            "class_name": "AutoFieldMeta",
+            "method_name": "__subclasscheck__"
+        }
+    ]
+}

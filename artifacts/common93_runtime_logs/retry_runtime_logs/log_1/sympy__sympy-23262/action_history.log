@@ -1,0 +1,211 @@
+[2026-09-22 14:08:16,464 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 1
+)
+[2026-09-22 14:08:26,761 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+)
+[2026-09-22 14:08:44,874 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'})]
+[2026-09-22 14:08:53,053 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+)
+[2026-09-22 14:09:06,897 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'})]
+[2026-09-22 14:09:22,346 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 1
+)
+[2026-09-22 14:09:33,235 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+)
+[2026-09-22 14:09:57,858 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+)
+[2026-09-22 14:10:11,923 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'str.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_tuple', 'file_path': 'sympy/printing/str.py'}: 1
+)
+[2026-09-22 14:10:34,909 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'str.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_tuple', 'file_path': 'sympy/printing/str.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pycode.py', 'directory_path': 'sympy/printing'}: 1
+)
+[2026-09-22 14:10:50,097 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'str.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pycode.py', 'directory_path': 'sympy/printing'}: 1
+)
+[2026-09-22 14:11:00,157 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'str.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pycode.py', 'directory_path': 'sympy/printing'}: 1
+)
+[2026-09-22 14:11:16,561 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string', 'file_path': 'sympy/utilities/lambdify.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_recursive_to_string'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_print_Tuple'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'lambdify.py', 'directory_path': 'sympy/utilities'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MapleCodePrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/maple.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_Tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'PythonCodePrinter', 'file_path': 'sympy/printing/pycode.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'maple.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'str.py', 'directory_path': 'sympy/printing'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'StrPrinter', 'method_name': '_print_tuple', 'file_path': 'sympy/printing/str.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pycode.py', 'directory_path': 'sympy/printing'}: 1
+)

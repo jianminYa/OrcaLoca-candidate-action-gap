@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe ErrorList class in django/forms/utils.py already supports an `error_class` parameter that appends a CSS class to 'errorlist'. In `BaseFormSet.full_clean()`, non-form errors are created in two places without passing `error_class='nonform'`: (1) `self._non_form_errors = self.error_class()` at initialization, and (2) `self._non_form_errors = self.error_class(e.error_list)` in the except block. Both should pass `error_class='nonform'` to add the 'nonform' CSS class, consistent with how Forms pass `error_class='nonfield'` for non-field errors. The search queue is empty and I have all the context needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/forms/formsets.py",
+            "class_name": "BaseFormSet",
+            "method_name": "full_clean"
+        }
+    ]
+}

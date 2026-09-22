@@ -124,6 +124,24 @@ top-k                         = 0
 action generation             = 0
 ```
 
+### 指标含义与统计单位
+
+| 指标 | 数值 | 统计单位 | 含义 |
+|---|---:|---|---|
+| `num_instances` | 93 | instance | Common93 中完成运行的 SWE-bench 问题实例数；不是 Gap Rate 的分母 |
+| `all_disambiguation_events` | 27 | event | 搜索索引返回多个可能位置、因此进入一次 disambiguation 处理的次数 |
+| `ranked_disambiguation_events` | 22 | event | 上述事件中属于 callable/method、实际经过 CodeScorer + threshold/top-k 的次数 |
+| `gold_available_events` | 7 | event | ranked event 的 `raw_candidates` 中至少包含一个精确 gold entity 的次数 |
+| `gap_events` | 3 | event | gold 在 `raw_candidates` 中，但没有对应 `selected_action` 的次数 |
+| `candidate_to_action_gap_rate` | 42.86% | event / event | `3 / 7`；表示 gold-available ranked events 中发生 Gap 的比例 |
+| `gap_by_stage.threshold` | 3 | event | gold score 未超过 threshold，被 threshold 丢弃 |
+| `gap_by_stage.top_k` | 0 | event | gold 通过 threshold，但未进入 top-k；本次没有观察到 |
+| `gap_by_stage.action_generation` | 0 | event | gold 已被选中，但构造 precise action 失败；本次没有观察到 |
+
+这里的 `event` 不是模型调用、候选数量或 instance。它表示一次具体的歧义决策点：某个搜索 action 查询索引后返回多个匹配位置，OrcaLoca 随后调用 `_disambiguation_ranking()`。同一个 instance 可以有多个 event；一次返回 24 个候选的位置仍然只算 1 个 event。
+
+本次运行中，18/93 个 instance 至少出现过一次 disambiguation，16/93 个 instance 出现过 ranked callable/method disambiguation；其余 instance 可能仍然执行了搜索，只是没有进入多位置消歧分支。
+
 机器可读结果在 [`summary.json`](artifacts/common93_candidate_action_gap/summary.json)，详细候选和 score 在 [`detailed_gold_available_events.md`](artifacts/common93_candidate_action_gap/detailed_gold_available_events.md)，汇总解释在 [`docs/results.md`](docs/results.md)。
 
 ## 8. Gap 案例分析
@@ -138,7 +156,12 @@ action generation             = 0
 
 ## 9. 后续 Trace 分析
 
-在保存的 diagnostic event stream 中，3 个 Gap 都没有后续 exact gold action：
+服务器上的原始搜索日志已经随本仓库上传。3 个 Gap 的 `search_agent`、`action_history`、`search_queue` 和 `CodeScorer` 日志可从下一节的关键链接访问。需要区分两类证据：
+
+- `disambiguation_events.jsonl` 是结构化的 candidate → action 诊断流，用于主指标；
+- 原始日志记录完整的搜索 Agent 输出、队列变化和 action history，但它们是自由文本，尚未被统一规范成带 event ID 的执行 receipt。
+
+结合已保存的 diagnostic event stream，3 个 Gap 都没有后续 exact gold action：
 
 ```text
 later exact gold action observed = 0 / 3
@@ -146,9 +169,23 @@ no later exact gold action in saved diagnostic stream = 3 / 3
 observed later-recovered cases = 0 / 3
 ```
 
-不过，本次 artifacts 没有持久化完整 `action_history`、所有 tool-call payload 或每个 action 的执行回执。因此只能说“当前保存的诊断流中未观察到后续 exact gold action”，不能断言 gold 永久丢失。Action-to-Execution Gap 也无法从现有产物可靠计算。详见 [`docs/trace_analysis.md`](docs/trace_analysis.md)。
+因此可以检查原始搜索过程，但仍不能仅凭日志自动证明每个 action 都获得了成功执行回执。当前最强可证结论是：结构化诊断流中没有 later exact gold action；Action-to-Execution Gap 仍不能从现有产物可靠计算。详见 [`docs/trace_analysis.md`](docs/trace_analysis.md)。
 
-## 10. 仓库结构
+## 10. 完整运行日志与关键链接
+
+Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93_runtime_logs/`](artifacts/common93_runtime_logs/)。其中包含 1,674 个主运行日志文件、183 个最终输出文件，以及 162 个补充/重试日志文件，总大小约 54 MiB。目录和 SHA-256 校验值见 [`MANIFEST.md`](artifacts/common93_runtime_logs/MANIFEST.md) 和 [`SHA256SUMS`](artifacts/common93_runtime_logs/SHA256SUMS)。
+
+README 中下面的链接指向仓库内的相对 Git symbolic links，便于直接查看关键案例；它们不是服务器外部路径：
+
+| Gap case | Search Agent | Action history | Search queue | CodeScorer |
+|---|---|---|---|---|
+| `matplotlib__matplotlib-23299` | [`search_agent`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/key_logs/matplotlib-23299.code_scorer.log) |
+| `sympy__sympy-13031` | [`search_agent`](artifacts/common93_runtime_logs/key_logs/sympy-13031.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/key_logs/sympy-13031.action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/key_logs/sympy-13031.search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/key_logs/sympy-13031.code_scorer.log) |
+| `sympy__sympy-13647` | [`search_agent`](artifacts/common93_runtime_logs/key_logs/sympy-13647.search_agent.log) | [`action_history`](artifacts/common93_runtime_logs/key_logs/sympy-13647.action_history.log) | [`search_queue`](artifacts/common93_runtime_logs/key_logs/sympy-13647.search_queue.log) | [`code_scorer`](artifacts/common93_runtime_logs/key_logs/sympy-13647.code_scorer.log) |
+
+主诊断流和结果的快捷链接：[`disambiguation_events.jsonl`](artifacts/common93_runtime_logs/key_logs/structured-disambiguation-events.jsonl)、[`summary.json`](artifacts/common93_runtime_logs/key_logs/summary.json)。
+
+## 11. 仓库结构
 
 ```text
 .
@@ -169,6 +206,14 @@ observed later-recovered cases = 0 / 3
 │   ├── common93_instance_ids.txt
 │   ├── run_config.json
 │   └── manual_audit.md
+├── artifacts/common93_runtime_logs/
+│   ├── primary_runtime_logs/
+│   ├── final_outputs/
+│   ├── retry_runtime_logs/
+│   ├── key_logs/
+│   ├── run_control/
+│   ├── MANIFEST.md
+│   └── SHA256SUMS
 ├── scripts/
 │   ├── analyze_gap.py
 │   └── build_gold_entities.py
@@ -181,9 +226,9 @@ observed later-recovered cases = 0 / 3
 
 原 OrcaLoca 源码保留在 `upstream_orcaloca/`，作为可追溯的 upstream snapshot；仓库首页和主要文档不再以它为主体。
 
-## 11. 如何复现
+## 12. 如何复现
 
-### 11.1 只做离线分析
+### 12.1 只做离线分析
 
 不需要 API：
 
@@ -192,7 +237,7 @@ python3 scripts/analyze_gap.py \
   --artifact-dir artifacts/common93_candidate_action_gap
 ```
 
-### 11. 重新构造 gold entities
+### 12.2 重新构造 gold entities
 
 这不是本次已完成实验的一部分。需要外部数据集缓存和目标仓库 checkout；运行前将 upstream snapshot 加入 Python path：
 
@@ -203,17 +248,17 @@ PYTHONPATH=upstream_orcaloca python3 scripts/build_gold_entities.py \
   --output-dir /path/to/artifacts
 ```
 
-### 11. 重新运行 Agent
+### 12.3 重新运行 Agent
 
 当前仓库不提供 secret。若未来需要重跑，应在仓库外配置 OpenAI-compatible provider、model、base URL 和 API key，并使用 `run_config.json` 中记录的非 secret 参数；不要将凭据写入仓库或日志。
 
-## 12. 与原始 OrcaLoca 的关系
+## 13. 与原始 OrcaLoca 的关系
 
 原始项目快照在 [`upstream_orcaloca/`](upstream_orcaloca/)，原始 README 保存在 [`upstream_orcaloca/ORIGINAL_README.md`](upstream_orcaloca/ORIGINAL_README.md)。本实验以 OrcaLoca 的原始 ranking 行为为对象，仅增加观测日志和必要的运行兼容 plumbing。
 
 差异说明和可审阅 patch 见 [`docs/code_changes.md`](docs/code_changes.md) 与 [`patches/orcaloca_gap_logging.patch`](patches/orcaloca_gap_logging.patch)。
 
-## 13. 当前结论与限制
+## 14. 当前结论与限制
 
 当前结论是：在 Common93 本次运行中，共有 7 个 gold 已进入 ranked disambiguation raw candidates 的事件，其中 3 个没有转化为对应 precise action；3 个均由 threshold 过滤造成。
 

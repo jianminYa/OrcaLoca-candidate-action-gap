@@ -1,0 +1,85 @@
+[2026-09-21 16:43:53,228 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}: 1
+)
+[2026-09-21 16:44:03,186 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}: 1
+)
+[2026-09-21 16:44:17,159 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}: 1
+)
+[2026-09-21 16:44:28,649 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'HttpResponse', 'file_path': 'django/http/response.py'})]
+[2026-09-21 16:44:38,357 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'HttpResponse', 'file_path': 'django/http/response.py'}: 1
+)
+[2026-09-21 16:44:45,494 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'})]
+[2026-09-21 16:44:54,165 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'HttpResponse', 'file_path': 'django/http/response.py'}: 1
+)
+[2026-09-21 16:45:00,783 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'})]
+[2026-09-21 16:45:09,491 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes', 'file_path': 'django/http/response.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content', 'file_path': 'django/http/response.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponseBase', 'method_name': 'make_bytes'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'HttpResponse', 'method_name': 'content'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'response.py', 'directory_path': 'django/http'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'HttpResponse', 'file_path': 'django/http/response.py'}: 1
+)

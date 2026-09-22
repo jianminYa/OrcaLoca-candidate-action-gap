@@ -1,0 +1,50 @@
+[2026-09-22 05:14:12,910 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RenameIndex'}: 1
+)
+[2026-09-22 05:14:21,390 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'RenameIndex', 'method_name': 'database_backwards', 'file_path': 'django/db/migrations/operations/models.py'})]
+[2026-09-22 05:14:31,580 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RenameIndex'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_backwards', 'file_path': 'django/db/migrations/operations/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/db/migrations/operations'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_forwards', 'file_path': 'django/db/migrations/operations/models.py'}: 1
+)
+[2026-09-22 05:14:44,789 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RenameIndex'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_backwards', 'file_path': 'django/db/migrations/operations/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/db/migrations/operations'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_forwards', 'file_path': 'django/db/migrations/operations/models.py'}: 1
+)
+[2026-09-22 05:15:09,331 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RenameIndex'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_backwards', 'file_path': 'django/db/migrations/operations/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/db/migrations/operations'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_forwards', 'file_path': 'django/db/migrations/operations/models.py'}: 2
+)
+[2026-09-22 05:15:25,340 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RenameIndex'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_backwards', 'file_path': 'django/db/migrations/operations/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/db/migrations/operations'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RenameIndex', 'method_name': 'database_forwards', 'file_path': 'django/db/migrations/operations/models.py'}: 2
+)

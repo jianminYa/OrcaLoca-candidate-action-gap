@@ -1,0 +1,35 @@
+[2026-09-22 09:54:32,146 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_in_pandas_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+)
+[2026-09-22 09:54:43,514 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_in_pandas_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_set_output.py', 'directory_path': 'sklearn/utils'}: 1
+)
+[2026-09-22 09:54:57,376 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_in_pandas_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_set_output.py', 'directory_path': 'sklearn/utils'}: 1
+)
+[2026-09-22 09:55:07,881 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_wrap_in_pandas_container', 'file_path': 'sklearn/utils/_set_output.py'}), SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'})]
+[2026-09-22 09:55:19,520 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_in_pandas_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_set_output.py', 'directory_path': 'sklearn/utils'}: 1
+)

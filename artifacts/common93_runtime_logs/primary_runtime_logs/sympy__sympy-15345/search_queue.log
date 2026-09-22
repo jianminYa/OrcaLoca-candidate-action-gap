@@ -1,0 +1,102 @@
+[2026-09-22 10:55:04,187 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'mathematica.py', 'directory_path': 'sympy/printing'}
+)
+[2026-09-22 10:55:23,046 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Max'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodePrinter', 'method_name': '_print_Function'}
+)
+[2026-09-22 10:55:37,858 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'miscellaneous.py', 'directory_path': 'sympy/functions/elementary'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodePrinter', 'method_name': '_print_Function'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MCodePrinter'}
+)
+[2026-09-22 10:55:56,248 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MCodePrinter'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodePrinter', 'method_name': '_print_Function'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MCodePrinter', 'method_name': '_print_Function'}
+)
+[2026-09-22 10:56:24,343 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodePrinter', 'method_name': '_print_Function'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MCodePrinter', 'method_name': '_print_Function'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'known_functions', 'file_path': 'sympy/printing/mathematica.py'}
+)
+[2026-09-22 10:56:38,863 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'known_functions', 'file_path': 'sympy/printing/mathematica.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'codeprinter.py', 'directory_path': 'sympy/printing'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MCodePrinter', 'method_name': '_print_Function'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MinMaxBase'}
+)
+[2026-09-22 10:56:54,578 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'codeprinter.py', 'directory_path': 'sympy/printing'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MinMaxBase'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MCodePrinter', 'method_name': '_print_Function'}
+)
+[2026-09-22 10:57:25,689 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MinMaxBase'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MCodePrinter', 'method_name': '_print_Function'}
+)
+[2026-09-22 10:57:48,900 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MCodePrinter', 'method_name': '_print_Function'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'LatticeOp'}
+)
+[2026-09-22 10:58:03,929 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'LatticeOp'}
+)
+[2026-09-22 10:58:24,999 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'operations.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Application'}
+)
+[2026-09-22 10:58:44,541 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Application'}
+)
+[2026-09-22 10:59:08,724 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'function.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Min'}
+)
+[2026-09-22 11:00:31,544 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Min'}
+)

@@ -1,0 +1,19 @@
+[2026-09-22 09:54:35,484 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_in_pandas_container', 'file_path': 'sklearn/utils/_set_output.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'}
+)
+[2026-09-22 09:54:45,722 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_wrap_data_with_container', 'file_path': 'sklearn/utils/_set_output.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_set_output.py', 'directory_path': 'sklearn/utils'}
+)
+[2026-09-22 09:54:59,696 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_set_output.py', 'directory_path': 'sklearn/utils'}
+)

@@ -1,0 +1,1571 @@
+[2026-09-22 11:34:00,077 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 11:34:00,077 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=101 funcname='diophantine' classname=''
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] LLM score: 90 / 100
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] def diophantine(eq, param=symbols("t", integer=True), syms=None,
+                permute=False):
+    """
+    Simplify the solution procedure of diophantine equation ``eq`` by
+    converting it into a product of terms which should equal zero.
+
+    For example, when solving, `x^2 - y^2 = 0` this is treated as
+    `(x + y)(x - y) = 0` and `x + y = 0` and `x - y = 0` are solved
+    independently and combined. Each term is solved by calling
+    ``diop_solve()``. (Although it is possible to call ``diop_solve()``
+    directly, one must be careful to pass an equation in the correct
+    form and to interpret the output correctly; ``diophantine()`` is
+    the public-facing function to use in general.)
+
+    Output of ``diophantine()`` is a set of tuples. The elements of the
+    tuple are the solutions for each variable in the equation and
+    are arranged according to the alphabetic ordering of the variables.
+    e.g. For an equation with two variables, `a` and `b`, the first
+    element of the tuple is the solution for `a` and the second for `b`.
+
+    Usage
+    =====
+
+    ``diophantine(eq, t, syms)``: Solve the diophantine
+    equation ``eq``.
+    ``t`` is the optional parameter to be used by ``diop_solve()``.
+    ``syms`` is an optional list of symbols which determines the
+    order of the elements in the returned tuple.
+
+    By default, only the base solution is returned. If ``permute`` is set to
+    True then permutations of the base solution and/or permutations of the
+    signs of the values will be returned when applicable.
+
+    >>> from sympy.solvers.diophantine import diophantine
+    >>> from sympy.abc import a, b
+    >>> eq = a**4 + b**4 - (2**4 + 3**4)
+    >>> diophantine(eq)
+    {(2, 3)}
+    >>> diophantine(eq, permute=True)
+    {(-3, -2), (-3, 2), (-2, -3), (-2, 3), (2, -3), (2, 3), (3, -2), (3, 2)}
+
+    Details
+    =======
+
+    ``eq`` should be an expression which is assumed to be zero.
+    ``t`` is the parameter to be used in the solution.
+
+    Examples
+    ========
+
+    >>> from sympy.abc import x, y, z
+    >>> diophantine(x**2 - y**2)
+    {(t_0, -t_0), (t_0, t_0)}
+
+    >>> diophantine(x*(2*x + 3*y - z))
+    {(0, n1, n2), (t_0, t_1, 2*t_0 + 3*t_1)}
+    >>> diophantine(x**2 + 3*x*y + 4*x)
+    {(0, n1), (3*t_0 - 4, -t_0)}
+
+    See Also
+    ========
+
+    diop_solve()
+    sympy.utilities.iterables.permute_signs
+    sympy.utilities.iterables.signed_permutations
+    """
+
+    from sympy.utilities.iterables import (
+        subsets, permute_signs, signed_permutations)
+
+    if isinstance(eq, Eq):
+        eq = eq.lhs - eq.rhs
+
+    try:
+        var = list(eq.expand(force=True).free_symbols)
+        var.sort(key=default_sort_key)
+        if syms:
+            if not is_sequence(syms):
+                raise TypeError(
+                    'syms should be given as a sequence, e.g. a list')
+            syms = [i for i in syms if i in var]
+            if syms != var:
+                dict_sym_index = dict(zip(syms, range(len(syms))))
+                return {tuple([t[dict_sym_index[i]] for i in var])
+                            for t in diophantine(eq, param)}
+        n, d = eq.as_numer_denom()
+        if n.is_number:
+            return set()
+        if not d.is_number:
+            dsol = diophantine(d)
+            good = diophantine(n) - dsol
+            return {s for s in good if _mexpand(d.subs(zip(var, s)))}
+        else:
+            eq = n
+        eq = factor_terms(eq)
+        assert not eq.is_number
+        eq = eq.as_independent(*var, as_Add=False)[1]
+        p = Poly(eq)
+        assert not any(g.is_number for g in p.gens)
+        eq = p.as_expr()
+        assert eq.is_polynomial()
+    except (GeneratorsNeeded, AssertionError, AttributeError):
+        raise TypeError(filldedent('''
+    Equation should be a polynomial with Rational coefficients.'''))
+
+    # permute only sign
+    do_permute_signs = False
+    # permute sign and values
+    do_permute_signs_var = False
+    # permute few signs
+    permute_few_signs = False
+    try:
+        # if we know that factoring should not be attempted, skip
+        # the factoring step
+        v, c, t = classify_diop(eq)
+
+        # check for permute sign
+        if permute:
+            len_var = len(v)
+            permute_signs_for = [
+                'general_sum_of_squares',
+                'general_sum_of_even_powers']
+            permute_signs_check = [
+                'homogeneous_ternary_quadratic',
+                'homogeneous_ternary_quadratic_normal',
+                'binary_quadratic']
+            if t in permute_signs_for:
+                do_permute_signs_var = True
+            elif t in permute_signs_check:
+                # if all the variables in eq have even powers
+                # then do_permute_sign = True
+                if len_var == 3:
+                    var_mul = list(subsets(v, 2))
+                    # here var_mul is like [(x, y), (x, z), (y, z)]
+                    xy_coeff = True
+                    x_coeff = True
+                    var1_mul_var2 = map(lambda a: a[0]*a[1], var_mul)
+                    # if coeff(y*z), coeff(y*x), coeff(x*z) is not 0 then
+                    # `xy_coeff` => True and do_permute_sign => False.
+                    # Means no permuted solution.
+                    for v1_mul_v2 in var1_mul_var2:
+                        try:
+                            coeff = c[v1_mul_v2]
+                        except KeyError:
+                            coeff = 0
+                        xy_coeff = bool(xy_coeff) and bool(coeff)
+                    var_mul = list(subsets(v, 1))
+                    # here var_mul is like [(x,), (y, )]
+                    for v1 in var_mul:
+                        try:
+                            coeff = c[v1[0]]
+                        except KeyError:
+                            coeff = 0
+                        x_coeff = bool(x_coeff) and bool(coeff)
+                    if not any([xy_coeff, x_coeff]):
+                        # means only x**2, y**2, z**2, const is present
+                        do_permute_signs = True
+                    elif not x_coeff:
+                        permute_few_signs = True
+                elif len_var == 2:
+                    var_mul = list(subsets(v, 2))
+                    # here var_mul is like [(x, y)]
+                    xy_coeff = True
+                    x_coeff = True
+                    var1_mul_var2 = map(lambda x: x[0]*x[1], var_mul)
+                    for v1_mul_v2 in var1_mul_var2:
+                        try:
+                            coeff = c[v1_mul_v2]
+                        except KeyError:
+                            coeff = 0
+                        xy_coeff = bool(xy_coeff) and bool(coeff)
+                    var_mul = list(subsets(v, 1))
+                    # here var_mul is like [(x,), (y, )]
+                    for v1 in var_mul:
+                        try:
+                            coeff = c[v1[0]]
+                        except KeyError:
+                            coeff = 0
+                        x_coeff = bool(x_coeff) and bool(coeff)
+                    if not any([xy_coeff, x_coeff]):
+                        # means only x**2, y**2 and const is present
+                        # so we can get more soln by permuting this soln.
+                        do_permute_signs = True
+                    elif not x_coeff:
+                        # when coeff(x), coeff(y) is not present then signs of
+                        #  x, y can be permuted such that their sign are same
+                        # as sign of x*y.
+                        # e.g 1. (x_val,y_val)=> (x_val,y_val), (-x_val,-y_val)
+                        # 2. (-x_vall, y_val)=> (-x_val,y_val), (x_val,-y_val)
+                        permute_few_signs = True
+        if t == 'general_sum_of_squares':
+            # trying to factor such expressions will sometimes hang
+            terms = [(eq, 1)]
+        else:
+            raise TypeError
+    except (TypeError, NotImplementedError):
+        terms = factor_list(eq)[1]
+
+    sols = set([])
+
+    for term in terms:
+
+        base, _ = term
+        var_t, _, eq_type = classify_diop(base, _dict=False)
+        _, base = signsimp(base, evaluate=False).as_coeff_Mul()
+        solution = diop_solve(base, param)
+
+        if eq_type in [
+                "linear",
+                "homogeneous_ternary_quadratic",
+                "homogeneous_ternary_quadratic_normal",
+                "general_pythagorean"]:
+            sols.add(merge_solution(var, var_t, solution))
+
+        elif eq_type in [
+                "binary_quadratic",
+                "general_sum_of_squares",
+                "general_sum_of_even_powers",
+                "univariate"]:
+            for sol in solution:
+                sols.add(merge_solution(var, var_t, sol))
+
+        else:
+            raise NotImplementedError('unhandled type: %s' % eq_type)
+
+    # remove null merge results
+    if () in sols:
+        sols.remove(())
+    null = tuple([0]*len(var))
+    # if there is no solution, return trivial solution
+    if not sols and eq.subs(zip(var, null)).is_zero:
+        sols.add(null)
+    final_soln = set([])
+    for sol in sols:
+        if all(_is_int(s) for s in sol):
+            if do_permute_signs:
+                permuted_sign = set(permute_signs(sol))
+                final_soln.update(permuted_sign)
+            elif permute_few_signs:
+                lst = list(permute_signs(sol))
+                lst = list(filter(lambda x: x[0]*x[1] == sol[1]*sol[0], lst))
+                permuted_sign = set(lst)
+                final_soln.update(permuted_sign)
+            elif do_permute_signs_var:
+                permuted_sign_var = set(signed_permutations(sol))
+                final_soln.update(permuted_sign_var)
+            else:
+                final_soln.add(sol)
+        else:
+                final_soln.add(sol)
+    return final_soln
+
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=476 funcname='classify_diop' classname=''
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] def classify_diop(eq, _dict=True):
+    # docstring supplied externally
+    try:
+        var = list(eq.free_symbols)
+        assert var
+    except (AttributeError, AssertionError):
+        raise ValueError('equation should have 1 or more free symbols')
+    var.sort(key=default_sort_key)
+    eq = eq.expand(force=True)
+    coeff = eq.as_coefficients_dict()
+    if not all(_is_int(c) for c in coeff.values()):
+        raise TypeError("Coefficients should be Integers")
+
+    diop_type = None
+    total_degree = Poly(eq).total_degree()
+    homogeneous = 1 not in coeff
+    if total_degree == 1:
+        diop_type = "linear"
+
+    elif len(var) == 1:
+        diop_type = "univariate"
+
+    elif total_degree == 2 and len(var) == 2:
+        diop_type = "binary_quadratic"
+
+    elif total_degree == 2 and len(var) == 3 and homogeneous:
+        if set(coeff) & set(var):
+            diop_type = "inhomogeneous_ternary_quadratic"
+        else:
+            nonzero = [k for k in coeff if coeff[k]]
+            if len(nonzero) == 3 and all(i**2 in nonzero for i in var):
+                diop_type = "homogeneous_ternary_quadratic_normal"
+            else:
+                diop_type = "homogeneous_ternary_quadratic"
+
+    elif total_degree == 2 and len(var) >= 3:
+        if set(coeff) & set(var):
+            diop_type = "inhomogeneous_general_quadratic"
+        else:
+            # there may be Pow keys like x**2 or Mul keys like x*y
+            if any(k.is_Mul for k in coeff):  # cross terms
+                if not homogeneous:
+                    diop_type = "inhomogeneous_general_quadratic"
+                else:
+                    diop_type = "homogeneous_general_quadratic"
+            else:  # all squares: x**2 + y**2 + ... + constant
+                if all(coeff[k] == 1 for k in coeff if k != 1):
+                    diop_type = "general_sum_of_squares"
+                elif all(is_square(abs(coeff[k])) for k in coeff):
+                    if abs(sum(sign(coeff[k]) for k in coeff)) == \
+                            len(var) - 2:
+                        # all but one has the same sign
+                        # e.g. 4*x**2 + y**2 - 4*z**2
+                        diop_type = "general_pythagorean"
+
+    elif total_degree == 3 and len(var) == 2:
+        diop_type = "cubic_thue"
+
+    elif (total_degree > 3 and total_degree % 2 == 0 and
+            all(k.is_Pow and k.exp == total_degree for k in coeff if k != 1)):
+        if all(coeff[k] == 1 for k in coeff if k != 1):
+            diop_type = 'general_sum_of_even_powers'
+
+    if diop_type is not None:
+        return var, dict(coeff) if _dict else coeff, diop_type
+
+    # new diop type instructions
+    # --------------------------
+    # if this error raises and the equation *can* be classified,
+    #  * it should be identified in the if-block above
+    #  * the type should be added to the diop_known
+    # if a solver can be written for it,
+    #  * a dedicated handler should be written (e.g. diop_linear)
+    #  * it should be passed to that handler in diop_solve
+    raise NotImplementedError(filldedent('''
+        This equation is not yet recognized or else has not been
+        simplified sufficiently to put it in a form recognized by
+        diop_classify().'''))
+
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=386 funcname='diop_solve' classname=''
+[2026-09-22 11:34:00,078 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] def diop_solve(eq, param=symbols("t", integer=True)):
+    """
+    Solves the diophantine equation ``eq``.
+
+    Unlike ``diophantine()``, factoring of ``eq`` is not attempted. Uses
+    ``classify_diop()`` to determine the type of the equation and calls
+    the appropriate solver function.
+
+    Use of ``diophantine()`` is recommended over other helper functions.
+    ``diop_solve()`` can return either a set or a tuple depending on the
+    nature of the equation.
+
+    Usage
+    =====
+
+    ``diop_solve(eq, t)``: Solve diophantine equation, ``eq`` using ``t``
+    as a parameter if needed.
+
+    Details
+    =======
+
+    ``eq`` should be an expression which is assumed to be zero.
+    ``t`` is a parameter to be used in the solution.
+
+    Examples
+    ========
+
+    >>> from sympy.solvers.diophantine import diop_solve
+    >>> from sympy.abc import x, y, z, w
+    >>> diop_solve(2*x + 3*y - 5)
+    (3*t_0 - 5, 5 - 2*t_0)
+    >>> diop_solve(4*x + 3*y - 4*z + 5)
+    (t_0, 8*t_0 + 4*t_1 + 5, 7*t_0 + 3*t_1 + 5)
+    >>> diop_solve(x + 3*y - 4*z + w - 6)
+    (t_0, t_0 + t_1, 6*t_0 + 5*t_1 + 4*t_2 - 6, 5*t_0 + 4*t_1 + 3*t_2 - 6)
+    >>> diop_solve(x**2 + y**2 - 5)
+    {(-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1)}
+
+
+    See Also
+    ========
+
+    diophantine()
+    """
+    var, coeff, eq_type = classify_diop(eq, _dict=False)
+
+    if eq_type == "linear":
+        return _diop_linear(var, coeff, param)
+
+    elif eq_type == "binary_quadratic":
+        return _diop_quadratic(var, coeff, param)
+
+    elif eq_type == "homogeneous_ternary_quadratic":
+        x_0, y_0, z_0 = _diop_ternary_quadratic(var, coeff)
+        return _parametrize_ternary_quadratic(
+            (x_0, y_0, z_0), var, coeff)
+
+    elif eq_type == "homogeneous_ternary_quadratic_normal":
+        x_0, y_0, z_0 = _diop_ternary_quadratic_normal(var, coeff)
+        return _parametrize_ternary_quadratic(
+            (x_0, y_0, z_0), var, coeff)
+
+    elif eq_type == "general_pythagorean":
+        return _diop_general_pythagorean(var, coeff, param)
+
+    elif eq_type == "univariate":
+        return set([(int(i),) for i in solveset_real(
+            eq, var[0]).intersect(S.Integers)])
+
+    elif eq_type == "general_sum_of_squares":
+        return _diop_general_sum_of_squares(var, -int(coeff[1]), limit=S.Infinity)
+
+    elif eq_type == "general_sum_of_even_powers":
+        for k in coeff.keys():
+            if k.is_Pow and coeff[k]:
+                p = k.exp
+        return _diop_general_sum_of_even_powers(var, p, -int(coeff[1]), limit=S.Infinity)
+
+    if eq_type is not None and eq_type not in diop_known:
+            raise ValueError(filldedent('''
+    Alhough this type of equation was identified, it is not yet
+    handled. It should, however, be listed in `diop_known` at the
+    top of this file. Developers should see comments at the end of
+    `classify_diop`.
+            '''))  # pragma: no cover
+    else:
+        raise NotImplementedError(
+            'No solver has been written for %s.' % eq_type)
+
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=354 funcname='merge_solution' classname=''
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] def merge_solution(var, var_t, solution):
+    """
+    This is used to construct the full solution from the solutions of sub
+    equations.
+
+    For example when solving the equation `(x - y)(x^2 + y^2 - z^2) = 0`,
+    solutions for each of the equations `x - y = 0` and `x^2 + y^2 - z^2` are
+    found independently. Solutions for `x - y = 0` are `(x, y) = (t, t)`. But
+    we should introduce a value for z when we output the solution for the
+    original equation. This function converts `(t, t)` into `(t, t, n_{1})`
+    where `n_{1}` is an integer parameter.
+    """
+    sol = []
+
+    if None in solution:
+        return ()
+
+    solution = iter(solution)
+    params = numbered_symbols("n", integer=True, start=1)
+    for v in var:
+        if v in var_t:
+            sol.append(next(solution))
+        else:
+            sol.append(next(params))
+
+    for val, symb in zip(sol, var):
+        if check_assumptions(val, **symb.assumptions0) is False:
+            return tuple()
+
+    return tuple(sol)
+
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=2876 funcname='_diop_general_sum_of_even_powers' classname=''
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] LLM score: 55 / 100
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] def _diop_general_sum_of_even_powers(var, p, n, limit=1):
+    # solves Eq(sum(i**2 for i in var), n)
+    k = len(var)
+
+    s = set()
+
+    if n < 0 or limit < 1:
+        return s
+
+    sign = [-1 if x.is_nonpositive else 1 for x in var]
+    negs = sign.count(-1) != 0
+
+    took = 0
+    for t in power_representation(n, p, k):
+        if negs:
+            s.add(tuple([sign[i]*j for i, j in enumerate(t)]))
+        else:
+            s.add(t)
+        took += 1
+        if took == limit:
+            break
+    return s
+
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=53 funcname='_is_int' classname=''
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] def _is_int(i):
+    try:
+        as_int(i)
+        return True
+    except ValueError:
+        pass
+
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=3131 funcname='power_representation' classname=''
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] def power_representation(n, p, k, zeros=False):
+    r"""
+    Returns a generator for finding k-tuples of integers,
+    `(n_{1}, n_{2}, . . . n_{k})`, such that
+    `n = n_{1}^p + n_{2}^p + . . . n_{k}^p`.
+
+    Usage
+    =====
+
+    ``power_representation(n, p, k, zeros)``: Represent non-negative number
+    ``n`` as a sum of ``k`` ``p``\ th powers. If ``zeros`` is true, then the
+    solutions is allowed to contain zeros.
+
+    Examples
+    ========
+
+    >>> from sympy.solvers.diophantine import power_representation
+
+    Represent 1729 as a sum of two cubes:
+
+    >>> f = power_representation(1729, 3, 2)
+    >>> next(f)
+    (9, 10)
+    >>> next(f)
+    (1, 12)
+
+    If the flag `zeros` is True, the solution may contain tuples with
+    zeros; any such solutions will be generated after the solutions
+    without zeros:
+
+    >>> list(power_representation(125, 2, 3, zeros=True))
+    [(5, 6, 8), (3, 4, 10), (0, 5, 10), (0, 2, 11)]
+
+    For even `p` the `permute_sign` function can be used to get all
+    signed values:
+
+    >>> from sympy.utilities.iterables import permute_signs
+    >>> list(permute_signs((1, 12)))
+    [(1, 12), (-1, 12), (1, -12), (-1, -12)]
+
+    All possible signed permutations can also be obtained:
+
+    >>> from sympy.utilities.iterables import signed_permutations
+    >>> list(signed_permutations((1, 12)))
+    [(1, 12), (-1, 12), (1, -12), (-1, -12), (12, 1), (-12, 1), (12, -1), (-12, -1)]
+    """
+    n, p, k = [as_int(i) for i in (n, p, k)]
+
+    if n < 0:
+        if p % 2:
+            for t in power_representation(-n, p, k, zeros):
+                yield tuple(-i for i in t)
+        return
+
+    if p < 1 or k < 1:
+        raise ValueError(filldedent('''
+    Expecting positive integers for `(p, k)`, but got `(%s, %s)`'''
+    % (p, k)))
+
+    if n == 0:
+        if zeros:
+            yield (0,)*k
+        return
+
+    if k == 1:
+        if p == 1:
+            yield (n,)
+        else:
+            be = perfect_power(n)
+            if be:
+                b, e = be
+                d, r = divmod(e, p)
+                if not r:
+                    yield (b**d,)
+        return
+
+    if p == 1:
+        for t in partition(n, k, zeros=zeros):
+            yield t
+        return
+
+    if p == 2:
+        feasible = _can_do_sum_of_squares(n, k)
+        if not feasible:
+            return
+        if not zeros and n > 33 and k >= 5 and k <= n and n - k in (
+                13, 10, 7, 5, 4, 2, 1):
+            '''Todd G. Will, "When Is n^2 a Sum of k Squares?", [online].
+                Available: https://www.maa.org/sites/default/files/Will-MMz-201037918.pdf'''
+            return
+        if feasible is not True:  # it's prime and k == 2
+            yield prime_as_sum_of_two_squares(n)
+            return
+
+    if k == 2 and p > 2:
+        be = perfect_power(n)
+        if be and be[1] % p == 0:
+            return  # Fermat: a**n + b**n = c**n has no solution for n > 2
+
+    if n >= k:
+        a = integer_nthroot(n - (k - 1), p)[0]
+        for t in pow_rep_recursive(a, k, n, [], p):
+            yield tuple(reversed(t))
+
+    if zeros:
+        a = integer_nthroot(n, p)[0]
+        for i in range(1, k):
+            for t in pow_rep_recursive(a, i, n, [], p):
+                yield tuple(reversed(t + (0,) * (k - i)))
+
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/solvers/diophantine.py' lineno=3245 funcname='pow_rep_recursive' classname=''
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] def pow_rep_recursive(n_i, k, n_remaining, terms, p):
+
+    if k == 0 and n_remaining == 0:
+        yield tuple(terms)
+    else:
+        if n_i >= 1 and k > 0:
+            for t in pow_rep_recursive(n_i - 1, k, n_remaining, terms, p):
+                yield t
+            residual = n_remaining - pow(n_i, p)
+            if residual >= 0:
+                for t in pow_rep_recursive(n_i, k - 1, residual, terms + [n_i], p):
+                    yield t
+
+[2026-09-22 11:34:00,079 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/cache.py' lineno=92 funcname='wrapper' classname='_cache'
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO]             def wrapper(*args, **kwargs):
+                try:
+                    retval = cfunc(*args, **kwargs)
+                except TypeError:
+                    retval = func(*args, **kwargs)
+                return retval
+
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=515 funcname='free_symbols' classname='Basic'
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO]     @property
+    def free_symbols(self):
+        """Return from the atoms of self those which are free symbols.
+
+        For most expressions, all symbols are free symbols. For some classes
+        this is not true. e.g. Integrals use Symbols for the dummy variables
+        which are bound variables, so Integral has a method to return all
+        symbols except those. Derivative keeps track of symbols with respect
+        to which it will perform a derivative; those are
+        bound variables, too, so it has its own free_symbols method.
+
+        Any other method that uses bound variables should implement a
+        free_symbols method."""
+        return set().union(*[a.free_symbols for a in self.args])
+
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=428 funcname='default_sort_key' classname='NotIterable'
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] def default_sort_key(item, order=None):
+    """Return a key that can be used for sorting.
+
+    The key has the structure:
+
+    (class_key, (len(args), args), exponent.sort_key(), coefficient)
+
+    This key is supplied by the sort_key routine of Basic objects when
+    ``item`` is a Basic object or an object (other than a string) that
+    sympifies to a Basic object. Otherwise, this function produces the
+    key.
+
+    The ``order`` argument is passed along to the sort_key routine and is
+    used to determine how the terms *within* an expression are ordered.
+    (See examples below) ``order`` options are: 'lex', 'grlex', 'grevlex',
+    and reversed values of the same (e.g. 'rev-lex'). The default order
+    value is None (which translates to 'lex').
+
+    Examples
+    ========
+
+    >>> from sympy import S, I, default_sort_key, sin, cos, sqrt
+    >>> from sympy.core.function import UndefinedFunction
+    >>> from sympy.abc import x
+
+    The following are equivalent ways of getting the key for an object:
+
+    >>> x.sort_key() == default_sort_key(x)
+    True
+
+    Here are some examples of the key that is produced:
+
+    >>> default_sort_key(UndefinedFunction('f'))
+    ((0, 0, 'UndefinedFunction'), (1, ('f',)), ((1, 0, 'Number'),
+        (0, ()), (), 1), 1)
+    >>> default_sort_key('1')
+    ((0, 0, 'str'), (1, ('1',)), ((1, 0, 'Number'), (0, ()), (), 1), 1)
+    >>> default_sort_key(S.One)
+    ((1, 0, 'Number'), (0, ()), (), 1)
+    >>> default_sort_key(2)
+    ((1, 0, 'Number'), (0, ()), (), 2)
+
+
+    While sort_key is a method only defined for SymPy objects,
+    default_sort_key will accept anything as an argument so it is
+    more robust as a sorting key. For the following, using key=
+    lambda i: i.sort_key() would fail because 2 doesn't have a sort_key
+    method; that's why default_sort_key is used. Note, that it also
+    handles sympification of non-string items likes ints:
+
+    >>> a = [2, I, -I]
+    >>> sorted(a, key=default_sort_key)
+    [2, -I, I]
+
+    The returned key can be used anywhere that a key can be specified for
+    a function, e.g. sort, min, max, etc...:
+
+    >>> a.sort(key=default_sort_key); a[0]
+    2
+    >>> min(a, key=default_sort_key)
+    2
+
+    Note
+    ----
+
+    The key returned is useful for getting items into a canonical order
+    that will be the same across platforms. It is not directly useful for
+    sorting lists of expressions:
+
+    >>> a, b = x, 1/x
+
+    Since ``a`` has only 1 term, its value of sort_key is unaffected by
+    ``order``:
+
+    >>> a.sort_key() == a.sort_key('rev-lex')
+    True
+
+    If ``a`` and ``b`` are combined then the key will differ because there
+    are terms that can be ordered:
+
+    >>> eq = a + b
+    >>> eq.sort_key() == eq.sort_key('rev-lex')
+    False
+    >>> eq.as_ordered_terms()
+    [x, 1/x]
+    >>> eq.as_ordered_terms('rev-lex')
+    [1/x, x]
+
+    But since the keys for each of these terms are independent of ``order``'s
+    value, they don't sort differently when they appear separately in a list:
+
+    >>> sorted(eq.args, key=default_sort_key)
+    [1/x, x]
+    >>> sorted(eq.args, key=lambda i: default_sort_key(i, order='rev-lex'))
+    [1/x, x]
+
+    The order of terms obtained when using these keys is the order that would
+    be obtained if those terms were *factors* in a product.
+
+    Although it is useful for quickly putting expressions in canonical order,
+    it does not sort expressions based on their complexity defined by the
+    number of operations, power of variables and others:
+
+    >>> sorted([sin(x)*cos(x), sin(x)], key=default_sort_key)
+    [sin(x)*cos(x), sin(x)]
+    >>> sorted([x, x**2, sqrt(x), x**3], key=default_sort_key)
+    [sqrt(x), x, x**2, x**3]
+
+    See Also
+    ========
+
+    ordered, sympy.core.expr.as_ordered_factors, sympy.core.expr.as_ordered_terms
+
+    """
+
+    from .singleton import S
+    from .basic import Basic
+    from .sympify import sympify, SympifyError
+    from .compatibility import iterable
+
+    if isinstance(item, Basic):
+        return item.sort_key(order=order)
+
+    if iterable(item, exclude=string_types):
+        if isinstance(item, dict):
+            args = item.items()
+            unordered = True
+        elif isinstance(item, set):
+            args = item
+            unordered = True
+        else:
+            # e.g. tuple, list
+            args = list(item)
+            unordered = False
+
+        args = [default_sort_key(arg, order=order) for arg in args]
+
+        if unordered:
+            # e.g. dict, set
+            args = sorted(args)
+
+        cls_index, args = 10, (len(args), tuple(args))
+    else:
+        if not isinstance(item, string_types):
+            try:
+                item = sympify(item)
+            except SympifyError:
+                # e.g. lambda x: x
+                pass
+            else:
+                if isinstance(item, Basic):
+                    # e.g int -> Integer
+                    return default_sort_key(item)
+                # e.g. UndefinedFunction
+
+        # e.g. str
+        cls_index, args = 0, (1, (str(item),))
+
+    return (cls_index, 0, item.__class__.__name__
+            ), args, S.One.sort_key(), S.One
+
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=314 funcname='is_sequence' classname='NotIterable'
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] def is_sequence(i, include=None):
+    """
+    Return a boolean indicating whether ``i`` is a sequence in the SymPy
+    sense. If anything that fails the test below should be included as
+    being a sequence for your application, set 'include' to that object's
+    type; multiple types should be passed as a tuple of types.
+
+    Note: although generators can generate a sequence, they often need special
+    handling to make sure their elements are captured before the generator is
+    exhausted, so these are not included by default in the definition of a
+    sequence.
+
+    See also: iterable
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.iterables import is_sequence
+    >>> from types import GeneratorType
+    >>> is_sequence([])
+    True
+    >>> is_sequence(set())
+    False
+    >>> is_sequence('abc')
+    False
+    >>> is_sequence('abc', include=str)
+    True
+    >>> generator = (c for c in 'abc')
+    >>> is_sequence(generator)
+    False
+    >>> is_sequence(generator, include=(str, GeneratorType))
+    True
+
+    """
+    return (hasattr(i, '__getitem__') and
+            iterable(i) or
+            bool(include) and
+            isinstance(i, include))
+
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/add.py' lineno=463 funcname='as_numer_denom' classname='Add'
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO]     def as_numer_denom(self):
+
+        # clear rational denominator
+        content, expr = self.primitive()
+        ncon, dcon = content.as_numer_denom()
+
+        # collect numerators and denominators of the terms
+        nd = defaultdict(list)
+        for f in expr.args:
+            ni, di = f.as_numer_denom()
+            nd[di].append(ni)
+
+        # check for quick exit
+        if len(nd) == 1:
+            d, n = nd.popitem()
+            return self.func(
+                *[_keep_coeff(ncon, ni) for ni in n]), _keep_coeff(dcon, d)
+
+        # sum up the terms having a common denominator
+        for d, n in nd.items():
+            if len(n) == 1:
+                nd[d] = n[0]
+            else:
+                nd[d] = self.func(*n)
+
+        # assemble single numerator and denominator
+        denoms, numers = [list(i) for i in zip(*iter(nd.items()))]
+        n, d = self.func(*[Mul(*(denoms[:i] + [numers[i]] + denoms[i + 1:]))
+                   for i in range(len(numers))]), Mul(*denoms)
+
+        return _keep_coeff(ncon, n), _keep_coeff(dcon, d)
+
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 11:34:00,080 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=426 funcname='is_number' classname='Expr'
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO]     @property
+    def is_number(self):
+        """Returns True if ``self`` has no free symbols and no
+        undefined functions (AppliedUndef, to be precise). It will be
+        faster than ``if not self.free_symbols``, however, since
+        ``is_number`` will fail as soon as it hits a free symbol
+        or undefined function.
+
+        Examples
+        ========
+
+        >>> from sympy import log, Integral, cos, sin, pi
+        >>> from sympy.core.function import Function
+        >>> from sympy.abc import x
+        >>> f = Function('f')
+
+        >>> x.is_number
+        False
+        >>> f(1).is_number
+        False
+        >>> (2*x).is_number
+        False
+        >>> (2 + Integral(2, x)).is_number
+        False
+        >>> (2 + Integral(2, (x, 1, 2))).is_number
+        True
+
+        Not all numbers are Numbers in the SymPy sense:
+
+        >>> pi.is_number, pi.is_Number
+        (True, False)
+
+        If something is a number it should evaluate to a number with
+        real and imaginary parts that are Numbers; the result may not
+        be comparable, however, since the real and/or imaginary part
+        of the result may not have precision.
+
+        >>> cos(1).is_number and cos(1).is_comparable
+        True
+
+        >>> z = cos(1)**2 + sin(1)**2 - 1
+        >>> z.is_number
+        True
+        >>> z.is_comparable
+        False
+
+        See Also
+        ========
+        sympy.core.basic.Basic.is_comparable
+        """
+        return all(obj.is_number for obj in self.args)
+
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/exprtools.py' lineno=1153 funcname='factor_terms' classname='Term'
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] def factor_terms(expr, radical=False, clear=False, fraction=False, sign=True):
+    """Remove common factors from terms in all arguments without
+    changing the underlying structure of the expr. No expansion or
+    simplification (and no processing of non-commutatives) is performed.
+
+    If radical=True then a radical common to all terms will be factored
+    out of any Add sub-expressions of the expr.
+
+    If clear=False (default) then coefficients will not be separated
+    from a single Add if they can be distributed to leave one or more
+    terms with integer coefficients.
+
+    If fraction=True (default is False) then a common denominator will be
+    constructed for the expression.
+
+    If sign=True (default) then even if the only factor in common is a -1,
+    it will be factored out of the expression.
+
+    Examples
+    ========
+
+    >>> from sympy import factor_terms, Symbol
+    >>> from sympy.abc import x, y
+    >>> factor_terms(x + x*(2 + 4*y)**3)
+    x*(8*(2*y + 1)**3 + 1)
+    >>> A = Symbol('A', commutative=False)
+    >>> factor_terms(x*A + x*A + x*y*A)
+    x*(y*A + 2*A)
+
+    When ``clear`` is False, a rational will only be factored out of an
+    Add expression if all terms of the Add have coefficients that are
+    fractions:
+
+    >>> factor_terms(x/2 + 1, clear=False)
+    x/2 + 1
+    >>> factor_terms(x/2 + 1, clear=True)
+    (x + 2)/2
+
+    If a -1 is all that can be factored out, to *not* factor it out, the
+    flag ``sign`` must be False:
+
+    >>> factor_terms(-x - y)
+    -(x + y)
+    >>> factor_terms(-x - y, sign=False)
+    -x - y
+    >>> factor_terms(-2*x - 2*y, sign=False)
+    -2*(x + y)
+
+    See Also
+    ========
+    gcd_terms, sympy.polys.polytools.terms_gcd
+
+    """
+    def do(expr):
+        from sympy.concrete.summations import Sum
+        from sympy.integrals.integrals import Integral
+        is_iterable = iterable(expr)
+
+        if not isinstance(expr, Basic) or expr.is_Atom:
+            if is_iterable:
+                return type(expr)([do(i) for i in expr])
+            return expr
+
+        if expr.is_Pow or expr.is_Function or \
+                is_iterable or not hasattr(expr, 'args_cnc'):
+            args = expr.args
+            newargs = tuple([do(i) for i in args])
+            if newargs == args:
+                return expr
+            return expr.func(*newargs)
+
+        if isinstance(expr, (Sum, Integral)):
+            return _factor_sum_int(expr,
+                radical=radical, clear=clear,
+                fraction=fraction, sign=sign)
+
+        cont, p = expr.as_content_primitive(radical=radical, clear=clear)
+        if p.is_Add:
+            list_args = [do(a) for a in Add.make_args(p)]
+            # get a common negative (if there) which gcd_terms does not remove
+            if all(a.as_coeff_Mul()[0].extract_multiplicatively(-1) is not None
+                   for a in list_args):
+                cont = -cont
+                list_args = [-a for a in list_args]
+            # watch out for exp(-(x+2)) which gcd_terms will change to exp(-x-2)
+            special = {}
+            for i, a in enumerate(list_args):
+                b, e = a.as_base_exp()
+                if e.is_Mul and e != Mul(*e.args):
+                    list_args[i] = Dummy()
+                    special[list_args[i]] = a
+            # rebuild p not worrying about the order which gcd_terms will fix
+            p = Add._from_args(list_args)
+            p = gcd_terms(p,
+                isprimitive=True,
+                clear=clear,
+                fraction=fraction).xreplace(special)
+        elif p.args:
+            p = p.func(
+                *[do(a) for a in p.args])
+        rv = _keep_coeff(cont, p, clear=clear, sign=sign)
+        return rv
+    expr = sympify(expr)
+    return do(expr)
+
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=1692 funcname='as_independent' classname='Expr'
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO]     def as_independent(self, *deps, **hint):
+        """
+        A mostly naive separation of a Mul or Add into arguments that are not
+        are dependent on deps. To obtain as complete a separation of variables
+        as possible, use a separation method first, e.g.:
+
+        * separatevars() to change Mul, Add and Pow (including exp) into Mul
+        * .expand(mul=True) to change Add or Mul into Add
+        * .expand(log=True) to change log expr into an Add
+
+        The only non-naive thing that is done here is to respect noncommutative
+        ordering of variables and to always return (0, 0) for `self` of zero
+        regardless of hints.
+
+        For nonzero `self`, the returned tuple (i, d) has the
+        following interpretation:
+
+        * i will has no variable that appears in deps
+        * d will either have terms that contain variables that are in deps, or
+          be equal to 0 (when self is an Add) or 1 (when self is a Mul)
+        * if self is an Add then self = i + d
+        * if self is a Mul then self = i*d
+        * otherwise (self, S.One) or (S.One, self) is returned.
+
+        To force the expression to be treated as an Add, use the hint as_Add=True
+
+        Examples
+        ========
+
+        -- self is an Add
+
+        >>> from sympy import sin, cos, exp
+        >>> from sympy.abc import x, y, z
+
+        >>> (x + x*y).as_independent(x)
+        (0, x*y + x)
+        >>> (x + x*y).as_independent(y)
+        (x, x*y)
+        >>> (2*x*sin(x) + y + x + z).as_independent(x)
+        (y + z, 2*x*sin(x) + x)
+        >>> (2*x*sin(x) + y + x + z).as_independent(x, y)
+        (z, 2*x*sin(x) + x + y)
+
+        -- self is a Mul
+
+        >>> (x*sin(x)*cos(y)).as_independent(x)
+        (cos(y), x*sin(x))
+
+        non-commutative terms cannot always be separated out when self is a Mul
+
+        >>> from sympy import symbols
+        >>> n1, n2, n3 = symbols('n1 n2 n3', commutative=False)
+        >>> (n1 + n1*n2).as_independent(n2)
+        (n1, n1*n2)
+        >>> (n2*n1 + n1*n2).as_independent(n2)
+        (0, n1*n2 + n2*n1)
+        >>> (n1*n2*n3).as_independent(n1)
+        (1, n1*n2*n3)
+        >>> (n1*n2*n3).as_independent(n2)
+        (n1, n2*n3)
+        >>> ((x-n1)*(x-y)).as_independent(x)
+        (1, (x - y)*(x - n1))
+
+        -- self is anything else:
+
+        >>> (sin(x)).as_independent(x)
+        (1, sin(x))
+        >>> (sin(x)).as_independent(y)
+        (sin(x), 1)
+        >>> exp(x+y).as_independent(x)
+        (1, exp(x + y))
+
+        -- force self to be treated as an Add:
+
+        >>> (3*x).as_independent(x, as_Add=True)
+        (0, 3*x)
+
+        -- force self to be treated as a Mul:
+
+        >>> (3+x).as_independent(x, as_Add=False)
+        (1, x + 3)
+        >>> (-3+x).as_independent(x, as_Add=False)
+        (1, x - 3)
+
+        Note how the below differs from the above in making the
+        constant on the dep term positive.
+
+        >>> (y*(-3+x)).as_independent(x)
+        (y, x - 3)
+
+        -- use .as_independent() for true independence testing instead
+           of .has(). The former considers only symbols in the free
+           symbols while the latter considers all symbols
+
+        >>> from sympy import Integral
+        >>> I = Integral(x, (x, 1, 2))
+        >>> I.has(x)
+        True
+        >>> x in I.free_symbols
+        False
+        >>> I.as_independent(x) == (I, 1)
+        True
+        >>> (I + x).as_independent(x) == (I, x)
+        True
+
+        Note: when trying to get independent terms, a separation method
+        might need to be used first. In this case, it is important to keep
+        track of what you send to this routine so you know how to interpret
+        the returned values
+
+        >>> from sympy import separatevars, log
+        >>> separatevars(exp(x+y)).as_independent(x)
+        (exp(y), exp(x))
+        >>> (x + x*y).as_independent(y)
+        (x, x*y)
+        >>> separatevars(x + x*y).as_independent(y)
+        (x, y + 1)
+        >>> (x*(1 + y)).as_independent(y)
+        (x, y + 1)
+        >>> (x*(1 + y)).expand(mul=True).as_independent(y)
+        (x, x*y)
+        >>> a, b=symbols('a b', positive=True)
+        >>> (log(a*b).expand(log=True)).as_independent(b)
+        (log(a), log(b))
+
+        See Also
+        ========
+        .separatevars(), .expand(log=True), sympy.core.add.Add.as_two_terms(),
+        sympy.core.mul.Mul.as_two_terms(), .as_coeff_add(), .as_coeff_mul()
+        """
+        from .symbol import Symbol
+        from .add import _unevaluated_Add
+        from .mul import _unevaluated_Mul
+        from sympy.utilities.iterables import sift
+
+        if self.is_zero:
+            return S.Zero, S.Zero
+
+        func = self.func
+        if hint.get('as_Add', isinstance(self, Add) ):
+            want = Add
+        else:
+            want = Mul
+
+        # sift out deps into symbolic and other and ignore
+        # all symbols but those that are in the free symbols
+        sym = set()
+        other = []
+        for d in deps:
+            if isinstance(d, Symbol):  # Symbol.is_Symbol is True
+                sym.add(d)
+            else:
+                other.append(d)
+
+        def has(e):
+            """return the standard has() if there are no literal symbols, else
+            check to see that symbol-deps are in the free symbols."""
+            has_other = e.has(*other)
+            if not sym:
+                return has_other
+            return has_other or e.has(*(e.free_symbols & sym))
+
+        if (want is not func or
+                func is not Add and func is not Mul):
+            if has(self):
+                return (want.identity, self)
+            else:
+                return (self, want.identity)
+        else:
+            if func is Add:
+                args = list(self.args)
+            else:
+                args, nc = self.args_cnc()
+
+        d = sift(args, lambda x: has(x))
+        depend = d[True]
+        indep = d[False]
+        if func is Add:  # all terms were treated as commutative
+            return (Add(*indep), _unevaluated_Add(*depend))
+        else:  # handle noncommutative by stopping at first dependent term
+            for i, n in enumerate(nc):
+                if has(n):
+                    depend.extend(nc[i:])
+                    break
+                indep.append(n)
+            return Mul(*indep), (
+                Mul(*depend, evaluate=False) if nc else
+                _unevaluated_Mul(*depend))
+
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=107 funcname='__new__' classname='Poly'
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,081 - Orcar.tracer_reranker - INFO]     def __new__(cls, rep, *gens, **args):
+        """Create a new polynomial instance out of something useful. """
+        opt = options.build_options(gens, args)
+
+        if 'order' in opt:
+            raise NotImplementedError("'order' keyword is not implemented yet")
+
+        if iterable(rep, exclude=str):
+            if isinstance(rep, dict):
+                return cls._from_dict(rep, opt)
+            else:
+                return cls._from_list(list(rep), opt)
+        else:
+            rep = sympify(rep)
+
+            if rep.is_Poly:
+                return cls._from_poly(rep, opt)
+            else:
+                return cls._from_expr(rep, opt)
+
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=978 funcname='as_expr' classname='Poly'
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO]     def as_expr(f, *gens):
+        """
+        Convert a Poly instance to an Expr instance.
+
+        Examples
+        ========
+
+        >>> from sympy import Poly
+        >>> from sympy.abc import x, y
+
+        >>> f = Poly(x**2 + 2*x*y**2 - y, x, y)
+
+        >>> f.as_expr()
+        x**2 + 2*x*y**2 - y
+        >>> f.as_expr({x: 5})
+        10*y**2 - y + 25
+        >>> f.as_expr(5, 6)
+        379
+
+        """
+        if not gens:
+            gens = f.gens
+        elif len(gens) == 1 and isinstance(gens[0], dict):
+            mapping = gens[0]
+            gens = list(f.gens)
+
+            for gen, value in mapping.items():
+                try:
+                    index = gens.index(gen)
+                except ValueError:
+                    raise GeneratorsError(
+                        "%s doesn't have %s as generator" % (f, gen))
+                else:
+                    gens[index] = value
+
+        return basic_from_dict(f.rep.to_sympy_dict(), *gens)
+
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=2522 funcname='is_polynomial' classname='Expr'
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO]     def is_polynomial(self, *syms):
+        r"""
+        Return True if self is a polynomial in syms and False otherwise.
+
+        This checks if self is an exact polynomial in syms.  This function
+        returns False for expressions that are "polynomials" with symbolic
+        exponents.  Thus, you should be able to apply polynomial algorithms to
+        expressions for which this returns True, and Poly(expr, \*syms) should
+        work if and only if expr.is_polynomial(\*syms) returns True. The
+        polynomial does not have to be in expanded form.  If no symbols are
+        given, all free symbols in the expression will be used.
+
+        This is not part of the assumptions system.  You cannot do
+        Symbol('z', polynomial=True).
+
+        Examples
+        ========
+
+        >>> from sympy import Symbol
+        >>> x = Symbol('x')
+        >>> ((x**2 + 1)**4).is_polynomial(x)
+        True
+        >>> ((x**2 + 1)**4).is_polynomial()
+        True
+        >>> (2**x + 1).is_polynomial(x)
+        False
+
+
+        >>> n = Symbol('n', nonnegative=True, integer=True)
+        >>> (x**n + 1).is_polynomial(x)
+        False
+
+        This function does not attempt any nontrivial simplifications that may
+        result in an expression that does not appear to be a polynomial to
+        become one.
+
+        >>> from sympy import sqrt, factor, cancel
+        >>> y = Symbol('y', positive=True)
+        >>> a = sqrt(y**2 + 2*y + 1)
+        >>> a.is_polynomial(y)
+        False
+        >>> factor(a)
+        y + 1
+        >>> factor(a).is_polynomial(y)
+        True
+
+        >>> b = (y**2 + 2*y + 1)/(y + 1)
+        >>> b.is_polynomial(y)
+        False
+        >>> cancel(b)
+        y + 1
+        >>> cancel(b).is_polynomial(y)
+        True
+
+        See also .is_rational_function()
+
+        """
+        if syms:
+            syms = set(map(sympify, syms))
+        else:
+            syms = self.free_symbols
+
+        if syms.intersection(self.free_symbols) == set([]):
+            # constant polynomial
+            return True
+        else:
+            return self._eval_is_polynomial(syms)
+
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=6244 funcname='factor_list' classname='PurePoly'
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] @public
+def factor_list(f, *gens, **args):
+    """
+    Compute a list of irreducible factors of ``f``.
+
+    Examples
+    ========
+
+    >>> from sympy import factor_list
+    >>> from sympy.abc import x, y
+
+    >>> factor_list(2*x**5 + 2*x**4*y + 4*x**3 + 4*x**2*y + 2*x + 2*y)
+    (2, [(x + y, 1), (x**2 + 1, 2)])
+
+    """
+    return _generic_factor_list(f, gens, args, method='factor')
+
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/simplify.py' lineno=332 funcname='signsimp' classname=''
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] def signsimp(expr, evaluate=None):
+    """Make all Add sub-expressions canonical wrt sign.
+
+    If an Add subexpression, ``a``, can have a sign extracted,
+    as determined by could_extract_minus_sign, it is replaced
+    with Mul(-1, a, evaluate=False). This allows signs to be
+    extracted from powers and products.
+
+    Examples
+    ========
+
+    >>> from sympy import signsimp, exp, symbols
+    >>> from sympy.abc import x, y
+    >>> i = symbols('i', odd=True)
+    >>> n = -1 + 1/x
+    >>> n/x/(-n)**2 - 1/n/x
+    (-1 + 1/x)/(x*(1 - 1/x)**2) - 1/(x*(-1 + 1/x))
+    >>> signsimp(_)
+    0
+    >>> x*n + x*-n
+    x*(-1 + 1/x) + x*(1 - 1/x)
+    >>> signsimp(_)
+    0
+
+    Since powers automatically handle leading signs
+
+    >>> (-2)**i
+    -2**i
+
+    signsimp can be used to put the base of a power with an integer
+    exponent into canonical form:
+
+    >>> n**i
+    (-1 + 1/x)**i
+
+    By default, signsimp doesn't leave behind any hollow simplification:
+    if making an Add canonical wrt sign didn't change the expression, the
+    original Add is restored. If this is not desired then the keyword
+    ``evaluate`` can be set to False:
+
+    >>> e = exp(y - x)
+    >>> signsimp(e) == e
+    True
+    >>> signsimp(e, evaluate=False)
+    exp(-(x - y))
+
+    """
+    if evaluate is None:
+        evaluate = global_evaluate[0]
+    expr = sympify(expr)
+    if not isinstance(expr, Expr) or expr.is_Atom:
+        return expr
+    e = sub_post(sub_pre(expr))
+    if not isinstance(e, Expr) or e.is_Atom:
+        return e
+    if e.is_Add:
+        return e.func(*[signsimp(a, evaluate) for a in e.args])
+    if evaluate:
+        e = e.xreplace({m: -(-m) for m in e.atoms(Mul) if -(-m) != m})
+    return e
+
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 11:34:00,082 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=3350 funcname='as_coeff_Mul' classname='Expr'
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO]     def as_coeff_Mul(self, rational=False):
+        """Efficiently extract the coefficient of a product. """
+        return S.One, self
+
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/iterables.py' lineno=625 funcname='numbered_symbols' classname=''
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] def numbered_symbols(prefix='x', cls=None, start=0, exclude=[], *args, **assumptions):
+    """
+    Generate an infinite stream of Symbols consisting of a prefix and
+    increasing subscripts provided that they do not occur in ``exclude``.
+
+    Parameters
+    ==========
+
+    prefix : str, optional
+        The prefix to use. By default, this function will generate symbols of
+        the form "x0", "x1", etc.
+
+    cls : class, optional
+        The class to use. By default, it uses ``Symbol``, but you can also use ``Wild`` or ``Dummy``.
+
+    start : int, optional
+        The start number.  By default, it is 0.
+
+    Returns
+    =======
+
+    sym : Symbol
+        The subscripted symbols.
+    """
+    exclude = set(exclude or [])
+    if cls is None:
+        # We can't just make the default cls=Symbol because it isn't
+        # imported yet.
+        from sympy import Symbol
+        cls = Symbol
+
+    while True:
+        name = '%s%s' % (prefix, start)
+        s = cls(name, *args, **assumptions)
+        if s not in exclude:
+            yield s
+        start += 1
+
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/iterables.py' lineno=2615 funcname='signed_permutations' classname=''
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] def signed_permutations(t):
+    """Return iterator in which the signs of non-zero elements
+    of t and the order of the elements are permuted.
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.iterables import signed_permutations
+    >>> list(signed_permutations((0, 1, 2)))
+    [(0, 1, 2), (0, -1, 2), (0, 1, -2), (0, -1, -2), (0, 2, 1),
+    (0, -2, 1), (0, 2, -1), (0, -2, -1), (1, 0, 2), (-1, 0, 2),
+    (1, 0, -2), (-1, 0, -2), (1, 2, 0), (-1, 2, 0), (1, -2, 0),
+    (-1, -2, 0), (2, 0, 1), (-2, 0, 1), (2, 0, -1), (-2, 0, -1),
+    (2, 1, 0), (-2, 1, 0), (2, -1, 0), (-2, -1, 0)]
+    """
+    return (type(t)(i) for j in permutations(t)
+        for i in permute_signs(j))
+
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=124 funcname='__eq__' classname='Expr'
+[2026-09-22 11:34:00,083 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO]     def __eq__(self, other):
+        try:
+            other = _sympify(other)
+            if not isinstance(other, Expr):
+                return False
+        except (SympifyError, SyntaxError):
+            return False
+        # check for pure number expr
+        if  not (self.is_Number and other.is_Number) and (
+                type(self) != type(other)):
+            return False
+        a, b = self._hashable_content(), other._hashable_content()
+        if a != b:
+            return False
+        # check number *in* an expression
+        for a, b in zip(a, b):
+            if not isinstance(a, Expr):
+                continue
+            if a.is_Number and type(a) != type(b):
+                return False
+        return True
+
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] ['diophantine', 'classify_diop', 'diop_solve', 'merge_solution', '_diop_general_sum_of_even_powers', '_is_int', 'power_representation', 'pow_rep_recursive', 'wrapper', 'free_symbols', 'default_sort_key', 'is_sequence', 'as_numer_denom', 'is_number', 'factor_terms', 'as_independent', '__new__', 'as_expr', 'is_polynomial', 'factor_list', 'signsimp', 'as_coeff_Mul', 'numbered_symbols', 'signed_permutations', '__eq__']
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] [('diophantine', 90), ('classify_diop', 25), ('diop_solve', 15), ('merge_solution', 5), ('_diop_general_sum_of_even_powers', 55), ('_is_int', 2), ('power_representation', 5), ('pow_rep_recursive', 5), ('wrapper', 2), ('free_symbols', 2), ('default_sort_key', 2), ('is_sequence', 2), ('as_numer_denom', 2), ('is_number', 1), ('factor_terms', 2), ('as_independent', 5), ('__new__', 2), ('as_expr', 2), ('is_polynomial', 2), ('factor_list', 2), ('signsimp', 2), ('as_coeff_Mul', 1), ('numbered_symbols', 2), ('signed_permutations', 10), ('__eq__', 2)]
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] [('diophantine', 90), ('_diop_general_sum_of_even_powers', 55), ('classify_diop', 25), ('diop_solve', 15), ('merge_solution', 5), ('_is_int', 2), ('signed_permutations', 10), ('power_representation', 5), ('as_independent', 5), ('wrapper', 2), ('free_symbols', 2), ('default_sort_key', 2), ('is_sequence', 2), ('as_numer_denom', 2), ('factor_terms', 2), ('__new__', 2), ('as_expr', 2), ('is_polynomial', 2), ('factor_list', 2), ('signsimp', 2), ('numbered_symbols', 2), ('__eq__', 2), ('is_number', 1), ('as_coeff_Mul', 1), ('pow_rep_recursive', 5)]
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 11:34:00,084 - Orcar.tracer_reranker - INFO] [('diophantine', 90), ('_diop_general_sum_of_even_powers', 55)]

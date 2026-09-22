@@ -1,0 +1,5 @@
+[2026-09-22 05:21:28,691 - Orcar.code_scorer - INFO] Total batch chat time: 4.52s
+[2026-09-22 05:21:28,691 - Orcar.code_scorer - INFO] in_token_cnt=730 out_token_cnt=1
+[2026-09-22 05:21:43,855 - Orcar.code_scorer - INFO] Total batch chat time: 4.62s
+[2026-09-22 05:21:43,855 - Orcar.code_scorer - INFO] in_token_cnt=628 out_token_cnt=1
+[2026-09-22 05:21:43,855 - Orcar.code_scorer - INFO] in_token_cnt=352 out_token_cnt=1

@@ -1,0 +1,176 @@
+[2026-09-22 08:00:32,402 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+)
+[2026-09-22 08:00:48,638 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 1
+)
+[2026-09-22 08:01:03,338 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+)
+[2026-09-22 08:01:46,421 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 1
+)
+[2026-09-22 08:02:09,251 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}: 1
+)
+[2026-09-22 08:02:39,046 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}: 2
+)
+[2026-09-22 08:03:02,588 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_module_files'}: 1
+)
+[2026-09-22 08:03:19,993 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_module_files'}: 2
+)
+[2026-09-22 08:03:35,311 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_module_files'}: 2
+)
+[2026-09-22 08:03:59,685 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_module_files'}: 2
+)

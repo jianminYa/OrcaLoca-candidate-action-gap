@@ -1,0 +1,1983 @@
+[2026-09-22 14:03:43,373 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 14:03:43,373 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=181 funcname='lambdify' classname=''
+[2026-09-22 14:03:43,373 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] @doctest_depends_on(modules=('numpy', 'scipy', 'tensorflow',), python_version=(3,))
+def lambdify(args: tUnion[Iterable, 'sympy.core.expr.Expr'], expr: 'sympy.core.expr.Expr', modules=None, printer=None, use_imps=True,
+             dummify=False, cse=False):
+    """Convert a SymPy expression into a function that allows for fast
+    numeric evaluation.
+
+    .. warning::
+       This function uses ``exec``, and thus should not be used on
+       unsanitized input.
+
+    .. deprecated:: 1.7
+       Passing a set for the *args* parameter is deprecated as sets are
+       unordered. Use an ordered iterable such as a list or tuple.
+
+    Explanation
+    ===========
+
+    For example, to convert the SymPy expression ``sin(x) + cos(x)`` to an
+    equivalent NumPy function that numerically evaluates it:
+
+    >>> from sympy import sin, cos, symbols, lambdify
+    >>> import numpy as np
+    >>> x = symbols('x')
+    >>> expr = sin(x) + cos(x)
+    >>> expr
+    sin(x) + cos(x)
+    >>> f = lambdify(x, expr, 'numpy')
+    >>> a = np.array([1, 2])
+    >>> f(a)
+    [1.38177329 0.49315059]
+
+    The primary purpose of this function is to provide a bridge from SymPy
+    expressions to numerical libraries such as NumPy, SciPy, NumExpr, mpmath,
+    and tensorflow. In general, SymPy functions do not work with objects from
+    other libraries, such as NumPy arrays, and functions from numeric
+    libraries like NumPy or mpmath do not work on SymPy expressions.
+    ``lambdify`` bridges the two by converting a SymPy expression to an
+    equivalent numeric function.
+
+    The basic workflow with ``lambdify`` is to first create a SymPy expression
+    representing whatever mathematical function you wish to evaluate. This
+    should be done using only SymPy functions and expressions. Then, use
+    ``lambdify`` to convert this to an equivalent function for numerical
+    evaluation. For instance, above we created ``expr`` using the SymPy symbol
+    ``x`` and SymPy functions ``sin`` and ``cos``, then converted it to an
+    equivalent NumPy function ``f``, and called it on a NumPy array ``a``.
+
+    Parameters
+    ==========
+
+    args : List[Symbol]
+        A variable or a list of variables whose nesting represents the
+        nesting of the arguments that will be passed to the function.
+
+        Variables can be symbols, undefined functions, or matrix symbols.
+
+        >>> from sympy import Eq
+        >>> from sympy.abc import x, y, z
+
+        The list of variables should match the structure of how the
+        arguments will be passed to the function. Simply enclose the
+        parameters as they will be passed in a list.
+
+        To call a function like ``f(x)`` then ``[x]``
+        should be the first argument to ``lambdify``; for this
+        case a single ``x`` can also be used:
+
+        >>> f = lambdify(x, x + 1)
+        >>> f(1)
+        2
+        >>> f = lambdify([x], x + 1)
+        >>> f(1)
+        2
+
+        To call a function like ``f(x, y)`` then ``[x, y]`` will
+        be the first argument of the ``lambdify``:
+
+        >>> f = lambdify([x, y], x + y)
+        >>> f(1, 1)
+        2
+
+        To call a function with a single 3-element tuple like
+        ``f((x, y, z))`` then ``[(x, y, z)]`` will be the first
+        argument of the ``lambdify``:
+
+        >>> f = lambdify([(x, y, z)], Eq(z**2, x**2 + y**2))
+        >>> f((3, 4, 5))
+        True
+
+        If two args will be passed and the first is a scalar but
+        the second is a tuple with two arguments then the items
+        in the list should match that structure:
+
+        >>> f = lambdify([x, (y, z)], x + y + z)
+        >>> f(1, (2, 3))
+        6
+
+    expr : Expr
+        An expression, list of expressions, or matrix to be evaluated.
+
+        Lists may be nested.
+        If the expression is a list, the output will also be a list.
+
+        >>> f = lambdify(x, [x, [x + 1, x + 2]])
+        >>> f(1)
+        [1, [2, 3]]
+
+        If it is a matrix, an array will be returned (for the NumPy module).
+
+        >>> from sympy import Matrix
+        >>> f = lambdify(x, Matrix([x, x + 1]))
+        >>> f(1)
+        [[1]
+        [2]]
+
+        Note that the argument order here (variables then expression) is used
+        to emulate the Python ``lambda`` keyword. ``lambdify(x, expr)`` works
+        (roughly) like ``lambda x: expr``
+        (see :ref:`lambdify-how-it-works` below).
+
+    modules : str, optional
+        Specifies the numeric library to use.
+
+        If not specified, *modules* defaults to:
+
+        - ``["scipy", "numpy"]`` if SciPy is installed
+        - ``["numpy"]`` if only NumPy is installed
+        - ``["math", "mpmath", "sympy"]`` if neither is installed.
+
+        That is, SymPy functions are replaced as far as possible by
+        either ``scipy`` or ``numpy`` functions if available, and Python's
+        standard library ``math``, or ``mpmath`` functions otherwise.
+
+        *modules* can be one of the following types:
+
+        - The strings ``"math"``, ``"mpmath"``, ``"numpy"``, ``"numexpr"``,
+          ``"scipy"``, ``"sympy"``, or ``"tensorflow"``. This uses the
+          corresponding printer and namespace mapping for that module.
+        - A module (e.g., ``math``). This uses the global namespace of the
+          module. If the module is one of the above known modules, it will
+          also use the corresponding printer and namespace mapping
+          (i.e., ``modules=numpy`` is equivalent to ``modules="numpy"``).
+        - A dictionary that maps names of SymPy functions to arbitrary
+          functions
+          (e.g., ``{'sin': custom_sin}``).
+        - A list that contains a mix of the arguments above, with higher
+          priority given to entries appearing first
+          (e.g., to use the NumPy module but override the ``sin`` function
+          with a custom version, you can use
+          ``[{'sin': custom_sin}, 'numpy']``).
+
+    dummify : bool, optional
+        Whether or not the variables in the provided expression that are not
+        valid Python identifiers are substituted with dummy symbols.
+
+        This allows for undefined functions like ``Function('f')(t)`` to be
+        supplied as arguments. By default, the variables are only dummified
+        if they are not valid Python identifiers.
+
+        Set ``dummify=True`` to replace all arguments with dummy symbols
+        (if ``args`` is not a string) - for example, to ensure that the
+        arguments do not redefine any built-in names.
+
+    cse : bool, or callable, optional
+        Large expressions can be computed more efficiently when
+        common subexpressions are identified and precomputed before
+        being used multiple time. Finding the subexpressions will make
+        creation of the 'lambdify' function slower, however.
+
+        When ``True``, ``sympy.simplify.cse`` is used, otherwise (the default)
+        the user may pass a function matching the ``cse`` signature.
+
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.lambdify import implemented_function
+    >>> from sympy import sqrt, sin, Matrix
+    >>> from sympy import Function
+    >>> from sympy.abc import w, x, y, z
+
+    >>> f = lambdify(x, x**2)
+    >>> f(2)
+    4
+    >>> f = lambdify((x, y, z), [z, y, x])
+    >>> f(1,2,3)
+    [3, 2, 1]
+    >>> f = lambdify(x, sqrt(x))
+    >>> f(4)
+    2.0
+    >>> f = lambdify((x, y), sin(x*y)**2)
+    >>> f(0, 5)
+    0.0
+    >>> row = lambdify((x, y), Matrix((x, x + y)).T, modules='sympy')
+    >>> row(1, 2)
+    Matrix([[1, 3]])
+
+    ``lambdify`` can be used to translate SymPy expressions into mpmath
+    functions. This may be preferable to using ``evalf`` (which uses mpmath on
+    the backend) in some cases.
+
+    >>> f = lambdify(x, sin(x), 'mpmath')
+    >>> f(1)
+    0.8414709848078965
+
+    Tuple arguments are handled and the lambdified function should
+    be called with the same type of arguments as were used to create
+    the function:
+
+    >>> f = lambdify((x, (y, z)), x + y)
+    >>> f(1, (2, 4))
+    3
+
+    The ``flatten`` function can be used to always work with flattened
+    arguments:
+
+    >>> from sympy.utilities.iterables import flatten
+    >>> args = w, (x, (y, z))
+    >>> vals = 1, (2, (3, 4))
+    >>> f = lambdify(flatten(args), w + x + y + z)
+    >>> f(*flatten(vals))
+    10
+
+    Functions present in ``expr`` can also carry their own numerical
+    implementations, in a callable attached to the ``_imp_`` attribute. This
+    can be used with undefined functions using the ``implemented_function``
+    factory:
+
+    >>> f = implemented_function(Function('f'), lambda x: x+1)
+    >>> func = lambdify(x, f(x))
+    >>> func(4)
+    5
+
+    ``lambdify`` always prefers ``_imp_`` implementations to implementations
+    in other namespaces, unless the ``use_imps`` input parameter is False.
+
+    Usage with Tensorflow:
+
+    >>> import tensorflow as tf
+    >>> from sympy import Max, sin, lambdify
+    >>> from sympy.abc import x
+
+    >>> f = Max(x, sin(x))
+    >>> func = lambdify(x, f, 'tensorflow')
+
+    After tensorflow v2, eager execution is enabled by default.
+    If you want to get the compatible result across tensorflow v1 and v2
+    as same as this tutorial, run this line.
+
+    >>> tf.compat.v1.enable_eager_execution()
+
+    If you have eager execution enabled, you can get the result out
+    immediately as you can use numpy.
+
+    If you pass tensorflow objects, you may get an ``EagerTensor``
+    object instead of value.
+
+    >>> result = func(tf.constant(1.0))
+    >>> print(result)
+    tf.Tensor(1.0, shape=(), dtype=float32)
+    >>> print(result.__class__)
+    <class 'tensorflow.python.framework.ops.EagerTensor'>
+
+    You can use ``.numpy()`` to get the numpy value of the tensor.
+
+    >>> result.numpy()
+    1.0
+
+    >>> var = tf.Variable(2.0)
+    >>> result = func(var) # also works for tf.Variable and tf.Placeholder
+    >>> result.numpy()
+    2.0
+
+    And it works with any shape array.
+
+    >>> tensor = tf.constant([[1.0, 2.0], [3.0, 4.0]])
+    >>> result = func(tensor)
+    >>> result.numpy()
+    [[1. 2.]
+     [3. 4.]]
+
+    Notes
+    =====
+
+    - For functions involving large array calculations, numexpr can provide a
+      significant speedup over numpy. Please note that the available functions
+      for numexpr are more limited than numpy but can be expanded with
+      ``implemented_function`` and user defined subclasses of Function. If
+      specified, numexpr may be the only option in modules. The official list
+      of numexpr functions can be found at:
+      https://numexpr.readthedocs.io/en/latest/user_guide.html#supported-functions
+
+    - In previous versions of SymPy, ``lambdify`` replaced ``Matrix`` with
+      ``numpy.matrix`` by default. As of SymPy 1.0 ``numpy.array`` is the
+      default. To get the old default behavior you must pass in
+      ``[{'ImmutableDenseMatrix':  numpy.matrix}, 'numpy']`` to the
+      ``modules`` kwarg.
+
+      >>> from sympy import lambdify, Matrix
+      >>> from sympy.abc import x, y
+      >>> import numpy
+      >>> array2mat = [{'ImmutableDenseMatrix': numpy.matrix}, 'numpy']
+      >>> f = lambdify((x, y), Matrix([x, y]), modules=array2mat)
+      >>> f(1, 2)
+      [[1]
+       [2]]
+
+    - In the above examples, the generated functions can accept scalar
+      values or numpy arrays as arguments.  However, in some cases
+      the generated function relies on the input being a numpy array:
+
+      >>> from sympy import Piecewise
+      >>> from sympy.testing.pytest import ignore_warnings
+      >>> f = lambdify(x, Piecewise((x, x <= 1), (1/x, x > 1)), "numpy")
+
+      >>> with ignore_warnings(RuntimeWarning):
+      ...     f(numpy.array([-1, 0, 1, 2]))
+      [-1.   0.   1.   0.5]
+
+      >>> f(0)
+      Traceback (most recent call last):
+          ...
+      ZeroDivisionError: division by zero
+
+      In such cases, the input should be wrapped in a numpy array:
+
+      >>> with ignore_warnings(RuntimeWarning):
+      ...     float(f(numpy.array([0])))
+      0.0
+
+      Or if numpy functionality is not required another module can be used:
+
+      >>> f = lambdify(x, Piecewise((x, x <= 1), (1/x, x > 1)), "math")
+      >>> f(0)
+      0
+
+    .. _lambdify-how-it-works:
+
+    How it works
+    ============
+
+    When using this function, it helps a great deal to have an idea of what it
+    is doing. At its core, lambdify is nothing more than a namespace
+    translation, on top of a special printer that makes some corner cases work
+    properly.
+
+    To understand lambdify, first we must properly understand how Python
+    namespaces work. Say we had two files. One called ``sin_cos_sympy.py``,
+    with
+
+    .. code:: python
+
+        # sin_cos_sympy.py
+
+        from sympy.functions.elementary.trigonometric import (cos, sin)
+
+        def sin_cos(x):
+            return sin(x) + cos(x)
+
+
+    and one called ``sin_cos_numpy.py`` with
+
+    .. code:: python
+
+        # sin_cos_numpy.py
+
+        from numpy import sin, cos
+
+        def sin_cos(x):
+            return sin(x) + cos(x)
+
+    The two files define an identical function ``sin_cos``. However, in the
+    first file, ``sin`` and ``cos`` are defined as the SymPy ``sin`` and
+    ``cos``. In the second, they are defined as the NumPy versions.
+
+    If we were to import the first file and use the ``sin_cos`` function, we
+    would get something like
+
+    >>> from sin_cos_sympy import sin_cos # doctest: +SKIP
+    >>> sin_cos(1) # doctest: +SKIP
+    cos(1) + sin(1)
+
+    On the other hand, if we imported ``sin_cos`` from the second file, we
+    would get
+
+    >>> from sin_cos_numpy import sin_cos # doctest: +SKIP
+    >>> sin_cos(1) # doctest: +SKIP
+    1.38177329068
+
+    In the first case we got a symbolic output, because it used the symbolic
+    ``sin`` and ``cos`` functions from SymPy. In the second, we got a numeric
+    result, because ``sin_cos`` used the numeric ``sin`` and ``cos`` functions
+    from NumPy. But notice that the versions of ``sin`` and ``cos`` that were
+    used was not inherent to the ``sin_cos`` function definition. Both
+    ``sin_cos`` definitions are exactly the same. Rather, it was based on the
+    names defined at the module where the ``sin_cos`` function was defined.
+
+    The key point here is that when function in Python references a name that
+    is not defined in the function, that name is looked up in the "global"
+    namespace of the module where that function is defined.
+
+    Now, in Python, we can emulate this behavior without actually writing a
+    file to disk using the ``exec`` function. ``exec`` takes a string
+    containing a block of Python code, and a dictionary that should contain
+    the global variables of the module. It then executes the code "in" that
+    dictionary, as if it were the module globals. The following is equivalent
+    to the ``sin_cos`` defined in ``sin_cos_sympy.py``:
+
+    >>> import sympy
+    >>> module_dictionary = {'sin': sympy.sin, 'cos': sympy.cos}
+    >>> exec('''
+    ... def sin_cos(x):
+    ...     return sin(x) + cos(x)
+    ... ''', module_dictionary)
+    >>> sin_cos = module_dictionary['sin_cos']
+    >>> sin_cos(1)
+    cos(1) + sin(1)
+
+    and similarly with ``sin_cos_numpy``:
+
+    >>> import numpy
+    >>> module_dictionary = {'sin': numpy.sin, 'cos': numpy.cos}
+    >>> exec('''
+    ... def sin_cos(x):
+    ...     return sin(x) + cos(x)
+    ... ''', module_dictionary)
+    >>> sin_cos = module_dictionary['sin_cos']
+    >>> sin_cos(1)
+    1.38177329068
+
+    So now we can get an idea of how ``lambdify`` works. The name "lambdify"
+    comes from the fact that we can think of something like ``lambdify(x,
+    sin(x) + cos(x), 'numpy')`` as ``lambda x: sin(x) + cos(x)``, where
+    ``sin`` and ``cos`` come from the ``numpy`` namespace. This is also why
+    the symbols argument is first in ``lambdify``, as opposed to most SymPy
+    functions where it comes after the expression: to better mimic the
+    ``lambda`` keyword.
+
+    ``lambdify`` takes the input expression (like ``sin(x) + cos(x)``) and
+
+    1. Converts it to a string
+    2. Creates a module globals dictionary based on the modules that are
+       passed in (by default, it uses the NumPy module)
+    3. Creates the string ``"def func({vars}): return {expr}"``, where ``{vars}`` is the
+       list of variables separated by commas, and ``{expr}`` is the string
+       created in step 1., then ``exec``s that string with the module globals
+       namespace and returns ``func``.
+
+    In fact, functions returned by ``lambdify`` support inspection. So you can
+    see exactly how they are defined by using ``inspect.getsource``, or ``??`` if you
+    are using IPython or the Jupyter notebook.
+
+    >>> f = lambdify(x, sin(x) + cos(x))
+    >>> import inspect
+    >>> print(inspect.getsource(f))
+    def _lambdifygenerated(x):
+        return sin(x) + cos(x)
+
+    This shows us the source code of the function, but not the namespace it
+    was defined in. We can inspect that by looking at the ``__globals__``
+    attribute of ``f``:
+
+    >>> f.__globals__['sin']
+    <ufunc 'sin'>
+    >>> f.__globals__['cos']
+    <ufunc 'cos'>
+    >>> f.__globals__['sin'] is numpy.sin
+    True
+
+    This shows us that ``sin`` and ``cos`` in the namespace of ``f`` will be
+    ``numpy.sin`` and ``numpy.cos``.
+
+    Note that there are some convenience layers in each of these steps, but at
+    the core, this is how ``lambdify`` works. Step 1 is done using the
+    ``LambdaPrinter`` printers defined in the printing module (see
+    :mod:`sympy.printing.lambdarepr`). This allows different SymPy expressions
+    to define how they should be converted to a string for different modules.
+    You can change which printer ``lambdify`` uses by passing a custom printer
+    in to the ``printer`` argument.
+
+    Step 2 is augmented by certain translations. There are default
+    translations for each module, but you can provide your own by passing a
+    list to the ``modules`` argument. For instance,
+
+    >>> def mysin(x):
+    ...     print('taking the sin of', x)
+    ...     return numpy.sin(x)
+    ...
+    >>> f = lambdify(x, sin(x), [{'sin': mysin}, 'numpy'])
+    >>> f(1)
+    taking the sin of 1
+    0.8414709848078965
+
+    The globals dictionary is generated from the list by merging the
+    dictionary ``{'sin': mysin}`` and the module dictionary for NumPy. The
+    merging is done so that earlier items take precedence, which is why
+    ``mysin`` is used above instead of ``numpy.sin``.
+
+    If you want to modify the way ``lambdify`` works for a given function, it
+    is usually easiest to do so by modifying the globals dictionary as such.
+    In more complicated cases, it may be necessary to create and pass in a
+    custom printer.
+
+    Finally, step 3 is augmented with certain convenience operations, such as
+    the addition of a docstring.
+
+    Understanding how ``lambdify`` works can make it easier to avoid certain
+    gotchas when using it. For instance, a common mistake is to create a
+    lambdified function for one module (say, NumPy), and pass it objects from
+    another (say, a SymPy expression).
+
+    For instance, say we create
+
+    >>> from sympy.abc import x
+    >>> f = lambdify(x, x + 1, 'numpy')
+
+    Now if we pass in a NumPy array, we get that array plus 1
+
+    >>> import numpy
+    >>> a = numpy.array([1, 2])
+    >>> f(a)
+    [2 3]
+
+    But what happens if you make the mistake of passing in a SymPy expression
+    instead of a NumPy array:
+
+    >>> f(x + 1)
+    x + 2
+
+    This worked, but it was only by accident. Now take a different lambdified
+    function:
+
+    >>> from sympy import sin
+    >>> g = lambdify(x, x + sin(x), 'numpy')
+
+    This works as expected on NumPy arrays:
+
+    >>> g(a)
+    [1.84147098 2.90929743]
+
+    But if we try to pass in a SymPy expression, it fails
+
+    >>> try:
+    ...     g(x + 1)
+    ... # NumPy release after 1.17 raises TypeError instead of
+    ... # AttributeError
+    ... except (AttributeError, TypeError):
+    ...     raise AttributeError() # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+    ...
+    AttributeError:
+
+    Now, let's look at what happened. The reason this fails is that ``g``
+    calls ``numpy.sin`` on the input expression, and ``numpy.sin`` does not
+    know how to operate on a SymPy object. **As a general rule, NumPy
+    functions do not know how to operate on SymPy expressions, and SymPy
+    functions do not know how to operate on NumPy arrays. This is why lambdify
+    exists: to provide a bridge between SymPy and NumPy.**
+
+    However, why is it that ``f`` did work? That's because ``f`` does not call
+    any functions, it only adds 1. So the resulting function that is created,
+    ``def _lambdifygenerated(x): return x + 1`` does not depend on the globals
+    namespace it is defined in. Thus it works, but only by accident. A future
+    version of ``lambdify`` may remove this behavior.
+
+    Be aware that certain implementation details described here may change in
+    future versions of SymPy. The API of passing in custom modules and
+    printers will not change, but the details of how a lambda function is
+    created may change. However, the basic idea will remain the same, and
+    understanding it will be helpful to understanding the behavior of
+    lambdify.
+
+    **In general: you should create lambdified functions for one module (say,
+    NumPy), and only pass it input types that are compatible with that module
+    (say, NumPy arrays).** Remember that by default, if the ``module``
+    argument is not provided, ``lambdify`` creates functions using the NumPy
+    and SciPy namespaces.
+    """
+    from sympy.core.symbol import Symbol
+    from sympy.core.expr import Expr
+
+    # If the user hasn't specified any modules, use what is available.
+    if modules is None:
+        try:
+            _import("scipy")
+        except ImportError:
+            try:
+                _import("numpy")
+            except ImportError:
+                # Use either numpy (if available) or python.math where possible.
+                # XXX: This leads to different behaviour on different systems and
+                #      might be the reason for irreproducible errors.
+                modules = ["math", "mpmath", "sympy"]
+            else:
+                modules = ["numpy"]
+        else:
+            modules = ["numpy", "scipy"]
+
+    # Get the needed namespaces.
+    namespaces = []
+    # First find any function implementations
+    if use_imps:
+        namespaces.append(_imp_namespace(expr))
+    # Check for dict before iterating
+    if isinstance(modules, (dict, str)) or not hasattr(modules, '__iter__'):
+        namespaces.append(modules)
+    else:
+        # consistency check
+        if _module_present('numexpr', modules) and len(modules) > 1:
+            raise TypeError("numexpr must be the only item in 'modules'")
+        namespaces += list(modules)
+    # fill namespace with first having highest priority
+    namespace = {} # type: tDict[str, Any]
+    for m in namespaces[::-1]:
+        buf = _get_namespace(m)
+        namespace.update(buf)
+
+    if hasattr(expr, "atoms"):
+        #Try if you can extract symbols from the expression.
+        #Move on if expr.atoms in not implemented.
+        syms = expr.atoms(Symbol)
+        for term in syms:
+            namespace.update({str(term): term})
+
+    if printer is None:
+        if _module_present('mpmath', namespaces):
+            from sympy.printing.pycode import MpmathPrinter as Printer # type: ignore
+        elif _module_present('scipy', namespaces):
+            from sympy.printing.numpy import SciPyPrinter as Printer # type: ignore
+        elif _module_present('numpy', namespaces):
+            from sympy.printing.numpy import NumPyPrinter as Printer # type: ignore
+        elif _module_present('cupy', namespaces):
+            from sympy.printing.numpy import CuPyPrinter as Printer # type: ignore
+        elif _module_present('numexpr', namespaces):
+            from sympy.printing.lambdarepr import NumExprPrinter as Printer # type: ignore
+        elif _module_present('tensorflow', namespaces):
+            from sympy.printing.tensorflow import TensorflowPrinter as Printer # type: ignore
+        elif _module_present('sympy', namespaces):
+            from sympy.printing.pycode import SymPyPrinter as Printer # type: ignore
+        else:
+            from sympy.printing.pycode import PythonCodePrinter as Printer # type: ignore
+        user_functions = {}
+        for m in namespaces[::-1]:
+            if isinstance(m, dict):
+                for k in m:
+                    user_functions[k] = k
+        printer = Printer({'fully_qualified_modules': False, 'inline': True,
+                           'allow_unknown_functions': True,
+                           'user_functions': user_functions})
+
+    if isinstance(args, set):
+        sympy_deprecation_warning(
+            """
+Passing the function arguments to lambdify() as a set is deprecated. This
+leads to unpredictable results since sets are unordered. Instead, use a list
+or tuple for the function arguments.
+            """,
+            deprecated_since_version="1.6.3",
+            active_deprecations_target="deprecated-lambdify-arguments-set",
+                )
+
+    # Get the names of the args, for creating a docstring
+    iterable_args: Iterable = (args,) if isinstance(args, Expr) else args
+    names = []
+
+    # Grab the callers frame, for getting the names by inspection (if needed)
+    callers_local_vars = inspect.currentframe().f_back.f_locals.items() # type: ignore
+    for n, var in enumerate(iterable_args):
+        if hasattr(var, 'name'):
+            names.append(var.name)
+        else:
+            # It's an iterable. Try to get name by inspection of calling frame.
+            name_list = [var_name for var_name, var_val in callers_local_vars
+                    if var_val is var]
+            if len(name_list) == 1:
+                names.append(name_list[0])
+            else:
+                # Cannot infer name with certainty. arg_# will have to do.
+                names.append('arg_' + str(n))
+
+    # Create the function definition code and execute it
+    funcname = '_lambdifygenerated'
+    if _module_present('tensorflow', namespaces):
+        funcprinter = _TensorflowEvaluatorPrinter(printer, dummify) # type: _EvaluatorPrinter
+    else:
+        funcprinter = _EvaluatorPrinter(printer, dummify)
+
+    if cse == True:
+        from sympy.simplify.cse_main import cse as _cse
+        cses, _expr = _cse(expr, list=False)
+    elif callable(cse):
+        cses, _expr = cse(expr)
+    else:
+        cses, _expr = (), expr
+    funcstr = funcprinter.doprint(funcname, iterable_args, _expr, cses=cses)
+
+    # Collect the module imports from the code printers.
+    imp_mod_lines = []
+    for mod, keys in (getattr(printer, 'module_imports', None) or {}).items():
+        for k in keys:
+            if k not in namespace:
+                ln = "from %s import %s" % (mod, k)
+                try:
+                    exec(ln, {}, namespace)
+                except ImportError:
+                    # Tensorflow 2.0 has issues with importing a specific
+                    # function from its submodule.
+                    # https://github.com/tensorflow/tensorflow/issues/33022
+                    ln = "%s = %s.%s" % (k, mod, k)
+                    exec(ln, {}, namespace)
+                imp_mod_lines.append(ln)
+
+    # Provide lambda expression with builtins, and compatible implementation of range
+    namespace.update({'builtins':builtins, 'range':range})
+
+    funclocals = {} # type: tDict[str, Any]
+    global _lambdify_generated_counter
+    filename = '<lambdifygenerated-%s>' % _lambdify_generated_counter
+    _lambdify_generated_counter += 1
+    c = compile(funcstr, filename, 'exec')
+    exec(c, namespace, funclocals)
+    # mtime has to be None or else linecache.checkcache will remove it
+    linecache.cache[filename] = (len(funcstr), None, funcstr.splitlines(True), filename) # type: ignore
+
+    func = funclocals[funcname]
+
+    # Apply the docstring
+    sig = "func({})".format(", ".join(str(i) for i in names))
+    sig = textwrap.fill(sig, subsequent_indent=' '*8)
+    expr_str = str(expr)
+    if len(expr_str) > 78:
+        expr_str = textwrap.wrap(expr_str, 75)[0] + '...'
+    func.__doc__ = (
+        "Created with lambdify. Signature:\n\n"
+        "{sig}\n\n"
+        "Expression:\n\n"
+        "{expr}\n\n"
+        "Source code:\n\n"
+        "{src}\n\n"
+        "Imported modules:\n\n"
+        "{imp_mods}"
+        ).format(sig=sig, expr=expr_str, src=funcstr, imp_mods='\n'.join(imp_mod_lines))
+    return func
+
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=119 funcname='_import' classname=''
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] def _import(module, reload=False):
+    """
+    Creates a global translation dictionary for module.
+
+    The argument module has to be one of the following strings: "math",
+    "mpmath", "numpy", "sympy", "tensorflow".
+    These dictionaries map names of Python functions to their equivalent in
+    other modules.
+    """
+    try:
+        namespace, namespace_default, translations, import_commands = MODULES[
+            module]
+    except KeyError:
+        raise NameError(
+            "'%s' module cannot be used for lambdification" % module)
+
+    # Clear namespace or exit
+    if namespace != namespace_default:
+        # The namespace was already generated, don't do it again if not forced.
+        if reload:
+            namespace.clear()
+            namespace.update(namespace_default)
+        else:
+            return
+
+    for import_command in import_commands:
+        if import_command.startswith('import_module'):
+            module = eval(import_command)
+
+            if module is not None:
+                namespace.update(module.__dict__)
+                continue
+        else:
+            try:
+                exec(import_command, {}, namespace)
+                continue
+            except ImportError:
+                pass
+
+        raise ImportError(
+            "Cannot import '%s' with '%s' command" % (module, import_command))
+
+    # Add translated names to namespace
+    for sympyname, translation in translations.items():
+        namespace[sympyname] = namespace[translation]
+
+    # For computing the modulus of a SymPy expression we use the builtin abs
+    # function, instead of the previously used fabs function for all
+    # translation modules. This is because the fabs function in the math
+    # module does not accept complex valued arguments. (see issue 9474). The
+    # only exception, where we don't use the builtin abs function is the
+    # mpmath translation module, because mpmath.fabs returns mpf objects in
+    # contrast to abs().
+    if 'Abs' not in namespace:
+        namespace['Abs'] = abs
+
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=1281 funcname='_imp_namespace' classname='_TensorflowEvaluatorPrinter'
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] def _imp_namespace(expr, namespace=None):
+    """ Return namespace dict with function implementations
+
+    We need to search for functions in anything that can be thrown at
+    us - that is - anything that could be passed as ``expr``.  Examples
+    include SymPy expressions, as well as tuples, lists and dicts that may
+    contain SymPy expressions.
+
+    Parameters
+    ----------
+    expr : object
+       Something passed to lambdify, that will generate valid code from
+       ``str(expr)``.
+    namespace : None or mapping
+       Namespace to fill.  None results in new empty dict
+
+    Returns
+    -------
+    namespace : dict
+       dict with keys of implemented function names within ``expr`` and
+       corresponding values being the numerical implementation of
+       function
+
+    Examples
+    ========
+
+    >>> from sympy.abc import x
+    >>> from sympy.utilities.lambdify import implemented_function, _imp_namespace
+    >>> from sympy import Function
+    >>> f = implemented_function(Function('f'), lambda x: x+1)
+    >>> g = implemented_function(Function('g'), lambda x: x*10)
+    >>> namespace = _imp_namespace(f(g(x)))
+    >>> sorted(namespace.keys())
+    ['f', 'g']
+    """
+    # Delayed import to avoid circular imports
+    from sympy.core.function import FunctionClass
+    if namespace is None:
+        namespace = {}
+    # tuples, lists, dicts are valid expressions
+    if is_sequence(expr):
+        for arg in expr:
+            _imp_namespace(arg, namespace)
+        return namespace
+    elif isinstance(expr, dict):
+        for key, val in expr.items():
+            # functions can be in dictionary keys
+            _imp_namespace(key, namespace)
+            _imp_namespace(val, namespace)
+        return namespace
+    # SymPy expressions may be Functions themselves
+    func = getattr(expr, 'func', None)
+    if isinstance(func, FunctionClass):
+        imp = getattr(func, '_imp_', None)
+        if imp is not None:
+            name = expr.func.__name__
+            if name in namespace and namespace[name] != imp:
+                raise ValueError('We found more than one '
+                                 'implementation with name '
+                                 '"%s"' % name)
+            namespace[name] = imp
+    # and / or they may take Functions as arguments
+    if hasattr(expr, 'args'):
+        for arg in expr.args:
+            _imp_namespace(arg, namespace)
+    return namespace
+
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=925 funcname='_module_present' classname=''
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] def _module_present(modname, modlist):
+    if modname in modlist:
+        return True
+    for m in modlist:
+        if hasattr(m, '__name__') and m.__name__ == modname:
+            return True
+    return False
+
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=933 funcname='_get_namespace' classname=''
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 14:03:43,374 - Orcar.tracer_reranker - INFO] def _get_namespace(m):
+    """
+    This is used by _lambdify to parse its arguments.
+    """
+    if isinstance(m, str):
+        _import(m)
+        return MODULES[m][0]
+    elif isinstance(m, dict):
+        return m
+    elif hasattr(m, "__dict__"):
+        return m.__dict__
+    else:
+        raise TypeError("Argument must be either a string, dict or module but it is: %s" % m)
+
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=1089 funcname='__init__' classname='_EvaluatorPrinter'
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO]     def __init__(self, printer=None, dummify=False):
+        self._dummify = dummify
+
+        #XXX: This has to be done here because of circular imports
+        from sympy.printing.lambdarepr import LambdaPrinter
+
+        if printer is None:
+            printer = LambdaPrinter()
+
+        if inspect.isfunction(printer):
+            self._exprrepr = printer
+        else:
+            if inspect.isclass(printer):
+                printer = printer()
+
+            self._exprrepr = printer.doprint
+
+            #if hasattr(printer, '_print_Symbol'):
+            #    symbolrepr = printer._print_Symbol
+
+            #if hasattr(printer, '_print_Dummy'):
+            #    dummyrepr = printer._print_Dummy
+
+        # Used to print the generated function arguments in a standard way
+        self._argrepr = LambdaPrinter().doprint
+
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=1115 funcname='doprint' classname='_EvaluatorPrinter'
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO]     def doprint(self, funcname, args, expr, *, cses=()):
+        """
+        Returns the function definition code as a string.
+        """
+        from sympy.core.symbol import Dummy
+
+        funcbody = []
+
+        if not iterable(args):
+            args = [args]
+
+        argstrs, expr = self._preprocess(args, expr)
+
+        # Generate argument unpacking and final argument list
+        funcargs = []
+        unpackings = []
+
+        for argstr in argstrs:
+            if iterable(argstr):
+                funcargs.append(self._argrepr(Dummy()))
+                unpackings.extend(self._print_unpacking(argstr, funcargs[-1]))
+            else:
+                funcargs.append(argstr)
+
+        funcsig = 'def {}({}):'.format(funcname, ', '.join(funcargs))
+
+        # Wrap input arguments before unpacking
+        funcbody.extend(self._print_funcargwrapping(funcargs))
+
+        funcbody.extend(unpackings)
+
+        for s, e in cses:
+            if e is None:
+                funcbody.append('del {}'.format(s))
+            else:
+                funcbody.append('{} = {}'.format(s, self._exprrepr(e)))
+
+        str_expr = _recursive_to_string(self._exprrepr, expr)
+
+
+        if '\n' in str_expr:
+            str_expr = '({})'.format(str_expr)
+        funcbody.append('return {}'.format(str_expr))
+
+        funclines = [funcsig]
+        funclines.extend(['    ' + line for line in funcbody])
+
+        return '\n'.join(funclines) + '\n'
+
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=1169 funcname='_preprocess' classname='_EvaluatorPrinter'
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO]     def _preprocess(self, args, expr):
+        """Preprocess args, expr to replace arguments that do not map
+        to valid Python identifiers.
+
+        Returns string form of args, and updated expr.
+        """
+        from sympy.core.basic import Basic
+        from sympy.core.sorting import ordered
+        from sympy.core.function import (Derivative, Function)
+        from sympy.core.symbol import Dummy, uniquely_named_symbol
+        from sympy.matrices import DeferredVector
+        from sympy.core.expr import Expr
+
+        # Args of type Dummy can cause name collisions with args
+        # of type Symbol.  Force dummify of everything in this
+        # situation.
+        dummify = self._dummify or any(
+            isinstance(arg, Dummy) for arg in flatten(args))
+
+        argstrs = [None]*len(args)
+        for arg, i in reversed(list(ordered(zip(args, range(len(args)))))):
+            if iterable(arg):
+                s, expr = self._preprocess(arg, expr)
+            elif isinstance(arg, DeferredVector):
+                s = str(arg)
+            elif isinstance(arg, Basic) and arg.is_symbol:
+                s = self._argrepr(arg)
+                if dummify or not self._is_safe_ident(s):
+                    dummy = Dummy()
+                    if isinstance(expr, Expr):
+                        dummy = uniquely_named_symbol(
+                            dummy.name, expr, modify=lambda s: '_' + s)
+                    s = self._argrepr(dummy)
+                    expr = self._subexpr(expr, {arg: dummy})
+            elif dummify or isinstance(arg, (Function, Derivative)):
+                dummy = Dummy()
+                s = self._argrepr(dummy)
+                expr = self._subexpr(expr, {arg: dummy})
+            else:
+                s = str(arg)
+            argstrs[i] = s
+        return argstrs, expr
+
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=1233 funcname='_print_funcargwrapping' classname='_EvaluatorPrinter'
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO]     def _print_funcargwrapping(self, args):
+        """Generate argument wrapping code.
+
+        args is the argument list of the generated function (strings).
+
+        Return value is a list of lines of code that will be inserted  at
+        the beginning of the function definition.
+        """
+        return []
+
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/lambdify.py' lineno=948 funcname='_recursive_to_string' classname=''
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 14:03:43,375 - Orcar.tracer_reranker - INFO] def _recursive_to_string(doprint, arg):
+    """Functions in lambdify accept both SymPy types and non-SymPy types such as python
+    lists and tuples. This method ensures that we only call the doprint method of the
+    printer with SymPy types (so that the printer safely can use SymPy-methods)."""
+    from sympy.matrices.common import MatrixOperations
+    from sympy.core.basic import Basic
+
+    if isinstance(arg, (Basic, MatrixOperations)):
+        return doprint(arg)
+    elif iterable(arg):
+        if isinstance(arg, list):
+            left, right = "[]"
+        elif isinstance(arg, tuple):
+            left, right = "()"
+        else:
+            raise NotImplementedError("unhandled type: %s, %s" % (type(arg), arg))
+        return left +', '.join(_recursive_to_string(doprint, e) for e in arg) + right
+    elif isinstance(arg, str):
+        return arg
+    else:
+        return doprint(arg)
+
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/pycode.py' lineno=99 funcname='__init__' classname='AbstractPythonCodePrinter'
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO]     def __init__(self, settings=None):
+        super().__init__(settings)
+
+        # Python standard handler
+        std = self._settings['standard']
+        if std is None:
+            import sys
+            std = 'python{}'.format(sys.version_info.major)
+        if std != 'python3':
+            raise ValueError('Only Python 3 is supported.')
+        self.standard = std
+
+        self.module_imports = defaultdict(set)
+
+        # Known functions and constants handler
+        self.known_functions = dict(self._kf, **(settings or {}).get(
+            'user_functions', {}))
+        self.known_constants = dict(self._kc, **(settings or {}).get(
+            'user_constants', {}))
+
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/iterables.py' lineno=2957 funcname='is_sequence' classname='NotIterable'
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] def is_sequence(i, include=None):
+    """
+    Return a boolean indicating whether ``i`` is a sequence in the SymPy
+    sense. If anything that fails the test below should be included as
+    being a sequence for your application, set 'include' to that object's
+    type; multiple types should be passed as a tuple of types.
+
+    Note: although generators can generate a sequence, they often need special
+    handling to make sure their elements are captured before the generator is
+    exhausted, so these are not included by default in the definition of a
+    sequence.
+
+    See also: iterable
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.iterables import is_sequence
+    >>> from types import GeneratorType
+    >>> is_sequence([])
+    True
+    >>> is_sequence(set())
+    False
+    >>> is_sequence('abc')
+    False
+    >>> is_sequence('abc', include=str)
+    True
+    >>> generator = (c for c in 'abc')
+    >>> is_sequence(generator)
+    False
+    >>> is_sequence(generator, include=(str, GeneratorType))
+    True
+
+    """
+    return (hasattr(i, '__getitem__') and
+            iterable(i) or
+            bool(include) and
+            isinstance(i, include))
+
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=96 funcname='__init__' classname='CodePrinter'
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO]     def __init__(self, settings=None):
+
+        super().__init__(settings=settings)
+        if not hasattr(self, 'reserved_words'):
+            self.reserved_words = set()
+
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/iterables.py' lineno=2899 funcname='iterable' classname='NotIterable'
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] def iterable(i, exclude=(str, dict, NotIterable)):
+    """
+    Return a boolean indicating whether ``i`` is SymPy iterable.
+    True also indicates that the iterator is finite, e.g. you can
+    call list(...) on the instance.
+
+    When SymPy is working with iterables, it is almost always assuming
+    that the iterable is not a string or a mapping, so those are excluded
+    by default. If you want a pure Python definition, make exclude=None. To
+    exclude multiple items, pass them as a tuple.
+
+    You can also set the _iterable attribute to True or False on your class,
+    which will override the checks here, including the exclude test.
+
+    As a rule of thumb, some SymPy functions use this to check if they should
+    recursively map over an object. If an object is technically iterable in
+    the Python sense but does not desire this behavior (e.g., because its
+    iteration is not finite, or because iteration might induce an unwanted
+    computation), it should disable it by setting the _iterable attribute to False.
+
+    See also: is_sequence
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.iterables import iterable
+    >>> from sympy import Tuple
+    >>> things = [[1], (1,), set([1]), Tuple(1), (j for j in [1, 2]), {1:2}, '1', 1]
+    >>> for i in things:
+    ...     print('%s %s' % (iterable(i), type(i)))
+    True <... 'list'>
+    True <... 'tuple'>
+    True <... 'set'>
+    True <class 'sympy.core.containers.Tuple'>
+    True <... 'generator'>
+    False <... 'dict'>
+    False <... 'str'>
+    False <... 'int'>
+
+    >>> iterable({}, exclude=None)
+    True
+    >>> iterable({}, exclude=str)
+    True
+    >>> iterable("no", exclude=str)
+    False
+
+    """
+    if hasattr(i, '_iterable'):
+        return i._iterable
+    try:
+        iter(i)
+    except TypeError:
+        return False
+    if exclude:
+        return not isinstance(i, exclude)
+    return True
+
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 14:03:43,376 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/printer.py' lineno=258 funcname='__init__' classname='Printer'
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO]     def __init__(self, settings=None):
+        self._str = str
+
+        self._settings = self._get_initial_settings()
+        self._context = dict()  # mutable during printing
+
+        if settings is not None:
+            self._settings.update(settings)
+
+            if len(self._settings) > len(self._default_settings):
+                for key in self._settings:
+                    if key not in self._default_settings:
+                        raise TypeError("Unknown setting '%s'." % key)
+
+        # _print_level is the number of times self._print() was recursively
+        # called. See StrPrinter._print_Float() for an example of usage
+        self._print_level = 0
+
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/utilities/iterables.py' lineno=58 funcname='flatten' classname=''
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] def flatten(iterable, levels=None, cls=None):  # noqa: F811
+    """
+    Recursively denest iterable containers.
+
+    >>> from sympy import flatten
+
+    >>> flatten([1, 2, 3])
+    [1, 2, 3]
+    >>> flatten([1, 2, [3]])
+    [1, 2, 3]
+    >>> flatten([1, [2, 3], [4, 5]])
+    [1, 2, 3, 4, 5]
+    >>> flatten([1.0, 2, (1, None)])
+    [1.0, 2, 1, None]
+
+    If you want to denest only a specified number of levels of
+    nested containers, then set ``levels`` flag to the desired
+    number of levels::
+
+    >>> ls = [[(-2, -1), (1, 2)], [(0, 0)]]
+
+    >>> flatten(ls, levels=1)
+    [(-2, -1), (1, 2), (0, 0)]
+
+    If cls argument is specified, it will only flatten instances of that
+    class, for example:
+
+    >>> from sympy import Basic, S
+    >>> class MyOp(Basic):
+    ...     pass
+    ...
+    >>> flatten([MyOp(S(1), MyOp(S(2), S(3)))], cls=MyOp)
+    [1, 2, 3]
+
+    adapted from https://kogs-www.informatik.uni-hamburg.de/~meine/python_tricks
+    """
+    from sympy.tensor.array import NDimArray
+    if levels is not None:
+        if not levels:
+            return iterable
+        elif levels > 0:
+            levels -= 1
+        else:
+            raise ValueError(
+                "expected non-negative number of levels, got %s" % levels)
+
+    if cls is None:
+        reducible = lambda x: is_sequence(x, set)
+    else:
+        reducible = lambda x: isinstance(x, cls)
+
+    result = []
+
+    for el in iterable:
+        if reducible(el):
+            if hasattr(el, 'args') and not isinstance(el, NDimArray):
+                el = el.args
+            result.extend(flatten(el, levels=levels, cls=cls))
+        else:
+            result.append(el)
+
+    return result
+
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/sorting.py' lineno=203 funcname='ordered' classname=''
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] def ordered(seq, keys=None, default=True, warn=False):
+    """Return an iterator of the seq where keys are used to break ties in
+    a conservative fashion: if, after applying a key, there are no ties
+    then no other keys will be computed.
+
+    Two default keys will be applied if 1) keys are not provided or 2) the
+    given keys do not resolve all ties (but only if ``default`` is True). The
+    two keys are ``_nodes`` (which places smaller expressions before large) and
+    ``default_sort_key`` which (if the ``sort_key`` for an object is defined
+    properly) should resolve any ties.
+
+    If ``warn`` is True then an error will be raised if there were no
+    keys remaining to break ties. This can be used if it was expected that
+    there should be no ties between items that are not identical.
+
+    Examples
+    ========
+
+    >>> from sympy import ordered, count_ops
+    >>> from sympy.abc import x, y
+
+    The count_ops is not sufficient to break ties in this list and the first
+    two items appear in their original order (i.e. the sorting is stable):
+
+    >>> list(ordered([y + 2, x + 2, x**2 + y + 3],
+    ...    count_ops, default=False, warn=False))
+    ...
+    [y + 2, x + 2, x**2 + y + 3]
+
+    The default_sort_key allows the tie to be broken:
+
+    >>> list(ordered([y + 2, x + 2, x**2 + y + 3]))
+    ...
+    [x + 2, y + 2, x**2 + y + 3]
+
+    Here, sequences are sorted by length, then sum:
+
+    >>> seq, keys = [[[1, 2, 1], [0, 3, 1], [1, 1, 3], [2], [1]], [
+    ...    lambda x: len(x),
+    ...    lambda x: sum(x)]]
+    ...
+    >>> list(ordered(seq, keys, default=False, warn=False))
+    [[1], [2], [1, 2, 1], [0, 3, 1], [1, 1, 3]]
+
+    If ``warn`` is True, an error will be raised if there were not
+    enough keys to break ties:
+
+    >>> list(ordered(seq, keys, default=False, warn=True))
+    Traceback (most recent call last):
+    ...
+    ValueError: not enough keys to break ties
+
+
+    Notes
+    =====
+
+    The decorated sort is one of the fastest ways to sort a sequence for
+    which special item comparison is desired: the sequence is decorated,
+    sorted on the basis of the decoration (e.g. making all letters lower
+    case) and then undecorated. If one wants to break ties for items that
+    have the same decorated value, a second key can be used. But if the
+    second key is expensive to compute then it is inefficient to decorate
+    all items with both keys: only those items having identical first key
+    values need to be decorated. This function applies keys successively
+    only when needed to break ties. By yielding an iterator, use of the
+    tie-breaker is delayed as long as possible.
+
+    This function is best used in cases when use of the first key is
+    expected to be a good hashing function; if there are no unique hashes
+    from application of a key, then that key should not have been used. The
+    exception, however, is that even if there are many collisions, if the
+    first group is small and one does not need to process all items in the
+    list then time will not be wasted sorting what one was not interested
+    in. For example, if one were looking for the minimum in a list and
+    there were several criteria used to define the sort order, then this
+    function would be good at returning that quickly if the first group
+    of candidates is small relative to the number of items being processed.
+
+    """
+
+    d = defaultdict(list)
+    if keys:
+        if not isinstance(keys, (list, tuple)):
+            keys = [keys]
+        keys = list(keys)
+        f = keys.pop(0)
+        for a in seq:
+            d[f(a)].append(a)
+    else:
+        if not default:
+            raise ValueError('if default=False then keys must be provided')
+        d[None].extend(seq)
+
+    for k in sorted(d.keys()):
+        if len(d[k]) > 1:
+            if keys:
+                d[k] = ordered(d[k], keys, default, warn)
+            elif default:
+                d[k] = ordered(d[k], (_nodes, default_sort_key,),
+                               default=False, warn=warn)
+            elif warn:
+                u = list(uniq(d[k]))
+                if len(u) > 1:
+                    raise ValueError(
+                        'not enough keys to break ties: %s' % u)
+        yield from d[k]
+        d.pop(k)
+
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/printer.py' lineno=250 funcname='_get_initial_settings' classname='Printer'
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _get_initial_settings(cls):
+        settings = cls._default_settings.copy()
+        for key, val in cls._global_settings.items():
+            if key in cls._default_settings:
+                settings[key] = val
+        return settings
+
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=106 funcname='doprint' classname='CodePrinter'
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO]     def doprint(self, expr, assign_to=None):
+        """
+        Print the expression as code.
+
+        Parameters
+        ----------
+        expr : Expression
+            The expression to be printed.
+
+        assign_to : Symbol, string, MatrixSymbol, list of strings or Symbols (optional)
+            If provided, the printed code will set the expression to a variable or multiple variables
+            with the name or names given in ``assign_to``.
+        """
+        from sympy.matrices.expressions.matexpr import MatrixSymbol
+        from sympy.codegen.ast import CodeBlock, Assignment
+
+        def _handle_assign_to(expr, assign_to):
+            if assign_to is None:
+                return sympify(expr)
+            if isinstance(assign_to, (list, tuple)):
+                if len(expr) != len(assign_to):
+                    raise ValueError('Failed to assign an expression of length {} to {} variables'.format(len(expr), len(assign_to)))
+                return CodeBlock(*[_handle_assign_to(lhs, rhs) for lhs, rhs in zip(expr, assign_to)])
+            if isinstance(assign_to, str):
+                if expr.is_Matrix:
+                    assign_to = MatrixSymbol(assign_to, *expr.shape)
+                else:
+                    assign_to = Symbol(assign_to)
+            elif not isinstance(assign_to, Basic):
+                raise TypeError("{} cannot assign to object of type {}".format(
+                        type(self).__name__, type(assign_to)))
+            return Assignment(assign_to, expr)
+
+        expr = _convert_python_lists(expr)
+        expr = _handle_assign_to(expr, assign_to)
+
+        # Remove re(...) nodes due to UnevaluatedExpr.is_real always is None:
+        expr = self._handle_UnevaluatedExpr(expr)
+
+        # keep a set of expressions that are not strictly translatable to Code
+        # and number constants that must be declared and initialized
+        self._not_supported = set()
+        self._number_symbols = set()  # type: tSet[tTuple[Expr, Float]]
+
+        lines = self._print(expr).splitlines()
+
+        # format the output
+        if self._settings["human"]:
+            frontlines = []
+            if self._not_supported:
+                frontlines.append(self._get_comment(
+                        "Not supported in {}:".format(self.language)))
+                for expr in sorted(self._not_supported, key=str):
+                    frontlines.append(self._get_comment(type(expr).__name__))
+            for name, value in sorted(self._number_symbols, key=str):
+                frontlines.append(self._declare_number_const(name, value))
+            lines = frontlines + lines
+            lines = self._format_code(lines)
+            result = "\n".join(lines)
+        else:
+            lines = self._format_code(lines)
+            num_syms = {(k, self._print(v)) for k, v in self._number_symbols}
+            result = (num_syms, self._not_supported, "\n".join(lines))
+        self._not_supported = set()
+        self._number_symbols = set()
+        return result
+
+[2026-09-22 14:03:43,377 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=37 funcname='_convert_python_lists' classname='AssignmentError'
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] def _convert_python_lists(arg):
+    if isinstance(arg, list):
+        from sympy.codegen.abstract_nodes import List
+        return List(*(_convert_python_lists(e) for e in arg))
+    elif isinstance(arg, tuple):
+        return tuple(_convert_python_lists(e) for e in arg)
+    else:
+        return arg
+
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=122 funcname='_handle_assign_to' classname='CodePrinter'
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO]         def _handle_assign_to(expr, assign_to):
+            if assign_to is None:
+                return sympify(expr)
+            if isinstance(assign_to, (list, tuple)):
+                if len(expr) != len(assign_to):
+                    raise ValueError('Failed to assign an expression of length {} to {} variables'.format(len(expr), len(assign_to)))
+                return CodeBlock(*[_handle_assign_to(lhs, rhs) for lhs, rhs in zip(expr, assign_to)])
+            if isinstance(assign_to, str):
+                if expr.is_Matrix:
+                    assign_to = MatrixSymbol(assign_to, *expr.shape)
+                else:
+                    assign_to = Symbol(assign_to)
+            elif not isinstance(assign_to, Basic):
+                raise TypeError("{} cannot assign to object of type {}".format(
+                        type(self).__name__, type(assign_to)))
+            return Assignment(assign_to, expr)
+
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/codeprinter.py' lineno=102 funcname='_handle_UnevaluatedExpr' classname='CodePrinter'
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO]     def _handle_UnevaluatedExpr(self, expr):
+        return expr.replace(re, lambda arg: arg if isinstance(
+            arg, UnevaluatedExpr) and arg.args[0].is_real else re(arg))
+
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/printer.py' lineno=294 funcname='_print' classname='Printer'
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO]     def _print(self, expr, **kwargs):
+        """Internal dispatcher
+
+        Tries the following concepts to print an expression:
+            1. Let the object print itself if it knows how.
+            2. Take the best fitting method defined in the printer.
+            3. As fall-back use the emptyPrinter method for the printer.
+        """
+        self._print_level += 1
+        try:
+            # If the printer defines a name for a printing method
+            # (Printer.printmethod) and the object knows for itself how it
+            # should be printed, use that method.
+            if (self.printmethod and hasattr(expr, self.printmethod)
+                    and not isinstance(expr, BasicMeta)):
+                return getattr(expr, self.printmethod)(self, **kwargs)
+
+            # See if the class of expr is known, or if one of its super
+            # classes is known, and use that print function
+            # Exception: ignore the subclasses of Undefined, so that, e.g.,
+            # Function('gamma') does not get dispatched to _print_gamma
+            classes = type(expr).__mro__
+            if AppliedUndef in classes:
+                classes = classes[classes.index(AppliedUndef):]
+            if UndefinedFunction in classes:
+                classes = classes[classes.index(UndefinedFunction):]
+            # Another exception: if someone subclasses a known function, e.g.,
+            # gamma, and changes the name, then ignore _print_gamma
+            if Function in classes:
+                i = classes.index(Function)
+                classes = tuple(c for c in classes[:i] if \
+                    c.__name__ == classes[0].__name__ or \
+                    c.__name__.endswith("Base")) + classes[i:]
+            for cls in classes:
+                printmethodname = '_print_' + cls.__name__
+                printmethod = getattr(self, printmethodname, None)
+                if printmethod is not None:
+                    return printmethod(expr, **kwargs)
+            # Unknown object, fall back to the emptyPrinter.
+            return self.emptyPrinter(expr)
+        finally:
+            self._print_level -= 1
+
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/pycode.py' lineno=132 funcname='_format_code' classname='AbstractPythonCodePrinter'
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO]     def _format_code(self, lines):
+        return lines
+
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/sympify.py' lineno=102 funcname='sympify' classname='CantSympify'
+[2026-09-22 14:03:43,378 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] def sympify(a, locals=None, convert_xor=True, strict=False, rational=False,
+        evaluate=None):
+    """
+    Converts an arbitrary expression to a type that can be used inside SymPy.
+
+    Explanation
+    ===========
+
+    It will convert Python ints into instances of :class:`~.Integer`, floats
+    into instances of :class:`~.Float`, etc. It is also able to coerce
+    symbolic expressions which inherit from :class:`~.Basic`. This can be
+    useful in cooperation with SAGE.
+
+    .. warning::
+        Note that this function uses ``eval``, and thus shouldn't be used on
+        unsanitized input.
+
+    If the argument is already a type that SymPy understands, it will do
+    nothing but return that value. This can be used at the beginning of a
+    function to ensure you are working with the correct type.
+
+    Examples
+    ========
+
+    >>> from sympy import sympify
+
+    >>> sympify(2).is_integer
+    True
+    >>> sympify(2).is_real
+    True
+
+    >>> sympify(2.0).is_real
+    True
+    >>> sympify("2.0").is_real
+    True
+    >>> sympify("2e-45").is_real
+    True
+
+    If the expression could not be converted, a SympifyError is raised.
+
+    >>> sympify("x***2")
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: "could not parse 'x***2'"
+
+    Locals
+    ------
+
+    The sympification happens with access to everything that is loaded
+    by ``from sympy import *``; anything used in a string that is not
+    defined by that import will be converted to a symbol. In the following,
+    the ``bitcount`` function is treated as a symbol and the ``O`` is
+    interpreted as the :class:`~.Order` object (used with series) and it raises
+    an error when used improperly:
+
+    >>> s = 'bitcount(42)'
+    >>> sympify(s)
+    bitcount(42)
+    >>> sympify("O(x)")
+    O(x)
+    >>> sympify("O + 1")
+    Traceback (most recent call last):
+    ...
+    TypeError: unbound method...
+
+    In order to have ``bitcount`` be recognized it can be imported into a
+    namespace dictionary and passed as locals:
+
+    >>> ns = {}
+    >>> exec('from sympy.core.evalf import bitcount', ns)
+    >>> sympify(s, locals=ns)
+    6
+
+    In order to have the ``O`` interpreted as a Symbol, identify it as such
+    in the namespace dictionary. This can be done in a variety of ways; all
+    three of the following are possibilities:
+
+    >>> from sympy import Symbol
+    >>> ns["O"] = Symbol("O")  # method 1
+    >>> exec('from sympy.abc import O', ns)  # method 2
+    >>> ns.update(dict(O=Symbol("O")))  # method 3
+    >>> sympify("O + 1", locals=ns)
+    O + 1
+
+    If you want *all* single-letter and Greek-letter variables to be symbols
+    then you can use the clashing-symbols dictionaries that have been defined
+    there as private variables: ``_clash1`` (single-letter variables),
+    ``_clash2`` (the multi-letter Greek names) or ``_clash`` (both single and
+    multi-letter names that are defined in ``abc``).
+
+    >>> from sympy.abc import _clash1
+    >>> set(_clash1)
+    {'E', 'I', 'N', 'O', 'Q', 'S'}
+    >>> sympify('I & Q', _clash1)
+    I & Q
+
+    Strict
+    ------
+
+    If the option ``strict`` is set to ``True``, only the types for which an
+    explicit conversion has been defined are converted. In the other
+    cases, a SympifyError is raised.
+
+    >>> print(sympify(None))
+    None
+    >>> sympify(None, strict=True)
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: None
+
+    .. deprecated:: 1.6
+
+       ``sympify(obj)`` automatically falls back to ``str(obj)`` when all
+       other conversion methods fail, but this is deprecated. ``strict=True``
+       will disable this deprecated behavior. See
+       :ref:`deprecated-sympify-string-fallback`.
+
+    Evaluation
+    ----------
+
+    If the option ``evaluate`` is set to ``False``, then arithmetic and
+    operators will be converted into their SymPy equivalents and the
+    ``evaluate=False`` option will be added. Nested ``Add`` or ``Mul`` will
+    be denested first. This is done via an AST transformation that replaces
+    operators with their SymPy equivalents, so if an operand redefines any
+    of those operations, the redefined operators will not be used. If
+    argument a is not a string, the mathematical expression is evaluated
+    before being passed to sympify, so adding ``evaluate=False`` will still
+    return the evaluated result of expression.
+
+    >>> sympify('2**2 / 3 + 5')
+    19/3
+    >>> sympify('2**2 / 3 + 5', evaluate=False)
+    2**2/3 + 5
+    >>> sympify('4/2+7', evaluate=True)
+    9
+    >>> sympify('4/2+7', evaluate=False)
+    4/2 + 7
+    >>> sympify(4/2+7, evaluate=False)
+    9.00000000000000
+
+    Extending
+    ---------
+
+    To extend ``sympify`` to convert custom objects (not derived from ``Basic``),
+    just define a ``_sympy_`` method to your class. You can do that even to
+    classes that you do not own by subclassing or adding the method at runtime.
+
+    >>> from sympy import Matrix
+    >>> class MyList1(object):
+    ...     def __iter__(self):
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    ...     def _sympy_(self): return Matrix(self)
+    >>> sympify(MyList1())
+    Matrix([
+    [1],
+    [2]])
+
+    If you do not have control over the class definition you could also use the
+    ``converter`` global dictionary. The key is the class and the value is a
+    function that takes a single argument and returns the desired SymPy
+    object, e.g. ``converter[MyList] = lambda x: Matrix(x)``.
+
+    >>> class MyList2(object):   # XXX Do not do this if you control the class!
+    ...     def __iter__(self):  #     Use _sympy_!
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    >>> from sympy.core.sympify import converter
+    >>> converter[MyList2] = lambda x: Matrix(x)
+    >>> sympify(MyList2())
+    Matrix([
+    [1],
+    [2]])
+
+    Notes
+    =====
+
+    The keywords ``rational`` and ``convert_xor`` are only used
+    when the input is a string.
+
+    convert_xor
+    -----------
+
+    >>> sympify('x^y',convert_xor=True)
+    x**y
+    >>> sympify('x^y',convert_xor=False)
+    x ^ y
+
+    rational
+    --------
+
+    >>> sympify('0.1',rational=False)
+    0.1
+    >>> sympify('0.1',rational=True)
+    1/10
+
+    Sometimes autosimplification during sympification results in expressions
+    that are very different in structure than what was entered. Until such
+    autosimplification is no longer done, the ``kernS`` function might be of
+    some use. In the example below you can see how an expression reduces to
+    $-1$ by autosimplification, but does not do so when ``kernS`` is used.
+
+    >>> from sympy.core.sympify import kernS
+    >>> from sympy.abc import x
+    >>> -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+    -1
+    >>> s = '-2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1'
+    >>> sympify(s)
+    -1
+    >>> kernS(s)
+    -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+
+    Parameters
+    ==========
+
+    a :
+        - any object defined in SymPy
+        - standard numeric Python types: ``int``, ``long``, ``float``, ``Decimal``
+        - strings (like ``"0.09"``, ``"2e-19"`` or ``'sin(x)'``)
+        - booleans, including ``None`` (will leave ``None`` unchanged)
+        - dicts, lists, sets or tuples containing any of the above
+
+    convert_xor : bool, optional
+        If true, treats ``^`` as exponentiation.
+        If False, treats ``^`` as XOR itself.
+        Used only when input is a string.
+
+    locals : any object defined in SymPy, optional
+        In order to have strings be recognized it can be imported
+        into a namespace dictionary and passed as locals.
+
+    strict : bool, optional
+        If the option strict is set to ``True``, only the types for which
+        an explicit conversion has been defined are converted. In the
+        other cases, a SympifyError is raised.
+
+    rational : bool, optional
+        If ``True``, converts floats into :class:`~.Rational`.
+        If ``False``, it lets floats remain as it is.
+        Used only when input is a string.
+
+    evaluate : bool, optional
+        If False, then arithmetic and operators will be converted into
+        their SymPy equivalents. If True the expression will be evaluated
+        and the result will be returned.
+
+    """
+    # XXX: If a is a Basic subclass rather than instance (e.g. sin rather than
+    # sin(x)) then a.__sympy__ will be the property. Only on the instance will
+    # a.__sympy__ give the *value* of the property (True). Since sympify(sin)
+    # was used for a long time we allow it to pass. However if strict=True as
+    # is the case in internal calls to _sympify then we only allow
+    # is_sympy=True.
+    #
+    # https://github.com/sympy/sympy/issues/20124
+    is_sympy = getattr(a, '__sympy__', None)
+    if is_sympy is True:
+        return a
+    elif is_sympy is not None:
+        if not strict:
+            return a
+        else:
+            raise SympifyError(a)
+
+    if isinstance(a, CantSympify):
+        raise SympifyError(a)
+
+    cls = getattr(a, "__class__", None)
+
+    #Check if there exists a converter for any of the types in the mro
+    for superclass in getmro(cls):
+        #First check for user defined converters
+        conv = _external_converter.get(superclass)
+        if conv is None:
+            #if none exists, check for SymPy defined converters
+            conv = _sympy_converter.get(superclass)
+        if conv is not None:
+            return conv(a)
+
+    if cls is type(None):
+        if strict:
+            raise SympifyError(a)
+        else:
+            return a
+
+    if evaluate is None:
+        evaluate = global_parameters.evaluate
+
+    # Support for basic numpy datatypes
+    if _is_numpy_instance(a):
+        import numpy as np
+        if np.isscalar(a):
+            return _convert_numpy_types(a, locals=locals,
+                convert_xor=convert_xor, strict=strict, rational=rational,
+                evaluate=evaluate)
+
+    _sympy_ = getattr(a, "_sympy_", None)
+    if _sympy_ is not None:
+        try:
+            return a._sympy_()
+        # XXX: Catches AttributeError: 'SymPyConverter' object has no
+        # attribute 'tuple'
+        # This is probably a bug somewhere but for now we catch it here.
+        except AttributeError:
+            pass
+
+    if not strict:
+        # Put numpy array conversion _before_ float/int, see
+        # <https://github.com/sympy/sympy/issues/13924>.
+        flat = getattr(a, "flat", None)
+        if flat is not None:
+            shape = getattr(a, "shape", None)
+            if shape is not None:
+                from sympy.tensor.array import Array
+                return Array(a.flat, a.shape)  # works with e.g. NumPy arrays
+
+    if not isinstance(a, str):
+        if _is_numpy_instance(a):
+            import numpy as np
+            assert not isinstance(a, np.number)
+            if isinstance(a, np.ndarray):
+                # Scalar arrays (those with zero dimensions) have sympify
+                # called on the scalar element.
+                if a.ndim == 0:
+                    try:
+                        return sympify(a.item(),
+                                       locals=locals,
+                                       convert_xor=convert_xor,
+                                       strict=strict,
+                                       rational=rational,
+                                       evaluate=evaluate)
+                    except SympifyError:
+                        pass
+        else:
+            # float and int can coerce size-one numpy arrays to their lone
+            # element.  See issue https://github.com/numpy/numpy/issues/10404.
+            for coerce in (float, int):
+                try:
+                    return sympify(coerce(a))
+                except (TypeError, ValueError, AttributeError, SympifyError):
+                    continue
+
+    if strict:
+        raise SympifyError(a)
+
+    if iterable(a):
+        try:
+            return type(a)([sympify(x, locals=locals, convert_xor=convert_xor,
+                rational=rational, evaluate=evaluate) for x in a])
+        except TypeError:
+            # Not all iterables are rebuildable with their type.
+            pass
+
+    if not isinstance(a, str):
+        try:
+            a = str(a)
+        except Exception as exc:
+            raise SympifyError(a, exc)
+        sympy_deprecation_warning(
+            f"""
+The string fallback in sympify() is deprecated.
+
+To explicitly convert the string form of an object, use
+sympify(str(obj)). To add define sympify behavior on custom
+objects, use sympy.core.sympify.converter or define obj._sympy_
+(see the sympify() docstring).
+
+sympify() performed the string fallback resulting in the following string:
+
+{a!r}
+            """,
+            deprecated_since_version='1.6',
+            active_deprecations_target="deprecated-sympify-string-fallback",
+        )
+
+    from sympy.parsing.sympy_parser import (parse_expr, TokenError,
+                                            standard_transformations)
+    from sympy.parsing.sympy_parser import convert_xor as t_convert_xor
+    from sympy.parsing.sympy_parser import rationalize as t_rationalize
+
+    transformations = standard_transformations
+
+    if rational:
+        transformations += (t_rationalize,)
+    if convert_xor:
+        transformations += (t_convert_xor,)
+
+    try:
+        a = a.replace('\n', '')
+        expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)
+    except (TokenError, SyntaxError) as exc:
+        raise SympifyError('could not parse %r' % a, exc)
+
+    return expr
+
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] ['lambdify', '_import', '_imp_namespace', '_module_present', '_get_namespace', '__init__', 'doprint', '_preprocess', '_print_funcargwrapping', '_recursive_to_string', '__init__', 'is_sequence', '__init__', 'iterable', '__init__', 'flatten', 'ordered', '_get_initial_settings', 'doprint', '_convert_python_lists', '_handle_assign_to', '_handle_UnevaluatedExpr', '_print', '_format_code', 'sympify']
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] [('lambdify', 15), ('_import', 2), ('_imp_namespace', 2), ('_module_present', 0), ('_get_namespace', 1), ('__init__', 5), ('doprint', 30), ('_preprocess', 2), ('_print_funcargwrapping', 2), ('_recursive_to_string', 95), ('__init__', 2), ('is_sequence', 2), ('__init__', 2), ('iterable', 5), ('__init__', 2), ('flatten', 2), ('ordered', 1), ('_get_initial_settings', 1), ('doprint', 10), ('_convert_python_lists', 5), ('_handle_assign_to', 5), ('_handle_UnevaluatedExpr', 1), ('_print', 5), ('_format_code', 2), ('sympify', 2)]
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] [('_recursive_to_string', 95), ('lambdify', 15), ('doprint', 30), ('__init__', 5), ('_import', 2), ('_imp_namespace', 2), ('_get_namespace', 1), ('_module_present', 0), ('_preprocess', 2), ('_print_funcargwrapping', 2), ('__init__', 2), ('iterable', 5), ('is_sequence', 2), ('__init__', 2), ('__init__', 2), ('flatten', 2), ('ordered', 1), ('_get_initial_settings', 1), ('doprint', 10), ('_convert_python_lists', 5), ('_handle_assign_to', 5), ('_print', 5), ('_format_code', 2), ('_handle_UnevaluatedExpr', 1), ('sympify', 2)]
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 14:03:43,379 - Orcar.tracer_reranker - INFO] [('_recursive_to_string', 95)]

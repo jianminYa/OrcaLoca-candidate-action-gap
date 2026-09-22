@@ -1,0 +1,49 @@
+[2026-09-22 10:04:09,215 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'viewcode.py', 'directory_path': 'sphinx/ext'}: 1
+)
+[2026-09-22 10:04:30,488 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'viewcode.py', 'directory_path': 'sphinx/ext'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'doctree_read', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'collect_pages', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+)
+[2026-09-22 10:04:43,267 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'viewcode.py', 'directory_path': 'sphinx/ext'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'doctree_read', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'collect_pages', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+)
+[2026-09-22 10:04:55,705 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'viewcode.py', 'directory_path': 'sphinx/ext'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'doctree_read', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'collect_pages', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}: 2
+)
+[2026-09-22 10:05:06,757 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'viewcode.py', 'directory_path': 'sphinx/ext'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'doctree_read', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'collect_pages', 'file_path': 'sphinx/ext/viewcode.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}: 2
+)

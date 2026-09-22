@@ -1,0 +1,18 @@
+[2026-09-22 08:08:35,645 - Orcar.code_scorer - INFO] Total batch chat time: 6.34s
+[2026-09-22 08:08:35,646 - Orcar.code_scorer - INFO] in_token_cnt=4522 out_token_cnt=1
+[2026-09-22 08:08:35,646 - Orcar.code_scorer - INFO] in_token_cnt=4361 out_token_cnt=1
+[2026-09-22 08:08:35,646 - Orcar.code_scorer - INFO] in_token_cnt=4359 out_token_cnt=1
+[2026-09-22 08:08:35,646 - Orcar.code_scorer - INFO] Total Scorer cnt         : in  13242 tokens, out      3 tokens
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] Total batch chat time: 11.12s
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4414 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4682 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4313 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4801 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4322 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4502 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4360 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4500 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4411 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4395 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4747 out_token_cnt=1
+[2026-09-22 08:09:00,458 - Orcar.code_scorer - INFO] in_token_cnt=4373 out_token_cnt=1

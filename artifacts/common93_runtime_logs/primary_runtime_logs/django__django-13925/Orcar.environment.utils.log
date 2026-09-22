@@ -1,0 +1,5 @@
+[2026-09-22 04:16:06,496 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 04:16:13,960 - Orcar.environment.utils - DEBUG] Run command in container: conda create -n django__django__4.0 python=3.8 -y
+[2026-09-22 04:18:18,544 - Orcar.environment.utils - DEBUG] Run command in container: pip install -r /root/requirements.txt
+[2026-09-22 04:18:45,167 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 04:18:54,631 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer

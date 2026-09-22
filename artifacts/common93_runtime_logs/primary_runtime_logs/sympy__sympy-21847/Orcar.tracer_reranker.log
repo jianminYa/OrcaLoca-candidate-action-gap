@@ -1,0 +1,1483 @@
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/orderings.py' lineno=200 funcname='monomial_key' classname='InverseOrder'
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] def monomial_key(order=None, gens=None):
+    """
+    Return a function defining admissible order on monomials.
+
+    The result of a call to :func:`monomial_key` is a function which should
+    be used as a key to :func:`sorted` built-in function, to provide order
+    in a set of monomials of the same length.
+
+    Currently supported monomial orderings are:
+
+    1. lex       - lexicographic order (default)
+    2. grlex     - graded lexicographic order
+    3. grevlex   - reversed graded lexicographic order
+    4. ilex, igrlex, igrevlex - the corresponding inverse orders
+
+    If the ``order`` input argument is not a string but has ``__call__``
+    attribute, then it will pass through with an assumption that the
+    callable object defines an admissible order on monomials.
+
+    If the ``gens`` input argument contains a list of generators, the
+    resulting key function can be used to sort SymPy ``Expr`` objects.
+
+    """
+    if order is None:
+        order = lex
+
+    if isinstance(order, Symbol):
+        order = str(order)
+
+    if isinstance(order, str):
+        try:
+            order = _monomial_key[order]
+        except KeyError:
+            raise ValueError("supported monomial orderings are 'lex', 'grlex' and 'grevlex', got %r" % order)
+    if hasattr(order, '__call__'):
+        if gens is not None:
+            def _order(expr):
+                return order(expr.as_poly(*gens).degree_list())
+            return _order
+        return order
+    else:
+        raise ValueError("monomial ordering specification must be a string or a callable, got %s" % order)
+
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/monomials.py' lineno=14 funcname='itermonomials' classname=''
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] @public
+def itermonomials(variables, max_degrees, min_degrees=None):
+    r"""
+    ``max_degrees`` and ``min_degrees`` are either both integers or both lists.
+    Unless otherwise specified, ``min_degrees`` is either ``0`` or
+    ``[0, ..., 0]``.
+
+    A generator of all monomials ``monom`` is returned, such that
+    either
+    ``min_degree <= total_degree(monom) <= max_degree``,
+    or
+    ``min_degrees[i] <= degree_list(monom)[i] <= max_degrees[i]``,
+    for all ``i``.
+
+    Case I. ``max_degrees`` and ``min_degrees`` are both integers
+    =============================================================
+
+    Given a set of variables $V$ and a min_degree $N$ and a max_degree $M$
+    generate a set of monomials of degree less than or equal to $N$ and greater
+    than or equal to $M$. The total number of monomials in commutative
+    variables is huge and is given by the following formula if $M = 0$:
+
+        .. math::
+            \frac{(\#V + N)!}{\#V! N!}
+
+    For example if we would like to generate a dense polynomial of
+    a total degree $N = 50$ and $M = 0$, which is the worst case, in 5
+    variables, assuming that exponents and all of coefficients are 32-bit long
+    and stored in an array we would need almost 80 GiB of memory! Fortunately
+    most polynomials, that we will encounter, are sparse.
+
+    Consider monomials in commutative variables $x$ and $y$
+    and non-commutative variables $a$ and $b$::
+
+        >>> from sympy import symbols
+        >>> from sympy.polys.monomials import itermonomials
+        >>> from sympy.polys.orderings import monomial_key
+        >>> from sympy.abc import x, y
+
+        >>> sorted(itermonomials([x, y], 2), key=monomial_key('grlex', [y, x]))
+        [1, x, y, x**2, x*y, y**2]
+
+        >>> sorted(itermonomials([x, y], 3), key=monomial_key('grlex', [y, x]))
+        [1, x, y, x**2, x*y, y**2, x**3, x**2*y, x*y**2, y**3]
+
+        >>> a, b = symbols('a, b', commutative=False)
+        >>> set(itermonomials([a, b, x], 2))
+        {1, a, a**2, b, b**2, x, x**2, a*b, b*a, x*a, x*b}
+
+        >>> sorted(itermonomials([x, y], 2, 1), key=monomial_key('grlex', [y, x]))
+        [x, y, x**2, x*y, y**2]
+
+    Case II. ``max_degrees`` and ``min_degrees`` are both lists
+    ===========================================================
+
+    If ``max_degrees = [d_1, ..., d_n]`` and
+    ``min_degrees = [e_1, ..., e_n]``, the number of monomials generated
+    is:
+
+    .. math::
+        (d_1 - e_1 + 1) (d_2 - e_2 + 1) \cdots (d_n - e_n + 1)
+
+    Let us generate all monomials ``monom`` in variables $x$ and $y$
+    such that ``[1, 2][i] <= degree_list(monom)[i] <= [2, 4][i]``,
+    ``i = 0, 1`` ::
+
+        >>> from sympy import symbols
+        >>> from sympy.polys.monomials import itermonomials
+        >>> from sympy.polys.orderings import monomial_key
+        >>> from sympy.abc import x, y
+
+        >>> sorted(itermonomials([x, y], [2, 4], [1, 2]), reverse=True, key=monomial_key('lex', [x, y]))
+        [x**2*y**4, x**2*y**3, x**2*y**2, x*y**4, x*y**3, x*y**2]
+    """
+    n = len(variables)
+    if is_sequence(max_degrees):
+        if len(max_degrees) != n:
+            raise ValueError('Argument sizes do not match')
+        if min_degrees is None:
+            min_degrees = [0]*n
+        elif not is_sequence(min_degrees):
+            raise ValueError('min_degrees is not a list')
+        else:
+            if len(min_degrees) != n:
+                raise ValueError('Argument sizes do not match')
+            if any(i < 0 for i in min_degrees):
+                raise ValueError("min_degrees can't contain negative numbers")
+        total_degree = False
+    else:
+        max_degree = max_degrees
+        if max_degree < 0:
+            raise ValueError("max_degrees can't be negative")
+        if min_degrees is None:
+            min_degree = 0
+        else:
+            if min_degrees < 0:
+                raise ValueError("min_degrees can't be negative")
+            min_degree = min_degrees
+        total_degree = True
+    if total_degree:
+        if min_degree > max_degree:
+            return
+        if not variables or max_degree == 0:
+            yield S.One
+            return
+        # Force to list in case of passed tuple or other incompatible collection
+        variables = list(variables) + [S.One]
+        if all(variable.is_commutative for variable in variables):
+            monomials_list_comm = []
+            for item in combinations_with_replacement(variables, max_degree):
+                powers = dict()
+                for variable in variables:
+                    powers[variable] = 0
+                for variable in item:
+                    if variable != 1:
+                        powers[variable] += 1
+                if max(powers.values()) >= min_degree:
+                    monomials_list_comm.append(Mul(*item))
+            yield from set(monomials_list_comm)
+        else:
+            monomials_list_non_comm = []
+            for item in product(variables, repeat=max_degree):
+                powers = dict()
+                for variable in variables:
+                    powers[variable] = 0
+                for variable in item:
+                    if variable != 1:
+                        powers[variable] += 1
+                if max(powers.values()) >= min_degree:
+                    monomials_list_non_comm.append(Mul(*item))
+            yield from set(monomials_list_non_comm)
+    else:
+        if any(min_degrees[i] > max_degrees[i] for i in range(n)):
+            raise ValueError('min_degrees[i] must be <= max_degrees[i] for all i')
+        power_lists = []
+        for var, min_d, max_d in zip(variables, min_degrees, max_degrees):
+            power_lists.append([var**i for i in range(min_d, max_d + 1)])
+        for powers in product(*power_lists):
+            yield Mul(*powers)
+
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=208 funcname='is_sequence' classname='NotIterable'
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] def is_sequence(i, include=None):
+    """
+    Return a boolean indicating whether ``i`` is a sequence in the SymPy
+    sense. If anything that fails the test below should be included as
+    being a sequence for your application, set 'include' to that object's
+    type; multiple types should be passed as a tuple of types.
+
+    Note: although generators can generate a sequence, they often need special
+    handling to make sure their elements are captured before the generator is
+    exhausted, so these are not included by default in the definition of a
+    sequence.
+
+    See also: iterable
+
+    Examples
+    ========
+
+    >>> from sympy.utilities.iterables import is_sequence
+    >>> from types import GeneratorType
+    >>> is_sequence([])
+    True
+    >>> is_sequence(set())
+    False
+    >>> is_sequence('abc')
+    False
+    >>> is_sequence('abc', include=str)
+    True
+    >>> generator = (c for c in 'abc')
+    >>> is_sequence(generator)
+    False
+    >>> is_sequence(generator, include=(str, GeneratorType))
+    True
+
+    """
+    return (hasattr(i, '__getitem__') and
+            iterable(i) or
+            bool(include) and
+            isinstance(i, include))
+
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 13:13:04,679 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=125 funcname='__hash__' classname='Expr'
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO]     def __hash__(self) -> int:
+        # hash cannot be cached using cache_it because infinite recurrence
+        # occurs as hash is needed for setting cache dictionary keys
+        h = self._mhash
+        if h is None:
+            h = hash((type(self).__name__,) + self._hashable_content())
+            self._mhash = h
+        return h
+
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2281 funcname='__hash__' classname='Integer'
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO]     def __hash__(self):
+        return hash(self.p)
+
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=359 funcname='__ne__' classname='Basic'
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO]     def __ne__(self, other):
+        """``a != b``  -> Compare two symbolic trees and see whether they are different
+
+        this is the same as:
+
+        ``a.compare(b) != 0``
+
+        but faster
+        """
+        return not self == other
+
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/cache.py' lineno=69 funcname='wrapper' classname='_cache'
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO]         @wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                retval = cfunc(*args, **kwargs)
+            except TypeError as e:
+                if not e.args or not e.args[0].startswith('unhashable type:'):
+                    raise
+                retval = func(*args, **kwargs)
+            return retval
+
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2242 funcname='__ne__' classname='Integer'
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO]     def __ne__(self, other):
+        return not self == other
+
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/assumptions.py' lineno=460 funcname='getit' classname='StdFactKB'
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO]     def getit(self):
+        try:
+            return self._assumptions[fact]
+        except KeyError:
+            if self._assumptions is self.default_assumptions:
+                self._assumptions = self.default_assumptions.copy()
+            return _ask(fact, self)
+
+[2026-09-22 13:13:04,680 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/symbol.py' lineno=306 funcname='_hashable_content' classname='Symbol'
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO]     def _hashable_content(self):
+        # Note: user-specified assumptions not hashed, just derived ones
+        return (self.name,) + tuple(sorted(self.assumptions0.items()))
+
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=143 funcname='__eq__' classname='Expr'
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO]     def __eq__(self, other):
+        try:
+            other = _sympify(other)
+            if not isinstance(other, Expr):
+                return False
+        except (SympifyError, SyntaxError):
+            return False
+        # check for pure number expr
+        if  not (self.is_Number and other.is_Number) and (
+                type(self) != type(other)):
+            return False
+        a, b = self._hashable_content(), other._hashable_content()
+        if a != b:
+            return False
+        # check number *in* an expression
+        for a, b in zip(a, b):
+            if not isinstance(a, Expr):
+                continue
+            if a.is_Number and type(a) != type(b):
+                return False
+        return True
+
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/operations.py' lineno=46 funcname='__new__' classname='AssocOp'
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO]     @cacheit
+    def __new__(cls, *args, evaluate=None, _sympify=True):
+        from sympy import Order
+
+        # Allow faster processing by passing ``_sympify=False``, if all arguments
+        # are already sympified.
+        if _sympify:
+            args = list(map(_sympify_, args))
+
+        # Disallow non-Expr args in Add/Mul
+        typ = cls._args_type
+        if typ is not None:
+            from sympy.core.relational import Relational
+            if any(isinstance(arg, Relational) for arg in args):
+                raise TypeError("Relational can not be used in %s" % cls.__name__)
+
+            # This should raise TypeError once deprecation period is over:
+            if not all(isinstance(arg, typ) for arg in args):
+                SymPyDeprecationWarning(
+                    feature="Add/Mul with non-Expr args",
+                    useinstead="Expr args",
+                    issue=19445,
+                    deprecated_since_version="1.7"
+                ).warn()
+
+        if evaluate is None:
+            evaluate = global_parameters.evaluate
+        if not evaluate:
+            obj = cls._from_args(args)
+            obj = cls._exec_constructor_postprocessors(obj)
+            return obj
+
+        args = [a for a in args if a is not cls.identity]
+
+        if len(args) == 0:
+            return cls.identity
+        if len(args) == 1:
+            return args[0]
+
+        c_part, nc_part, order_symbols = cls.flatten(args)
+        is_commutative = not nc_part
+        obj = cls._from_args(c_part + nc_part, is_commutative)
+        obj = cls._exec_constructor_postprocessors(obj)
+
+        if order_symbols is not None:
+            return Order(obj, *order_symbols)
+        return obj
+
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2235 funcname='__eq__' classname='Integer'
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO]     def __eq__(self, other):
+        if isinstance(other, int):
+            return (self.p == other)
+        elif isinstance(other, Integer):
+            return (self.p == other.p)
+        return Rational.__eq__(self, other)
+
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=134 funcname='_hashable_content' classname='Expr'
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO]     def _hashable_content(self):
+        """Return a tuple of information about self that can be used to
+        compute the hash. If a class defines additional attributes,
+        like ``name`` in Symbol, then this method should be updated
+        accordingly to return such relevant attributes.
+        Defining more than _hashable_content is necessary if __eq__ has
+        been defined by a class. See note about this in Basic.__eq__."""
+        return self._args
+
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/symbol.py' lineno=318 funcname='assumptions0' classname='Symbol'
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,681 - Orcar.tracer_reranker - INFO]     @property
+    def assumptions0(self):
+        return {key: value for key, value
+                in self._assumptions.items() if value is not None}
+
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/sympify.py' lineno=479 funcname='_sympify' classname='CantSympify'
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] def _sympify(a):
+    """
+    Short version of sympify for internal usage for __add__ and __eq__ methods
+    where it is ok to allow some things (like Python integers and floats) in
+    the expression. This excludes things (like strings) that are unwise to
+    allow into such an expression.
+
+    >>> from sympy import Integer
+    >>> Integer(1) == 1
+    True
+
+    >>> Integer(1) == '1'
+    False
+
+    >>> from sympy.abc import x
+    >>> x + 1
+    x + 1
+
+    >>> x + '1'
+    Traceback (most recent call last):
+    ...
+    TypeError: unsupported operand type(s) for +: 'Symbol' and 'str'
+
+    see: sympify
+
+    """
+    return sympify(a, strict=True)
+
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/mul.py' lineno=178 funcname='flatten' classname='Mul'
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO]     @classmethod
+    def flatten(cls, seq):
+        """Return commutative, noncommutative and order arguments by
+        combining related terms.
+
+        Notes
+        =====
+            * In an expression like ``a*b*c``, python process this through sympy
+              as ``Mul(Mul(a, b), c)``. This can have undesirable consequences.
+
+              -  Sometimes terms are not combined as one would like:
+                 {c.f. https://github.com/sympy/sympy/issues/4596}
+
+                >>> from sympy import Mul, sqrt
+                >>> from sympy.abc import x, y, z
+                >>> 2*(x + 1) # this is the 2-arg Mul behavior
+                2*x + 2
+                >>> y*(x + 1)*2
+                2*y*(x + 1)
+                >>> 2*(x + 1)*y # 2-arg result will be obtained first
+                y*(2*x + 2)
+                >>> Mul(2, x + 1, y) # all 3 args simultaneously processed
+                2*y*(x + 1)
+                >>> 2*((x + 1)*y) # parentheses can control this behavior
+                2*y*(x + 1)
+
+                Powers with compound bases may not find a single base to
+                combine with unless all arguments are processed at once.
+                Post-processing may be necessary in such cases.
+                {c.f. https://github.com/sympy/sympy/issues/5728}
+
+                >>> a = sqrt(x*sqrt(y))
+                >>> a**3
+                (x*sqrt(y))**(3/2)
+                >>> Mul(a,a,a)
+                (x*sqrt(y))**(3/2)
+                >>> a*a*a
+                x*sqrt(y)*sqrt(x*sqrt(y))
+                >>> _.subs(a.base, z).subs(z, a.base)
+                (x*sqrt(y))**(3/2)
+
+              -  If more than two terms are being multiplied then all the
+                 previous terms will be re-processed for each new argument.
+                 So if each of ``a``, ``b`` and ``c`` were :class:`Mul`
+                 expression, then ``a*b*c`` (or building up the product
+                 with ``*=``) will process all the arguments of ``a`` and
+                 ``b`` twice: once when ``a*b`` is computed and again when
+                 ``c`` is multiplied.
+
+                 Using ``Mul(a, b, c)`` will process all arguments once.
+
+            * The results of Mul are cached according to arguments, so flatten
+              will only be called once for ``Mul(a, b, c)``. If you can
+              structure a calculation so the arguments are most likely to be
+              repeats then this can save time in computing the answer. For
+              example, say you had a Mul, M, that you wished to divide by ``d[i]``
+              and multiply by ``n[i]`` and you suspect there are many repeats
+              in ``n``. It would be better to compute ``M*n[i]/d[i]`` rather
+              than ``M/d[i]*n[i]`` since every time n[i] is a repeat, the
+              product, ``M*n[i]`` will be returned without flattening -- the
+              cached value will be returned. If you divide by the ``d[i]``
+              first (and those are more unique than the ``n[i]``) then that will
+              create a new Mul, ``M/d[i]`` the args of which will be traversed
+              again when it is multiplied by ``n[i]``.
+
+              {c.f. https://github.com/sympy/sympy/issues/5706}
+
+              This consideration is moot if the cache is turned off.
+
+            NB
+            --
+              The validity of the above notes depends on the implementation
+              details of Mul and flatten which may change at any time. Therefore,
+              you should only consider them when your code is highly performance
+              sensitive.
+
+              Removal of 1 from the sequence is already handled by AssocOp.__new__.
+        """
+
+        from sympy.calculus.util import AccumBounds
+        from sympy.matrices.expressions import MatrixExpr
+        rv = None
+        if len(seq) == 2:
+            a, b = seq
+            if b.is_Rational:
+                a, b = b, a
+                seq = [a, b]
+            assert not a is S.One
+            if not a.is_zero and a.is_Rational:
+                r, b = b.as_coeff_Mul()
+                if b.is_Add:
+                    if r is not S.One:  # 2-arg hack
+                        # leave the Mul as a Mul?
+                        ar = a*r
+                        if ar is S.One:
+                            arb = b
+                        else:
+                            arb = cls(a*r, b, evaluate=False)
+                        rv = [arb], [], None
+                    elif global_parameters.distribute and b.is_commutative:
+                        r, b = b.as_coeff_Add()
+                        bargs = [_keep_coeff(a, bi) for bi in Add.make_args(b)]
+                        _addsort(bargs)
+                        ar = a*r
+                        if ar:
+                            bargs.insert(0, ar)
+                        bargs = [Add._from_args(bargs)]
+                        rv = bargs, [], None
+            if rv:
+                return rv
+
+        # apply associativity, separate commutative part of seq
+        c_part = []         # out: commutative factors
+        nc_part = []        # out: non-commutative factors
+
+        nc_seq = []
+
+        coeff = S.One       # standalone term
+                            # e.g. 3 * ...
+
+        c_powers = []       # (base,exp)      n
+                            # e.g. (x,n) for x
+
+        num_exp = []        # (num-base, exp)           y
+                            # e.g.  (3, y)  for  ... * 3  * ...
+
+        neg1e = S.Zero      # exponent on -1 extracted from Number-based Pow and I
+
+        pnum_rat = {}       # (num-base, Rat-exp)          1/2
+                            # e.g.  (3, 1/2)  for  ... * 3     * ...
+
+        order_symbols = None
+
+        # --- PART 1 ---
+        #
+        # "collect powers and coeff":
+        #
+        # o coeff
+        # o c_powers
+        # o num_exp
+        # o neg1e
+        # o pnum_rat
+        #
+        # NOTE: this is optimized for all-objects-are-commutative case
+        for o in seq:
+            # O(x)
+            if o.is_Order:
+                o, order_symbols = o.as_expr_variables(order_symbols)
+
+            # Mul([...])
+            if o.is_Mul:
+                if o.is_commutative:
+                    seq.extend(o.args)    # XXX zerocopy?
+
+                else:
+                    # NCMul can have commutative parts as well
+                    for q in o.args:
+                        if q.is_commutative:
+                            seq.append(q)
+                        else:
+                            nc_seq.append(q)
+
+                    # append non-commutative marker, so we don't forget to
+                    # process scheduled non-commutative objects
+                    seq.append(NC_Marker)
+
+                continue
+
+            # 3
+            elif o.is_Number:
+                if o is S.NaN or coeff is S.ComplexInfinity and o.is_zero:
+                    # we know for sure the result will be nan
+                    return [S.NaN], [], None
+                elif coeff.is_Number or isinstance(coeff, AccumBounds):  # it could be zoo
+                    coeff *= o
+                    if coeff is S.NaN:
+                        # we know for sure the result will be nan
+                        return [S.NaN], [], None
+                continue
+
+            elif isinstance(o, AccumBounds):
+                coeff = o.__mul__(coeff)
+                continue
+
+            elif o is S.ComplexInfinity:
+                if not coeff:
+                    # 0 * zoo = NaN
+                    return [S.NaN], [], None
+                coeff = S.ComplexInfinity
+                continue
+
+            elif o is S.ImaginaryUnit:
+                neg1e += S.Half
+                continue
+
+            elif o.is_commutative:
+                #      e
+                # o = b
+                b, e = o.as_base_exp()
+
+                #  y
+                # 3
+                if o.is_Pow:
+                    if b.is_Number:
+
+                        # get all the factors with numeric base so they can be
+                        # combined below, but don't combine negatives unless
+                        # the exponent is an integer
+                        if e.is_Rational:
+                            if e.is_Integer:
+                                coeff *= Pow(b, e)  # it is an unevaluated power
+                                continue
+                            elif e.is_negative:    # also a sign of an unevaluated power
+                                seq.append(Pow(b, e))
+                                continue
+                            elif b.is_negative:
+                                neg1e += e
+                                b = -b
+                            if b is not S.One:
+                                pnum_rat.setdefault(b, []).append(e)
+                            continue
+                        elif b.is_positive or e.is_integer:
+                            num_exp.append((b, e))
+                            continue
+
+                c_powers.append((b, e))
+
+            # NON-COMMUTATIVE
+            # TODO: Make non-commutative exponents not combine automatically
+            else:
+                if o is not NC_Marker:
+                    nc_seq.append(o)
+
+                # process nc_seq (if any)
+                while nc_seq:
+                    o = nc_seq.pop(0)
+                    if not nc_part:
+                        nc_part.append(o)
+                        continue
+
+                    #                             b    c       b+c
+                    # try to combine last terms: a  * a   ->  a
+                    o1 = nc_part.pop()
+                    b1, e1 = o1.as_base_exp()
+                    b2, e2 = o.as_base_exp()
+                    new_exp = e1 + e2
+                    # Only allow powers to combine if the new exponent is
+                    # not an Add. This allow things like a**2*b**3 == a**5
+                    # if a.is_commutative == False, but prohibits
+                    # a**x*a**y and x**a*x**b from combining (x,y commute).
+                    if b1 == b2 and (not new_exp.is_Add):
+                        o12 = b1 ** new_exp
+
+                        # now o12 could be a commutative object
+                        if o12.is_commutative:
+                            seq.append(o12)
+                            continue
+                        else:
+                            nc_seq.insert(0, o12)
+
+                    else:
+                        nc_part.append(o1)
+                        nc_part.append(o)
+
+        # We do want a combined exponent if it would not be an Add, such as
+        #  y    2y     3y
+        # x  * x   -> x
+        # We determine if two exponents have the same term by using
+        # as_coeff_Mul.
+        #
+        # Unfortunately, this isn't smart enough to consider combining into
+        # exponents that might already be adds, so things like:
+        #  z - y    y
+        # x      * x  will be left alone.  This is because checking every possible
+        # combination can slow things down.
+
+        # gather exponents of common bases...
+        def _gather(c_powers):
+            common_b = {}  # b:e
+            for b, e in c_powers:
+                co = e.as_coeff_Mul()
+                common_b.setdefault(b, {}).setdefault(
+                    co[1], []).append(co[0])
+            for b, d in common_b.items():
+                for di, li in d.items():
+                    d[di] = Add(*li)
+            new_c_powers = []
+            for b, e in common_b.items():
+                new_c_powers.extend([(b, c*t) for t, c in e.items()])
+            return new_c_powers
+
+        # in c_powers
+        c_powers = _gather(c_powers)
+
+        # and in num_exp
+        num_exp = _gather(num_exp)
+
+        # --- PART 2 ---
+        #
+        # o process collected powers  (x**0 -> 1; x**1 -> x; otherwise Pow)
+        # o combine collected powers  (2**x * 3**x -> 6**x)
+        #   with numeric base
+
+        # ................................
+        # now we have:
+        # - coeff:
+        # - c_powers:    (b, e)
+        # - num_exp:     (2, e)
+        # - pnum_rat:    {(1/3, [1/3, 2/3, 1/4])}
+
+        #  0             1
+        # x  -> 1       x  -> x
+
+        # this should only need to run twice; if it fails because
+        # it needs to be run more times, perhaps this should be
+        # changed to a "while True" loop -- the only reason it
+        # isn't such now is to allow a less-than-perfect result to
+        # be obtained rather than raising an error or entering an
+        # infinite loop
+        for i in range(2):
+            new_c_powers = []
+            changed = False
+            for b, e in c_powers:
+                if e.is_zero:
+                    # canceling out infinities yields NaN
+                    if (b.is_Add or b.is_Mul) and any(infty in b.args
+                        for infty in (S.ComplexInfinity, S.Infinity,
+                                      S.NegativeInfinity)):
+                        return [S.NaN], [], None
+                    continue
+                if e is S.One:
+                    if b.is_Number:
+                        coeff *= b
+                        continue
+                    p = b
+                if e is not S.One:
+                    p = Pow(b, e)
+                    # check to make sure that the base doesn't change
+                    # after exponentiation; to allow for unevaluated
+                    # Pow, we only do so if b is not already a Pow
+                    if p.is_Pow and not b.is_Pow:
+                        bi = b
+                        b, e = p.as_base_exp()
+                        if b != bi:
+                            changed = True
+                c_part.append(p)
+                new_c_powers.append((b, e))
+            # there might have been a change, but unless the base
+            # matches some other base, there is nothing to do
+            if changed and len({
+                    b for b, e in new_c_powers}) != len(new_c_powers):
+                # start over again
+                c_part = []
+                c_powers = _gather(new_c_powers)
+            else:
+                break
+
+        #  x    x     x
+        # 2  * 3  -> 6
+        inv_exp_dict = {}   # exp:Mul(num-bases)     x    x
+                            # e.g.  x:6  for  ... * 2  * 3  * ...
+        for b, e in num_exp:
+            inv_exp_dict.setdefault(e, []).append(b)
+        for e, b in inv_exp_dict.items():
+            inv_exp_dict[e] = cls(*b)
+        c_part.extend([Pow(b, e) for e, b in inv_exp_dict.items() if e])
+
+        # b, e -> e' = sum(e), b
+        # {(1/5, [1/3]), (1/2, [1/12, 1/4]} -> {(1/3, [1/5, 1/2])}
+        comb_e = {}
+        for b, e in pnum_rat.items():
+            comb_e.setdefault(Add(*e), []).append(b)
+        del pnum_rat
+        # process them, reducing exponents to values less than 1
+        # and updating coeff if necessary else adding them to
+        # num_rat for further processing
+        num_rat = []
+        for e, b in comb_e.items():
+            b = cls(*b)
+            if e.q == 1:
+                coeff *= Pow(b, e)
+                continue
+            if e.p > e.q:
+                e_i, ep = divmod(e.p, e.q)
+                coeff *= Pow(b, e_i)
+                e = Rational(ep, e.q)
+            num_rat.append((b, e))
+        del comb_e
+
+        # extract gcd of bases in num_rat
+        # 2**(1/3)*6**(1/4) -> 2**(1/3+1/4)*3**(1/4)
+        pnew = defaultdict(list)
+        i = 0  # steps through num_rat which may grow
+        while i < len(num_rat):
+            bi, ei = num_rat[i]
+            grow = []
+            for j in range(i + 1, len(num_rat)):
+                bj, ej = num_rat[j]
+                g = bi.gcd(bj)
+                if g is not S.One:
+                    # 4**r1*6**r2 -> 2**(r1+r2)  *  2**r1 *  3**r2
+                    # this might have a gcd with something else
+                    e = ei + ej
+                    if e.q == 1:
+                        coeff *= Pow(g, e)
+                    else:
+                        if e.p > e.q:
+                            e_i, ep = divmod(e.p, e.q)  # change e in place
+                            coeff *= Pow(g, e_i)
+                            e = Rational(ep, e.q)
+                        grow.append((g, e))
+                    # update the jth item
+                    num_rat[j] = (bj/g, ej)
+                    # update bi that we are checking with
+                    bi = bi/g
+                    if bi is S.One:
+                        break
+            if bi is not S.One:
+                obj = Pow(bi, ei)
+                if obj.is_Number:
+                    coeff *= obj
+                else:
+                    # changes like sqrt(12) -> 2*sqrt(3)
+                    for obj in Mul.make_args(obj):
+                        if obj.is_Number:
+                            coeff *= obj
+                        else:
+                            assert obj.is_Pow
+                            bi, ei = obj.args
+                            pnew[ei].append(bi)
+
+            num_rat.extend(grow)
+            i += 1
+
+        # combine bases of the new powers
+        for e, b in pnew.items():
+            pnew[e] = cls(*b)
+
+        # handle -1 and I
+        if neg1e:
+            # treat I as (-1)**(1/2) and compute -1's total exponent
+            p, q =  neg1e.as_numer_denom()
+            # if the integer part is odd, extract -1
+            n, p = divmod(p, q)
+            if n % 2:
+                coeff = -coeff
+            # if it's a multiple of 1/2 extract I
+            if q == 2:
+                c_part.append(S.ImaginaryUnit)
+            elif p:
+                # see if there is any positive base this power of
+                # -1 can join
+                neg1e = Rational(p, q)
+                for e, b in pnew.items():
+                    if e == neg1e and b.is_positive:
+                        pnew[e] = -b
+                        break
+                else:
+                    # keep it separate; we've already evaluated it as
+                    # much as possible so evaluate=False
+                    c_part.append(Pow(S.NegativeOne, neg1e, evaluate=False))
+
+        # add all the pnew powers
+        c_part.extend([Pow(b, e) for e, b in pnew.items()])
+
+        # oo, -oo
+        if (coeff is S.Infinity) or (coeff is S.NegativeInfinity):
+            def _handle_for_oo(c_part, coeff_sign):
+                new_c_part = []
+                for t in c_part:
+                    if t.is_extended_positive:
+                        continue
+                    if t.is_extended_negative:
+                        coeff_sign *= -1
+                        continue
+                    new_c_part.append(t)
+                return new_c_part, coeff_sign
+            c_part, coeff_sign = _handle_for_oo(c_part, 1)
+            nc_part, coeff_sign = _handle_for_oo(nc_part, coeff_sign)
+            coeff *= coeff_sign
+
+        # zoo
+        if coeff is S.ComplexInfinity:
+            # zoo might be
+            #   infinite_real + bounded_im
+            #   bounded_real + infinite_im
+            #   infinite_real + infinite_im
+            # and non-zero real or imaginary will not change that status.
+            c_part = [c for c in c_part if not (fuzzy_not(c.is_zero) and
+                                                c.is_extended_real is not None)]
+            nc_part = [c for c in nc_part if not (fuzzy_not(c.is_zero) and
+                                                  c.is_extended_real is not None)]
+
+        # 0
+        elif coeff.is_zero:
+            # we know for sure the result will be 0 except the multiplicand
+            # is infinity or a matrix
+            if any(isinstance(c, MatrixExpr) for c in nc_part):
+                return [coeff], nc_part, order_symbols
+            if any(c.is_finite == False for c in c_part):
+                return [S.NaN], [], order_symbols
+            return [coeff], [], order_symbols
+
+        # check for straggling Numbers that were produced
+        _new = []
+        for i in c_part:
+            if i.is_Number:
+                coeff *= i
+            else:
+                _new.append(i)
+        c_part = _new
+
+        # order commutative part canonically
+        _mulsort(c_part)
+
+        # current code expects coeff to be always in slot-0
+        if coeff is not S.One:
+            c_part.insert(0, coeff)
+
+        # we are done
+        if (global_parameters.distribute and not nc_part and len(c_part) == 2 and
+                c_part[0].is_Number and c_part[0].is_finite and c_part[1].is_Add):
+            # 2*(1+a) -> 2 + 2 * a
+            coeff = c_part[0]
+            c_part = [Add(*[coeff*f for f in c_part[1].args])]
+
+        return c_part, nc_part, order_symbols
+
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/operations.py' lineno=94 funcname='_from_args' classname='AssocOp'
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _from_args(cls, args, is_commutative=None):
+        """Create new instance with already-processed args.
+        If the args are not in canonical order, then a non-canonical
+        result will be returned, so use with caution. The order of
+        args may change if the sign of the args is changed."""
+        if len(args) == 0:
+            return cls.identity
+        elif len(args) == 1:
+            return args[0]
+
+        obj = super().__new__(cls, *args)
+        if is_commutative is None:
+            is_commutative = fuzzy_and(a.is_commutative for a in args)
+        obj.is_commutative = is_commutative
+        return obj
+
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1829 funcname='_exec_constructor_postprocessors' classname='Basic'
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _exec_constructor_postprocessors(cls, obj):
+        # WARNING: This API is experimental.
+
+        # This is an experimental API that introduces constructor
+        # postprosessors for SymPy Core elements. If an argument of a SymPy
+        # expression has a `_constructor_postprocessor_mapping` attribute, it will
+        # be interpreted as a dictionary containing lists of postprocessing
+        # functions for matching expression node names.
+
+        clsname = obj.__class__.__name__
+        postprocessors = defaultdict(list)
+        for i in obj.args:
+            try:
+                postprocessor_mappings = (
+                    Basic._constructor_postprocessor_mapping[cls].items()
+                    for cls in type(i).mro()
+                    if cls in Basic._constructor_postprocessor_mapping
+                )
+                for k, v in chain.from_iterable(postprocessor_mappings):
+                    postprocessors[k].extend([j for j in v if j not in postprocessors[k]])
+            except TypeError:
+                pass
+
+        for f in postprocessors.get(clsname, []):
+            obj = f(obj)
+
+        return obj
+
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/sympify.py' lineno=92 funcname='sympify' classname='CantSympify'
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] def sympify(a, locals=None, convert_xor=True, strict=False, rational=False,
+        evaluate=None):
+    """
+    Converts an arbitrary expression to a type that can be used inside SymPy.
+
+    Explanation
+    ===========
+
+    It will convert Python ints into instances of sympy.Integer,
+    floats into instances of sympy.Float, etc. It is also able to coerce symbolic
+    expressions which inherit from Basic. This can be useful in cooperation
+    with SAGE.
+
+    .. warning::
+        Note that this function uses ``eval``, and thus shouldn't be used on
+        unsanitized input.
+
+    If the argument is already a type that SymPy understands, it will do
+    nothing but return that value. This can be used at the beginning of a
+    function to ensure you are working with the correct type.
+
+    Examples
+    ========
+
+    >>> from sympy import sympify
+
+    >>> sympify(2).is_integer
+    True
+    >>> sympify(2).is_real
+    True
+
+    >>> sympify(2.0).is_real
+    True
+    >>> sympify("2.0").is_real
+    True
+    >>> sympify("2e-45").is_real
+    True
+
+    If the expression could not be converted, a SympifyError is raised.
+
+    >>> sympify("x***2")
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: "could not parse 'x***2'"
+
+    Locals
+    ------
+
+    The sympification happens with access to everything that is loaded
+    by ``from sympy import *``; anything used in a string that is not
+    defined by that import will be converted to a symbol. In the following,
+    the ``bitcount`` function is treated as a symbol and the ``O`` is
+    interpreted as the Order object (used with series) and it raises
+    an error when used improperly:
+
+    >>> s = 'bitcount(42)'
+    >>> sympify(s)
+    bitcount(42)
+    >>> sympify("O(x)")
+    O(x)
+    >>> sympify("O + 1")
+    Traceback (most recent call last):
+    ...
+    TypeError: unbound method...
+
+    In order to have ``bitcount`` be recognized it can be imported into a
+    namespace dictionary and passed as locals:
+
+    >>> ns = {}
+    >>> exec('from sympy.core.evalf import bitcount', ns)
+    >>> sympify(s, locals=ns)
+    6
+
+    In order to have the ``O`` interpreted as a Symbol, identify it as such
+    in the namespace dictionary. This can be done in a variety of ways; all
+    three of the following are possibilities:
+
+    >>> from sympy import Symbol
+    >>> ns["O"] = Symbol("O")  # method 1
+    >>> exec('from sympy.abc import O', ns)  # method 2
+    >>> ns.update(dict(O=Symbol("O")))  # method 3
+    >>> sympify("O + 1", locals=ns)
+    O + 1
+
+    If you want *all* single-letter and Greek-letter variables to be symbols
+    then you can use the clashing-symbols dictionaries that have been defined
+    there as private variables: _clash1 (single-letter variables), _clash2
+    (the multi-letter Greek names) or _clash (both single and multi-letter
+    names that are defined in abc).
+
+    >>> from sympy.abc import _clash1
+    >>> set(_clash1)
+    {'E', 'I', 'N', 'O', 'Q', 'S'}
+    >>> sympify('I & Q', _clash1)
+    I & Q
+
+    Strict
+    ------
+
+    If the option ``strict`` is set to ``True``, only the types for which an
+    explicit conversion has been defined are converted. In the other
+    cases, a SympifyError is raised.
+
+    >>> print(sympify(None))
+    None
+    >>> sympify(None, strict=True)
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: None
+
+    Evaluation
+    ----------
+
+    If the option ``evaluate`` is set to ``False``, then arithmetic and
+    operators will be converted into their SymPy equivalents and the
+    ``evaluate=False`` option will be added. Nested ``Add`` or ``Mul`` will
+    be denested first. This is done via an AST transformation that replaces
+    operators with their SymPy equivalents, so if an operand redefines any
+    of those operations, the redefined operators will not be used. If
+    argument a is not a string, the mathematical expression is evaluated
+    before being passed to sympify, so adding evaluate=False will still
+    return the evaluated result of expression.
+
+    >>> sympify('2**2 / 3 + 5')
+    19/3
+    >>> sympify('2**2 / 3 + 5', evaluate=False)
+    2**2/3 + 5
+    >>> sympify('4/2+7', evaluate=True)
+    9
+    >>> sympify('4/2+7', evaluate=False)
+    4/2 + 7
+    >>> sympify(4/2+7, evaluate=False)
+    9.00000000000000
+
+    Extending
+    ---------
+
+    To extend ``sympify`` to convert custom objects (not derived from ``Basic``),
+    just define a ``_sympy_`` method to your class. You can do that even to
+    classes that you do not own by subclassing or adding the method at runtime.
+
+    >>> from sympy import Matrix
+    >>> class MyList1(object):
+    ...     def __iter__(self):
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    ...     def _sympy_(self): return Matrix(self)
+    >>> sympify(MyList1())
+    Matrix([
+    [1],
+    [2]])
+
+    If you do not have control over the class definition you could also use the
+    ``converter`` global dictionary. The key is the class and the value is a
+    function that takes a single argument and returns the desired SymPy
+    object, e.g. ``converter[MyList] = lambda x: Matrix(x)``.
+
+    >>> class MyList2(object):   # XXX Do not do this if you control the class!
+    ...     def __iter__(self):  #     Use _sympy_!
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    >>> from sympy.core.sympify import converter
+    >>> converter[MyList2] = lambda x: Matrix(x)
+    >>> sympify(MyList2())
+    Matrix([
+    [1],
+    [2]])
+
+    Notes
+    =====
+
+    The keywords ``rational`` and ``convert_xor`` are only used
+    when the input is a string.
+
+    convert_xor
+    -----------
+
+    >>> sympify('x^y',convert_xor=True)
+    x**y
+    >>> sympify('x^y',convert_xor=False)
+    x ^ y
+
+    rational
+    --------
+
+    >>> sympify('0.1',rational=False)
+    0.1
+    >>> sympify('0.1',rational=True)
+    1/10
+
+    Sometimes autosimplification during sympification results in expressions
+    that are very different in structure than what was entered. Until such
+    autosimplification is no longer done, the ``kernS`` function might be of
+    some use. In the example below you can see how an expression reduces to
+    -1 by autosimplification, but does not do so when ``kernS`` is used.
+
+    >>> from sympy.core.sympify import kernS
+    >>> from sympy.abc import x
+    >>> -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+    -1
+    >>> s = '-2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1'
+    >>> sympify(s)
+    -1
+    >>> kernS(s)
+    -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+
+    Parameters
+    ==========
+
+    a :
+        - any object defined in SymPy
+        - standard numeric python types: int, long, float, Decimal
+        - strings (like "0.09", "2e-19" or 'sin(x)')
+        - booleans, including ``None`` (will leave ``None`` unchanged)
+        - dict, lists, sets or tuples containing any of the above
+
+    convert_xor : boolean, optional
+        If true, treats XOR as exponentiation.
+        If False, treats XOR as XOR itself.
+        Used only when input is a string.
+
+    locals : any object defined in SymPy, optional
+        In order to have strings be recognized it can be imported
+        into a namespace dictionary and passed as locals.
+
+    strict : boolean, optional
+        If the option strict is set to True, only the types for which
+        an explicit conversion has been defined are converted. In the
+        other cases, a SympifyError is raised.
+
+    rational : boolean, optional
+        If true, converts floats into Rational.
+        If false, it lets floats remain as it is.
+        Used only when input is a string.
+
+    evaluate : boolean, optional
+        If False, then arithmetic and operators will be converted into
+        their SymPy equivalents. If True the expression will be evaluated
+        and the result will be returned.
+
+    """
+    # XXX: If a is a Basic subclass rather than instance (e.g. sin rather than
+    # sin(x)) then a.__sympy__ will be the property. Only on the instance will
+    # a.__sympy__ give the *value* of the property (True). Since sympify(sin)
+    # was used for a long time we allow it to pass. However if strict=True as
+    # is the case in internal calls to _sympify then we only allow
+    # is_sympy=True.
+    #
+    # https://github.com/sympy/sympy/issues/20124
+    is_sympy = getattr(a, '__sympy__', None)
+    if is_sympy is True:
+        return a
+    elif is_sympy is not None:
+        if not strict:
+            return a
+        else:
+            raise SympifyError(a)
+
+    if isinstance(a, CantSympify):
+        raise SympifyError(a)
+    cls = getattr(a, "__class__", None)
+    if cls is None:
+        cls = type(a)  # Probably an old-style class
+    conv = converter.get(cls, None)
+    if conv is not None:
+        return conv(a)
+
+    for superclass in getmro(cls):
+        try:
+            return converter[superclass](a)
+        except KeyError:
+            continue
+
+    if cls is type(None):
+        if strict:
+            raise SympifyError(a)
+        else:
+            return a
+
+    if evaluate is None:
+        evaluate = global_parameters.evaluate
+
+    # Support for basic numpy datatypes
+    if _is_numpy_instance(a):
+        import numpy as np
+        if np.isscalar(a):
+            return _convert_numpy_types(a, locals=locals,
+                convert_xor=convert_xor, strict=strict, rational=rational,
+                evaluate=evaluate)
+
+    _sympy_ = getattr(a, "_sympy_", None)
+    if _sympy_ is not None:
+        try:
+            return a._sympy_()
+        # XXX: Catches AttributeError: 'SympyConverter' object has no
+        # attribute 'tuple'
+        # This is probably a bug somewhere but for now we catch it here.
+        except AttributeError:
+            pass
+
+    if not strict:
+        # Put numpy array conversion _before_ float/int, see
+        # <https://github.com/sympy/sympy/issues/13924>.
+        flat = getattr(a, "flat", None)
+        if flat is not None:
+            shape = getattr(a, "shape", None)
+            if shape is not None:
+                from ..tensor.array import Array
+                return Array(a.flat, a.shape)  # works with e.g. NumPy arrays
+
+    if not isinstance(a, str):
+        if _is_numpy_instance(a):
+            import numpy as np
+            assert not isinstance(a, np.number)
+            if isinstance(a, np.ndarray):
+                # Scalar arrays (those with zero dimensions) have sympify
+                # called on the scalar element.
+                if a.ndim == 0:
+                    try:
+                        return sympify(a.item(),
+                                       locals=locals,
+                                       convert_xor=convert_xor,
+                                       strict=strict,
+                                       rational=rational,
+                                       evaluate=evaluate)
+                    except SympifyError:
+                        pass
+        else:
+            # float and int can coerce size-one numpy arrays to their lone
+            # element.  See issue https://github.com/numpy/numpy/issues/10404.
+            for coerce in (float, int):
+                try:
+                    return sympify(coerce(a))
+                except (TypeError, ValueError, AttributeError, SympifyError):
+                    continue
+
+    if strict:
+        raise SympifyError(a)
+
+    if iterable(a):
+        try:
+            return type(a)([sympify(x, locals=locals, convert_xor=convert_xor,
+                rational=rational, evaluate=evaluate) for x in a])
+        except TypeError:
+            # Not all iterables are rebuildable with their type.
+            pass
+
+    if not isinstance(a, str):
+        try:
+            a = str(a)
+        except Exception as exc:
+            raise SympifyError(a, exc)
+        from sympy.utilities.exceptions import SymPyDeprecationWarning
+        SymPyDeprecationWarning(
+            feature="String fallback in sympify",
+            useinstead= \
+                'sympify(str(obj)) or ' + \
+                'sympy.core.sympify.converter or obj._sympy_',
+            issue=18066,
+            deprecated_since_version='1.6'
+        ).warn()
+
+    from sympy.parsing.sympy_parser import (parse_expr, TokenError,
+                                            standard_transformations)
+    from sympy.parsing.sympy_parser import convert_xor as t_convert_xor
+    from sympy.parsing.sympy_parser import rationalize as t_rationalize
+
+    transformations = standard_transformations
+
+    if rational:
+        transformations += (t_rationalize,)
+    if convert_xor:
+        transformations += (t_convert_xor,)
+
+    try:
+        a = a.replace('\n', '')
+        expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)
+    except (TokenError, SyntaxError) as exc:
+        raise SympifyError('could not parse %r' % a, exc)
+
+    return expr
+
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=1992 funcname='as_base_exp' classname='Expr'
+[2026-09-22 13:13:04,682 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO]     def as_base_exp(self):
+        # a -> b ** e
+        return self, S.One
+
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/mul.py' lineno=455 funcname='_gather' classname='Mul'
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO]         def _gather(c_powers):
+            common_b = {}  # b:e
+            for b, e in c_powers:
+                co = e.as_coeff_Mul()
+                common_b.setdefault(b, {}).setdefault(
+                    co[1], []).append(co[0])
+            for b, d in common_b.items():
+                for di, li in d.items():
+                    d[di] = Add(*li)
+            new_c_powers = []
+            for b, e in common_b.items():
+                new_c_powers.extend([(b, c*t) for t, c in e.items()])
+            return new_c_powers
+
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/power.py' lineno=917 funcname='as_base_exp' classname='Pow'
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO]     def as_base_exp(self):
+        """Return base and exp of self.
+
+        Explnation
+        ==========
+
+        If base is 1/Integer, then return Integer, -exp. If this extra
+        processing is not needed, the base and exp properties will
+        give the raw arguments
+
+        Examples
+        ========
+
+        >>> from sympy import Pow, S
+        >>> p = Pow(S.Half, 2, evaluate=False)
+        >>> p.as_base_exp()
+        (2, -2)
+        >>> p.args
+        (1/2, 2)
+
+        """
+
+        b, e = self.args
+        if b.is_Rational and b.p == 1 and b.q != 1:
+            return Integer(b.q), -e
+        return b, e
+
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2711 funcname='__bool__' classname='Zero'
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO]     def __bool__(self):
+        return False
+
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/mul.py' lineno=29 funcname='_mulsort' classname='NC_Marker'
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:13:04,683 - Orcar.tracer_reranker - INFO] def _mulsort(args):
+    # in-place sorting of args
+    args.sort(key=_args_sortkey)
+
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] ['monomial_key', 'itermonomials', 'is_sequence', '__hash__', '__hash__', '__ne__', 'wrapper', '__ne__', 'getit', '_hashable_content', '__eq__', '__new__', '__eq__', '_hashable_content', 'assumptions0', '_sympify', 'flatten', '_from_args', '_exec_constructor_postprocessors', 'sympify', 'as_base_exp', '_gather', 'as_base_exp', '__bool__', '_mulsort']
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] [('monomial_key', 2), ('itermonomials', 95), ('is_sequence', 2), ('__hash__', 1), ('__hash__', 2), ('__ne__', 2), ('wrapper', 2), ('__ne__', 5), ('getit', 2), ('_hashable_content', 2), ('__eq__', 2), ('__new__', 2), ('__eq__', 2), ('_hashable_content', 2), ('assumptions0', 2), ('_sympify', 2), ('flatten', 2), ('_from_args', 2), ('_exec_constructor_postprocessors', 2), ('sympify', 2), ('as_base_exp', 2), ('_gather', 2), ('as_base_exp', 2), ('__bool__', 5), ('_mulsort', 2)]
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] [('itermonomials', 95), ('monomial_key', 2), ('__ne__', 5), ('is_sequence', 2), ('__hash__', 2), ('__ne__', 2), ('wrapper', 2), ('__hash__', 1), ('getit', 2), ('_hashable_content', 2), ('__eq__', 2), ('__new__', 2), ('__eq__', 2), ('_hashable_content', 2), ('assumptions0', 2), ('_sympify', 2), ('flatten', 2), ('_from_args', 2), ('_exec_constructor_postprocessors', 2), ('__bool__', 5), ('sympify', 2), ('as_base_exp', 2), ('_gather', 2), ('as_base_exp', 2), ('_mulsort', 2)]
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 13:13:04,684 - Orcar.tracer_reranker - INFO] [('itermonomials', 95)]

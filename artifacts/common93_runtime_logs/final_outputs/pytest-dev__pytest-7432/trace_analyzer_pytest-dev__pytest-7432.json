@@ -1,0 +1,9 @@
+{
+    "summary": "",
+    "suspicious_code": [],
+    "suspicious_code_from_tracer": [],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import subprocess\nimport sys\n\n# Write test file\nwith open(\"test_skip_location.py\", \"w\") as f:\n    f.write(\"\"\"\nimport pytest\n@pytest.mark.skip\ndef test_skip_location() -> None:\n    assert 0\n\"\"\")\n\n# Run without --runxfail (expected behavior)\nresult1 = subprocess.run(\n    [sys.executable, \"-m\", \"pytest\", \"-rs\", \"test_skip_location.py\"],\n    capture_output=True, text=True\n)\nprint(\"=== Without --runxfail ===\")\nprint(result1.stdout)\nprint(result1.stderr)\n\n# Run with --runxfail (buggy behavior)\nresult2 = subprocess.run(\n    [sys.executable, \"-m\", \"pytest\", \"-rs\", \"--runxfail\", \"test_skip_location.py\"],\n    capture_output=True, text=True\n)\nprint(\"=== With --runxfail ===\")\nprint(result2.stdout)\nprint(result2.stderr)\n\n# Check for the bug\nif \"skipping.py\" in result2.stdout:\n    print(\"BUG REPRODUCED: --runxfail breaks skip location reporting\")\n    print(\"Skip location points to skipping.py instead of the test file\")\nelse:\n    print(\"Bug not reproduced\")\n",
+    "env_reproduce_path": "/pytest-dev__pytest/reproducer_pytest-dev__pytest-7432.py"
+}

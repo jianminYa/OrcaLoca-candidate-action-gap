@@ -1,0 +1,85 @@
+[2026-09-21 12:49:56,798 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'qdp.py', 'directory_path': 'astropy/io/ascii'}: 1
+)
+[2026-09-21 12:50:13,916 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'qdp.py', 'directory_path': 'astropy/io/ascii'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'astropy/io/ascii/qdp.py', 'source_code': 'READ'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_type_from_list_of_lines', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_tables_from_qdp_file', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+)
+[2026-09-21 12:50:45,004 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'})]
+[2026-09-21 12:50:58,089 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'qdp.py', 'directory_path': 'astropy/io/ascii'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'astropy/io/ascii/qdp.py', 'source_code': 'READ'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_type_from_list_of_lines', 'file_path': 'astropy/io/ascii/qdp.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_tables_from_qdp_file', 'file_path': 'astropy/io/ascii/qdp.py'}: 2
+)
+[2026-09-21 12:51:12,154 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'qdp.py', 'directory_path': 'astropy/io/ascii'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'astropy/io/ascii/qdp.py', 'source_code': 'READ'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_type_from_list_of_lines', 'file_path': 'astropy/io/ascii/qdp.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_tables_from_qdp_file', 'file_path': 'astropy/io/ascii/qdp.py'}: 3
+)
+[2026-09-21 12:51:27,061 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'qdp.py', 'directory_path': 'astropy/io/ascii'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'astropy/io/ascii/qdp.py', 'source_code': 'READ'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_type_from_list_of_lines', 'file_path': 'astropy/io/ascii/qdp.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_tables_from_qdp_file', 'file_path': 'astropy/io/ascii/qdp.py'}: 4
+)
+[2026-09-21 12:51:40,221 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type', 'file_path': 'astropy/io/ascii/qdp.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_line_type'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'qdp.py', 'directory_path': 'astropy/io/ascii'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'astropy/io/ascii/qdp.py', 'source_code': 'READ'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_type_from_list_of_lines', 'file_path': 'astropy/io/ascii/qdp.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_get_tables_from_qdp_file', 'file_path': 'astropy/io/ascii/qdp.py'}: 4
+)

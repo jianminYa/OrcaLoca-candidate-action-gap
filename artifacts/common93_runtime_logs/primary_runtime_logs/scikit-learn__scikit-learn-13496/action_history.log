@@ -1,0 +1,100 @@
+[2026-09-22 08:56:03,574 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+)
+[2026-09-22 08:56:22,056 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'})]
+[2026-09-22 08:56:44,443 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}: 1
+)
+[2026-09-22 08:56:53,769 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}: 1
+)
+[2026-09-22 08:57:18,811 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}: 1
+)
+[2026-09-22 08:57:29,006 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}: 2
+)
+[2026-09-22 08:57:45,437 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'bagging.py', 'directory_path': 'sklearn/ensemble'}: 1
+)
+[2026-09-22 08:58:07,428 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'bagging.py', 'directory_path': 'sklearn/ensemble'}: 1
+)

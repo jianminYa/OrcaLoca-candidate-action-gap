@@ -1,0 +1,33 @@
+[2026-09-22 05:18:24,494 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/sql/query.py', 'source_code': 'opts = cur_model._meta'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedPopulator', 'method_name': '__init__', 'file_path': 'django/db/models/query.py'}
+)
+[2026-09-22 05:18:36,376 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedPopulator', 'method_name': '__init__', 'file_path': 'django/db/models/query.py'}
+)
+[2026-09-22 05:18:54,926 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RelatedPopulator', 'method_name': '__init__', 'file_path': 'django/db/models/query.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'deferred_to_data', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 05:19:06,641 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'deferred_to_data', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 05:19:31,804 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'deferred_to_data', 'file_path': 'django/db/models/sql/query.py'}
+)

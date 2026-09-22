@@ -1,0 +1,40 @@
+[2026-09-21 13:01:12,279 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'FILE_UPLOAD_PERMISSIONS', 'file_path': 'django/conf/global_settings.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}
+)
+[2026-09-21 13:01:22,289 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'global_settings.py', 'directory_path': 'django/conf'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}
+)
+[2026-09-21 13:01:38,522 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'file_path': 'django/core/files/storage.py'}
+)
+[2026-09-21 13:02:23,587 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'storage.py', 'directory_path': 'django/core/files'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': '_save', 'file_path': 'django/core/files/storage.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}
+)
+[2026-09-21 13:02:44,381 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': '_save', 'file_path': 'django/core/files/storage.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}
+)
+[2026-09-21 13:02:59,439 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FileSystemStorage', 'method_name': 'file_permissions_mode', 'file_path': 'django/core/files/storage.py'}
+)

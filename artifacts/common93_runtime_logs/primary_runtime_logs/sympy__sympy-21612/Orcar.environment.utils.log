@@ -1,0 +1,2 @@
+[2026-09-22 13:03:40,807 - Orcar.environment.utils - DEBUG] Run command in container: ls /tmp/tracer_output_sympy__sympy-21612.json
+[2026-09-22 13:11:12,639 - Orcar.environment.utils - INFO] Agent container paused

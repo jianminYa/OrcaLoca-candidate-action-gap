@@ -1,0 +1,1997 @@
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/simplify.py' lineno=380 funcname='simplify' classname=''
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] def simplify(expr, ratio=1.7, measure=count_ops, rational=False, inverse=False):
+    """Simplifies the given expression.
+
+    Simplification is not a well defined term and the exact strategies
+    this function tries can change in the future versions of SymPy. If
+    your algorithm relies on "simplification" (whatever it is), try to
+    determine what you need exactly  -  is it powsimp()?, radsimp()?,
+    together()?, logcombine()?, or something else? And use this particular
+    function directly, because those are well defined and thus your algorithm
+    will be robust.
+
+    Nonetheless, especially for interactive use, or when you don't know
+    anything about the structure of the expression, simplify() tries to apply
+    intelligent heuristics to make the input expression "simpler".  For
+    example:
+
+    >>> from sympy import simplify, cos, sin
+    >>> from sympy.abc import x, y
+    >>> a = (x + x**2)/(x*sin(y)**2 + x*cos(y)**2)
+    >>> a
+    (x**2 + x)/(x*sin(y)**2 + x*cos(y)**2)
+    >>> simplify(a)
+    x + 1
+
+    Note that we could have obtained the same result by using specific
+    simplification functions:
+
+    >>> from sympy import trigsimp, cancel
+    >>> trigsimp(a)
+    (x**2 + x)/x
+    >>> cancel(_)
+    x + 1
+
+    In some cases, applying :func:`simplify` may actually result in some more
+    complicated expression. The default ``ratio=1.7`` prevents more extreme
+    cases: if (result length)/(input length) > ratio, then input is returned
+    unmodified.  The ``measure`` parameter lets you specify the function used
+    to determine how complex an expression is.  The function should take a
+    single argument as an expression and return a number such that if
+    expression ``a`` is more complex than expression ``b``, then
+    ``measure(a) > measure(b)``.  The default measure function is
+    :func:`count_ops`, which returns the total number of operations in the
+    expression.
+
+    For example, if ``ratio=1``, ``simplify`` output can't be longer
+    than input.
+
+    ::
+
+        >>> from sympy import sqrt, simplify, count_ops, oo
+        >>> root = 1/(sqrt(2)+3)
+
+    Since ``simplify(root)`` would result in a slightly longer expression,
+    root is returned unchanged instead::
+
+       >>> simplify(root, ratio=1) == root
+       True
+
+    If ``ratio=oo``, simplify will be applied anyway::
+
+        >>> count_ops(simplify(root, ratio=oo)) > count_ops(root)
+        True
+
+    Note that the shortest expression is not necessary the simplest, so
+    setting ``ratio`` to 1 may not be a good idea.
+    Heuristically, the default value ``ratio=1.7`` seems like a reasonable
+    choice.
+
+    You can easily define your own measure function based on what you feel
+    should represent the "size" or "complexity" of the input expression.  Note
+    that some choices, such as ``lambda expr: len(str(expr))`` may appear to be
+    good metrics, but have other problems (in this case, the measure function
+    may slow down simplify too much for very large expressions).  If you don't
+    know what a good metric would be, the default, ``count_ops``, is a good
+    one.
+
+    For example:
+
+    >>> from sympy import symbols, log
+    >>> a, b = symbols('a b', positive=True)
+    >>> g = log(a) + log(b) + log(a)*log(1/b)
+    >>> h = simplify(g)
+    >>> h
+    log(a*b**(1 - log(a)))
+    >>> count_ops(g)
+    8
+    >>> count_ops(h)
+    5
+
+    So you can see that ``h`` is simpler than ``g`` using the count_ops metric.
+    However, we may not like how ``simplify`` (in this case, using
+    ``logcombine``) has created the ``b**(log(1/a) + 1)`` term.  A simple way
+    to reduce this would be to give more weight to powers as operations in
+    ``count_ops``.  We can do this by using the ``visual=True`` option:
+
+    >>> print(count_ops(g, visual=True))
+    2*ADD + DIV + 4*LOG + MUL
+    >>> print(count_ops(h, visual=True))
+    2*LOG + MUL + POW + SUB
+
+    >>> from sympy import Symbol, S
+    >>> def my_measure(expr):
+    ...     POW = Symbol('POW')
+    ...     # Discourage powers by giving POW a weight of 10
+    ...     count = count_ops(expr, visual=True).subs(POW, 10)
+    ...     # Every other operation gets a weight of 1 (the default)
+    ...     count = count.replace(Symbol, type(S.One))
+    ...     return count
+    >>> my_measure(g)
+    8
+    >>> my_measure(h)
+    14
+    >>> 15./8 > 1.7 # 1.7 is the default ratio
+    True
+    >>> simplify(g, measure=my_measure)
+    -log(a)*log(b) + log(a) + log(b)
+
+    Note that because ``simplify()`` internally tries many different
+    simplification strategies and then compares them using the measure
+    function, we get a completely different result that is still different
+    from the input expression by doing this.
+
+    If rational=True, Floats will be recast as Rationals before simplification.
+    If rational=None, Floats will be recast as Rationals but the result will
+    be recast as Floats. If rational=False(default) then nothing will be done
+    to the Floats.
+
+    If inverse=True, it will be assumed that a composition of inverse
+    functions, such as sin and asin, can be cancelled in any order.
+    For example, ``asin(sin(x))`` will yield ``x`` without checking whether
+    x belongs to the set where this relation is true. The default is
+    False.
+    """
+
+    expr = sympify(expr)
+    kwargs = dict(ratio=ratio, measure=measure,
+        rational=rational, inverse=inverse)
+
+    # no routine for Expr needs to check for is_zero
+    if isinstance(expr, Expr) and expr.is_zero and expr*0 is S.Zero:
+        return S.Zero
+
+    _eval_simplify = getattr(expr, '_eval_simplify', None)
+    if _eval_simplify is not None:
+        return _eval_simplify(ratio=ratio, measure=measure, rational=rational, inverse=inverse)
+
+    original_expr = expr = signsimp(expr)
+
+    from sympy.simplify.hyperexpand import hyperexpand
+    from sympy.functions.special.bessel import BesselBase
+    from sympy import Sum, Product, Integral
+
+    if not isinstance(expr, Basic) or not expr.args:  # XXX: temporary hack
+        return expr
+
+    if inverse and expr.has(Function):
+        expr = inversecombine(expr)
+        if not expr.args:  # simplified to atomic
+            return expr
+
+    if not isinstance(expr, (Add, Mul, Pow, ExpBase)):
+        return expr.func(*[simplify(x, **kwargs) for x in expr.args])
+
+    if not expr.is_commutative:
+        expr = nc_simplify(expr)
+
+    # TODO: Apply different strategies, considering expression pattern:
+    # is it a purely rational function? Is there any trigonometric function?...
+    # See also https://github.com/sympy/sympy/pull/185.
+
+    def shorter(*choices):
+        '''Return the choice that has the fewest ops. In case of a tie,
+        the expression listed first is selected.'''
+        if not has_variety(choices):
+            return choices[0]
+        return min(choices, key=measure)
+
+    # rationalize Floats
+    floats = False
+    if rational is not False and expr.has(Float):
+        floats = True
+        expr = nsimplify(expr, rational=True)
+
+    expr = bottom_up(expr, lambda w: getattr(w, 'normal', lambda: w)())
+    expr = Mul(*powsimp(expr).as_content_primitive())
+    _e = cancel(expr)
+    expr1 = shorter(_e, _mexpand(_e).cancel())  # issue 6829
+    expr2 = shorter(together(expr, deep=True), together(expr1, deep=True))
+
+    if ratio is S.Infinity:
+        expr = expr2
+    else:
+        expr = shorter(expr2, expr1, expr)
+    if not isinstance(expr, Basic):  # XXX: temporary hack
+        return expr
+
+    expr = factor_terms(expr, sign=False)
+
+    # hyperexpand automatically only works on hypergeometric terms
+    expr = hyperexpand(expr)
+
+    expr = piecewise_fold(expr)
+
+    if expr.has(BesselBase):
+        expr = besselsimp(expr)
+
+    if expr.has(TrigonometricFunction, HyperbolicFunction):
+        expr = trigsimp(expr, deep=True)
+
+    if expr.has(log):
+        expr = shorter(expand_log(expr, deep=True), logcombine(expr))
+
+    if expr.has(CombinatorialFunction, gamma):
+        # expression with gamma functions or non-integer arguments is
+        # automatically passed to gammasimp
+        expr = combsimp(expr)
+
+    if expr.has(Sum):
+        expr = sum_simplify(expr, **kwargs)
+
+    if expr.has(Integral):
+        expr = expr.xreplace(dict([
+            (i, factor_terms(i)) for i in expr.atoms(Integral)]))
+
+    if expr.has(Product):
+        expr = product_simplify(expr)
+
+    from sympy.physics.units import Quantity
+    from sympy.physics.units.util import quantity_simplify
+
+    if expr.has(Quantity):
+        expr = quantity_simplify(expr)
+
+    short = shorter(powsimp(expr, combine='exp', deep=True), powsimp(expr), expr)
+    short = shorter(short, cancel(short))
+    short = shorter(short, factor_terms(short), expand_power_exp(expand_mul(short)))
+    if short.has(TrigonometricFunction, HyperbolicFunction, ExpBase):
+        short = exptrigsimp(short)
+
+    # get rid of hollow 2-arg Mul factorization
+    hollow_mul = Transform(
+        lambda x: Mul(*x.args),
+        lambda x:
+        x.is_Mul and
+        len(x.args) == 2 and
+        x.args[0].is_Number and
+        x.args[1].is_Add and
+        x.is_commutative)
+    expr = short.xreplace(hollow_mul)
+
+    numer, denom = expr.as_numer_denom()
+    if denom.is_Add:
+        n, d = fraction(radsimp(1/denom, symbolic=False, max_terms=1))
+        if n is not S.One:
+            expr = (numer*n).expand()/d
+
+    if expr.could_extract_minus_sign():
+        n, d = fraction(expr)
+        if d != 0:
+            expr = signsimp(-n/(-d))
+
+    if measure(expr) > ratio*measure(original_expr):
+        expr = original_expr
+
+    # restore floats
+    if floats and rational is None:
+        expr = nfloat(expr, exponent=False)
+
+    return expr
+
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/simplify.py' lineno=1070 funcname='bottom_up' classname=''
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] def bottom_up(rv, F, atoms=False, nonbasic=False):
+    """Apply ``F`` to all expressions in an expression tree from the
+    bottom up. If ``atoms`` is True, apply ``F`` even if there are no args;
+    if ``nonbasic`` is True, try to apply ``F`` to non-Basic objects.
+    """
+    args = getattr(rv, 'args', None)
+    if args is not None:
+        if args:
+            args = tuple([bottom_up(a, F, atoms, nonbasic) for a in args])
+            if args != rv.args:
+                rv = rv.func(*args)
+            rv = F(rv)
+        elif atoms:
+            rv = F(rv)
+    else:
+        if nonbasic:
+            try:
+                rv = F(rv)
+            except TypeError:
+                pass
+
+    return rv
+
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/trigsimp.py' lineno=424 funcname='trigsimp' classname=''
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] def trigsimp(expr, **opts):
+    """
+    reduces expression by using known trig identities
+
+    Notes
+    =====
+
+    method:
+    - Determine the method to use. Valid choices are 'matching' (default),
+    'groebner', 'combined', and 'fu'. If 'matching', simplify the
+    expression recursively by targeting common patterns. If 'groebner', apply
+    an experimental groebner basis algorithm. In this case further options
+    are forwarded to ``trigsimp_groebner``, please refer to its docstring.
+    If 'combined', first run the groebner basis algorithm with small
+    default parameters, then run the 'matching' algorithm. 'fu' runs the
+    collection of trigonometric transformations described by Fu, et al.
+    (see the `fu` docstring).
+
+
+    Examples
+    ========
+
+    >>> from sympy import trigsimp, sin, cos, log
+    >>> from sympy.abc import x, y
+    >>> e = 2*sin(x)**2 + 2*cos(x)**2
+    >>> trigsimp(e)
+    2
+
+    Simplification occurs wherever trigonometric functions are located.
+
+    >>> trigsimp(log(e))
+    log(2)
+
+    Using `method="groebner"` (or `"combined"`) might lead to greater
+    simplification.
+
+    The old trigsimp routine can be accessed as with method 'old'.
+
+    >>> from sympy import coth, tanh
+    >>> t = 3*tanh(x)**7 - 2/coth(x)**7
+    >>> trigsimp(t, method='old') == t
+    True
+    >>> trigsimp(t)
+    tanh(x)**7
+
+    """
+    from sympy.simplify.fu import fu
+
+    expr = sympify(expr)
+
+    _eval_trigsimp = getattr(expr, '_eval_trigsimp', None)
+    if _eval_trigsimp is not None:
+        return _eval_trigsimp(**opts)
+
+    old = opts.pop('old', False)
+    if not old:
+        opts.pop('deep', None)
+        opts.pop('recursive', None)
+        method = opts.pop('method', 'matching')
+    else:
+        method = 'old'
+
+    def groebnersimp(ex, **opts):
+        def traverse(e):
+            if e.is_Atom:
+                return e
+            args = [traverse(x) for x in e.args]
+            if e.is_Function or e.is_Pow:
+                args = [trigsimp_groebner(x, **opts) for x in args]
+            return e.func(*args)
+        new = traverse(ex)
+        if not isinstance(new, Expr):
+            return new
+        return trigsimp_groebner(new, **opts)
+
+    trigsimpfunc = {
+        'fu': (lambda x: fu(x, **opts)),
+        'matching': (lambda x: futrig(x)),
+        'groebner': (lambda x: groebnersimp(x, **opts)),
+        'combined': (lambda x: futrig(groebnersimp(x,
+                               polynomial=True, hints=[2, tan]))),
+        'old': lambda x: trigsimp_old(x, **opts),
+                   }[method]
+
+    return trigsimpfunc(expr)
+
+[2026-09-22 11:10:46,923 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/trigsimp.py' lineno=1069 funcname='futrig' classname=''
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] def futrig(e, **kwargs):
+    """Return simplified ``e`` using Fu-like transformations.
+    This is not the "Fu" algorithm. This is called by default
+    from ``trigsimp``. By default, hyperbolics subexpressions
+    will be simplified, but this can be disabled by setting
+    ``hyper=False``.
+
+    Examples
+    ========
+
+    >>> from sympy import trigsimp, tan, sinh, tanh
+    >>> from sympy.simplify.trigsimp import futrig
+    >>> from sympy.abc import x
+    >>> trigsimp(1/tan(x)**2)
+    tan(x)**(-2)
+
+    >>> futrig(sinh(x)/tanh(x))
+    cosh(x)
+
+    """
+    from sympy.simplify.fu import hyper_as_trig
+    from sympy.simplify.simplify import bottom_up
+
+    e = sympify(e)
+
+    if not isinstance(e, Basic):
+        return e
+
+    if not e.args:
+        return e
+
+    old = e
+    e = bottom_up(e, lambda x: _futrig(x, **kwargs))
+
+    if kwargs.pop('hyper', True) and e.has(HyperbolicFunction):
+        e, f = hyper_as_trig(e)
+        e = f(_futrig(e))
+
+    if e != old and e.is_Mul and e.args[0].is_Rational:
+        # redistribute leading coeff on 2-arg Add
+        e = Mul(*e.as_coeff_Mul())
+    return e
+
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/trigsimp.py' lineno=1113 funcname='_futrig' classname=''
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] def _futrig(e, **kwargs):
+    """Helper for futrig."""
+    from sympy.simplify.fu import (
+        TR1, TR2, TR3, TR2i, TR10, L, TR10i,
+        TR8, TR6, TR15, TR16, TR111, TR5, TRmorrie, TR11, TR14, TR22,
+        TR12)
+    from sympy.core.compatibility import _nodes
+
+    if not e.has(TrigonometricFunction):
+        return e
+
+    if e.is_Mul:
+        coeff, e = e.as_independent(TrigonometricFunction)
+    else:
+        coeff = S.One
+
+    Lops = lambda x: (L(x), x.count_ops(), _nodes(x), len(x.args), x.is_Add)
+    trigs = lambda x: x.has(TrigonometricFunction)
+
+    tree = [identity,
+        (
+        TR3,  # canonical angles
+        TR1,  # sec-csc -> cos-sin
+        TR12,  # expand tan of sum
+        lambda x: _eapply(factor, x, trigs),
+        TR2,  # tan-cot -> sin-cos
+        [identity, lambda x: _eapply(_mexpand, x, trigs)],
+        TR2i,  # sin-cos ratio -> tan
+        lambda x: _eapply(lambda i: factor(i.normal()), x, trigs),
+        TR14,  # factored identities
+        TR5,  # sin-pow -> cos_pow
+        TR10,  # sin-cos of sums -> sin-cos prod
+        TR11, TR6, # reduce double angles and rewrite cos pows
+        lambda x: _eapply(factor, x, trigs),
+        TR14,  # factored powers of identities
+        [identity, lambda x: _eapply(_mexpand, x, trigs)],
+        TR10i,  # sin-cos products > sin-cos of sums
+        TRmorrie,
+        [identity, TR8],  # sin-cos products -> sin-cos of sums
+        [identity, lambda x: TR2i(TR2(x))],  # tan -> sin-cos -> tan
+        [
+            lambda x: _eapply(expand_mul, TR5(x), trigs),
+            lambda x: _eapply(
+                expand_mul, TR15(x), trigs)], # pos/neg powers of sin
+        [
+            lambda x:  _eapply(expand_mul, TR6(x), trigs),
+            lambda x:  _eapply(
+                expand_mul, TR16(x), trigs)], # pos/neg powers of cos
+        TR111,  # tan, sin, cos to neg power -> cot, csc, sec
+        [identity, TR2i],  # sin-cos ratio to tan
+        [identity, lambda x: _eapply(
+            expand_mul, TR22(x), trigs)],  # tan-cot to sec-csc
+        TR1, TR2, TR2i,
+        [identity, lambda x: _eapply(
+            factor_terms, TR12(x), trigs)],  # expand tan of sum
+        )]
+    e = greedy(tree, objective=Lops)(e)
+    return coeff*e
+
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/strategies/core.py' lineno=114 funcname='minrule' classname=''
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO]     def minrule(expr):
+        return min([rule(expr) for rule in rules], key=objective)
+
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/strategies/core.py' lineno=42 funcname='chain_rl' classname=''
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO]     def chain_rl(expr):
+        for rule in rules:
+            expr = rule(expr)
+        return expr
+
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/fu.py' lineno=548 funcname='TR6' classname=''
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] def TR6(rv, max=4, pow=False):
+    """Replacement of cos**2 with 1 - sin(x)**2.
+
+    See _TR56 docstring for advanced use of ``max`` and ``pow``.
+
+    Examples
+    ========
+
+    >>> from sympy.simplify.fu import TR6
+    >>> from sympy.abc import x
+    >>> from sympy import cos
+    >>> TR6(cos(x)**2)
+    1 - sin(x)**2
+    >>> TR6(cos(x)**-2)  #unchanged
+    cos(x)**(-2)
+    >>> TR6(cos(x)**4)
+    (1 - sin(x)**2)**2
+    """
+    return _TR56(rv, cos, sin, lambda x: 1 - x, max=max, pow=pow)
+
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/fu.py' lineno=470 funcname='_TR56' classname=''
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 11:10:46,924 - Orcar.tracer_reranker - INFO] def _TR56(rv, f, g, h, max, pow):
+    """Helper for TR5 and TR6 to replace f**2 with h(g**2)
+
+    Options
+    =======
+
+    max :   controls size of exponent that can appear on f
+            e.g. if max=4 then f**4 will be changed to h(g**2)**2.
+    pow :   controls whether the exponent must be a perfect power of 2
+            e.g. if pow=True (and max >= 6) then f**6 will not be changed
+            but f**8 will be changed to h(g**2)**4
+
+    >>> from sympy.simplify.fu import _TR56 as T
+    >>> from sympy.abc import x
+    >>> from sympy import sin, cos
+    >>> h = lambda x: 1 - x
+    >>> T(sin(x)**3, sin, cos, h, 4, False)
+    sin(x)**3
+    >>> T(sin(x)**6, sin, cos, h, 6, False)
+    (1 - cos(x)**2)**3
+    >>> T(sin(x)**6, sin, cos, h, 6, True)
+    sin(x)**6
+    >>> T(sin(x)**8, sin, cos, h, 10, True)
+    (1 - cos(x)**2)**4
+    """
+
+    def _f(rv):
+        # I'm not sure if this transformation should target all even powers
+        # or only those expressible as powers of 2. Also, should it only
+        # make the changes in powers that appear in sums -- making an isolated
+        # change is not going to allow a simplification as far as I can tell.
+        if not (rv.is_Pow and rv.base.func == f):
+            return rv
+
+        if (rv.exp < 0) == True:
+            return rv
+        if (rv.exp > max) == True:
+            return rv
+        if rv.exp == 2:
+            return h(g(rv.base.args[0])**2)
+        else:
+            if rv.exp == 4:
+                e = 2
+            elif not pow:
+                if rv.exp % 2:
+                    return rv
+                e = rv.exp//2
+            else:
+                p = perfect_power(rv.exp)
+                if not p:
+                    return rv
+                e = rv.exp//2
+            return h(g(rv.base.args[0])**2)**e
+
+    return bottom_up(rv, _f)
+
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/fu.py' lineno=496 funcname='_f' classname=''
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO]     def _f(rv):
+        # I'm not sure if this transformation should target all even powers
+        # or only those expressible as powers of 2. Also, should it only
+        # make the changes in powers that appear in sums -- making an isolated
+        # change is not going to allow a simplification as far as I can tell.
+        if not (rv.is_Pow and rv.base.func == f):
+            return rv
+
+        if (rv.exp < 0) == True:
+            return rv
+        if (rv.exp > max) == True:
+            return rv
+        if rv.exp == 2:
+            return h(g(rv.base.args[0])**2)
+        else:
+            if rv.exp == 4:
+                e = 2
+            elif not pow:
+                if rv.exp % 2:
+                    return rv
+                e = rv.exp//2
+            else:
+                p = perfect_power(rv.exp)
+                if not p:
+                    return rv
+                e = rv.exp//2
+            return h(g(rv.base.args[0])**2)**e
+
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=398 funcname='__lt__' classname='Expr'
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO]     def __lt__(self, other):
+        from sympy import StrictLessThan
+        try:
+            other = _sympify(other)
+        except SympifyError:
+            raise TypeError("Invalid comparison %s < %s" % (self, other))
+        for me in (self, other):
+            if me.is_complex and me.is_extended_real is False:
+                raise TypeError("Invalid comparison of complex %s" % me)
+            if me is S.NaN:
+                raise TypeError("Invalid NaN comparison")
+        n2 = _n2(self, other)
+        if n2 is not None:
+            return _sympify(n2 < 0)
+        if self.is_extended_real and other.is_extended_real:
+            if (self.is_infinite and self.is_extended_positive) \
+                    or (other.is_infinite and other.is_extended_negative):
+                return S.false
+            neg = (self - other).is_extended_negative
+            if neg is not None:
+                return sympify(neg)
+        return StrictLessThan(self, other, evaluate=False)
+
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/simplify.py' lineno=318 funcname='signsimp' classname=''
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] def signsimp(expr, evaluate=None):
+    """Make all Add sub-expressions canonical wrt sign.
+
+    If an Add subexpression, ``a``, can have a sign extracted,
+    as determined by could_extract_minus_sign, it is replaced
+    with Mul(-1, a, evaluate=False). This allows signs to be
+    extracted from powers and products.
+
+    Examples
+    ========
+
+    >>> from sympy import signsimp, exp, symbols
+    >>> from sympy.abc import x, y
+    >>> i = symbols('i', odd=True)
+    >>> n = -1 + 1/x
+    >>> n/x/(-n)**2 - 1/n/x
+    (-1 + 1/x)/(x*(1 - 1/x)**2) - 1/(x*(-1 + 1/x))
+    >>> signsimp(_)
+    0
+    >>> x*n + x*-n
+    x*(-1 + 1/x) + x*(1 - 1/x)
+    >>> signsimp(_)
+    0
+
+    Since powers automatically handle leading signs
+
+    >>> (-2)**i
+    -2**i
+
+    signsimp can be used to put the base of a power with an integer
+    exponent into canonical form:
+
+    >>> n**i
+    (-1 + 1/x)**i
+
+    By default, signsimp doesn't leave behind any hollow simplification:
+    if making an Add canonical wrt sign didn't change the expression, the
+    original Add is restored. If this is not desired then the keyword
+    ``evaluate`` can be set to False:
+
+    >>> e = exp(y - x)
+    >>> signsimp(e) == e
+    True
+    >>> signsimp(e, evaluate=False)
+    exp(-(x - y))
+
+    """
+    if evaluate is None:
+        evaluate = global_evaluate[0]
+    expr = sympify(expr)
+    if not isinstance(expr, Expr) or expr.is_Atom:
+        return expr
+    e = sub_post(sub_pre(expr))
+    if not isinstance(e, Expr) or e.is_Atom:
+        return e
+    if e.is_Add:
+        return e.func(*[signsimp(a, evaluate) for a in e.args])
+    if evaluate:
+        e = e.xreplace({m: -(-m) for m in e.atoms(Mul) if -(-m) != m})
+    return e
+
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/simplify.py' lineno=550 funcname='shorter' classname=''
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO]     def shorter(*choices):
+        '''Return the choice that has the fewest ops. In case of a tie,
+        the expression listed first is selected.'''
+        if not has_variety(choices):
+            return choices[0]
+        return min(choices, key=measure)
+
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/sympify.py' lineno=78 funcname='sympify' classname='CantSympify'
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 11:10:46,925 - Orcar.tracer_reranker - INFO] def sympify(a, locals=None, convert_xor=True, strict=False, rational=False,
+        evaluate=None):
+    """Converts an arbitrary expression to a type that can be used inside SymPy.
+
+    For example, it will convert Python ints into instances of sympy.Integer,
+    floats into instances of sympy.Float, etc. It is also able to coerce symbolic
+    expressions which inherit from Basic. This can be useful in cooperation
+    with SAGE.
+
+    It currently accepts as arguments:
+       - any object defined in SymPy
+       - standard numeric python types: int, long, float, Decimal
+       - strings (like "0.09" or "2e-19")
+       - booleans, including ``None`` (will leave ``None`` unchanged)
+       - dict, lists, sets or tuples containing any of the above
+
+    .. warning::
+        Note that this function uses ``eval``, and thus shouldn't be used on
+        unsanitized input.
+
+    If the argument is already a type that SymPy understands, it will do
+    nothing but return that value. This can be used at the beginning of a
+    function to ensure you are working with the correct type.
+
+    >>> from sympy import sympify
+
+    >>> sympify(2).is_integer
+    True
+    >>> sympify(2).is_real
+    True
+
+    >>> sympify(2.0).is_real
+    True
+    >>> sympify("2.0").is_real
+    True
+    >>> sympify("2e-45").is_real
+    True
+
+    If the expression could not be converted, a SympifyError is raised.
+
+    >>> sympify("x***2")
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: "could not parse u'x***2'"
+
+    Locals
+    ------
+
+    The sympification happens with access to everything that is loaded
+    by ``from sympy import *``; anything used in a string that is not
+    defined by that import will be converted to a symbol. In the following,
+    the ``bitcount`` function is treated as a symbol and the ``O`` is
+    interpreted as the Order object (used with series) and it raises
+    an error when used improperly:
+
+    >>> s = 'bitcount(42)'
+    >>> sympify(s)
+    bitcount(42)
+    >>> sympify("O(x)")
+    O(x)
+    >>> sympify("O + 1")
+    Traceback (most recent call last):
+    ...
+    TypeError: unbound method...
+
+    In order to have ``bitcount`` be recognized it can be imported into a
+    namespace dictionary and passed as locals:
+
+    >>> from sympy.core.compatibility import exec_
+    >>> ns = {}
+    >>> exec_('from sympy.core.evalf import bitcount', ns)
+    >>> sympify(s, locals=ns)
+    6
+
+    In order to have the ``O`` interpreted as a Symbol, identify it as such
+    in the namespace dictionary. This can be done in a variety of ways; all
+    three of the following are possibilities:
+
+    >>> from sympy import Symbol
+    >>> ns["O"] = Symbol("O")  # method 1
+    >>> exec_('from sympy.abc import O', ns)  # method 2
+    >>> ns.update(dict(O=Symbol("O")))  # method 3
+    >>> sympify("O + 1", locals=ns)
+    O + 1
+
+    If you want *all* single-letter and Greek-letter variables to be symbols
+    then you can use the clashing-symbols dictionaries that have been defined
+    there as private variables: _clash1 (single-letter variables), _clash2
+    (the multi-letter Greek names) or _clash (both single and multi-letter
+    names that are defined in abc).
+
+    >>> from sympy.abc import _clash1
+    >>> _clash1
+    {'C': C, 'E': E, 'I': I, 'N': N, 'O': O, 'Q': Q, 'S': S}
+    >>> sympify('I & Q', _clash1)
+    I & Q
+
+    Strict
+    ------
+
+    If the option ``strict`` is set to ``True``, only the types for which an
+    explicit conversion has been defined are converted. In the other
+    cases, a SympifyError is raised.
+
+    >>> print(sympify(None))
+    None
+    >>> sympify(None, strict=True)
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: None
+
+    Evaluation
+    ----------
+
+    If the option ``evaluate`` is set to ``False``, then arithmetic and
+    operators will be converted into their SymPy equivalents and the
+    ``evaluate=False`` option will be added. Nested ``Add`` or ``Mul`` will
+    be denested first. This is done via an AST transformation that replaces
+    operators with their SymPy equivalents, so if an operand redefines any
+    of those operations, the redefined operators will not be used.
+
+    >>> sympify('2**2 / 3 + 5')
+    19/3
+    >>> sympify('2**2 / 3 + 5', evaluate=False)
+    2**2/3 + 5
+
+    Extending
+    ---------
+
+    To extend ``sympify`` to convert custom objects (not derived from ``Basic``),
+    just define a ``_sympy_`` method to your class. You can do that even to
+    classes that you do not own by subclassing or adding the method at runtime.
+
+    >>> from sympy import Matrix
+    >>> class MyList1(object):
+    ...     def __iter__(self):
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    ...     def _sympy_(self): return Matrix(self)
+    >>> sympify(MyList1())
+    Matrix([
+    [1],
+    [2]])
+
+    If you do not have control over the class definition you could also use the
+    ``converter`` global dictionary. The key is the class and the value is a
+    function that takes a single argument and returns the desired SymPy
+    object, e.g. ``converter[MyList] = lambda x: Matrix(x)``.
+
+    >>> class MyList2(object):   # XXX Do not do this if you control the class!
+    ...     def __iter__(self):  #     Use _sympy_!
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    >>> from sympy.core.sympify import converter
+    >>> converter[MyList2] = lambda x: Matrix(x)
+    >>> sympify(MyList2())
+    Matrix([
+    [1],
+    [2]])
+
+    Notes
+    =====
+
+    The keywords ``rational`` and ``convert_xor`` are only used
+    when the input is a string.
+
+    Sometimes autosimplification during sympification results in expressions
+    that are very different in structure than what was entered. Until such
+    autosimplification is no longer done, the ``kernS`` function might be of
+    some use. In the example below you can see how an expression reduces to
+    -1 by autosimplification, but does not do so when ``kernS`` is used.
+
+    >>> from sympy.core.sympify import kernS
+    >>> from sympy.abc import x
+    >>> -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+    -1
+    >>> s = '-2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1'
+    >>> sympify(s)
+    -1
+    >>> kernS(s)
+    -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+
+    """
+    try:
+        if a in sympy_classes:
+            return a
+    except TypeError: # Type of a is unhashable
+        pass
+    cls = getattr(a, "__class__", None)
+    if cls is None:
+        cls = type(a) # Probably an old-style class
+    if cls in sympy_classes:
+        return a
+
+    if isinstance(a, CantSympify):
+        raise SympifyError(a)
+
+    try:
+        return converter[cls](a)
+    except KeyError:
+        for superclass in getmro(cls):
+            try:
+                return converter[superclass](a)
+            except KeyError:
+                continue
+
+    if cls is type(None):
+        if strict:
+            raise SympifyError(a)
+        else:
+            return a
+
+    if evaluate is None:
+        if global_evaluate[0] is False:
+            evaluate = global_evaluate[0]
+        else:
+            evaluate = True
+
+    # Support for basic numpy datatypes
+    # Note that this check exists to avoid importing NumPy when not necessary
+    if type(a).__module__ == 'numpy':
+        import numpy as np
+        if np.isscalar(a):
+            return _convert_numpy_types(a, locals=locals,
+                convert_xor=convert_xor, strict=strict, rational=rational,
+                evaluate=evaluate)
+
+    _sympy_ = getattr(a, "_sympy_", None)
+    if _sympy_ is not None:
+        try:
+            return a._sympy_()
+        # XXX: Catches AttributeError: 'SympyConverter' object has no
+        # attribute 'tuple'
+        # This is probably a bug somewhere but for now we catch it here.
+        except AttributeError:
+            pass
+
+    if not strict:
+        # Put numpy array conversion _before_ float/int, see
+        # <https://github.com/sympy/sympy/issues/13924>.
+        flat = getattr(a, "flat", None)
+        if flat is not None:
+            shape = getattr(a, "shape", None)
+            if shape is not None:
+                from ..tensor.array import Array
+                return Array(a.flat, a.shape)  # works with e.g. NumPy arrays
+
+    if not isinstance(a, string_types):
+        for coerce in (float, int):
+            try:
+                coerced = coerce(a)
+            except (TypeError, ValueError):
+                continue
+            # XXX: AttributeError only needed here for Py2
+            except AttributeError:
+                continue
+            try:
+                return sympify(coerced)
+            except SympifyError:
+                continue
+
+    if strict:
+        raise SympifyError(a)
+
+    if iterable(a):
+        try:
+            return type(a)([sympify(x, locals=locals, convert_xor=convert_xor,
+                rational=rational) for x in a])
+        except TypeError:
+            # Not all iterables are rebuildable with their type.
+            pass
+    if isinstance(a, dict):
+        try:
+            return type(a)([sympify(x, locals=locals, convert_xor=convert_xor,
+                rational=rational) for x in a.items()])
+        except TypeError:
+            # Not all iterables are rebuildable with their type.
+            pass
+
+    # At this point we were given an arbitrary expression
+    # which does not inherit from Basic and doesn't implement
+    # _sympy_ (which is a canonical and robust way to convert
+    # anything to SymPy expression).
+    #
+    # As a last chance, we try to take "a"'s normal form via unicode()
+    # and try to parse it. If it fails, then we have no luck and
+    # return an exception
+    try:
+        from .compatibility import unicode
+        a = unicode(a)
+    except Exception as exc:
+        raise SympifyError(a, exc)
+
+    from sympy.parsing.sympy_parser import (parse_expr, TokenError,
+                                            standard_transformations)
+    from sympy.parsing.sympy_parser import convert_xor as t_convert_xor
+    from sympy.parsing.sympy_parser import rationalize as t_rationalize
+
+    transformations = standard_transformations
+
+    if rational:
+        transformations += (t_rationalize,)
+    if convert_xor:
+        transformations += (t_convert_xor,)
+
+    try:
+        a = a.replace('\n', '')
+        expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)
+    except (TokenError, SyntaxError) as exc:
+        raise SympifyError('could not parse %r' % a, exc)
+
+    return expr
+
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/assumptions.py' lineno=260 funcname='getit' classname='StdFactKB'
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO]     def getit(self):
+        try:
+            return self._assumptions[fact]
+        except KeyError:
+            if self._assumptions is self.default_assumptions:
+                self._assumptions = self.default_assumptions.copy()
+            return _ask(fact, self)
+
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=727 funcname='args' classname='Basic'
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO]     @property
+    def args(self):
+        """Returns a tuple of arguments of 'self'.
+
+        Examples
+        ========
+
+        >>> from sympy import cot
+        >>> from sympy.abc import x, y
+
+        >>> cot(x).args
+        (x,)
+
+        >>> cot(x).args[0]
+        x
+
+        >>> (x*y).args
+        (x, y)
+
+        >>> (x*y).args[1]
+        y
+
+        Notes
+        =====
+
+        Never use self._args, always use self.args.
+        Only use _args in __new__ when creating a new function.
+        Don't override .args() from Basic (so that it's easy to
+        change the interface in the future if needed).
+        """
+        return self._args
+
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/powsimp.py' lineno=17 funcname='powsimp' classname=''
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] def powsimp(expr, deep=False, combine='all', force=False, measure=count_ops):
+    """
+    reduces expression by combining powers with similar bases and exponents.
+
+    Notes
+    =====
+
+    If deep is True then powsimp() will also simplify arguments of
+    functions. By default deep is set to False.
+
+    If force is True then bases will be combined without checking for
+    assumptions, e.g. sqrt(x)*sqrt(y) -> sqrt(x*y) which is not true
+    if x and y are both negative.
+
+    You can make powsimp() only combine bases or only combine exponents by
+    changing combine='base' or combine='exp'.  By default, combine='all',
+    which does both.  combine='base' will only combine::
+
+         a   a          a                          2x      x
+        x * y  =>  (x*y)   as well as things like 2   =>  4
+
+    and combine='exp' will only combine
+    ::
+
+         a   b      (a + b)
+        x * x  =>  x
+
+    combine='exp' will strictly only combine exponents in the way that used
+    to be automatic.  Also use deep=True if you need the old behavior.
+
+    When combine='all', 'exp' is evaluated first.  Consider the first
+    example below for when there could be an ambiguity relating to this.
+    This is done so things like the second example can be completely
+    combined.  If you want 'base' combined first, do something like
+    powsimp(powsimp(expr, combine='base'), combine='exp').
+
+    Examples
+    ========
+
+    >>> from sympy import powsimp, exp, log, symbols
+    >>> from sympy.abc import x, y, z, n
+    >>> powsimp(x**y*x**z*y**z, combine='all')
+    x**(y + z)*y**z
+    >>> powsimp(x**y*x**z*y**z, combine='exp')
+    x**(y + z)*y**z
+    >>> powsimp(x**y*x**z*y**z, combine='base', force=True)
+    x**y*(x*y)**z
+
+    >>> powsimp(x**z*x**y*n**z*n**y, combine='all', force=True)
+    (n*x)**(y + z)
+    >>> powsimp(x**z*x**y*n**z*n**y, combine='exp')
+    n**(y + z)*x**(y + z)
+    >>> powsimp(x**z*x**y*n**z*n**y, combine='base', force=True)
+    (n*x)**y*(n*x)**z
+
+    >>> x, y = symbols('x y', positive=True)
+    >>> powsimp(log(exp(x)*exp(y)))
+    log(exp(x)*exp(y))
+    >>> powsimp(log(exp(x)*exp(y)), deep=True)
+    x + y
+
+    Radicals with Mul bases will be combined if combine='exp'
+
+    >>> from sympy import sqrt, Mul
+    >>> x, y = symbols('x y')
+
+    Two radicals are automatically joined through Mul:
+
+    >>> a=sqrt(x*sqrt(y))
+    >>> a*a**3 == a**4
+    True
+
+    But if an integer power of that radical has been
+    autoexpanded then Mul does not join the resulting factors:
+
+    >>> a**4 # auto expands to a Mul, no longer a Pow
+    x**2*y
+    >>> _*a # so Mul doesn't combine them
+    x**2*y*sqrt(x*sqrt(y))
+    >>> powsimp(_) # but powsimp will
+    (x*sqrt(y))**(5/2)
+    >>> powsimp(x*y*a) # but won't when doing so would violate assumptions
+    x*y*sqrt(x*sqrt(y))
+
+    """
+    from sympy.matrices.expressions.matexpr import MatrixSymbol
+
+    def recurse(arg, **kwargs):
+        _deep = kwargs.get('deep', deep)
+        _combine = kwargs.get('combine', combine)
+        _force = kwargs.get('force', force)
+        _measure = kwargs.get('measure', measure)
+        return powsimp(arg, _deep, _combine, _force, _measure)
+
+    expr = sympify(expr)
+
+    if (not isinstance(expr, Basic) or isinstance(expr, MatrixSymbol) or (
+            expr.is_Atom or expr in (exp_polar(0), exp_polar(1)))):
+        return expr
+
+    if deep or expr.is_Add or expr.is_Mul and _y not in expr.args:
+        expr = expr.func(*[recurse(w) for w in expr.args])
+
+    if expr.is_Pow:
+        return recurse(expr*_y, deep=False)/_y
+
+    if not expr.is_Mul:
+        return expr
+
+    # handle the Mul
+    if combine in ('exp', 'all'):
+        # Collect base/exp data, while maintaining order in the
+        # non-commutative parts of the product
+        c_powers = defaultdict(list)
+        nc_part = []
+        newexpr = []
+        coeff = S.One
+        for term in expr.args:
+            if term.is_Rational:
+                coeff *= term
+                continue
+            if term.is_Pow:
+                term = _denest_pow(term)
+            if term.is_commutative:
+                b, e = term.as_base_exp()
+                if deep:
+                    b, e = [recurse(i) for i in [b, e]]
+                if b.is_Pow or isinstance(b, exp):
+                    # don't let smthg like sqrt(x**a) split into x**a, 1/2
+                    # or else it will be joined as x**(a/2) later
+                    b, e = b**e, S.One
+                c_powers[b].append(e)
+            else:
+                # This is the logic that combines exponents for equal,
+                # but non-commutative bases: A**x*A**y == A**(x+y).
+                if nc_part:
+                    b1, e1 = nc_part[-1].as_base_exp()
+                    b2, e2 = term.as_base_exp()
+                    if (b1 == b2 and
+                            e1.is_commutative and e2.is_commutative):
+                        nc_part[-1] = Pow(b1, Add(e1, e2))
+                        continue
+                nc_part.append(term)
+
+        # add up exponents of common bases
+        for b, e in ordered(iter(c_powers.items())):
+            # allow 2**x/4 -> 2**(x - 2); don't do this when b and e are
+            # Numbers since autoevaluation will undo it, e.g.
+            # 2**(1/3)/4 -> 2**(1/3 - 2) -> 2**(1/3)/4
+            if (b and b.is_Rational and not all(ei.is_Number for ei in e) and \
+                    coeff is not S.One and
+                    b not in (S.One, S.NegativeOne)):
+                m = multiplicity(abs(b), abs(coeff))
+                if m:
+                    e.append(m)
+                    coeff /= b**m
+            c_powers[b] = Add(*e)
+        if coeff is not S.One:
+            if coeff in c_powers:
+                c_powers[coeff] += S.One
+            else:
+                c_powers[coeff] = S.One
+
+        # convert to plain dictionary
+        c_powers = dict(c_powers)
+
+        # check for base and inverted base pairs
+        be = list(c_powers.items())
+        skip = set()  # skip if we already saw them
+        for b, e in be:
+            if b in skip:
+                continue
+            bpos = b.is_positive or b.is_polar
+            if bpos:
+                binv = 1/b
+                if b != binv and binv in c_powers:
+                    if b.as_numer_denom()[0] is S.One:
+                        c_powers.pop(b)
+                        c_powers[binv] -= e
+                    else:
+                        skip.add(binv)
+                        e = c_powers.pop(binv)
+                        c_powers[b] -= e
+
+        # check for base and negated base pairs
+        be = list(c_powers.items())
+        _n = S.NegativeOne
+        for i, (b, e) in enumerate(be):
+            if ((-b).is_Symbol or b.is_Add) and -b in c_powers:
+                if (b.is_positive in (0, 1) or e.is_integer):
+                    c_powers[-b] += c_powers.pop(b)
+                    if _n in c_powers:
+                        c_powers[_n] += e
+                    else:
+                        c_powers[_n] = e
+
+        # filter c_powers and convert to a list
+        c_powers = [(b, e) for b, e in c_powers.items() if e]
+
+        # ==============================================================
+        # check for Mul bases of Rational powers that can be combined with
+        # separated bases, e.g. x*sqrt(x*y)*sqrt(x*sqrt(x*y)) ->
+        # (x*sqrt(x*y))**(3/2)
+        # ---------------- helper functions
+
+        def ratq(x):
+            '''Return Rational part of x's exponent as it appears in the bkey.
+            '''
+            return bkey(x)[0][1]
+
+        def bkey(b, e=None):
+            '''Return (b**s, c.q), c.p where e -> c*s. If e is not given then
+            it will be taken by using as_base_exp() on the input b.
+            e.g.
+                x**3/2 -> (x, 2), 3
+                x**y -> (x**y, 1), 1
+                x**(2*y/3) -> (x**y, 3), 2
+                exp(x/2) -> (exp(a), 2), 1
+
+            '''
+            if e is not None:  # coming from c_powers or from below
+                if e.is_Integer:
+                    return (b, S.One), e
+                elif e.is_Rational:
+                    return (b, Integer(e.q)), Integer(e.p)
+                else:
+                    c, m = e.as_coeff_Mul(rational=True)
+                    if c is not S.One:
+                        if m.is_integer:
+                            return (b, Integer(c.q)), m*Integer(c.p)
+                        return (b**m, Integer(c.q)), Integer(c.p)
+                    else:
+                        return (b**e, S.One), S.One
+            else:
+                return bkey(*b.as_base_exp())
+
+        def update(b):
+            '''Decide what to do with base, b. If its exponent is now an
+            integer multiple of the Rational denominator, then remove it
+            and put the factors of its base in the common_b dictionary or
+            update the existing bases if necessary. If it has been zeroed
+            out, simply remove the base.
+            '''
+            newe, r = divmod(common_b[b], b[1])
+            if not r:
+                common_b.pop(b)
+                if newe:
+                    for m in Mul.make_args(b[0]**newe):
+                        b, e = bkey(m)
+                        if b not in common_b:
+                            common_b[b] = 0
+                        common_b[b] += e
+                        if b[1] != 1:
+                            bases.append(b)
+        # ---------------- end of helper functions
+
+        # assemble a dictionary of the factors having a Rational power
+        common_b = {}
+        done = []
+        bases = []
+        for b, e in c_powers:
+            b, e = bkey(b, e)
+            if b in common_b:
+                common_b[b] = common_b[b] + e
+            else:
+                common_b[b] = e
+            if b[1] != 1 and b[0].is_Mul:
+                bases.append(b)
+        bases.sort(key=default_sort_key)  # this makes tie-breaking canonical
+        bases.sort(key=measure, reverse=True)  # handle longest first
+        for base in bases:
+            if base not in common_b:  # it may have been removed already
+                continue
+            b, exponent = base
+            last = False  # True when no factor of base is a radical
+            qlcm = 1  # the lcm of the radical denominators
+            while True:
+                bstart = b
+                qstart = qlcm
+
+                bb = []  # list of factors
+                ee = []  # (factor's expo. and it's current value in common_b)
+                for bi in Mul.make_args(b):
+                    bib, bie = bkey(bi)
+                    if bib not in common_b or common_b[bib] < bie:
+                        ee = bb = []  # failed
+                        break
+                    ee.append([bie, common_b[bib]])
+                    bb.append(bib)
+                if ee:
+                    # find the number of integral extractions possible
+                    # e.g. [(1, 2), (2, 2)] -> min(2/1, 2/2) -> 1
+                    min1 = ee[0][1]//ee[0][0]
+                    for i in range(1, len(ee)):
+                        rat = ee[i][1]//ee[i][0]
+                        if rat < 1:
+                            break
+                        min1 = min(min1, rat)
+                    else:
+                        # update base factor counts
+                        # e.g. if ee = [(2, 5), (3, 6)] then min1 = 2
+                        # and the new base counts will be 5-2*2 and 6-2*3
+                        for i in range(len(bb)):
+                            common_b[bb[i]] -= min1*ee[i][0]
+                            update(bb[i])
+                        # update the count of the base
+                        # e.g. x**2*y*sqrt(x*sqrt(y)) the count of x*sqrt(y)
+                        # will increase by 4 to give bkey (x*sqrt(y), 2, 5)
+                        common_b[base] += min1*qstart*exponent
+                if (last  # no more radicals in base
+                    or len(common_b) == 1  # nothing left to join with
+                    or all(k[1] == 1 for k in common_b)  # no rad's in common_b
+                        ):
+                    break
+                # see what we can exponentiate base by to remove any radicals
+                # so we know what to search for
+                # e.g. if base were x**(1/2)*y**(1/3) then we should
+                # exponentiate by 6 and look for powers of x and y in the ratio
+                # of 2 to 3
+                qlcm = lcm([ratq(bi) for bi in Mul.make_args(bstart)])
+                if qlcm == 1:
+                    break  # we are done
+                b = bstart**qlcm
+                qlcm *= qstart
+                if all(ratq(bi) == 1 for bi in Mul.make_args(b)):
+                    last = True  # we are going to be done after this next pass
+            # this base no longer can find anything to join with and
+            # since it was longer than any other we are done with it
+            b, q = base
+            done.append((b, common_b.pop(base)*Rational(1, q)))
+
+        # update c_powers and get ready to continue with powsimp
+        c_powers = done
+        # there may be terms still in common_b that were bases that were
+        # identified as needing processing, so remove those, too
+        for (b, q), e in common_b.items():
+            if (b.is_Pow or isinstance(b, exp)) and \
+                    q is not S.One and not b.exp.is_Rational:
+                b, be = b.as_base_exp()
+                b = b**(be/q)
+            else:
+                b = root(b, q)
+            c_powers.append((b, e))
+        check = len(c_powers)
+        c_powers = dict(c_powers)
+        assert len(c_powers) == check  # there should have been no duplicates
+        # ==============================================================
+
+        # rebuild the expression
+        newexpr = expr.func(*(newexpr + [Pow(b, e) for b, e in c_powers.items()]))
+        if combine == 'exp':
+            return expr.func(newexpr, expr.func(*nc_part))
+        else:
+            return recurse(expr.func(*nc_part), combine='base') * \
+                recurse(newexpr, combine='base')
+
+    elif combine == 'base':
+
+        # Build c_powers and nc_part.  These must both be lists not
+        # dicts because exp's are not combined.
+        c_powers = []
+        nc_part = []
+        for term in expr.args:
+            if term.is_commutative:
+                c_powers.append(list(term.as_base_exp()))
+            else:
+                nc_part.append(term)
+
+        # Pull out numerical coefficients from exponent if assumptions allow
+        # e.g., 2**(2*x) => 4**x
+        for i in range(len(c_powers)):
+            b, e = c_powers[i]
+            if not (all(x.is_nonnegative for x in b.as_numer_denom()) or e.is_integer or force or b.is_polar):
+                continue
+            exp_c, exp_t = e.as_coeff_Mul(rational=True)
+            if exp_c is not S.One and exp_t is not S.One:
+                c_powers[i] = [Pow(b, exp_c), exp_t]
+
+        # Combine bases whenever they have the same exponent and
+        # assumptions allow
+        # first gather the potential bases under the common exponent
+        c_exp = defaultdict(list)
+        for b, e in c_powers:
+            if deep:
+                e = recurse(e)
+            c_exp[e].append(b)
+        del c_powers
+
+        # Merge back in the results of the above to form a new product
+        c_powers = defaultdict(list)
+        for e in c_exp:
+            bases = c_exp[e]
+
+            # calculate the new base for e
+
+            if len(bases) == 1:
+                new_base = bases[0]
+            elif e.is_integer or force:
+                new_base = expr.func(*bases)
+            else:
+                # see which ones can be joined
+                unk = []
+                nonneg = []
+                neg = []
+                for bi in bases:
+                    if bi.is_negative:
+                        neg.append(bi)
+                    elif bi.is_nonnegative:
+                        nonneg.append(bi)
+                    elif bi.is_polar:
+                        nonneg.append(
+                            bi)  # polar can be treated like non-negative
+                    else:
+                        unk.append(bi)
+                if len(unk) == 1 and not neg or len(neg) == 1 and not unk:
+                    # a single neg or a single unk can join the rest
+                    nonneg.extend(unk + neg)
+                    unk = neg = []
+                elif neg:
+                    # their negative signs cancel in groups of 2*q if we know
+                    # that e = p/q else we have to treat them as unknown
+                    israt = False
+                    if e.is_Rational:
+                        israt = True
+                    else:
+                        p, d = e.as_numer_denom()
+                        if p.is_integer and d.is_integer:
+                            israt = True
+                    if israt:
+                        neg = [-w for w in neg]
+                        unk.extend([S.NegativeOne]*len(neg))
+                    else:
+                        unk.extend(neg)
+                        neg = []
+                    del israt
+
+                # these shouldn't be joined
+                for b in unk:
+                    c_powers[b].append(e)
+                # here is a new joined base
+                new_base = expr.func(*(nonneg + neg))
+                # if there are positive parts they will just get separated
+                # again unless some change is made
+
+                def _terms(e):
+                    # return the number of terms of this expression
+                    # when multiplied out -- assuming no joining of terms
+                    if e.is_Add:
+                        return sum([_terms(ai) for ai in e.args])
+                    if e.is_Mul:
+                        return prod([_terms(mi) for mi in e.args])
+                    return 1
+                xnew_base = expand_mul(new_base, deep=False)
+                if len(Add.make_args(xnew_base)) < _terms(new_base):
+                    new_base = factor_terms(xnew_base)
+
+            c_powers[new_base].append(e)
+
+        # break out the powers from c_powers now
+        c_part = [Pow(b, ei) for b, e in c_powers.items() for ei in e]
+
+        # we're done
+        return expr.func(*(c_part + nc_part))
+
+    else:
+        raise ValueError("combine must be one of ('all', 'exp', 'base').")
+
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/power.py' lineno=1596 funcname='as_content_primitive' classname='Pow'
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO]     def as_content_primitive(self, radical=False, clear=True):
+        """Return the tuple (R, self/R) where R is the positive Rational
+        extracted from self.
+
+        Examples
+        ========
+
+        >>> from sympy import sqrt
+        >>> sqrt(4 + 4*sqrt(2)).as_content_primitive()
+        (2, sqrt(1 + sqrt(2)))
+        >>> sqrt(3 + 3*sqrt(2)).as_content_primitive()
+        (1, sqrt(3)*sqrt(1 + sqrt(2)))
+
+        >>> from sympy import expand_power_base, powsimp, Mul
+        >>> from sympy.abc import x, y
+
+        >>> ((2*x + 2)**2).as_content_primitive()
+        (4, (x + 1)**2)
+        >>> (4**((1 + y)/2)).as_content_primitive()
+        (2, 4**(y/2))
+        >>> (3**((1 + y)/2)).as_content_primitive()
+        (1, 3**((y + 1)/2))
+        >>> (3**((5 + y)/2)).as_content_primitive()
+        (9, 3**((y + 1)/2))
+        >>> eq = 3**(2 + 2*x)
+        >>> powsimp(eq) == eq
+        True
+        >>> eq.as_content_primitive()
+        (9, 3**(2*x))
+        >>> powsimp(Mul(*_))
+        3**(2*x + 2)
+
+        >>> eq = (2 + 2*x)**y
+        >>> s = expand_power_base(eq); s.is_Mul, s
+        (False, (2*x + 2)**y)
+        >>> eq.as_content_primitive()
+        (1, (2*(x + 1))**y)
+        >>> s = expand_power_base(_[1]); s.is_Mul, s
+        (True, 2**y*(x + 1)**y)
+
+        See docstring of Expr.as_content_primitive for more examples.
+        """
+
+        b, e = self.as_base_exp()
+        b = _keep_coeff(*b.as_content_primitive(radical=radical, clear=clear))
+        ce, pe = e.as_content_primitive(radical=radical, clear=clear)
+        if b.is_Rational:
+            #e
+            #= ce*pe
+            #= ce*(h + t)
+            #= ce*h + ce*t
+            #=> self
+            #= b**(ce*h)*b**(ce*t)
+            #= b**(cehp/cehq)*b**(ce*t)
+            #= b**(iceh + r/cehq)*b**(ce*t)
+            #= b**(iceh)*b**(r/cehq)*b**(ce*t)
+            #= b**(iceh)*b**(ce*t + r/cehq)
+            h, t = pe.as_coeff_Add()
+            if h.is_Rational:
+                ceh = ce*h
+                c = self.func(b, ceh)
+                r = S.Zero
+                if not c.is_Rational:
+                    iceh, r = divmod(ceh.p, ceh.q)
+                    c = self.func(b, iceh)
+                return c, self.func(b, _keep_coeff(ce, t + r/ce/ceh.q))
+        e = _keep_coeff(ce, pe)
+        # b**e = (h*t)**e = h**e*t**e = c*m*t**e
+        if e.is_Rational and b.is_Mul:
+            h, t = b.as_content_primitive(radical=radical, clear=clear)  # h is positive
+            c, m = self.func(h, e).as_coeff_Mul()  # so c is positive
+            m, me = m.as_base_exp()
+            if m is S.One or me == e:  # probably always true
+                # return the following, not return c, m*Pow(t, e)
+                # which would change Pow into Mul; we let sympy
+                # decide what to do by using the unevaluated Mul, e.g
+                # should it stay as sqrt(2 + 2*sqrt(5)) or become
+                # sqrt(2)*sqrt(1 + sqrt(5))
+                return c, self.func(_keep_coeff(m, t), e)
+        return S.One, self.func(b, e)
+
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/cache.py' lineno=92 funcname='wrapper' classname='_cache'
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO]             def wrapper(*args, **kwargs):
+                try:
+                    retval = cfunc(*args, **kwargs)
+                except TypeError:
+                    retval = func(*args, **kwargs)
+                return retval
+
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=6580 funcname='cancel' classname='PurePoly'
+[2026-09-22 11:10:46,926 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] @public
+def cancel(f, *gens, **args):
+    """
+    Cancel common factors in a rational function ``f``.
+
+    Examples
+    ========
+
+    >>> from sympy import cancel, sqrt, Symbol
+    >>> from sympy.abc import x
+    >>> A = Symbol('A', commutative=False)
+
+    >>> cancel((2*x**2 - 2)/(x**2 - 2*x + 1))
+    (2*x + 2)/(x - 1)
+    >>> cancel((sqrt(3) + sqrt(15)*A)/(sqrt(2) + sqrt(10)*A))
+    sqrt(6)/2
+    """
+    from sympy.core.exprtools import factor_terms
+    from sympy.functions.elementary.piecewise import Piecewise
+    options.allowed_flags(args, ['polys'])
+
+    f = sympify(f)
+
+    if not isinstance(f, (tuple, Tuple)):
+        if f.is_Number or isinstance(f, Relational) or not isinstance(f, Expr):
+            return f
+        f = factor_terms(f, radical=True)
+        p, q = f.as_numer_denom()
+
+    elif len(f) == 2:
+        p, q = f
+    elif isinstance(f, Tuple):
+        return factor_terms(f)
+    else:
+        raise ValueError('unexpected argument: %s' % f)
+
+    try:
+        (F, G), opt = parallel_poly_from_expr((p, q), *gens, **args)
+    except PolificationFailed:
+        if not isinstance(f, (tuple, Tuple)):
+            return f
+        else:
+            return S.One, p, q
+    except PolynomialError as msg:
+        if f.is_commutative and not f.has(Piecewise):
+            raise PolynomialError(msg)
+        # Handling of noncommutative and/or piecewise expressions
+        if f.is_Add or f.is_Mul:
+            c, nc = sift(f.args, lambda x:
+                x.is_commutative is True and not x.has(Piecewise),
+                binary=True)
+            nc = [cancel(i) for i in nc]
+            return f.func(cancel(f.func(*c)), *nc)
+        else:
+            reps = []
+            pot = preorder_traversal(f)
+            next(pot)
+            for e in pot:
+                # XXX: This should really skip anything that's not Expr.
+                if isinstance(e, (tuple, Tuple, BooleanAtom)):
+                    continue
+                try:
+                    reps.append((e, cancel(e)))
+                    pot.skip()  # this was handled successfully
+                except NotImplementedError:
+                    pass
+            return f.xreplace(dict(reps))
+
+    c, P, Q = F.cancel(G)
+
+    if not isinstance(f, (tuple, Tuple)):
+        return c*(P.as_expr()/Q.as_expr())
+    else:
+        if not opt.polys:
+            return c, P.as_expr(), Q.as_expr()
+        else:
+            return c, P, Q
+
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/function.py' lineno=2672 funcname='_mexpand' classname='Subs'
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] def _mexpand(expr, recursive=False):
+    # expand multinomials and then expand products; this may not always
+    # be sufficient to give a fully expanded expression (see
+    # test_issue_8247_8354 in test_arit)
+    if expr is None:
+        return
+    was = None
+    while was != expr:
+        was, expr = expr, expand_mul(expand_multinomial(expr))
+        if not recursive:
+            break
+    return expr
+
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=3459 funcname='cancel' classname='Expr'
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO]     def cancel(self, *gens, **args):
+        """See the cancel function in sympy.polys"""
+        from sympy.polys import cancel
+        return cancel(self, *gens, **args)
+
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/rationaltools.py' lineno=10 funcname='together' classname=''
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] @public
+def together(expr, deep=False, fraction=True):
+    """
+    Denest and combine rational expressions using symbolic methods.
+
+    This function takes an expression or a container of expressions
+    and puts it (them) together by denesting and combining rational
+    subexpressions. No heroic measures are taken to minimize degree
+    of the resulting numerator and denominator. To obtain completely
+    reduced expression use :func:`cancel`. However, :func:`together`
+    can preserve as much as possible of the structure of the input
+    expression in the output (no expansion is performed).
+
+    A wide variety of objects can be put together including lists,
+    tuples, sets, relational objects, integrals and others. It is
+    also possible to transform interior of function applications,
+    by setting ``deep`` flag to ``True``.
+
+    By definition, :func:`together` is a complement to :func:`apart`,
+    so ``apart(together(expr))`` should return expr unchanged. Note
+    however, that :func:`together` uses only symbolic methods, so
+    it might be necessary to use :func:`cancel` to perform algebraic
+    simplification and minimize degree of the numerator and denominator.
+
+    Examples
+    ========
+
+    >>> from sympy import together, exp
+    >>> from sympy.abc import x, y, z
+
+    >>> together(1/x + 1/y)
+    (x + y)/(x*y)
+    >>> together(1/x + 1/y + 1/z)
+    (x*y + x*z + y*z)/(x*y*z)
+
+    >>> together(1/(x*y) + 1/y**2)
+    (x + y)/(x*y**2)
+
+    >>> together(1/(1 + 1/x) + 1/(1 + 1/y))
+    (x*(y + 1) + y*(x + 1))/((x + 1)*(y + 1))
+
+    >>> together(exp(1/x + 1/y))
+    exp(1/y + 1/x)
+    >>> together(exp(1/x + 1/y), deep=True)
+    exp((x + y)/(x*y))
+
+    >>> together(1/exp(x) + 1/(x*exp(x)))
+    (x + 1)*exp(-x)/x
+
+    >>> together(1/exp(2*x) + 1/(x*exp(3*x)))
+    (x*exp(x) + 1)*exp(-3*x)/x
+
+    """
+    def _together(expr):
+        if isinstance(expr, Basic):
+            if expr.is_Atom or (expr.is_Function and not deep):
+                return expr
+            elif expr.is_Add:
+                return gcd_terms(list(map(_together, Add.make_args(expr))), fraction=fraction)
+            elif expr.is_Pow:
+                base = _together(expr.base)
+
+                if deep:
+                    exp = _together(expr.exp)
+                else:
+                    exp = expr.exp
+
+                return expr.__class__(base, exp)
+            else:
+                return expr.__class__(*[ _together(arg) for arg in expr.args ])
+        elif iterable(expr):
+            return expr.__class__([ _together(ex) for ex in expr ])
+
+        return expr
+
+    return _together(sympify(expr))
+
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/exprtools.py' lineno=1155 funcname='factor_terms' classname='Term'
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] def factor_terms(expr, radical=False, clear=False, fraction=False, sign=True):
+    """Remove common factors from terms in all arguments without
+    changing the underlying structure of the expr. No expansion or
+    simplification (and no processing of non-commutatives) is performed.
+
+    If radical=True then a radical common to all terms will be factored
+    out of any Add sub-expressions of the expr.
+
+    If clear=False (default) then coefficients will not be separated
+    from a single Add if they can be distributed to leave one or more
+    terms with integer coefficients.
+
+    If fraction=True (default is False) then a common denominator will be
+    constructed for the expression.
+
+    If sign=True (default) then even if the only factor in common is a -1,
+    it will be factored out of the expression.
+
+    Examples
+    ========
+
+    >>> from sympy import factor_terms, Symbol
+    >>> from sympy.abc import x, y
+    >>> factor_terms(x + x*(2 + 4*y)**3)
+    x*(8*(2*y + 1)**3 + 1)
+    >>> A = Symbol('A', commutative=False)
+    >>> factor_terms(x*A + x*A + x*y*A)
+    x*(y*A + 2*A)
+
+    When ``clear`` is False, a rational will only be factored out of an
+    Add expression if all terms of the Add have coefficients that are
+    fractions:
+
+    >>> factor_terms(x/2 + 1, clear=False)
+    x/2 + 1
+    >>> factor_terms(x/2 + 1, clear=True)
+    (x + 2)/2
+
+    If a -1 is all that can be factored out, to *not* factor it out, the
+    flag ``sign`` must be False:
+
+    >>> factor_terms(-x - y)
+    -(x + y)
+    >>> factor_terms(-x - y, sign=False)
+    -x - y
+    >>> factor_terms(-2*x - 2*y, sign=False)
+    -2*(x + y)
+
+    See Also
+    ========
+    gcd_terms, sympy.polys.polytools.terms_gcd
+
+    """
+    def do(expr):
+        from sympy.concrete.summations import Sum
+        from sympy.integrals.integrals import Integral
+        is_iterable = iterable(expr)
+
+        if not isinstance(expr, Basic) or expr.is_Atom:
+            if is_iterable:
+                return type(expr)([do(i) for i in expr])
+            return expr
+
+        if expr.is_Pow or expr.is_Function or \
+                is_iterable or not hasattr(expr, 'args_cnc'):
+            args = expr.args
+            newargs = tuple([do(i) for i in args])
+            if newargs == args:
+                return expr
+            return expr.func(*newargs)
+
+        if isinstance(expr, (Sum, Integral)):
+            return _factor_sum_int(expr,
+                radical=radical, clear=clear,
+                fraction=fraction, sign=sign)
+
+        cont, p = expr.as_content_primitive(radical=radical, clear=clear)
+        if p.is_Add:
+            list_args = [do(a) for a in Add.make_args(p)]
+            # get a common negative (if there) which gcd_terms does not remove
+            if all(a.as_coeff_Mul()[0].extract_multiplicatively(-1) is not None
+                   for a in list_args):
+                cont = -cont
+                list_args = [-a for a in list_args]
+            # watch out for exp(-(x+2)) which gcd_terms will change to exp(-x-2)
+            special = {}
+            for i, a in enumerate(list_args):
+                b, e = a.as_base_exp()
+                if e.is_Mul and e != Mul(*e.args):
+                    list_args[i] = Dummy()
+                    special[list_args[i]] = a
+            # rebuild p not worrying about the order which gcd_terms will fix
+            p = Add._from_args(list_args)
+            p = gcd_terms(p,
+                isprimitive=True,
+                clear=clear,
+                fraction=fraction).xreplace(special)
+        elif p.args:
+            p = p.func(
+                *[do(a) for a in p.args])
+        rv = _keep_coeff(cont, p, clear=clear, sign=sign)
+        return rv
+    expr = sympify(expr)
+    return do(expr)
+
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/simplify/hyperexpand.py' lineno=2452 funcname='hyperexpand' classname='ReduceOrder'
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 11:10:46,927 - Orcar.tracer_reranker - INFO] def hyperexpand(f, allow_hyper=False, rewrite='default', place=None):
+    """
+    Expand hypergeometric functions. If allow_hyper is True, allow partial
+    simplification (that is a result different from input,
+    but still containing hypergeometric functions).
+
+    If a G-function has expansions both at zero and at infinity,
+    ``place`` can be set to ``0`` or ``zoo`` to indicate the
+    preferred choice.
+
+    Examples
+    ========
+
+    >>> from sympy.simplify.hyperexpand import hyperexpand
+    >>> from sympy.functions import hyper
+    >>> from sympy.abc import z
+    >>> hyperexpand(hyper([], [], z))
+    exp(z)
+
+    Non-hyperegeometric parts of the expression and hypergeometric expressions
+    that are not recognised are left unchanged:
+
+    >>> hyperexpand(1 + hyper([1, 1, 1], [], z))
+    hyper((1, 1, 1), (), z) + 1
+    """
+    f = sympify(f)
+
+    def do_replace(ap, bq, z):
+        r = _hyperexpand(Hyper_Function(ap, bq), z, rewrite=rewrite)
+        if r is None:
+            return hyper(ap, bq, z)
+        else:
+            return r
+
+    def do_meijer(ap, bq, z):
+        r = _meijergexpand(G_Function(ap[0], ap[1], bq[0], bq[1]), z,
+                   allow_hyper, rewrite=rewrite, place=place)
+        if not r.has(nan, zoo, oo, -oo):
+            return r
+    return f.replace(hyper, do_replace).replace(meijerg, do_meijer)
+
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] ['simplify', 'bottom_up', 'trigsimp', 'futrig', '_futrig', 'minrule', 'chain_rl', 'TR6', '_TR56', '_f', '__lt__', 'signsimp', 'shorter', 'sympify', 'getit', 'args', 'powsimp', 'as_content_primitive', 'wrapper', 'cancel', '_mexpand', 'cancel', 'together', 'factor_terms', 'hyperexpand']
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] [('simplify', 5), ('bottom_up', 2), ('trigsimp', 5), ('futrig', 5), ('_futrig', 10), ('minrule', 2), ('chain_rl', 2), ('TR6', 5), ('_TR56', 95), ('_f', 95), ('__lt__', 10), ('signsimp', 1), ('shorter', 2), ('sympify', 1), ('getit', 5), ('args', 0), ('powsimp', 2), ('as_content_primitive', 2), ('wrapper', 5), ('cancel', 1), ('_mexpand', 2), ('cancel', 1), ('together', 2), ('factor_terms', 2), ('hyperexpand', 0)]
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] [('_TR56', 95), ('_f', 95), ('_futrig', 10), ('__lt__', 10), ('simplify', 5), ('trigsimp', 5), ('futrig', 5), ('TR6', 5), ('bottom_up', 2), ('minrule', 2), ('chain_rl', 2), ('shorter', 2), ('signsimp', 1), ('getit', 5), ('wrapper', 5), ('powsimp', 2), ('as_content_primitive', 2), ('_mexpand', 2), ('together', 2), ('factor_terms', 2), ('sympify', 1), ('cancel', 1), ('cancel', 1), ('args', 0), ('hyperexpand', 0)]
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 11:10:46,928 - Orcar.tracer_reranker - INFO] [('_TR56', 95), ('_f', 95)]

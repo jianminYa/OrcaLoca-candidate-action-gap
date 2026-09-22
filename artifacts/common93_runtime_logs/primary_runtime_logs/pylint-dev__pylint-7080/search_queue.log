@@ -1,0 +1,83 @@
+[2026-09-22 08:00:35,528 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_discover_files'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+)
+[2026-09-22 08:00:50,817 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'expand_modules'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}
+)
+[2026-09-22 08:01:05,919 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'pylinter.py', 'directory_path': 'pylint/lint'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+)
+[2026-09-22 08:01:49,499 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_is_ignored_file'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}
+)
+[2026-09-22 08:02:12,744 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'expand_modules.py', 'directory_path': 'pylint/lint'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}
+)
+[2026-09-22 08:02:42,404 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_is_in_ignore_list_re'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+)
+[2026-09-22 08:03:06,004 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PyLinter', 'method_name': 'check'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_module_files'}
+)
+[2026-09-22 08:03:23,331 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_module_files'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+)
+[2026-09-22 08:03:38,791 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ignore-paths'}
+)

@@ -1,0 +1,80 @@
+[2026-09-22 04:27:42,148 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForwardManyToOneDescriptor', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKey', 'file_path': 'django/db/models/fields/related.py'}
+)
+[2026-09-22 04:28:03,397 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForwardManyToOneDescriptor', 'method_name': '__set__', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'related_descriptors.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKey', 'file_path': 'django/db/models/fields/related.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForwardManyToOneDescriptor', 'method_name': '__get__', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+)
+[2026-09-22 04:28:19,510 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'related_descriptors.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKey', 'file_path': 'django/db/models/fields/related.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForwardManyToOneDescriptor', 'method_name': '__get__', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+)
+[2026-09-22 04:28:43,199 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKey', 'file_path': 'django/db/models/fields/related.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForwardManyToOneDescriptor', 'method_name': '__get__', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKeyDeferredAttribute', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+)
+[2026-09-22 04:29:19,459 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForwardManyToOneDescriptor', 'method_name': '__get__', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKeyDeferredAttribute', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}
+)
+[2026-09-22 04:29:35,881 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ForeignKeyDeferredAttribute', 'file_path': 'django/db/models/fields/related_descriptors.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}
+)
+[2026-09-22 04:29:59,180 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'related.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__get__'}
+)
+[2026-09-22 04:30:25,262 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__get__'}
+)
+[2026-09-22 04:30:46,107 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__get__'}
+)
+[2026-09-22 04:31:11,974 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__get__'}
+)

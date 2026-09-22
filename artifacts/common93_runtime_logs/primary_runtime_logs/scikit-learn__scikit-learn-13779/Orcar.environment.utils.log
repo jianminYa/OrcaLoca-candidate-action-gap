@@ -1,0 +1,8 @@
+[2026-09-22 08:58:33,372 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 08:58:44,216 - Orcar.environment.utils - DEBUG] Run command in container: conda create -n scikit-learn__scikit-learn__0.22 python=3.6 -y
+[2026-09-22 09:00:00,582 - Orcar.environment.utils - DEBUG] Run command in container: conda install numpy scipy cython pytest pandas matplotlib -y
+[2026-09-22 09:01:15,682 - Orcar.environment.utils - DEBUG] Run command in container: source activate scikit-learn__scikit-learn__0.22 && pip install cython numpy==1.19.2 setuptools scipy==1.5.2
+[2026-09-22 09:01:19,130 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -v --no-use-pep517 --no-build-isolation -e .
+[2026-09-22 09:08:51,117 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer
+[2026-09-22 09:17:32,490 - Orcar.environment.utils - DEBUG] Run command in container: ls /tmp/tracer_output_scikit-learn__scikit-learn-13779.json
+[2026-09-22 09:21:03,836 - Orcar.environment.utils - INFO] Agent container paused

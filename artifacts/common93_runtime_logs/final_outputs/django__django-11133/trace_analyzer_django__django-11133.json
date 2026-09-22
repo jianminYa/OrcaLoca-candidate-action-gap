@@ -1,0 +1,25 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "HttpResponse",
+            "file_path": "django/http/response.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "make_bytes",
+            "file_path": "django/http/response.py",
+            "class_name": "HttpResponseBase"
+        },
+        {
+            "keyword": "content",
+            "file_path": "django/http/response.py",
+            "class_name": "HttpResponse"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import django\nfrom django.conf import settings\nsettings.configure()\n\nfrom django.http import HttpResponse\n\n# String content\nresponse = HttpResponse(\"My Content\")\nprint(\"String content:\", response.content)\nassert response.content == b'My Content', f\"Expected b'My Content', got {response.content}\"\n\n# Bytes content\nresponse = HttpResponse(b\"My Content\")\nprint(\"Bytes content:\", response.content)\nassert response.content == b'My Content', f\"Expected b'My Content', got {response.content}\"\n\n# memoryview content\nresponse = HttpResponse(memoryview(b\"My Content\"))\nprint(\"Memoryview content:\", response.content)\nassert response.content == b'My Content', f\"Expected b'My Content', got {response.content}\"\n",
+    "env_reproduce_path": "/django__django/reproducer_django__django-11133.py"
+}

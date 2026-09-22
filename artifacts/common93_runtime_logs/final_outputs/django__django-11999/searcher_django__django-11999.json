@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nFound the exact bug location. In `Field.contribute_to_class`, when `self.choices is not None`, the code unconditionally calls `setattr(cls, 'get_%s_display' % self.name, partialmethod(cls._get_FIELD_display, field=self))`. This overwrites any user-defined `get_FOO_display` method on the model class, making it impossible to override. The fix should check whether the class already has a user-defined method before setting it. The context is sufficient to identify the bug.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/models/fields/__init__.py",
+            "class_name": "Field",
+            "method_name": "contribute_to_class"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+[2026-09-22 10:40:32,693 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'coth', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+)
+[2026-09-22 10:40:42,094 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'hyperbolic.py', 'directory_path': 'sympy/functions/elementary'}
+)

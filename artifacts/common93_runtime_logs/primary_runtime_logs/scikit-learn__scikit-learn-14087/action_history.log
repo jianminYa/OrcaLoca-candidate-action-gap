@@ -1,0 +1,25 @@
+[2026-09-22 09:23:27,565 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'LogisticRegressionCV', 'method_name': 'fit', 'file_path': 'sklearn/linear_model/logistic.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'LogisticRegressionCV', 'method_name': 'fit'}: 1
+)
+[2026-09-22 09:23:40,799 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'LogisticRegressionCV', 'method_name': 'fit', 'file_path': 'sklearn/linear_model/logistic.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'LogisticRegressionCV', 'method_name': 'fit'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'logistic.py', 'directory_path': 'sklearn/linear_model'}: 1
+)
+[2026-09-22 09:24:20,877 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'LogisticRegressionCV', 'method_name': 'fit', 'file_path': 'sklearn/linear_model/logistic.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'LogisticRegressionCV', 'method_name': 'fit'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'logistic.py', 'directory_path': 'sklearn/linear_model'}: 1
+)

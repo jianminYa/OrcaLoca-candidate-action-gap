@@ -1,0 +1,5 @@
+[2026-09-22 12:17:24,382 - Orcar.tracer - INFO] sensitivity_dict: {'_hashable_content': {'/sympy__sympy/sympy/core/symbol.py'}, 'Symbol': {'/sympy__sympy/sympy/core/symbol.py'}, '__dict__': set(), '__slots__': {'/sympy__sympy/sympy/core/symbol.py'}}
+[2026-09-22 12:17:24,383 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_sympy__sympy-20590.json
+[2026-09-22 12:17:24,383 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 12:17:24,384 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 12:17:24,384 - Orcar.tracer - INFO] Finished tracer output parsing

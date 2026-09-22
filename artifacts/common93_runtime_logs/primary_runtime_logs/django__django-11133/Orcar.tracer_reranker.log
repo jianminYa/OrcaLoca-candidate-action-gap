@@ -1,0 +1,71 @@
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] Func 01/05
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/http/response.py' lineno=305 funcname='content' classname='HttpResponse'
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] LLM score: 20 / 100
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO]     @property
+    def content(self):
+        return b''.join(self._container)
+
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] Func 02/05
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/http/response.py' lineno=309 funcname='content' classname='HttpResponse'
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO]     @content.setter
+    def content(self, value):
+        # Consume iterators upon assignment to allow repeated iteration.
+        if hasattr(value, '__iter__') and not isinstance(value, (bytes, str)):
+            content = b''.join(self.make_bytes(chunk) for chunk in value)
+            if hasattr(value, 'close'):
+                try:
+                    value.close()
+                except Exception:
+                    pass
+        else:
+            content = self.make_bytes(value)
+        # Create a list of properly encoded bytestrings to support write().
+        self._container = [content]
+
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] Func 03/05
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/http/response.py' lineno=223 funcname='make_bytes' classname='HttpResponseBase'
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] LLM score: 97 / 100
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO]     def make_bytes(self, value):
+        """Turn a value into a bytestring encoded in the output charset."""
+        # Per PEP 3333, this response body must be bytes. To avoid returning
+        # an instance of a subclass, this function returns `bytes(value)`.
+        # This doesn't make a copy when `value` already contains bytes.
+
+        # Handle string types -- we can't rely on force_bytes here because:
+        # - Python attempts str conversion first
+        # - when self._charset != 'utf-8' it re-encodes the content
+        if isinstance(value, bytes):
+            return bytes(value)
+        if isinstance(value, str):
+            return bytes(value.encode(self.charset))
+        # Handle non-string types.
+        return str(value).encode(self.charset)
+
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] Func 04/05
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/http/response.py' lineno=75 funcname='charset' classname='HttpResponseBase'
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 16:43:40,341 - Orcar.tracer_reranker - INFO]     @property
+    def charset(self):
+        if self._charset is not None:
+            return self._charset
+        content_type = self.get('Content-Type', '')
+        matched = _charset_from_content_type_re.search(content_type)
+        if matched:
+            # Extract the charset and strip its double quotes
+            return matched.group('charset').replace('"', '')
+        return settings.DEFAULT_CHARSET
+
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] Func 05/05
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/http/response.py' lineno=154 funcname='get' classname='HttpResponseBase'
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO]     def get(self, header, alternate=None):
+        return self._headers.get(header.lower(), (None, alternate))[1]
+
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] ['content', 'content', 'make_bytes', 'charset', 'get']
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] [('content', 20), ('content', 72), ('make_bytes', 97), ('charset', 2), ('get', 2)]
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] [('make_bytes', 97), ('content', 72), ('content', 20), ('charset', 2), ('get', 2)]
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-21 16:43:40,342 - Orcar.tracer_reranker - INFO] [('make_bytes', 97), ('content', 72)]

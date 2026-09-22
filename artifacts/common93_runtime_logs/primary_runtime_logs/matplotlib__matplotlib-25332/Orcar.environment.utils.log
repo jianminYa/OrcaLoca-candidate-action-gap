@@ -1,0 +1,6 @@
+[2026-09-22 06:54:54,694 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 06:55:02,657 - Orcar.environment.utils - DEBUG] Run command in container: conda env create --file /root/environment.yml
+[2026-09-22 06:57:50,386 - Orcar.environment.utils - DEBUG] Run command in container: source activate matplotlib__matplotlib__3.7 && pip install contourpy==1.1.0 cycler==0.11.0 fonttools==4.42.1 ghostscript kiwisolver==1.4.5 numpy==1.25.2 packaging==23.1 pillow==10.0.0 pikepdf pyparsing==3.0.9 python-dateutil==2.8.2 six==1.16.0 setuptools==68.1.2 setuptools-scm==7.1.0 typing-extensions==4.7.1
+[2026-09-22 06:58:02,743 - Orcar.environment.utils - DEBUG] Run command in container: apt-get -y update && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick ffmpeg texlive texlive-latex-extra texlive-fonts-recommended texlive-xetex texlive-luatex cm-super dvipng
+[2026-09-22 06:58:13,179 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 06:59:53,575 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer

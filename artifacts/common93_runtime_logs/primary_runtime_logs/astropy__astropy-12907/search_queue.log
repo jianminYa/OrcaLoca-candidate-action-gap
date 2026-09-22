@@ -1,0 +1,66 @@
+[2026-09-21 12:25:16,225 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}
+)
+[2026-09-21 12:25:51,137 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}
+)
+[2026-09-21 12:26:01,529 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}
+)
+[2026-09-21 12:27:12,967 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}
+)
+[2026-09-21 12:27:12,984 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': '_cstack'} search_content='File Path: astropy/modeling/separable.py \nQuery Type: function \nCode Snippet: \ndef _cstack(left, right):\n    """\n    Function corresponding to \'&\' operation.\n\n    Parameters\n    ----------\n    left, right : `astropy.modeling.Model` or ndarray\n        If input is of an array, it is the output of `coord_matrix`.\n\n    Returns\n    -------\n    result : ndarray\n        Result from this operation.\n\n    """\n    noutp = _compute_n_outputs(left, right)\n\n    if isinstance(left, Model):\n        cleft = _coord_matrix(left, \'left\', noutp)\n    else:\n        cleft = np.zeros((noutp, left.shape[1]))\n        cleft[: left.shape[0], : left.shape[1]] = left\n    if isinstance(right, Model):\n        cright = _coord_matrix(right, \'right\', noutp)\n    else:\n        cright = np.zeros((noutp, right.shape[1]))\n        cright[-right.shape[0]:, -right.shape[1]:] = 1\n\n    return np.hstack([cleft, cright])\n'
+[2026-09-21 12:27:13,000 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': '_separable'} search_content='File Path: astropy/modeling/separable.py \nQuery Type: function \nCode Snippet: \ndef _separable(transform):\n    """\n    Calculate the separability of outputs.\n\n    Parameters\n    ----------\n    transform : `astropy.modeling.Model`\n        A transform (usually a compound model).\n\n    Returns :\n    is_separable : ndarray of dtype np.bool\n        An array of shape (transform.n_outputs,) of boolean type\n        Each element represents the separablity of the corresponding output.\n    """\n    if (transform_matrix := transform._calculate_separability_matrix()) is not NotImplemented:\n        return transform_matrix\n    elif isinstance(transform, CompoundModel):\n        sepleft = _separable(transform.left)\n        sepright = _separable(transform.right)\n        return _operators[transform.op](sepleft, sepright)\n    elif isinstance(transform, Model):\n        return _coord_matrix(transform, \'left\', transform.n_outputs)\n'
+[2026-09-21 12:27:13,015 - search_queue - INFO] Duplicate search result: search_action='search_file_contents' search_action_input={'file_name': 'separable.py'} search_content='File Path: astropy/modeling/separable.py \nFile Skeleton: \n\nGlobal_variable: __all__\n\nFunction: is_separable\nSignature: is_separable(transform)\nDocstring: A separability test for the outputs of a transform.\n\nParameters\n----------\ntransform : `~astropy.modeling.core.Model`\n    A (compound) model.\n\nReturns\n-------\nis_separable : ndarray\n    A boolean array with size ``transform.n_outputs`` where\n    each element indicates whether the output is independent\n    and the result of a separable transform.\n\nExamples\n--------\n>>> from astropy.modeling.models import Shift, Scale, Rotation2D, Polynomial2D\n>>> is_separable(Shift(1) & Shift(2) | Scale(1) & Scale(2))\n    array([ True,  True]...)\n>>> is_separable(Shift(1) & Shift(2) | Rotation2D(2))\n    array([False, False]...)\n>>> is_separable(Shift(1) & Shift(2) | Mapping([0, 1, 0, 1]) |         Polynomial2D(1) & Polynomial2D(2))\n    array([False, False]...)\n>>> is_separable(Shift(1) & Shift(2) | Mapping([0, 1, 0, 1]))\n    array([ True,  True,  True,  True]...)\n\nFunction: separability_matrix\nSignature: separability_matrix(transform)\nDocstring: Compute the correlation between outputs and inputs.\n\nParameters\n----------\ntransform : `~astropy.modeling.core.Model`\n    A (compound) model.\n\nReturns\n-------\nseparable_matrix : ndarray\n    A boolean correlation matrix of shape (n_outputs, n_inputs).\n    Indicates the dependence of outputs on inputs. For completely\n    independent outputs, the diagonal elements are True and\n    off-diagonal elements are False.\n\nExamples\n--------\n>>> from astropy.modeling.models import Shift, Scale, Rotation2D, Polynomial2D\n>>> separability_matrix(Shift(1) & Shift(2) | Scale(1) & Scale(2))\n    array([[ True, False], [False,  True]]...)\n>>> separability_matrix(Shift(1) & Shift(2) | Rotation2D(2))\n    array([[ True,  True], [ True,  True]]...)\n>>> separability_matrix(Shift(1) & Shift(2) | Mapping([0, 1, 0, 1]) |         Polynomial2D(1) & Polynomial2D(2))\n    array([[ True,  True], [ True,  True]]...)\n>>> separability_matrix(Shift(1) & Shift(2) | Mapping([0, 1, 0, 1]))\n    array([[ True, False], [False,  True], [ True, False], [False,  True]]...)\n\nFunction: _compute_n_outputs\nSignature: _compute_n_outputs(left, right)\nDocstring: Compute the number of outputs of two models.\n\nThe two models are the left and right model to an operation in\nthe expression tree of a compound model.\n\nParameters\n----------\nleft, right : `astropy.modeling.Model` or ndarray\n    If input is of an array, it is the output of `coord_matrix`.\n\nFunction: _arith_oper\nSignature: _arith_oper(left, right)\nDocstring: Function corresponding to one of the arithmetic operators\n[\'+\', \'-\'. \'*\', \'/\', \'**\'].\n\nThis always returns a nonseparable output.\n\n\nParameters\n----------\nleft, right : `astropy.modeling.Model` or ndarray\n    If input is of an array, it is the output of `coord_matrix`.\n\nReturns\n-------\nresult : ndarray\n    Result from this operation.\n\nFunction: _n_inputs_outputs\nSignature: _n_inputs_outputs(input, position)\nDocstring: Return ``n_inputs``, ``n_outputs`` for a model or coord_matrix.\n\nFunction: _coord_matrix\nSignature: _coord_matrix(model, pos, noutp)\nDocstring: Create an array representing inputs and outputs of a simple model.\n\nThe array has a shape (noutp, model.n_inputs).\n\nParameters\n----------\nmodel : `astropy.modeling.Model`\n    model\npos : str\n    Position of this model in the expression tree.\n    One of [\'left\', \'right\'].\nnoutp : int\n    Number of outputs of the compound model of which the input model\n    is a left or right child.\n\nFunction: _cstack\nSignature: _cstack(left, right)\nDocstring: Function corresponding to \'&\' operation.\n\nParameters\n----------\nleft, right : `astropy.modeling.Model` or ndarray\n    If input is of an array, it is the output of `coord_matrix`.\n\nReturns\n-------\nresult : ndarray\n    Result from this operation.\n\nFunction: _cdot\nSignature: _cdot(left, right)\nDocstring: Function corresponding to "|" operation.\n\nParameters\n----------\nleft, right : `astropy.modeling.Model` or ndarray\n    If input is of an array, it is the output of `coord_matrix`.\n\nReturns\n-------\nresult : ndarray\n    Result from this operation.\n\nFunction: _separable\nSignature: _separable(transform)\nDocstring: Calculate the separability of outputs.\n\nParameters\n----------\ntransform : `astropy.modeling.Model`\n    A transform (usually a compound model).\n\nReturns :\nis_separable : ndarray of dtype np.bool\n    An array of shape (transform.n_outputs,) of boolean type\n    Each element represents the separablity of the corresponding output.\n\nGlobal_variable: _operators\n'
+[2026-09-21 12:27:26,115 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}
+)

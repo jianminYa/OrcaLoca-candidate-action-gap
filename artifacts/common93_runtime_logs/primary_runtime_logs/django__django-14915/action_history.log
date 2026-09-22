@@ -1,0 +1,36 @@
+[2026-09-22 05:06:36,744 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue'}: 1
+)
+[2026-09-22 05:06:47,922 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'ModelChoiceIteratorValue', 'method_name': '__init__', 'file_path': 'django/forms/models.py'})]
+[2026-09-22 05:06:56,009 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue', 'method_name': '__init__', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+)
+[2026-09-22 05:07:08,818 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue', 'method_name': '__init__', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+)
+[2026-09-22 05:07:22,359 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'ModelChoiceIteratorValue', 'file_path': 'django/forms/models.py'})]
+[2026-09-22 05:07:30,153 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue', 'method_name': '__init__', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ModelChoiceIteratorValue', 'file_path': 'django/forms/models.py'}: 1
+)

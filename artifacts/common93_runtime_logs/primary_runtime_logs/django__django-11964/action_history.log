@@ -1,0 +1,364 @@
+[2026-09-21 17:05:24,848 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+)
+[2026-09-21 17:05:43,391 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+)
+[2026-09-21 17:08:14,347 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 1
+)
+[2026-09-21 17:08:27,321 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 1
+)
+[2026-09-21 17:09:16,999 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+)
+[2026-09-21 17:09:32,094 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 1
+)
+[2026-09-21 17:09:45,518 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 1
+)
+[2026-09-21 17:12:41,670 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 1
+)
+[2026-09-21 17:13:17,813 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}: 1
+)
+[2026-09-21 17:13:30,994 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}: 1
+)
+[2026-09-21 17:14:21,474 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}: 1
+)
+[2026-09-21 17:14:35,078 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}: 1
+)
+[2026-09-21 17:14:59,424 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}: 1
+)
+[2026-09-21 17:15:12,840 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'TextChoices'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'IntegerChoices'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CharField', 'method_name': 'to_python', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'get_prep_value', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'enums.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': '__set__', 'file_path': 'django/db/models/fields/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute', 'file_path': 'django/db/models/fields_descriptors.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'DeferredAttribute'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Choices', 'file_path': 'django/db/models/enums.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'ChoicesMeta', 'file_path': 'django/db/models/enums.py'}: 4
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DeferredAttribute'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeferredAttribute', 'method_name': '__set__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}: 1
+)

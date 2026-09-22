@@ -1,0 +1,6 @@
+[2026-09-22 03:38:33,786 - Orcar.environment.benchmark - INFO] Setting up env for inst django__django-13028...
+[2026-09-22 03:38:41,339 - Orcar.environment.benchmark - INFO] Repo django__django already cached
+[2026-09-22 03:38:41,339 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django to base commit: 78ad4b4b0201003792bfdbf1a7781cbc9ee03539
+[2026-09-22 03:38:57,821 - Orcar.environment.benchmark - INFO] Env django__django__3.2 not found, installing
+[2026-09-22 03:40:32,067 - Orcar.environment.benchmark - INFO] Installing django/django at base commit...
+[2026-09-22 03:40:42,047 - Orcar.environment.benchmark - INFO] Installation step took 117.69 seconds

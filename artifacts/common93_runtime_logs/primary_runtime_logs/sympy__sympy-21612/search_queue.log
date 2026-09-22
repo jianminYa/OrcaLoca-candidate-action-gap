@@ -1,0 +1,32 @@
+[2026-09-22 13:07:57,426 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MathErrorListener', 'method_name': 'convert_frac', 'file_path': 'sympy/parsing/latex/_parse_latex_antlr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'convert_frac'}
+)
+[2026-09-22 13:08:08,329 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'convert_frac'}
+)
+[2026-09-22 13:08:30,159 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '_parse_latex_antlr.py', 'directory_path': 'sympy/parsing/latex'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'convert_expr', 'file_path': 'sympy/parsing/latex/_parse_latex_antlr.py'}
+)
+[2026-09-22 13:10:36,692 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'convert_frac', 'file_path': 'sympy/parsing/latex/_parse_latex_antlr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'convert_expr', 'file_path': 'sympy/parsing/latex/_parse_latex_antlr.py'}
+)
+[2026-09-22 13:10:36,724 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'convert_frac', 'file_path': 'sympy/parsing/latex/_parse_latex_antlr.py'} search_content="File Path: sympy/parsing/latex/_parse_latex_antlr.py \nQuery Type: function \nCode Snippet: \ndef convert_frac(frac):\n    diff_op = False\n    partial_op = False\n    lower_itv = frac.lower.getSourceInterval()\n    lower_itv_len = lower_itv[1] - lower_itv[0] + 1\n    if (frac.lower.start == frac.lower.stop\n            and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL):\n        wrt = get_differential_var_str(frac.lower.start.text)\n        diff_op = True\n    elif (lower_itv_len == 2 and frac.lower.start.type == LaTeXLexer.SYMBOL\n          and frac.lower.start.text == '\\\\partial'\n          and (frac.lower.stop.type == LaTeXLexer.LETTER\n               or frac.lower.stop.type == LaTeXLexer.SYMBOL)):\n        partial_op = True\n        wrt = frac.lower.stop.text\n        if frac.lower.stop.type == LaTeXLexer.SYMBOL:\n            wrt = wrt[1:]\n\n    if diff_op or partial_op:\n        wrt = sympy.Symbol(wrt)\n        if (diff_op and frac.upper.start == frac.upper.stop\n                and frac.upper.start.type == LaTeXLexer.LETTER\n                and frac.upper.start.text == 'd'):\n            return [wrt]\n        elif (partial_op and frac.upper.start == frac.upper.stop\n              and frac.upper.start.type == LaTeXLexer.SYMBOL\n              and frac.upper.start.text == '\\\\partial'):\n            return [wrt]\n        upper_text = rule2text(frac.upper)\n\n        expr_top = None\n        if diff_op and upper_text.startswith('d'):\n            expr_top = parse_latex(upper_text[1:])\n        elif partial_op and frac.upper.start.text == '\\\\partial':\n            expr_top = parse_latex(upper_text[len('\\\\partial'):])\n        if expr_top:\n            return sympy.Derivative(expr_top, wrt)\n\n    expr_top = convert_expr(frac.upper)\n    expr_bot = convert_expr(frac.lower)\n    inverse_denom = sympy.Pow(expr_bot, -1, evaluate=False)\n    if expr_top == 1:\n        return inverse_denom\n    else:\n        return sympy.Mul(expr_top, inverse_denom, evaluate=False)\n"
+[2026-09-22 13:10:52,659 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'convert_mp', 'file_path': 'sympy/parsing/latex/_parse_latex_antlr.py'}
+)

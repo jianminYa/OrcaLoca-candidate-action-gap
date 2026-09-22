@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe disambiguation shows _collect_factor_and_dimension exists in both UnitSystem and Quantity classes. I already have the full implementation from UnitSystem. The bug is clearly in the `isinstance(expr, Function)` branch of `_collect_factor_and_dimension` in `sympy/physics/units/unitsystem.py`. When processing functions like `exp()`, the method collects factor and dimension for each argument but does NOT check if the argument dimensions are dimensionless. The `Pow` branch has this check: `if self.get_dimension_system().is_dimensionless(exp_dim): exp_dim = 1`, but the `Function` branch lacks a similar check. For `exp(second/(ohm*farad))`, the argument's dimension is `time/(capacitance*impedance)` which IS dimensionless but isn't recognized as such. The Function branch should check if each argument's dimension is dimensionless and if so, return `Dimension(1)` as the output dimension. The search queue is empty and I have enough context to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/physics/units/unitsystem.py",
+            "class_name": "UnitSystem",
+            "method_name": "_collect_factor_and_dimension"
+        }
+    ]
+}

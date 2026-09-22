@@ -6,9 +6,10 @@
 
 - `_disambiguation_ranking` 事件中的 raw candidates、score、threshold survivors、selected actions；
 - 每个完成 instance 的最终 `searcher_*.json`；
-- 部分 instance 的 `trace_analyzer_*.json`。
+- 部分 instance 的 `trace_analyzer_*.json`；
+- Common93 主运行的原始 `Orcar.search_agent.log`、`action_history.log`、`search_queue.log`、`Orcar.code_scorer.log`、`orcar_total.log` 等日志，位于 [`artifacts/common93_runtime_logs/`](../artifacts/common93_runtime_logs/)。
 
-没有保存完整的 `action_history`、按时间排序的所有 tool call、每个 tool 的返回 payload 或 action execution receipt。因此 selected action 表示“action 已构造”，不表示“已执行并返回”。
+原始日志中确实保存了 action history、搜索 Agent 输出、队列状态和许多 tool 返回内容；此前的报告把“没有整理进已提交 artifacts 的结构化 trace”误写成了“没有保存日志”。现在原始日志已经上传，但它们仍是自由文本，未统一关联到每一个 diagnostic event ID，也不总是提供标准化的 action execution receipt。因此 `selected action` 表示“action 已构造”，不能单独等同于“已执行并成功返回”。
 
 ## Gap 后 exact action 扫描
 
@@ -20,7 +21,7 @@
 
 统计为：later exact gold action observed `0/3`；observed later-recovered `0/3`；saved diagnostic stream 中没有 later exact action `3/3`。
 
-这不能证明 arbitrary non-disambiguation tool call 从未访问过 gold。当前最强可证结论是：**没有 later exact gold action 出现在保存的诊断流中**。
+结合原始 `search_agent`、`action_history` 和 `search_queue` 日志，可以进行人工核验；但这不能证明 arbitrary non-disambiguation tool call 从未访问过 gold。当前最强可证结论是：**没有 later exact gold action 出现在保存的结构化诊断流中**。原始日志的入口见 [`README.md`](../README.md) 的“完整运行日志与关键链接”部分。
 
 ## Final localization
 
@@ -28,7 +29,7 @@
 - SymPy-13031：final `bug_locations` 包含 exact sparse `MutableSparseMatrix::row_join`；
 - SymPy-13647：final `bug_locations` 只包含 parent `_eval_col_insert`，不包含 exact nested `entry`，但 trace analyzer 将 `entry` 作为 traced code 报告。
 
-这些 final localization 字段来自最终 search response，不是执行日志，不能据此计算 Action-to-Execution Gap。
+这些 final localization 字段来自最终 search response，不是标准化的执行 receipt，不能据此可靠计算 Action-to-Execution Gap。
 
 ## Action-to-Execution
 

@@ -1,0 +1,55 @@
+[2026-09-22 07:28:51,159 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DataArray', 'method_name': 'to_unstacked_dataset', 'file_path': 'xarray/core/dataarray.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'to_unstacked_dataset'}: 1
+)
+[2026-09-22 07:29:03,700 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DataArray', 'method_name': 'to_unstacked_dataset', 'file_path': 'xarray/core/dataarray.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'to_unstacked_dataset'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'dataarray.py', 'directory_path': 'xarray/core'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Dataset', 'method_name': 'to_stacked_array', 'file_path': 'xarray/core/dataset.py'}: 1
+)
+[2026-09-22 07:29:22,744 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DataArray', 'method_name': 'to_unstacked_dataset', 'file_path': 'xarray/core/dataarray.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'to_unstacked_dataset'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'dataarray.py', 'directory_path': 'xarray/core'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Dataset', 'method_name': 'to_stacked_array', 'file_path': 'xarray/core/dataset.py'}: 2
+)
+[2026-09-22 07:29:37,610 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DataArray', 'method_name': 'to_unstacked_dataset', 'file_path': 'xarray/core/dataarray.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'to_unstacked_dataset'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'dataarray.py', 'directory_path': 'xarray/core'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Dataset', 'method_name': 'to_stacked_array', 'file_path': 'xarray/core/dataset.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'dataset.py', 'directory_path': 'xarray/core'}: 1
+)
+[2026-09-22 07:30:14,010 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DataArray', 'method_name': 'to_unstacked_dataset', 'file_path': 'xarray/core/dataarray.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'to_unstacked_dataset'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'dataarray.py', 'directory_path': 'xarray/core'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Dataset', 'method_name': 'to_stacked_array', 'file_path': 'xarray/core/dataset.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'dataset.py', 'directory_path': 'xarray/core'}: 1
+)

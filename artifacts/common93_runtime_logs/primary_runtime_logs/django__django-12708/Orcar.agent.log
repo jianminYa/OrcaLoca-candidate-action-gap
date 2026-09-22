@@ -1,0 +1,4 @@
+[2026-09-22 03:03:04,792 - Orcar.agent - INFO] Current container subprocess: 178927
+[2026-09-22 03:03:58,176 - Orcar.agent - INFO] Raw Trace Analysis output:
+[2026-09-22 03:03:58,176 - Orcar.agent - INFO] summary='' suspicious_code=[CodeInfo(keyword='_delete_composed_index', file_path='django/db/backends/base/schema.py')] suspicious_code_from_tracer=[] related_source_code='' is_reproduce_pass=False reproduce_code='' env_reproduce_path=''
+[2026-09-22 03:03:58,177 - Orcar.agent - INFO] Current container subprocess: 178927

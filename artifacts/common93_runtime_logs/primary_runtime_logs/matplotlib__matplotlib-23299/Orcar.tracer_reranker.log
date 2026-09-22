@@ -1,0 +1,691 @@
+[2026-09-22 05:47:40,530 - Orcar.tracer_reranker - WARNING] Cannot find function:
+[2026-09-22 05:47:40,530 - Orcar.tracer_reranker - WARNING] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=289 funcname='backend_mod'
+[2026-09-22 05:48:04,105 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 05:48:04,105 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=1170 funcname='get_backend' classname='RcParams'
+[2026-09-22 05:48:04,105 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] def get_backend():
+    """
+    Return the name of the current backend.
+
+    See Also
+    --------
+    matplotlib.use
+    """
+    return rcParams['backend']
+
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=1057 funcname='rc_context' classname='RcParams'
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] @contextlib.contextmanager
+def rc_context(rc=None, fname=None):
+    """
+    Return a context manager for temporarily changing rcParams.
+
+    Parameters
+    ----------
+    rc : dict
+        The rcParams to temporarily set.
+    fname : str or path-like
+        A file with Matplotlib rc settings. If both *fname* and *rc* are given,
+        settings from *rc* take precedence.
+
+    See Also
+    --------
+    :ref:`customizing-with-matplotlibrc-files`
+
+    Examples
+    --------
+    Passing explicit values via a dict::
+
+        with mpl.rc_context({'interactive': False}):
+            fig, ax = plt.subplots()
+            ax.plot(range(3), range(3))
+            fig.savefig('example.png')
+            plt.close(fig)
+
+    Loading settings from a file::
+
+         with mpl.rc_context(fname='print.rc'):
+             plt.plot(x, y)  # uses 'print.rc'
+
+    """
+    orig = rcParams.copy()
+    try:
+        if fname:
+            rc_file(fname)
+        if rc:
+            rcParams.update(rc)
+        yield
+    finally:
+        dict.update(rcParams, orig)  # Revert to the original rcs.
+
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=696 funcname='figure' classname='_xkcd'
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] @_api.make_keyword_only("3.6", "facecolor")
+def figure(num=None,  # autoincrement if None, else integer from 1-N
+           figsize=None,  # defaults to rc figure.figsize
+           dpi=None,  # defaults to rc figure.dpi
+           facecolor=None,  # defaults to rc figure.facecolor
+           edgecolor=None,  # defaults to rc figure.edgecolor
+           frameon=True,
+           FigureClass=Figure,
+           clear=False,
+           **kwargs
+           ):
+    """
+    Create a new figure, or activate an existing figure.
+
+    Parameters
+    ----------
+    num : int or str or `.Figure` or `.SubFigure`, optional
+        A unique identifier for the figure.
+
+        If a figure with that identifier already exists, this figure is made
+        active and returned. An integer refers to the ``Figure.number``
+        attribute, a string refers to the figure label.
+
+        If there is no figure with the identifier or *num* is not given, a new
+        figure is created, made active and returned.  If *num* is an int, it
+        will be used for the ``Figure.number`` attribute, otherwise, an
+        auto-generated integer value is used (starting at 1 and incremented
+        for each new figure). If *num* is a string, the figure label and the
+        window title is set to this value.  If num is a ``SubFigure``, its
+        parent ``Figure`` is activated.
+
+    figsize : (float, float), default: :rc:`figure.figsize`
+        Width, height in inches.
+
+    dpi : float, default: :rc:`figure.dpi`
+        The resolution of the figure in dots-per-inch.
+
+    facecolor : color, default: :rc:`figure.facecolor`
+        The background color.
+
+    edgecolor : color, default: :rc:`figure.edgecolor`
+        The border color.
+
+    frameon : bool, default: True
+        If False, suppress drawing the figure frame.
+
+    FigureClass : subclass of `~matplotlib.figure.Figure`
+        If set, an instance of this subclass will be created, rather than a
+        plain `.Figure`.
+
+    clear : bool, default: False
+        If True and the figure already exists, then it is cleared.
+
+    layout : {'constrained', 'tight', `.LayoutEngine`, None}, default: None
+        The layout mechanism for positioning of plot elements to avoid
+        overlapping Axes decorations (labels, ticks, etc). Note that layout
+        managers can measurably slow down figure display. Defaults to *None*
+        (but see the documentation of the `.Figure` constructor regarding the
+        interaction with rcParams).
+
+    **kwargs
+        Additional keyword arguments are passed to the `.Figure` constructor.
+
+    Returns
+    -------
+    `~matplotlib.figure.Figure`
+
+    Notes
+    -----
+    Newly created figures will be passed to the
+    `~.backend_template.new_figure_manager` function provided by the current
+    backend, which will install a canvas and a manager on the figure.
+
+    If you are creating many figures, make sure you explicitly call
+    `.pyplot.close` on the figures you are not using, because this will
+    enable pyplot to properly clean up the memory.
+
+    `~matplotlib.rcParams` defines the default values, which can be modified
+    in the matplotlibrc file.
+    """
+    if isinstance(num, FigureBase):
+        if num.canvas.manager is None:
+            raise ValueError("The passed figure is not managed by pyplot")
+        _pylab_helpers.Gcf.set_active(num.canvas.manager)
+        return num.figure
+
+    allnums = get_fignums()
+    next_num = max(allnums) + 1 if allnums else 1
+    fig_label = ''
+    if num is None:
+        num = next_num
+    elif isinstance(num, str):
+        fig_label = num
+        all_labels = get_figlabels()
+        if fig_label not in all_labels:
+            if fig_label == 'all':
+                _api.warn_external("close('all') closes all existing figures.")
+            num = next_num
+        else:
+            inum = all_labels.index(fig_label)
+            num = allnums[inum]
+    else:
+        num = int(num)  # crude validation of num argument
+
+    manager = _pylab_helpers.Gcf.get_fig_manager(num)
+    if manager is None:
+        max_open_warning = rcParams['figure.max_open_warning']
+        if len(allnums) == max_open_warning >= 1:
+            _api.warn_external(
+                f"More than {max_open_warning} figures have been opened. "
+                f"Figures created through the pyplot interface "
+                f"(`matplotlib.pyplot.figure`) are retained until explicitly "
+                f"closed and may consume too much memory. (To control this "
+                f"warning, see the rcParam `figure.max_open_warning`).",
+                RuntimeWarning)
+
+        manager = new_figure_manager(
+            num, figsize=figsize, dpi=dpi,
+            facecolor=facecolor, edgecolor=edgecolor, frameon=frameon,
+            FigureClass=FigureClass, **kwargs)
+        fig = manager.canvas.figure
+        if fig_label:
+            fig.set_label(fig_label)
+
+        _pylab_helpers.Gcf._set_new_active_manager(manager)
+
+        # make sure backends (inline) that we don't ship that expect this
+        # to be called in plotting commands to make the figure call show
+        # still work.  There is probably a better way to do this in the
+        # FigureManager base class.
+        draw_if_interactive()
+
+        if _REPL_DISPLAYHOOK is _ReplDisplayHook.PLAIN:
+            fig.stale_callback = _auto_draw_if_interactive
+
+    if clear:
+        manager.canvas.figure.clear()
+
+    return manager.canvas.figure
+
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=658 funcname='__getitem__' classname='RcParams'
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] LLM score: 85 / 100
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO]     def __getitem__(self, key):
+        if key in _deprecated_map:
+            version, alt_key, alt_val, inverse_alt = _deprecated_map[key]
+            _api.warn_deprecated(
+                version, name=key, obj_type="rcparam", alternative=alt_key)
+            return inverse_alt(dict.__getitem__(self, alt_key))
+
+        elif key in _deprecated_ignore_map:
+            version, alt_key = _deprecated_ignore_map[key]
+            _api.warn_deprecated(
+                version, name=key, obj_type="rcparam", alternative=alt_key)
+            return dict.__getitem__(self, alt_key) if alt_key else None
+
+        # In theory, this should only ever be used after the global rcParams
+        # has been set up, but better be safe e.g. in presence of breakpoints.
+        elif key == "backend" and self is globals().get("rcParams"):
+            val = dict.__getitem__(self, key)
+            if val is rcsetup._auto_backend_sentinel:
+                from matplotlib import pyplot as plt
+                plt.switch_backend(rcsetup._auto_backend_sentinel)
+
+        return dict.__getitem__(self, key)
+
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=722 funcname='copy' classname='RcParams'
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO]     def copy(self):
+        rccopy = RcParams()
+        for k in self:  # Skip deprecations and revalidation.
+            dict.__setitem__(rccopy, k, dict.__getitem__(self, k))
+        return rccopy
+
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 05:48:04,106 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=879 funcname='get_fignums' classname='_xkcd'
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] def get_fignums():
+    """Return a list of existing figure numbers."""
+    return sorted(_pylab_helpers.Gcf.figs)
+
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=334 funcname='new_figure_manager' classname='backend_mod'
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] def new_figure_manager(*args, **kwargs):
+    """Create a new figure manager instance."""
+    _warn_if_gui_out_of_main_thread()
+    return _get_backend_mod().new_figure_manager(*args, **kwargs)
+
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=341 funcname='draw_if_interactive' classname='backend_mod'
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] def draw_if_interactive(*args, **kwargs):
+    """
+    Redraw the current figure if in interactive mode.
+
+    .. warning::
+
+        End users will typically not have to call this function because the
+        the interactive mode takes care of this.
+    """
+    return _get_backend_mod().draw_if_interactive(*args, **kwargs)
+
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=625 funcname='__init__' classname='RcParams'
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO]     def __init__(self, *args, **kwargs):
+        self.update(*args, **kwargs)
+
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=698 funcname='__iter__' classname='RcParams'
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO]     def __iter__(self):
+        """Yield sorted list of keys."""
+        with _api.suppress_matplotlib_deprecation_warning():
+            yield from sorted(dict.__iter__(self))
+
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=325 funcname='_warn_if_gui_out_of_main_thread' classname='backend_mod'
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,107 - Orcar.tracer_reranker - INFO] def _warn_if_gui_out_of_main_thread():
+    if (_get_required_interactive_framework(_get_backend_mod())
+            and threading.current_thread() is not threading.main_thread()):
+        _api.warn_external(
+            "Starting a Matplotlib GUI outside of the main thread will likely "
+            "fail.")
+
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=195 funcname='_get_backend_mod' classname=''
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] def _get_backend_mod():
+    """
+    Ensure that a backend is selected and return it.
+
+    This is currently private, but may be made public in the future.
+    """
+    if _backend_mod is None:
+        # Use __getitem__ here to avoid going through the fallback logic (which
+        # will (re)import pyplot and then call switch_backend if we need to
+        # resolve the auto sentinel)
+        switch_backend(dict.__getitem__(rcParams, "backend"))
+    return _backend_mod
+
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=628 funcname='__setitem__' classname='RcParams'
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO]     def __setitem__(self, key, val):
+        try:
+            if key in _deprecated_map:
+                version, alt_key, alt_val, inverse_alt = _deprecated_map[key]
+                _api.warn_deprecated(
+                    version, name=key, obj_type="rcparam", alternative=alt_key)
+                key = alt_key
+                val = alt_val(val)
+            elif key in _deprecated_remain_as_none and val is not None:
+                version, = _deprecated_remain_as_none[key]
+                _api.warn_deprecated(version, name=key, obj_type="rcparam")
+            elif key in _deprecated_ignore_map:
+                version, alt_key = _deprecated_ignore_map[key]
+                _api.warn_deprecated(
+                    version, name=key, obj_type="rcparam", alternative=alt_key)
+                return
+            elif key == 'backend':
+                if val is rcsetup._auto_backend_sentinel:
+                    if 'backend' in self:
+                        return
+            try:
+                cval = self.validate[key](val)
+            except ValueError as ve:
+                raise ValueError(f"Key {key}: {ve}") from None
+            dict.__setitem__(self, key, cval)
+        except KeyError as err:
+            raise KeyError(
+                f"{key} is not a valid rc parameter (see rcParams.keys() for "
+                f"a list of valid parameters)") from err
+
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=183 funcname='_get_required_interactive_framework' classname=''
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] def _get_required_interactive_framework(backend_mod):
+    if not hasattr(backend_mod.FigureCanvas, "required_interactive_framework"):
+        _api.warn_deprecated(
+            "3.6", name="Support for FigureCanvases without a "
+            "required_interactive_framework attribute")
+        return None
+    # Inline this once the deprecation elapses.
+    return backend_mod.FigureCanvas.required_interactive_framework
+
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=209 funcname='switch_backend' classname=''
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] def switch_backend(newbackend):
+    """
+    Close all open figures and set the Matplotlib backend.
+
+    The argument is case-insensitive.  Switching to an interactive backend is
+    possible only if no event loop for another interactive backend has started.
+    Switching to and from non-interactive backends is always possible.
+
+    Parameters
+    ----------
+    newbackend : str
+        The name of the backend to use.
+    """
+    global _backend_mod
+    # make sure the init is pulled up so we can assign to it later
+    import matplotlib.backends
+    close("all")
+
+    if newbackend is rcsetup._auto_backend_sentinel:
+        current_framework = cbook._get_running_interactive_framework()
+        mapping = {'qt': 'qtagg',
+                   'gtk3': 'gtk3agg',
+                   'gtk4': 'gtk4agg',
+                   'wx': 'wxagg',
+                   'tk': 'tkagg',
+                   'macosx': 'macosx',
+                   'headless': 'agg'}
+
+        best_guess = mapping.get(current_framework, None)
+        if best_guess is not None:
+            candidates = [best_guess]
+        else:
+            candidates = []
+        candidates += [
+            "macosx", "qtagg", "gtk4agg", "gtk3agg", "tkagg", "wxagg"]
+
+        # Don't try to fallback on the cairo-based backends as they each have
+        # an additional dependency (pycairo) over the agg-based backend, and
+        # are of worse quality.
+        for candidate in candidates:
+            try:
+                switch_backend(candidate)
+            except ImportError:
+                continue
+            else:
+                rcParamsOrig['backend'] = candidate
+                return
+        else:
+            # Switching to Agg should always succeed; if it doesn't, let the
+            # exception propagate out.
+            switch_backend("agg")
+            rcParamsOrig["backend"] = "agg"
+            return
+
+    backend_mod = importlib.import_module(
+        cbook._backend_module_name(newbackend))
+    canvas_class = backend_mod.FigureCanvas
+
+    required_framework = _get_required_interactive_framework(backend_mod)
+    if required_framework is not None:
+        current_framework = cbook._get_running_interactive_framework()
+        if (current_framework and required_framework
+                and current_framework != required_framework):
+            raise ImportError(
+                "Cannot load backend {!r} which requires the {!r} interactive "
+                "framework, as {!r} is currently running".format(
+                    newbackend, required_framework, current_framework))
+
+    # Load the new_figure_manager(), draw_if_interactive(), and show()
+    # functions from the backend.
+
+    # Classically, backends can directly export these functions.  This should
+    # keep working for backcompat.
+    new_figure_manager = getattr(backend_mod, "new_figure_manager", None)
+    # draw_if_interactive = getattr(backend_mod, "draw_if_interactive", None)
+    # show = getattr(backend_mod, "show", None)
+    # In that classical approach, backends are implemented as modules, but
+    # "inherit" default method implementations from backend_bases._Backend.
+    # This is achieved by creating a "class" that inherits from
+    # backend_bases._Backend and whose body is filled with the module globals.
+    class backend_mod(matplotlib.backend_bases._Backend):
+        locals().update(vars(backend_mod))
+
+    # However, the newer approach for defining new_figure_manager (and, in
+    # the future, draw_if_interactive and show) is to derive them from canvas
+    # methods.  In that case, also update backend_mod accordingly.
+    if new_figure_manager is None:
+        def new_figure_manager_given_figure(num, figure):
+            return canvas_class.new_manager(figure, num)
+
+        def new_figure_manager(num, *args, FigureClass=Figure, **kwargs):
+            fig = FigureClass(*args, **kwargs)
+            return new_figure_manager_given_figure(num, fig)
+
+        backend_mod.new_figure_manager_given_figure = \
+            new_figure_manager_given_figure
+        backend_mod.new_figure_manager = new_figure_manager
+
+    _log.debug("Loaded backend %s version %s.",
+               newbackend, backend_mod.backend_version)
+
+    rcParams['backend'] = rcParamsDefault['backend'] = newbackend
+    _backend_mod = backend_mod
+    for func_name in ["new_figure_manager", "draw_if_interactive", "show"]:
+        globals()[func_name].__signature__ = inspect.signature(
+            getattr(backend_mod, func_name))
+
+    # Need to keep a global reference to the backend for compatibility reasons.
+    # See https://github.com/matplotlib/matplotlib/issues/6092
+    matplotlib.backends.backend = newbackend
+
+    # make sure the repl display hook is installed in case we become
+    # interactive
+    install_repl_displayhook()
+
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=918 funcname='close' classname='_xkcd'
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] def close(fig=None):
+    """
+    Close a figure window.
+
+    Parameters
+    ----------
+    fig : None or int or str or `.Figure`
+        The figure to close. There are a number of ways to specify this:
+
+        - *None*: the current figure
+        - `.Figure`: the given `.Figure` instance
+        - ``int``: a figure number
+        - ``str``: a figure name
+        - 'all': all figures
+
+    """
+    if fig is None:
+        manager = _pylab_helpers.Gcf.get_active()
+        if manager is None:
+            return
+        else:
+            _pylab_helpers.Gcf.destroy(manager)
+    elif fig == 'all':
+        _pylab_helpers.Gcf.destroy_all()
+    elif isinstance(fig, int):
+        _pylab_helpers.Gcf.destroy(fig)
+    elif hasattr(fig, 'int'):
+        # if we are dealing with a type UUID, we
+        # can use its integer representation
+        _pylab_helpers.Gcf.destroy(fig.int)
+    elif isinstance(fig, str):
+        all_labels = get_figlabels()
+        if fig in all_labels:
+            num = get_fignums()[all_labels.index(fig)]
+            _pylab_helpers.Gcf.destroy(num)
+    elif isinstance(fig, Figure):
+        _pylab_helpers.Gcf.destroy_fig(fig)
+    else:
+        raise TypeError("close() argument must be a Figure, an int, a string, "
+                        "or None, not %s" % type(fig))
+
+[2026-09-22 05:48:04,108 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=289 funcname='backend_mod' classname=''
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] 
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=121 funcname='install_repl_displayhook' classname=''
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] LLM score: 20 / 100
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] def install_repl_displayhook():
+    """
+    Connect to the display hook of the current shell.
+
+    The display hook gets called when the read-evaluate-print-loop (REPL) of
+    the shell has finished the execution of a command. We use this callback
+    to be able to automatically update a figure in interactive mode.
+
+    This works both with IPython and with vanilla python shells.
+    """
+    global _REPL_DISPLAYHOOK
+
+    if _REPL_DISPLAYHOOK is _ReplDisplayHook.IPYTHON:
+        return
+
+    # See if we have IPython hooks around, if so use them.
+    # Use ``sys.modules.get(name)`` rather than ``name in sys.modules`` as
+    # entries can also have been explicitly set to None.
+    mod_ipython = sys.modules.get("IPython")
+    if not mod_ipython:
+        _REPL_DISPLAYHOOK = _ReplDisplayHook.PLAIN
+        return
+    ip = mod_ipython.get_ipython()
+    if not ip:
+        _REPL_DISPLAYHOOK = _ReplDisplayHook.PLAIN
+        return
+
+    ip.events.register("post_execute", _draw_all_if_interactive)
+    _REPL_DISPLAYHOOK = _ReplDisplayHook.IPYTHON
+
+    from IPython.core.pylabtools import backend2gui
+    # trigger IPython's eventloop integration, if available
+    ipython_gui_name = backend2gui.get(get_backend())
+    if ipython_gui_name:
+        ip.enable_gui(ipython_gui_name)
+
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/_pylab_helpers.py' lineno=34 funcname='get_fig_manager' classname='Gcf'
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO]     @classmethod
+    def get_fig_manager(cls, num):
+        """
+        If manager number *num* exists, make it the active one and return it;
+        otherwise return *None*.
+        """
+        manager = cls.figs.get(num, None)
+        if manager is not None:
+            cls.set_active(manager)
+        return manager
+
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/_pylab_helpers.py' lineno=114 funcname='_set_new_active_manager' classname='Gcf'
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _set_new_active_manager(cls, manager):
+        """Adopt *manager* into pyplot and make it the active manager."""
+        if not hasattr(manager, "_cidgcf"):
+            manager._cidgcf = manager.canvas.mpl_connect(
+                "button_press_event", lambda event: cls.set_active(manager))
+        fig = manager.canvas.figure
+        fig.number = manager.num
+        label = fig.get_label()
+        if label:
+            manager.set_window_title(label)
+        cls.set_active(manager)
+
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/backend_bases.py' lineno=3439 funcname='new_figure_manager' classname='_Backend'
+[2026-09-22 05:48:04,109 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO]     @classmethod
+    def new_figure_manager(cls, num, *args, **kwargs):
+        """Create a new figure manager instance."""
+        # This import needs to happen here due to circular imports.
+        from matplotlib.figure import Figure
+        fig_cls = kwargs.pop('FigureClass', Figure)
+        fig = fig_cls(*args, **kwargs)
+        return cls.new_figure_manager_given_figure(num, fig)
+
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/backend_bases.py' lineno=2334 funcname='mpl_connect' classname='FigureCanvasBase'
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO]     def mpl_connect(self, s, func):
+        """
+        Bind function *func* to event *s*.
+
+        Parameters
+        ----------
+        s : str
+            One of the following events ids:
+
+            - 'button_press_event'
+            - 'button_release_event'
+            - 'draw_event'
+            - 'key_press_event'
+            - 'key_release_event'
+            - 'motion_notify_event'
+            - 'pick_event'
+            - 'resize_event'
+            - 'scroll_event'
+            - 'figure_enter_event',
+            - 'figure_leave_event',
+            - 'axes_enter_event',
+            - 'axes_leave_event'
+            - 'close_event'.
+
+        func : callable
+            The callback function to be executed, which must have the
+            signature::
+
+                def func(event: Event) -> Any
+
+            For the location events (button and key press/release), if the
+            mouse is over the Axes, the ``inaxes`` attribute of the event will
+            be set to the `~matplotlib.axes.Axes` the event occurs is over, and
+            additionally, the variables ``xdata`` and ``ydata`` attributes will
+            be set to the mouse location in data coordinates.  See `.KeyEvent`
+            and `.MouseEvent` for more info.
+
+        Returns
+        -------
+        cid
+            A connection id that can be used with
+            `.FigureCanvasBase.mpl_disconnect`.
+
+        Examples
+        --------
+        ::
+
+            def on_press(event):
+                print('you pressed', event.button, event.xdata, event.ydata)
+
+            cid = canvas.mpl_connect('button_press_event', on_press)
+        """
+
+        return self.callbacks.connect(s, func)
+
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/artist.py' lineno=1054 funcname='get_label' classname='Artist'
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO]     def get_label(self):
+        """Return the label used for this artist in the legend."""
+        return self._label
+
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/_pylab_helpers.py' lineno=127 funcname='set_active' classname='Gcf'
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO]     @classmethod
+    def set_active(cls, manager):
+        """Make *manager* the active manager."""
+        cls.figs[manager.num] = manager
+        cls.figs.move_to_end(manager.num)
+
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/backend_bases.py' lineno=3453 funcname='draw_if_interactive' classname='_Backend'
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:48:04,110 - Orcar.tracer_reranker - INFO]     @classmethod
+    def draw_if_interactive(cls):
+        if cls.mainloop is not None and is_interactive():
+            manager = Gcf.get_active()
+            if manager:
+                manager.canvas.draw_idle()
+
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] ['get_backend', 'rc_context', 'figure', '__getitem__', 'copy', 'get_fignums', 'new_figure_manager', 'draw_if_interactive', '__init__', '__iter__', '_warn_if_gui_out_of_main_thread', '_get_backend_mod', '__setitem__', '_get_required_interactive_framework', 'switch_backend', 'close', 'backend_mod', 'install_repl_displayhook', 'get_fig_manager', '_set_new_active_manager', 'new_figure_manager', 'mpl_connect', 'get_label', 'set_active', 'draw_if_interactive']
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] [('get_backend', 30), ('rc_context', 50), ('figure', 15), ('__getitem__', 85), ('copy', 5), ('get_fignums', 2), ('new_figure_manager', 5), ('draw_if_interactive', 15), ('__init__', 5), ('__iter__', 25), ('_warn_if_gui_out_of_main_thread', 5), ('_get_backend_mod', 30), ('__setitem__', 72), ('_get_required_interactive_framework', 5), ('switch_backend', 72), ('close', 10), ('backend_mod', 0), ('install_repl_displayhook', 20), ('get_fig_manager', 5), ('_set_new_active_manager', 5), ('new_figure_manager', 5), ('mpl_connect', 5), ('get_label', 2), ('set_active', 5), ('draw_if_interactive', 5)]
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] [('__getitem__', 85), ('rc_context', 50), ('get_backend', 30), ('figure', 15), ('__setitem__', 72), ('draw_if_interactive', 15), ('switch_backend', 72), ('_get_backend_mod', 30), ('copy', 5), ('new_figure_manager', 5), ('__iter__', 25), ('get_fignums', 2), ('__init__', 5), ('_warn_if_gui_out_of_main_thread', 5), ('_get_required_interactive_framework', 5), ('get_fig_manager', 5), ('_set_new_active_manager', 5), ('new_figure_manager', 5), ('mpl_connect', 5), ('set_active', 5), ('draw_if_interactive', 5), ('get_label', 2), ('close', 10), ('install_repl_displayhook', 20), ('backend_mod', 0)]
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 05:48:04,111 - Orcar.tracer_reranker - INFO] [('__getitem__', 85), ('__setitem__', 72), ('switch_backend', 72)]

@@ -1,0 +1,6 @@
+[2026-09-22 07:49:16,431 - Orcar.environment.utils - DEBUG] Run command in container: git clone https://github.com/pylint-dev/pylint.git pylint-dev__pylint
+[2026-09-22 07:49:33,258 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 07:49:56,876 - Orcar.environment.utils - DEBUG] Run command in container: conda create -n pylint-dev__pylint__2.15 python=3.9 -y
+[2026-09-22 07:57:53,723 - Orcar.environment.utils - DEBUG] Run command in container: pip install -r /root/requirements.txt
+[2026-09-22 07:58:20,729 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 07:58:25,437 - Orcar.environment.utils - INFO] Agent container paused

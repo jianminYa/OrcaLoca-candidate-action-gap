@@ -1,0 +1,10 @@
+[2026-09-21 16:45:53,275 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Collector', 'method_name': 'delete', 'file_path': 'django/db/models/deletion.py'}
+)
+[2026-09-21 16:46:04,077 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'deletion.py', 'directory_path': 'django/db/models'}
+)

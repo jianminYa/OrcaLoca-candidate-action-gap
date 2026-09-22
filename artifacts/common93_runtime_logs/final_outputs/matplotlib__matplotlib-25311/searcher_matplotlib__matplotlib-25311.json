@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nThe search confirms that DraggableBase does not have a __getstate__ method. The complete bug chain is now fully understood: (1) Legend.set_draggable(True) creates a DraggableLegend stored in self._draggable, (2) DraggableLegend inherits from DraggableOffsetBox which inherits from DraggableBase, (3) DraggableBase.__init__ stores self.canvas = self.ref_artist.figure.canvas (a direct reference to FigureCanvasQTAgg), (4) Figure.__getstate__ only pops its own 'canvas' attribute but doesn't handle canvas references in DraggableBase instances, (5) Neither Legend nor DraggableBase has a __getstate__ method to handle pickling. The fix should add a __getstate__ method to DraggableBase to exclude the unpicklable canvas reference, similar to how Figure.__getstate__ pops its canvas. The _connect_picklable method already handles callback pickling, but the self.canvas attribute itself on DraggableBase is the problem.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "lib/matplotlib/legend.py",
+            "class_name": "Legend",
+            "method_name": "set_draggable"
+        },
+        {
+            "file_path": "lib/matplotlib/offsetbox.py",
+            "class_name": "DraggableBase",
+            "method_name": "__init__"
+        }
+    ]
+}

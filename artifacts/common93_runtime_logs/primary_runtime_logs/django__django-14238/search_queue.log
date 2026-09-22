@@ -1,0 +1,47 @@
+[2026-09-22 04:41:00,386 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'AutoFieldMeta'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:41:17,415 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AutoFieldMeta', 'method_name': '_subclasses', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AutoFieldMeta', 'method_name': '__subclasscheck__', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:41:27,355 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AutoFieldMeta', 'method_name': '__subclasscheck__', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:41:40,135 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:42:13,642 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'AutoFieldMeta', 'file_path': 'django/db/models/fields/__init__.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Options', 'method_name': '_get_default_pk_class', 'file_path': 'django/db/models/options.py'}
+)
+[2026-09-22 04:42:13,651 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'AutoFieldMeta', 'file_path': 'django/db/models/fields/__init__.py'} search_content='File Path: django/db/models/fields/__init__.py \nClass Content: \nclass AutoFieldMeta(type):\n    """\n    Metaclass to maintain backward inheritance compatibility for AutoField.\n\n    It is intended that AutoFieldMixin become public API when it is possible to\n    create a non-integer automatically-generated field using column defaults\n    stored in the database.\n\n    In many areas Django also relies on using isinstance() to check for an\n    automatically-generated field as a subclass of AutoField. A new flag needs\n    to be implemented on Field to be used instead.\n\n    When these issues have been addressed, this metaclass could be used to\n    deprecate inheritance from AutoField and use of isinstance() with AutoField\n    for detecting automatically-generated fields.\n    """\n\n    @property\n    def _subclasses(self):\n        return (BigAutoField, SmallAutoField)\n\n    def __instancecheck__(self, instance):\n        return isinstance(instance, self._subclasses) or super().__instancecheck__(instance)\n\n    def __subclasscheck__(self, subclass):\n        return subclass in self._subclasses or super().__subclasscheck__(subclass)\n'
+[2026-09-22 04:42:27,864 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'options.py', 'directory_path': 'django/db/models'}
+)

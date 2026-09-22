@@ -1,0 +1,389 @@
+[2026-09-22 12:21:30,560 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}
+)
+[2026-09-22 12:21:46,818 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}
+)
+[2026-09-22 12:22:19,848 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:22:30,144 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:22:38,042 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:22:48,271 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:23:22,015 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}
+)
+[2026-09-22 12:23:33,806 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+)
+[2026-09-22 12:23:47,606 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+)
+[2026-09-22 12:24:10,342 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+)
+[2026-09-22 12:24:29,562 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+)
+[2026-09-22 12:24:47,347 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+)
+[2026-09-22 12:25:04,354 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:26:40,773 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:26:56,595 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:27:07,072 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:27:22,871 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:27:39,872 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:28:50,473 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:29:05,212 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:29:31,920 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:29:47,315 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:30:01,231 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:30:19,266 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:30:50,565 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:32:13,462 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:32:38,389 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:33:20,943 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:33:35,750 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}
+)
+[2026-09-22 12:34:01,461 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Boolean', 'file_path': 'sympy/logic/boolalg.py'}
+)
+[2026-09-22 12:34:01,466 - search_queue - INFO] Duplicate search result: search_action='search_class' search_action_input={'class_name': 'Boolean', 'file_path': 'sympy/logic/boolalg.py'} search_content="File Path: sympy/logic/boolalg.py \nClass Skeleton: \nClass Signature: Boolean\nDocstring: A boolean object is an object for which logic operations make sense.\n\nMethod: __and__\nMethod Signature: __and__(self, other)\nDocstring: None\n\nMethod: __or__\nMethod Signature: __or__(self, other)\nDocstring: None\n\nMethod: __invert__\nMethod Signature: __invert__(self)\nDocstring: Overloading for ~\n\nMethod: __rshift__\nMethod Signature: __rshift__(self, other)\nDocstring: None\n\nMethod: __lshift__\nMethod Signature: __lshift__(self, other)\nDocstring: None\n\nMethod: __xor__\nMethod Signature: __xor__(self, other)\nDocstring: None\n\nMethod: equals\nMethod Signature: equals(self, other)\nDocstring: Returns True if the given formulas have the same truth table.\nFor two formulas to be equal they must have the same literals.\n\nExamples\n========\n\n>>> from sympy.abc import A, B, C\n>>> from sympy.logic.boolalg import And, Or, Not\n>>> (A >> B).equals(~B >> ~A)\nTrue\n>>> Not(And(A, B, C)).equals(And(Not(A), Not(B), Not(C)))\nFalse\n>>> Not(And(A, Not(A))).equals(Or(B, Not(B)))\nFalse\n\nMethod: to_nnf\nMethod Signature: to_nnf(self, simplify)\nDocstring: None\n\nMethod: as_set\nMethod Signature: as_set(self)\nDocstring: Rewrites Boolean expression in terms of real sets.\n\nExamples\n========\n\n>>> from sympy import Symbol, Eq, Or, And\n>>> x = Symbol('x', real=True)\n>>> Eq(x, 0).as_set()\nFiniteSet(0)\n>>> (x > 0).as_set()\nInterval.open(0, oo)\n>>> And(-2 < x, x < 2).as_set()\nInterval.open(-2, 2)\n>>> Or(x < -2, 2 < x).as_set()\nUnion(Interval.open(-oo, -2), Interval.open(2, oo))\n\nMethod: binary_symbols\nMethod Signature: binary_symbols(self)\nDocstring: None\n"

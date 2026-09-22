@@ -1,0 +1,4 @@
+[2026-09-21 12:43:15,810 - Orcar.environment.benchmark - INFO] Setting up env for inst astropy__astropy-14365...
+[2026-09-21 12:43:22,759 - Orcar.environment.benchmark - INFO] Repo astropy__astropy already cached
+[2026-09-21 12:43:22,759 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy to base commit: 7269fa3e33e8d02485a647da91a5a2a60a06af61
+[2026-09-21 12:47:20,671 - Orcar.environment.benchmark - INFO] Copying file to host: docker cp orcar_swe_bench_run_ctr://tmp/tracer_output_astropy__astropy-14365.json /data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/tracer/tracer_output_astropy__astropy-14365.json

@@ -1,0 +1,115 @@
+[2026-09-21 16:49:36,219 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+)
+[2026-09-21 16:49:47,159 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+)
+[2026-09-21 16:50:03,876 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'EnumSerializer', 'file_path': 'django/db/migrations/serializer.py'})]
+[2026-09-21 16:50:11,039 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'EnumSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 16:50:17,572 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'})]
+[2026-09-21 16:50:23,452 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'EnumSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 16:50:31,405 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'EnumSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 16:50:40,452 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'EnumSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 16:50:49,091 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseSimpleSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Serializer', 'method_name': 'serializer_factory', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serializer_factory'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'EnumSerializer'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'EnumSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)

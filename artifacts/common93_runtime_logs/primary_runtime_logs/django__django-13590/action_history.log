@@ -1,0 +1,19 @@
+[2026-09-22 04:13:23,767 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_lookup_value', 'file_path': 'django/db/models/sql/query.py'}: 1
+)
+[2026-09-22 04:13:38,330 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_lookup_value', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+)
+[2026-09-22 04:13:58,406 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'resolve_lookup_value', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+)

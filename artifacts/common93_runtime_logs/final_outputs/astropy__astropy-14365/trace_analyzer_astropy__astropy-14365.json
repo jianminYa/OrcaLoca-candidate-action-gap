@@ -1,0 +1,60 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "_read_table_qdp",
+            "file_path": "astropy/io/ascii/qdp.py"
+        },
+        {
+            "keyword": "read",
+            "file_path": "astropy/io/ascii/qdp.py"
+        },
+        {
+            "keyword": "QDP",
+            "file_path": "astropy/io/ascii/qdp.py"
+        },
+        {
+            "keyword": "read",
+            "file_path": "astropy/io/registry/core.py"
+        },
+        {
+            "keyword": "read",
+            "file_path": ""
+        },
+        {
+            "keyword": "__call__",
+            "file_path": "astropy/table/connect.py"
+        },
+        {
+            "keyword": "_get_type_from_list_of_lines",
+            "file_path": "astropy/io/ascii/qdp.py"
+        },
+        {
+            "keyword": "read",
+            "file_path": "astropy/io/ascii/ui.py"
+        },
+        {
+            "keyword": "_get_tables_from_qdp_file",
+            "file_path": "astropy/io/ascii/qdp.py"
+        },
+        {
+            "keyword": "Table",
+            "file_path": "astropy/table/table.py"
+        },
+        {
+            "keyword": "io_read",
+            "file_path": "astropy/io/ascii/connect.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "_line_type",
+            "file_path": "astropy/io/ascii/qdp.py",
+            "class_name": ""
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import tempfile\nimport os\nfrom astropy.table import Table\n\n# Create a temporary QDP file with lowercase commands\nwith tempfile.NamedTemporaryFile(mode='w', suffix='.qdp', delete=False) as f:\n    f.write('read serr 1 2\\n')\n    f.write('1 0.5 1 0.5\\n')\n    tmpfile = f.name\n\ntry:\n    Table.read(tmpfile, format='ascii.qdp')\nfinally:\n    os.unlink(tmpfile)\n",
+    "env_reproduce_path": "/astropy__astropy/reproducer_astropy__astropy-14365.py"
+}

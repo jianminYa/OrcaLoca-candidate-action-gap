@@ -1,0 +1,19 @@
+[2026-09-22 05:02:17,785 - Orcar.tracer - INFO] sensitivity_dict: {'__name__': set(), '_wrapper': {'/django__django/django/utils/decorators.py'}, 'method_decorator': {'/django__django/django/utils/decorators.py'}, 'partial': set()}
+[2026-09-22 05:02:17,786 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_django__django-14787.json
+[2026-09-22 05:02:17,787 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] Func 000/007
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/utils/decorators.py', lineno=35, funcname='_wrapper'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=14, absolute_layer=2, called_by=[]), (0, 0, 2, 14))
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] Func 001/007
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/django/utils/decorators.py', lineno=53, funcname='method_decorator'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=4, absolute_layer=3, called_by=[]), (0, 0, 3, 4))
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] Func 002/007
+[2026-09-22 05:02:17,788 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/reproducer_django__django-14787.py', lineno=4, funcname='logger'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=1, absolute_calling_index=15, absolute_layer=3, called_by=[FuncSign(filename='/django__django/django/utils/decorators.py', lineno=35, funcname='_wrapper')]), (1, 1, 3, 15))
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] Func 003/007
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/reproducer_django__django-14787.py', lineno=5, funcname='inner'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=1, absolute_calling_index=18, absolute_layer=3, called_by=[FuncSign(filename='/django__django/django/utils/decorators.py', lineno=35, funcname='_wrapper')]), (1, 1, 3, 18))
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] Func 004/007
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] (FuncSign(filename='/root/miniconda3/envs/django__django__4.1/lib/python3.9/functools.py', lineno=35, funcname='update_wrapper'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=1, absolute_calling_index=5, absolute_layer=4, called_by=[FuncSign(filename='/django__django/django/utils/decorators.py', lineno=53, funcname='method_decorator')]), (1, 1, 4, 5))
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] Func 005/007
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] (FuncSign(filename='/root/miniconda3/envs/django__django__4.1/lib/python3.9/functools.py', lineno=65, funcname='wraps'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=2, absolute_calling_index=16, absolute_layer=4, called_by=[FuncSign(filename='/django__django/django/utils/decorators.py', lineno=35, funcname='_wrapper'), FuncSign(filename='/django__django/reproducer_django__django-14787.py', lineno=4, funcname='logger')]), (1, 2, 4, 16))
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] Func 006/007
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] (FuncSign(filename='/django__django/reproducer_django__django-14787.py', lineno=16, funcname='hello_world'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=2, absolute_calling_index=19, absolute_layer=4, called_by=[FuncSign(filename='/django__django/django/utils/decorators.py', lineno=35, funcname='_wrapper'), FuncSign(filename='/django__django/reproducer_django__django-14787.py', lineno=5, funcname='inner')]), (1, 2, 4, 19))
+[2026-09-22 05:02:17,789 - Orcar.tracer - INFO] Finished tracer output parsing

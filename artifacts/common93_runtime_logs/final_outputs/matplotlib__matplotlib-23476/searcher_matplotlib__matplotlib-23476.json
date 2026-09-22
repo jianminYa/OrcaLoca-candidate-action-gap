@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nThe bug is now fully understood. The root cause is in `FigureCanvasBase.__init__` which unconditionally sets `figure._original_dpi = figure.dpi`. During unpickling, `Figure.__setstate__` restores `self.__dict__` from the pickled state (which includes the already-doubled DPI of 200 on M1 Mac, and `_original_dpi=100`). Then it calls `FigureCanvasBase(self)` which overwrites `_original_dpi` with the current `figure.dpi` (200). Later, when the MacOSX backend canvas is created (either in `restore_to_pylab` path or when the figure is displayed), `_set_device_pixel_ratio(2)` computes `dpi = 2 * self.figure._original_dpi = 2 * 200 = 400`, doubling the DPI again. The fix should either: (1) In `__setstate__`, restore `_original_dpi` after `FigureCanvasBase(self)` is called, or (2) In `__setstate__`, set the DPI back to `_original_dpi` before calling `FigureCanvasBase(self)`, or (3) In `FigureCanvasBase.__init__`, not overwrite `_original_dpi` if it already exists. The search queue is empty, so I have enough context to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "lib/matplotlib/figure.py",
+            "class_name": "Figure",
+            "method_name": "__setstate__"
+        },
+        {
+            "file_path": "lib/matplotlib/backend_bases.py",
+            "class_name": "FigureCanvasBase",
+            "method_name": "__init__"
+        }
+    ]
+}

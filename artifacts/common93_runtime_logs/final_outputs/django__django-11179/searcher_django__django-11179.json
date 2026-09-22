@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly visible in the `delete()` method of the `Collector` class in `django/db/models/deletion.py`. When the fast delete optimization path is taken (lines where `len(self.data) == 1 and len(instances) == 1` and `self.can_fast_delete(instance)`), the method performs the SQL delete and returns immediately without setting the instance's PK to None. The PK clearing code (`setattr(instance, model._meta.pk.attname, None)`) only exists at the very end of the method in the normal (non-fast) path. The fix should add `setattr(instance, model._meta.pk.attname, None)` before the early return in the fast delete optimization block.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/models/deletion.py",
+            "class_name": "Collector",
+            "method_name": "delete"
+        }
+    ]
+}

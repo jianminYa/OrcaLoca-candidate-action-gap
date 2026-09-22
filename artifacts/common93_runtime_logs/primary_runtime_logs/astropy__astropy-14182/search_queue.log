@@ -1,0 +1,145 @@
+[2026-09-21 12:35:03,751 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RST', 'method_name': '__init__', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseHeader', 'method_name': '__init__', 'file_path': 'astropy/io/ascii/core.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RST', 'method_name': 'write', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'RST'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FixedWidth'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'astropy/io/ascii'}
+)
+[2026-09-21 12:35:29,820 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseHeader', 'method_name': '__init__', 'file_path': 'astropy/io/ascii/core.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RST', 'method_name': 'write', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'RST'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FixedWidth'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'astropy/io/ascii'}
+)
+[2026-09-21 12:35:44,171 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RST', 'method_name': 'write', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'RST'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FixedWidth'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'core.py', 'directory_path': 'astropy/io/ascii'}
+)
+[2026-09-21 12:35:55,865 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'RST'}
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FixedWidth'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'core.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+)
+[2026-09-21 12:36:40,445 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'FixedWidth'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'core.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+)
+[2026-09-21 12:37:10,998 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'rst.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'core.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'fixedwidth.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTHeader'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTData'}
+)
+[2026-09-21 12:37:29,390 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'core.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'fixedwidth.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'RST', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTHeader'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTData'}
+)
+[2026-09-21 12:40:49,172 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'fixedwidth.py', 'directory_path': 'astropy/io/ascii'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTHeader'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTData'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'RST', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+)
+[2026-09-21 12:41:27,201 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTHeader'}
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTData'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'RST', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+)
+[2026-09-21 12:41:47,401 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 4, Action: Search Action: search_class
+Search Action Input: {'class_name': 'SimpleRSTData'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'RST', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': 'write', 'file_path': 'astropy/io/ascii/fixedwidth.py'}
+)
+[2026-09-21 12:42:01,305 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'RST', 'file_path': 'astropy/io/ascii/rst.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': 'write', 'file_path': 'astropy/io/ascii/fixedwidth.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+)
+[2026-09-21 12:42:01,322 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'RST', 'file_path': 'astropy/io/ascii/rst.py'} search_content='File Path: astropy/io/ascii/rst.py \nClass Content: \nclass RST(FixedWidth):\n    """reStructuredText simple format table.\n\n    See: https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#simple-tables\n\n    Example::\n\n        ==== ===== ======\n        Col1  Col2  Col3\n        ==== ===== ======\n          1    2.3  Hello\n          2    4.5  Worlds\n        ==== ===== ======\n\n    Currently there is no support for reading tables which utilize continuation lines,\n    or for ones which define column spans through the use of an additional\n    line of dashes in the header.\n\n    """\n\n    _format_name = "rst"\n    _description = "reStructuredText simple table"\n    data_class = SimpleRSTData\n    header_class = SimpleRSTHeader\n\n    def __init__(self):\n        super().__init__(delimiter_pad=None, bookend=False)\n\n    def write(self, lines):\n        lines = super().write(lines)\n        lines = [lines[1]] + lines + [lines[1]]\n        return lines\n'
+[2026-09-21 12:42:13,616 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FixedWidth', 'method_name': '__init__'}
+)

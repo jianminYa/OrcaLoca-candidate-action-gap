@@ -1,0 +1,20 @@
+[2026-09-21 16:56:06,375 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'parse_http_date', 'file_path': 'django/utils/http.py'}: 1
+)
+[2026-09-21 16:56:28,758 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'parse_http_date', 'file_path': 'django/utils/http.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'http.py', 'directory_path': 'django/utils'}: 1
+)
+[2026-09-21 16:59:26,180 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'parse_http_date', 'file_path': 'django/utils/http.py'})]
+[2026-09-21 16:59:34,836 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'parse_http_date', 'file_path': 'django/utils/http.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'http.py', 'directory_path': 'django/utils'}: 1
+)

@@ -1,0 +1,993 @@
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:2 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Reading package lists...
+Building dependency tree...
+Reading state information...
+98 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.9ubuntu3).
+0 upgraded, 0 newly installed, 0 to remove and 98 not upgraded.
+Source:      /root/miniconda3/envs/python3.9
+Destination: /root/miniconda3/envs/scikit-learn__scikit-learn__1.3
+Packages: 20
+Files: 0
+
+Downloading and Extracting Packages: ...working... done
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate scikit-learn__scikit-learn__1.3
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Channels:
+ - defaults
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /root/miniconda3/envs/scikit-learn__scikit-learn__1.3
+
+  added / updated specs:
+    - cython==3.0.10
+    - joblib
+    - matplotlib[version='<3.9.0']
+    - numpy==1.19.2
+    - pandas[version='<2.0.0']
+    - pytest
+    - scipy==1.5.2
+    - setuptools
+    - threadpoolctl
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    bottleneck-1.4.2           |   py39ha9d4c09_0         126 KB
+    c-ares-1.34.5              |       hef5626c_0         216 KB
+    contourpy-1.0.5            |   py39hdb19cb5_0         204 KB
+    cyrus-sasl-2.1.28          |       h1110e0f_3         242 KB
+    cython-3.0.10              |   py39h5eee18b_0         3.3 MB
+    exceptiongroup-1.3.0       |   py39h06a4308_0          40 KB
+    expat-2.7.3                |       h3385a95_0         167 KB
+    fontconfig-2.14.1          |       h55d465d_3         281 KB
+    fonttools-4.60.1           |   py39hee96239_0         3.7 MB
+    freetype-2.13.3            |       h4a9f257_0         686 KB
+    gettext-0.21.0             |       hedfda30_2         3.0 MB
+    iniconfig-2.1.0            |   py39h06a4308_0          19 KB
+    joblib-1.5.2               |   py39h06a4308_0         401 KB
+    jpeg-9f                    |       h5ce9db8_0         242 KB
+    kiwisolver-1.4.4           |   py39h6a678d5_0          76 KB
+    lerc-4.0.0                 |       h6a678d5_0         261 KB
+    libabseil-20250127.0       | cxx17_h6a678d5_0         1.3 MB
+    libblas-3.9.0              |16_linux64_openblas          13 KB  conda-forge
+    libcblas-3.9.0             |16_linux64_openblas          13 KB  conda-forge
+    libcups-2.4.2              |       h252cb56_2         4.5 MB
+    libcurl-8.16.0             |       heebcbe5_0         458 KB
+    libedit-3.1.20230828       |       h5eee18b_0         179 KB
+    libevent-2.1.12            |       hdbd6064_1         453 KB
+    libgfortran-ng-11.2.0      |       h00389a5_1          20 KB
+    libgfortran5-11.2.0        |       h1234567_1         2.0 MB
+    libgl-1.7.0                |       h5eee18b_2         149 KB
+    libglib-2.84.2             |       h37c7471_0         1.7 MB
+    libglvnd-1.7.0             |       h5eee18b_2         140 KB
+    libglx-1.7.0               |       h5eee18b_2          87 KB
+    libiconv-1.16              |       h5eee18b_3         759 KB
+    libidn2-2.3.8              |       hf80d704_0          80 KB
+    libkrb5-1.21.3             |       h520c7b4_4         874 KB
+    liblapack-3.9.0            |16_linux64_openblas          13 KB  conda-forge
+    libopenblas-0.3.21         |       h043d6bf_0         5.4 MB
+    libpng-1.6.50              |       h2ed474d_0         237 KB
+    libpq-17.6                 |       ha51bf15_0         2.5 MB
+    libprotobuf-5.29.3         |       h3cdef7c_1         3.5 MB
+    libsodium-1.0.20           |       heac8642_0         288 KB
+    libssh2-1.11.1             |       h251f7ec_0         308 KB
+    libunistring-1.3           |       hb25bd0a_0         721 KB
+    libwebp-base-1.3.2         |       h5eee18b_1         425 KB
+    libxkbcommon-1.0.1         |       h097e994_2         590 KB
+    libxml2-2.13.5             |       hfdd30dd_0         738 KB
+    lmdb-0.9.31                |       hb25bd0a_0         469 KB
+    lz4-c-1.9.4                |       h6a678d5_1         156 KB
+    matplotlib-3.6.2           |   py39h06a4308_0           8 KB
+    matplotlib-base-3.6.2      |   py39h945d387_0         6.5 MB
+    mysql-8.4.0                |       h721767e_2        56.5 MB
+    numexpr-2.8.4              |   py39hd2a5715_1         135 KB
+    numpy-1.19.2               |   py39hc896f84_1          10 KB
+    numpy-base-1.19.2          |   py39h21a3de8_1         4.2 MB
+    openjpeg-2.5.2             |       he7f1fd0_0         371 KB
+    openldap-2.6.10            |       he9288cc_1         747 KB
+    openssl-3.0.18             |       hd6dcaed_0         4.5 MB
+    packaging-25.0             |   py39h06a4308_1         160 KB
+    pandas-1.4.4               |   py39h6a678d5_0         9.8 MB
+    pcre2-10.42                |       hebb0a14_1         1.3 MB
+    pillow-11.1.0              |   py39hcea889d_0         810 KB
+    pluggy-1.5.0               |   py39h06a4308_0          37 KB
+    pthread-stubs-0.3          |       h0ce48e5_1           5 KB
+    pygments-2.19.1            |   py39h06a4308_0         1.9 MB
+    pyparsing-3.2.0            |   py39h06a4308_0         421 KB
+    pyqt-6.7.1                 |   py39h8dad735_2         5.0 MB
+    pyqt6-sip-13.9.1           |   py39h6ce4db3_2          80 KB
+    pytest-8.4.2               |   py39h06a4308_0         1.0 MB
+    python-dateutil-2.9.0post0 |   py39h06a4308_2         279 KB
+    python_abi-3.9             |           2_cp39           4 KB  conda-forge
+    pytz-2025.2                |   py39h06a4308_0         228 KB
+    qtbase-6.7.3               |       hdaa5aa8_0        16.1 MB
+    qtdeclarative-6.7.3        |       h7934f7d_1        16.2 MB
+    qtsvg-6.7.3                |       he4bddd1_1         291 KB
+    qttools-6.7.3              |       h5a8de97_1         6.6 MB
+    qtwebchannel-6.7.3         |       h7934f7d_1         153 KB
+    qtwebsockets-6.7.3         |       h7934f7d_1         135 KB
+    scipy-1.5.2                |   py39hee8e79c_2        19.3 MB  conda-forge
+    sip-6.10.0                 |   py39h6a678d5_0         563 KB
+    six-1.17.0                 |   py39h06a4308_0          31 KB
+    threadpoolctl-3.5.0        |   py39h2f386ee_0          42 KB
+    tomli-2.2.1                |   py39h06a4308_0          29 KB
+    tornado-6.5.1              |   py39h5eee18b_0         667 KB
+    typing-extensions-4.15.0   |   py39h06a4308_0          11 KB
+    typing_extensions-4.15.0   |   py39h06a4308_0          79 KB
+    xcb-util-0.4.1             |       h5eee18b_2          19 KB
+    xcb-util-cursor-0.1.5      |       h5eee18b_0          19 KB
+    xcb-util-image-0.4.0       |       h5eee18b_2          23 KB
+    xcb-util-renderutil-0.3.10 |       h5eee18b_0          16 KB
+    xorg-libx11-1.8.12         |       h9b100fa_1         895 KB
+    xorg-xorgproto-2024.1      |       h5eee18b_1         580 KB
+    zstd-1.5.6                 |       hc292b87_0         664 KB
+    ------------------------------------------------------------
+                                           Total:       197.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  blas               pkgs/main/linux-64::blas-1.0-openblas 
+  bottleneck         pkgs/main/linux-64::bottleneck-1.4.2-py39ha9d4c09_0 
+  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6 
+  c-ares             pkgs/main/linux-64::c-ares-1.34.5-hef5626c_0 
+  contourpy          pkgs/main/linux-64::contourpy-1.0.5-py39hdb19cb5_0 
+  cycler             pkgs/main/noarch::cycler-0.11.0-pyhd3eb1b0_0 
+  cyrus-sasl         pkgs/main/linux-64::cyrus-sasl-2.1.28-h1110e0f_3 
+  cython             pkgs/main/linux-64::cython-3.0.10-py39h5eee18b_0 
+  exceptiongroup     pkgs/main/linux-64::exceptiongroup-1.3.0-py39h06a4308_0 
+  expat              pkgs/main/linux-64::expat-2.7.3-h3385a95_0 
+  fontconfig         pkgs/main/linux-64::fontconfig-2.14.1-h55d465d_3 
+  fonttools          pkgs/main/linux-64::fonttools-4.60.1-py39hee96239_0 
+  freetype           pkgs/main/linux-64::freetype-2.13.3-h4a9f257_0 
+  gettext            pkgs/main/linux-64::gettext-0.21.0-hedfda30_2 
+  icu                pkgs/main/linux-64::icu-73.1-h6a678d5_0 
+  iniconfig          pkgs/main/linux-64::iniconfig-2.1.0-py39h06a4308_0 
+  joblib             pkgs/main/linux-64::joblib-1.5.2-py39h06a4308_0 
+  jpeg               pkgs/main/linux-64::jpeg-9f-h5ce9db8_0 
+  kiwisolver         pkgs/main/linux-64::kiwisolver-1.4.4-py39h6a678d5_0 
+  krb5               pkgs/main/linux-64::krb5-1.20.1-h143b758_1 
+  lcms2              pkgs/main/linux-64::lcms2-2.16-hb9589c4_0 
+  lerc               pkgs/main/linux-64::lerc-4.0.0-h6a678d5_0 
+  libabseil          pkgs/main/linux-64::libabseil-20250127.0-cxx17_h6a678d5_0 
+  libblas            conda-forge/linux-64::libblas-3.9.0-16_linux64_openblas 
+  libcblas           conda-forge/linux-64::libcblas-3.9.0-16_linux64_openblas 
+  libcups            pkgs/main/linux-64::libcups-2.4.2-h252cb56_2 
+  libcurl            pkgs/main/linux-64::libcurl-8.16.0-heebcbe5_0 
+  libdeflate         pkgs/main/linux-64::libdeflate-1.22-h5eee18b_0 
+  libedit            pkgs/main/linux-64::libedit-3.1.20230828-h5eee18b_0 
+  libev              pkgs/main/linux-64::libev-4.33-h7f8727e_1 
+  libevent           pkgs/main/linux-64::libevent-2.1.12-hdbd6064_1 
+  libgfortran-ng     pkgs/main/linux-64::libgfortran-ng-11.2.0-h00389a5_1 
+  libgfortran5       pkgs/main/linux-64::libgfortran5-11.2.0-h1234567_1 
+  libgl              pkgs/main/linux-64::libgl-1.7.0-h5eee18b_2 
+  libglib            pkgs/main/linux-64::libglib-2.84.2-h37c7471_0 
+  libglvnd           pkgs/main/linux-64::libglvnd-1.7.0-h5eee18b_2 
+  libglx             pkgs/main/linux-64::libglx-1.7.0-h5eee18b_2 
+  libiconv           pkgs/main/linux-64::libiconv-1.16-h5eee18b_3 
+  libidn2            pkgs/main/linux-64::libidn2-2.3.8-hf80d704_0 
+  libkrb5            pkgs/main/linux-64::libkrb5-1.21.3-h520c7b4_4 
+  liblapack          conda-forge/linux-64::liblapack-3.9.0-16_linux64_openblas 
+  libnghttp2         pkgs/main/linux-64::libnghttp2-1.57.0-h2d74bed_0 
+  libopenblas        pkgs/main/linux-64::libopenblas-0.3.21-h043d6bf_0 
+  libpng             pkgs/main/linux-64::libpng-1.6.50-h2ed474d_0 
+  libpq              pkgs/main/linux-64::libpq-17.6-ha51bf15_0 
+  libprotobuf        pkgs/main/linux-64::libprotobuf-5.29.3-h3cdef7c_1 
+  libsodium          pkgs/main/linux-64::libsodium-1.0.20-heac8642_0 
+  libssh2            pkgs/main/linux-64::libssh2-1.11.1-h251f7ec_0 
+  libtiff            pkgs/main/linux-64::libtiff-4.5.1-hffd6297_1 
+  libunistring       pkgs/main/linux-64::libunistring-1.3-hb25bd0a_0 
+  libuuid            pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0 
+  libwebp-base       pkgs/main/linux-64::libwebp-base-1.3.2-h5eee18b_1 
+  libxcb             pkgs/main/linux-64::libxcb-1.17.0-h9b100fa_0 
+  libxkbcommon       pkgs/main/linux-64::libxkbcommon-1.0.1-h097e994_2 
+  libxml2            pkgs/main/linux-64::libxml2-2.13.5-hfdd30dd_0 
+  lmdb               pkgs/main/linux-64::lmdb-0.9.31-hb25bd0a_0 
+  lz4-c              pkgs/main/linux-64::lz4-c-1.9.4-h6a678d5_1 
+  matplotlib         pkgs/main/linux-64::matplotlib-3.6.2-py39h06a4308_0 
+  matplotlib-base    pkgs/main/linux-64::matplotlib-base-3.6.2-py39h945d387_0 
+  mysql              pkgs/main/linux-64::mysql-8.4.0-h721767e_2 
+  numexpr            pkgs/main/linux-64::numexpr-2.8.4-py39hd2a5715_1 
+  numpy              pkgs/main/linux-64::numpy-1.19.2-py39hc896f84_1 
+  numpy-base         pkgs/main/linux-64::numpy-base-1.19.2-py39h21a3de8_1 
+  openjpeg           pkgs/main/linux-64::openjpeg-2.5.2-he7f1fd0_0 
+  openldap           pkgs/main/linux-64::openldap-2.6.10-he9288cc_1 
+  packaging          pkgs/main/linux-64::packaging-25.0-py39h06a4308_1 
+  pandas             pkgs/main/linux-64::pandas-1.4.4-py39h6a678d5_0 
+  pcre2              pkgs/main/linux-64::pcre2-10.42-hebb0a14_1 
+  pillow             pkgs/main/linux-64::pillow-11.1.0-py39hcea889d_0 
+  pluggy             pkgs/main/linux-64::pluggy-1.5.0-py39h06a4308_0 
+  pthread-stubs      pkgs/main/linux-64::pthread-stubs-0.3-h0ce48e5_1 
+  pygments           pkgs/main/linux-64::pygments-2.19.1-py39h06a4308_0 
+  pyparsing          pkgs/main/linux-64::pyparsing-3.2.0-py39h06a4308_0 
+  pyqt               pkgs/main/linux-64::pyqt-6.7.1-py39h8dad735_2 
+  pyqt6-sip          pkgs/main/linux-64::pyqt6-sip-13.9.1-py39h6ce4db3_2 
+  pytest             pkgs/main/linux-64::pytest-8.4.2-py39h06a4308_0 
+  python-dateutil    pkgs/main/linux-64::python-dateutil-2.9.0post0-py39h06a4308_2 
+  python_abi         conda-forge/linux-64::python_abi-3.9-2_cp39 
+  pytz               pkgs/main/linux-64::pytz-2025.2-py39h06a4308_0 
+  qtbase             pkgs/main/linux-64::qtbase-6.7.3-hdaa5aa8_0 
+  qtdeclarative      pkgs/main/linux-64::qtdeclarative-6.7.3-h7934f7d_1 
+  qtsvg              pkgs/main/linux-64::qtsvg-6.7.3-he4bddd1_1 
+  qttools            pkgs/main/linux-64::qttools-6.7.3-h5a8de97_1 
+  qtwebchannel       pkgs/main/linux-64::qtwebchannel-6.7.3-h7934f7d_1 
+  qtwebsockets       pkgs/main/linux-64::qtwebsockets-6.7.3-h7934f7d_1 
+  scipy              conda-forge/linux-64::scipy-1.5.2-py39hee8e79c_2 
+  sip                pkgs/main/linux-64::sip-6.10.0-py39h6a678d5_0 
+  six                pkgs/main/linux-64::six-1.17.0-py39h06a4308_0 
+  threadpoolctl      pkgs/main/linux-64::threadpoolctl-3.5.0-py39h2f386ee_0 
+  tomli              pkgs/main/linux-64::tomli-2.2.1-py39h06a4308_0 
+  tornado            pkgs/main/linux-64::tornado-6.5.1-py39h5eee18b_0 
+  typing-extensions  pkgs/main/linux-64::typing-extensions-4.15.0-py39h06a4308_0 
+  typing_extensions  pkgs/main/linux-64::typing_extensions-4.15.0-py39h06a4308_0 
+  xcb-util           pkgs/main/linux-64::xcb-util-0.4.1-h5eee18b_2 
+  xcb-util-cursor    pkgs/main/linux-64::xcb-util-cursor-0.1.5-h5eee18b_0 
+  xcb-util-image     pkgs/main/linux-64::xcb-util-image-0.4.0-h5eee18b_2 
+  xcb-util-renderut~ pkgs/main/linux-64::xcb-util-renderutil-0.3.10-h5eee18b_0 
+  xorg-libx11        pkgs/main/linux-64::xorg-libx11-1.8.12-h9b100fa_1 
+  xorg-libxau        pkgs/main/linux-64::xorg-libxau-1.0.12-h9b100fa_0 
+  xorg-libxdmcp      pkgs/main/linux-64::xorg-libxdmcp-1.1.5-h9b100fa_0 
+  xorg-xorgproto     pkgs/main/linux-64::xorg-xorgproto-2024.1-h5eee18b_1 
+  zstd               pkgs/main/linux-64::zstd-1.5.6-hc292b87_0 
+
+The following packages will be UPDATED:
+
+  ca-certificates                       2024.7.2-h06a4308_0 --> 2026.8.13-h06a4308_0 
+  openssl                                 3.0.14-h5eee18b_0 --> 3.0.18-hd6dcaed_0 
+  setuptools                          72.1.0-py39h06a4308_0 --> 80.9.0-py39h06a4308_0 
+
+
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Requirement already satisfied: cython in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (3.0.10)
+Requirement already satisfied: setuptools in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (80.9.0)
+Requirement already satisfied: numpy in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (1.19.2)
+Requirement already satisfied: scipy in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (1.5.2)
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Using pip 24.2 from /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/pip (python 3.9)
+Obtaining file:///scikit-learn__scikit-learn
+  Preparing metadata (setup.py): started
+  Running command python setup.py egg_info
+  Partial import of sklearn during the build process.
+  Compiling sklearn/__check_build/_check_build.pyx because it changed.
+  Compiling sklearn/_isotonic.pyx because it changed.
+  Compiling sklearn/_loss/_loss.pyx because it changed.
+  Compiling sklearn/cluster/_dbscan_inner.pyx because it changed.
+  Compiling sklearn/cluster/_hierarchical_fast.pyx because it changed.
+  Compiling sklearn/cluster/_k_means_common.pyx because it changed.
+  Compiling sklearn/cluster/_k_means_lloyd.pyx because it changed.
+  Compiling sklearn/cluster/_k_means_elkan.pyx because it changed.
+  Compiling sklearn/cluster/_k_means_minibatch.pyx because it changed.
+  Compiling sklearn/cluster/_hdbscan/_linkage.pyx because it changed.
+  Compiling sklearn/cluster/_hdbscan/_reachability.pyx because it changed.
+  Compiling sklearn/cluster/_hdbscan/_tree.pyx because it changed.
+  Compiling sklearn/datasets/_svmlight_format_fast.pyx because it changed.
+  Compiling sklearn/decomposition/_online_lda_fast.pyx because it changed.
+  Compiling sklearn/decomposition/_cdnmf_fast.pyx because it changed.
+  Compiling sklearn/ensemble/_gradient_boosting.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/_gradient_boosting.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/histogram.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/splitting.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/_binning.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/_predictor.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/_bitset.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/common.pyx because it changed.
+  Compiling sklearn/ensemble/_hist_gradient_boosting/utils.pyx because it changed.
+  Compiling sklearn/feature_extraction/_hashing_fast.pyx because it changed.
+  Compiling sklearn/linear_model/_cd_fast.pyx because it changed.
+  Compiling sklearn/linear_model/_sgd_fast.pyx because it changed.
+  Compiling sklearn/linear_model/_sag_fast.pyx because it changed.
+  Compiling sklearn/manifold/_utils.pyx because it changed.
+  Compiling sklearn/manifold/_barnes_hut_tsne.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_fast.pyx because it changed.
+  Compiling sklearn/metrics/_dist_metrics.pyx because it changed.
+  Compiling sklearn/metrics/cluster/_expected_mutual_info_fast.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_distances_reduction/_datasets_pair.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_distances_reduction/_base.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_distances_reduction/_argkmin.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_distances_reduction/_argkmin_classmode.pyx because it changed.
+  Compiling sklearn/metrics/_pairwise_distances_reduction/_radius_neighbors.pyx because it changed.
+  Compiling sklearn/preprocessing/_csr_polynomial_expansion.pyx because it changed.
+  Compiling sklearn/preprocessing/_target_encoder_fast.pyx because it changed.
+  Compiling sklearn/neighbors/_ball_tree.pyx because it changed.
+  Compiling sklearn/neighbors/_kd_tree.pyx because it changed.
+  Compiling sklearn/neighbors/_partition_nodes.pyx because it changed.
+  Compiling sklearn/neighbors/_quad_tree.pyx because it changed.
+  Compiling sklearn/svm/_newrand.pyx because it changed.
+  Compiling sklearn/svm/_libsvm.pyx because it changed.
+  Compiling sklearn/svm/_liblinear.pyx because it changed.
+  Compiling sklearn/svm/_libsvm_sparse.pyx because it changed.
+  Compiling sklearn/tree/_tree.pyx because it changed.
+  Compiling sklearn/tree/_splitter.pyx because it changed.
+  Compiling sklearn/tree/_criterion.pyx because it changed.
+  Compiling sklearn/tree/_utils.pyx because it changed.
+  Compiling sklearn/utils/sparsefuncs_fast.pyx because it changed.
+  Compiling sklearn/utils/_cython_blas.pyx because it changed.
+  Compiling sklearn/utils/arrayfuncs.pyx because it changed.
+  Compiling sklearn/utils/murmurhash.pyx because it changed.
+  Compiling sklearn/utils/_fast_dict.pyx because it changed.
+  Compiling sklearn/utils/_openmp_helpers.pyx because it changed.
+  Compiling sklearn/utils/_seq_dataset.pyx because it changed.
+  Compiling sklearn/utils/_weight_vector.pyx because it changed.
+  Compiling sklearn/utils/_random.pyx because it changed.
+  Compiling sklearn/utils/_logistic_sigmoid.pyx because it changed.
+  Compiling sklearn/utils/_typedefs.pyx because it changed.
+  Compiling sklearn/utils/_heap.pyx because it changed.
+  Compiling sklearn/utils/_sorting.pyx because it changed.
+  Compiling sklearn/utils/_vector_sentinel.pyx because it changed.
+  Compiling sklearn/utils/_isfinite.pyx because it changed.
+  warning: sklearn/metrics/_dist_metrics.pyx:725:44: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/metrics/_dist_metrics.pyx:788:40: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/metrics/_dist_metrics.pyx:3297:44: Assigning to 'float32_t *' from 'const float32_t *' discards const qualifier
+  warning: sklearn/metrics/_dist_metrics.pyx:3360:40: Assigning to 'float32_t *' from 'const float32_t *' discards const qualifier
+  performance hint: sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.pyx:61:5: Exception check on '_middle_term_sparse_dense_64' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '_middle_term_sparse_dense_64' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on '_middle_term_sparse_dense_64' to allow an error code to be returned.
+  performance hint: sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.pyx:565:5: Exception check on '_middle_term_sparse_dense_32' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '_middle_term_sparse_dense_32' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on '_middle_term_sparse_dense_32' to allow an error code to be returned.
+  performance hint: sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.pyx:550:36: Exception check after calling '_middle_term_sparse_dense_64' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '_middle_term_sparse_dense_64' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on '_middle_term_sparse_dense_64' to allow an error code to be returned.
+  performance hint: sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.pyx:1088:36: Exception check after calling '_middle_term_sparse_dense_32' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '_middle_term_sparse_dense_32' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on '_middle_term_sparse_dense_32' to allow an error code to be returned.
+  warning: sklearn/neighbors/_binary_tree.pxi:1035:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1036:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1160:17: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1292:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1599:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1647:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1648:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1701:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1702:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1797:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1798:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1800:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1801:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1883:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1884:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1970:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1974:28: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1975:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1976:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2132:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2133:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2138:28: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2139:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2255:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2256:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2305:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2306:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2307:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2308:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_ball_tree.pyx:64:9: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_ball_tree.pyx:65:9: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_ball_tree.pyx:66:9: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_ball_tree.pyx:72:24: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  performance hint: sklearn/preprocessing/_csr_polynomial_expansion.pyx:159:6: Exception check on '_csr_polynomial_expansion' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '_csr_polynomial_expansion' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on '_csr_polynomial_expansion' to allow an error code to be returned.
+  warning: sklearn/neighbors/_binary_tree.pxi:1035:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1036:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1160:17: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1292:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1599:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1647:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1648:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1701:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1702:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1797:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1798:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1800:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1801:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1883:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1884:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1970:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1974:28: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1975:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:1976:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2132:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2133:13: Assigning to 'NodeData_t *' from 'const NodeData_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2138:28: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2139:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2255:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2256:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2305:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2306:13: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2307:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_binary_tree.pxi:2308:13: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  warning: sklearn/neighbors/_kd_tree.pyx:46:9: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_kd_tree.pyx:47:9: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_kd_tree.pyx:48:9: Assigning to 'float64_t *' from 'const float64_t *' discards const qualifier
+  warning: sklearn/neighbors/_kd_tree.pyx:49:9: Assigning to 'intp_t *' from 'const intp_t *' discards const qualifier
+  performance hint: sklearn/neighbors/_quad_tree.pyx:592:20: Exception check after calling '__pyx_fuse_7safe_realloc' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '__pyx_fuse_7safe_realloc' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/tree/_splitter.pyx:233:5: Exception check on 'shift_missing_values_to_left_if_required' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'shift_missing_values_to_left_if_required' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'shift_missing_values_to_left_if_required' to allow an error code to be returned.
+  performance hint: sklearn/tree/_utils.pyx:25:5: Exception check on 'safe_realloc' will always require the GIL to be acquired. Declare 'safe_realloc' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+  performance hint: sklearn/tree/_criterion.pyx:1547:41: Exception check after calling '__pyx_fuse_1xlogy' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '__pyx_fuse_1xlogy' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/tree/_utils.pyx:115:20: Exception check after calling '__pyx_fuse_3safe_realloc' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '__pyx_fuse_3safe_realloc' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/tree/_utils.pyx:138:24: Exception check after calling '__pyx_fuse_3safe_realloc' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '__pyx_fuse_3safe_realloc' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/tree/_splitter.pyx:494:48: Exception check after calling 'shift_missing_values_to_left_if_required' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'shift_missing_values_to_left_if_required' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'shift_missing_values_to_left_if_required' to allow an error code to be returned.
+  performance hint: sklearn/tree/_splitter.pyx:494:48: Exception check after calling 'shift_missing_values_to_left_if_required' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'shift_missing_values_to_left_if_required' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'shift_missing_values_to_left_if_required' to allow an error code to be returned.
+  performance hint: sklearn/tree/_tree.pyx:757:20: Exception check after calling '__pyx_fuse_6safe_realloc' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '__pyx_fuse_6safe_realloc' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/tree/_tree.pyx:758:20: Exception check after calling '__pyx_fuse_4safe_realloc' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare '__pyx_fuse_4safe_realloc' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:24:19: Exception check after calling 'sdot' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sdot' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:26:19: Exception check after calling 'ddot' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'ddot' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:36:20: Exception check after calling 'sasum' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sasum' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:38:20: Exception check after calling 'dasum' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dasum' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:49:13: Exception check after calling 'saxpy' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'saxpy' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'saxpy' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:51:13: Exception check after calling 'daxpy' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'daxpy' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'daxpy' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:61:20: Exception check after calling 'snrm2' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'snrm2' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:63:20: Exception check after calling 'dnrm2' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dnrm2' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Declare any exception value explicitly for functions in pxd files.
+  performance hint: sklearn/utils/_cython_blas.pyx:73:13: Exception check after calling 'scopy' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'scopy' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'scopy' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:75:13: Exception check after calling 'dcopy' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dcopy' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dcopy' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:85:13: Exception check after calling 'sscal' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sscal' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sscal' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:87:13: Exception check after calling 'dscal' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dscal' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dscal' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:97:13: Exception check after calling 'srotg' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'srotg' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'srotg' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:99:13: Exception check after calling 'drotg' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'drotg' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'drotg' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:111:12: Exception check after calling 'srot' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'srot' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'srot' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:113:12: Exception check after calling 'drot' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'drot' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'drot' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:132:17: Exception check after calling 'sgemv' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sgemv' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sgemv' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:139:17: Exception check after calling 'sgemv' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sgemv' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sgemv' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:135:17: Exception check after calling 'dgemv' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dgemv' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dgemv' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:142:17: Exception check after calling 'dgemv' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dgemv' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dgemv' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:163:16: Exception check after calling 'sger' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sger' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sger' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:168:16: Exception check after calling 'sger' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sger' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sger' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:165:16: Exception check after calling 'dger' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dger' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dger' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:170:16: Exception check after calling 'dger' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dger' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dger' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:199:17: Exception check after calling 'sgemm' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sgemm' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sgemm' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:206:17: Exception check after calling 'sgemm' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'sgemm' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'sgemm' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:202:17: Exception check after calling 'dgemm' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dgemm' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dgemm' to allow an error code to be returned.
+  performance hint: sklearn/utils/_cython_blas.pyx:209:17: Exception check after calling 'dgemm' will always require the GIL to be acquired.
+  Possible solutions:
+        1. Declare 'dgemm' as 'noexcept' if you control the definition and you're sure you don't want the function to raise exceptions.
+        2. Use an 'int' return type on 'dgemm' to allow an error code to be returned.
+  warning: sklearn/utils/arrayfuncs.pyx:47:18: Assigning to 'float *' from 'const float *' discards const qualifier
+  warning: sklearn/utils/arrayfuncs.pyx:52:18: Assigning to 'float *' from 'const float *' discards const qualifier
+  warning: sklearn/utils/arrayfuncs.pyx:47:18: Assigning to 'double *' from 'const double *' discards const qualifier
+  warning: sklearn/utils/arrayfuncs.pyx:52:18: Assigning to 'double *' from 'const double *' discards const qualifier
+  [ 3/68] Cythonizing sklearn/_loss/_loss.pyx
+  [27/68] Cythonizing sklearn/linear_model/_sag_fast.pyx
+  [30/68] Cythonizing sklearn/manifold/_utils.pyx
+  [34/68] Cythonizing sklearn/metrics/_pairwise_distances_reduction/_base.pyx
+  [37/68] Cythonizing sklearn/metrics/_pairwise_distances_reduction/_radius_neighbors.pyx
+  [44/68] Cythonizing sklearn/preprocessing/_csr_polynomial_expansion.pyx
+  [46/68] Cythonizing sklearn/svm/_liblinear.pyx
+  [49/68] Cythonizing sklearn/svm/_newrand.pyx
+  [50/68] Cythonizing sklearn/tree/_criterion.pyx
+  [54/68] Cythonizing sklearn/utils/_cython_blas.pyx
+  [62/68] Cythonizing sklearn/utils/_sorting.pyx
+  [63/68] Cythonizing sklearn/utils/_typedefs.pyx
+  [66/68] Cythonizing sklearn/utils/arrayfuncs.pyx
+  [ 4/68] Cythonizing sklearn/cluster/_dbscan_inner.pyx
+  [ 6/68] Cythonizing sklearn/cluster/_hdbscan/_reachability.pyx
+  [ 9/68] Cythonizing sklearn/cluster/_k_means_common.pyx
+  [14/68] Cythonizing sklearn/decomposition/_cdnmf_fast.pyx
+  [15/68] Cythonizing sklearn/decomposition/_online_lda_fast.pyx
+  [18/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/_bitset.pyx
+  [21/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/common.pyx
+  [23/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/splitting.pyx
+  [28/68] Cythonizing sklearn/linear_model/_sgd_fast.pyx
+  [32/68] Cythonizing sklearn/metrics/_pairwise_distances_reduction/_argkmin.pyx
+  [35/68] Cythonizing sklearn/metrics/_pairwise_distances_reduction/_datasets_pair.pyx
+  [39/68] Cythonizing sklearn/metrics/cluster/_expected_mutual_info_fast.pyx
+  [41/68] Cythonizing sklearn/neighbors/_kd_tree.pyx
+  [48/68] Cythonizing sklearn/svm/_libsvm_sparse.pyx
+  [53/68] Cythonizing sklearn/tree/_utils.pyx
+  [55/68] Cythonizing sklearn/utils/_fast_dict.pyx
+  [59/68] Cythonizing sklearn/utils/_openmp_helpers.pyx
+  [60/68] Cythonizing sklearn/utils/_random.pyx
+  [65/68] Cythonizing sklearn/utils/_weight_vector.pyx
+  [ 1/68] Cythonizing sklearn/__check_build/_check_build.pyx
+  [ 5/68] Cythonizing sklearn/cluster/_hdbscan/_linkage.pyx
+  [ 8/68] Cythonizing sklearn/cluster/_hierarchical_fast.pyx
+  [11/68] Cythonizing sklearn/cluster/_k_means_lloyd.pyx
+  [12/68] Cythonizing sklearn/cluster/_k_means_minibatch.pyx
+  [16/68] Cythonizing sklearn/ensemble/_gradient_boosting.pyx
+  [19/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/_gradient_boosting.pyx
+  [22/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/histogram.pyx
+  [25/68] Cythonizing sklearn/feature_extraction/_hashing_fast.pyx
+  [26/68] Cythonizing sklearn/linear_model/_cd_fast.pyx
+  [33/68] Cythonizing sklearn/metrics/_pairwise_distances_reduction/_argkmin_classmode.pyx
+  [36/68] Cythonizing sklearn/metrics/_pairwise_distances_reduction/_middle_term_computer.pyx
+  [40/68] Cythonizing sklearn/neighbors/_ball_tree.pyx
+  [45/68] Cythonizing sklearn/preprocessing/_target_encoder_fast.pyx
+  [51/68] Cythonizing sklearn/tree/_splitter.pyx
+  [56/68] Cythonizing sklearn/utils/_heap.pyx
+  [57/68] Cythonizing sklearn/utils/_isfinite.pyx
+  [61/68] Cythonizing sklearn/utils/_seq_dataset.pyx
+  [67/68] Cythonizing sklearn/utils/murmurhash.pyx
+  [ 2/68] Cythonizing sklearn/_isotonic.pyx
+  [ 7/68] Cythonizing sklearn/cluster/_hdbscan/_tree.pyx
+  [10/68] Cythonizing sklearn/cluster/_k_means_elkan.pyx
+  [13/68] Cythonizing sklearn/datasets/_svmlight_format_fast.pyx
+  [17/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/_binning.pyx
+  [20/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/_predictor.pyx
+  [24/68] Cythonizing sklearn/ensemble/_hist_gradient_boosting/utils.pyx
+  [29/68] Cythonizing sklearn/manifold/_barnes_hut_tsne.pyx
+  [31/68] Cythonizing sklearn/metrics/_dist_metrics.pyx
+  [38/68] Cythonizing sklearn/metrics/_pairwise_fast.pyx
+  [42/68] Cythonizing sklearn/neighbors/_partition_nodes.pyx
+  [43/68] Cythonizing sklearn/neighbors/_quad_tree.pyx
+  [47/68] Cythonizing sklearn/svm/_libsvm.pyx
+  [52/68] Cythonizing sklearn/tree/_tree.pyx
+  [58/68] Cythonizing sklearn/utils/_logistic_sigmoid.pyx
+  [64/68] Cythonizing sklearn/utils/_vector_sentinel.pyx
+  [68/68] Cythonizing sklearn/utils/sparsefuncs_fast.pyx
+  /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/setuptools/dist.py:759: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+  !!
+
+          ********************************************************************************
+          Please consider removing the following classifiers in favor of a SPDX license expression:
+
+          License :: OSI Approved :: BSD License
+
+          See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+          ********************************************************************************
+
+  !!
+    self._finalize_license_expression()
+  running egg_info
+  creating /tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info
+  writing /tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/PKG-INFO
+  writing dependency_links to /tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/dependency_links.txt
+  writing requirements to /tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/requires.txt
+  writing top-level names to /tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/top_level.txt
+  writing manifest file '/tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/SOURCES.txt'
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/npy_math.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/arrayscalars.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarrayobject.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ndarraytypes.h won't be automatically included in the manifest: the path must be relative
+  dependency /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/numpy/core/include/numpy/ufuncobject.h won't be automatically included in the manifest: the path must be relative
+  reading manifest file '/tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  warning: no previously-included files matching '*' found under directory 'asv_benchmarks'
+  warning: no previously-included files matching '*' found under directory 'benchmarks'
+  warning: no previously-included files matching '*' found under directory 'build_tools'
+  warning: no previously-included files matching '*' found under directory 'maint_tools'
+  warning: no previously-included files matching '*' found under directory 'benchmarks'
+  warning: no previously-included files matching '*' found under directory '.binder'
+  warning: no previously-included files matching '*' found under directory '.circleci'
+  warning: no previously-included files found matching '.cirrus.star'
+  warning: no previously-included files found matching '.codecov.yml'
+  warning: no previously-included files found matching '.git-blame-ignore-revs'
+  warning: no previously-included files found matching '.mailmap'
+  warning: no previously-included files found matching '.pre-commit-config.yaml'
+  warning: no previously-included files found matching 'azure-pipelines.yml'
+  warning: no previously-included files found matching 'CODE_OF_CONDUCT.md'
+  warning: no previously-included files found matching 'CONTRIBUTING.md'
+  warning: no previously-included files found matching 'SECURITY.md'
+  warning: no previously-included files found matching 'PULL_REQUEST_TEMPLATE.md'
+  adding license file 'COPYING'
+  writing manifest file '/tmp/pip-pip-egg-info-60974wzu/scikit_learn.egg-info/SOURCES.txt'
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: numpy>=1.17.3 in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (from scikit-learn==1.3.dev0) (1.19.2)
+Requirement already satisfied: scipy>=1.5.0 in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (from scikit-learn==1.3.dev0) (1.5.2)
+Requirement already satisfied: joblib>=1.1.1 in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (from scikit-learn==1.3.dev0) (1.5.2)
+Requirement already satisfied: threadpoolctl>=2.0.0 in /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages (from scikit-learn==1.3.dev0) (3.5.0)
+Installing collected packages: scikit-learn
+  DEPRECATION: Legacy editable install of scikit-learn==1.3.dev0 from file:///scikit-learn__scikit-learn (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for scikit-learn
+    Running command python setup.py develop
+    Partial import of sklearn during the build process.
+    /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/setuptools/dist.py:759: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+    !!
+
+            ********************************************************************************
+            Please consider removing the following classifiers in favor of a SPDX license expression:
+
+            License :: OSI Approved :: BSD License
+
+            See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+            ********************************************************************************
+
+    !!
+      self._finalize_license_expression()
+    running develop
+    /root/miniconda3/envs/scikit-learn__scikit-learn__1.3/lib/python3.9/site-packages/setuptools/_distutils/cmd.py:90: DevelopDeprecationWarning: develop command is deprecated.
+    !!
+
+            ********************************************************************************
+            Please avoid running ``setup.py`` and ``develop``.
+            Instead, use standards-based tools like pip or uv.
+
+            This deprecation is overdue, please update your project and remove deprecated
+            calls to avoid build errors in the future.
+
+            See https://github.com/pypa/setuptools/issues/917 for details.
+            ********************************************************************************
+
+    !!
+      self.initialize_options()
+    Obtaining file:///scikit-learn__scikit-learn
+      Installing build dependencies: started
+      Installing build dependencies: finished with status 'done'
+      Checking if build backend supports build_editable: started
+      Checking if build backend supports build_editable: finished with status 'done'
+      Getting requirements to build editable: started
+      Getting requirements to build editable: finished with status 'done'
+      Preparing editable metadata (pyproject.toml): started
+      Preparing editable metadata (pyproject.toml): still running...
+      Preparing editable metadata (pyproject.toml): finished with status 'done'
+    Building wheels for collected packages: scikit-learn
+      Building editable for scikit-learn (pyproject.toml): started
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): still running...
+      Building editable for scikit-learn (pyproject.toml): finished with status 'done'
+      Created wheel for scikit-learn: filename=scikit_learn-1.3.dev0-0.editable-cp39-cp39-linux_x86_64.whl size=7166 sha256=678b7c78d249a5b2b1c7de2d0edb6b8ca96511d758e8843d3d4827e698058757
+      Stored in directory: /tmp/pip-ephem-wheel-cache-uoanss1x/wheels/f1/03/b6/8e807bc2e16c712f0fb7e7b3368ad0e9831fe8c42587ca6342
+    Successfully built scikit-learn
+    Installing collected packages: scikit-learn
+    Successfully installed scikit-learn-1.3.dev0
+    WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Successfully installed scikit-learn-1.3.dev0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Collecting viztracer
+  Using cached viztracer-1.0.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+Collecting objprint>=0.3.0 (from viztracer)
+  Using cached objprint-0.3.0-py3-none-any.whl.metadata (25 kB)
+Using cached viztracer-1.0.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.4 MB)
+Using cached objprint-0.3.0-py3-none-any.whl (41 kB)
+Installing collected packages: objprint, viztracer
+Successfully installed objprint-0.3.0 viztracer-1.0.4
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+/tmp/tracer_output_scikit-learn__scikit-learn-25747.json
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 138/199 [00:00<00:00, 1373.14it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1544.54it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2213.05it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2125.91it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  82%|████████▏ | 163/199 [00:00<00:00, 1619.39it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1730.64it/s]

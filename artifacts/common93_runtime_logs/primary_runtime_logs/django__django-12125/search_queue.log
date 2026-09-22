@@ -1,0 +1,76 @@
+[2026-09-21 17:17:48,650 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}
+)
+[2026-09-21 17:18:19,245 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+)
+[2026-09-21 17:18:38,158 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+)
+[2026-09-21 17:18:49,778 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}
+)
+[2026-09-21 17:19:01,685 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+)
+[2026-09-21 17:19:18,206 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}
+)
+[2026-09-21 17:19:18,246 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'TypeSerializer'} search_content='File Path: django/db/migrations/serializer.py \nClass Content: \nclass TypeSerializer(BaseSerializer):\n    def serialize(self):\n        special_cases = [\n            (models.Model, "models.Model", []),\n            (type(None), \'type(None)\', []),\n        ]\n        for case, string, imports in special_cases:\n            if case is self.value:\n                return string, set(imports)\n        if hasattr(self.value, "__module__"):\n            module = self.value.__module__\n            if module == builtins.__name__:\n                return self.value.__name__, set()\n            else:\n                return "%s.%s" % (module, self.value.__name__), {"import %s" % module}\n'
+[2026-09-21 17:19:29,686 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}
+)
+[2026-09-21 17:19:46,423 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'deconstruct', 'file_path': 'django/db/models/fields/__init__.py'}
+)
+[2026-09-21 17:20:02,364 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}
+)

@@ -1,0 +1,64 @@
+[2026-09-22 08:50:03,368 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict', 'file_path': 'sklearn/mixture/base.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BaseMixture'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit'}: 1
+)
+[2026-09-22 08:50:22,955 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict', 'file_path': 'sklearn/mixture/base.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BaseMixture'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/mixture'}: 1
+)
+[2026-09-22 08:50:37,694 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict', 'file_path': 'sklearn/mixture/base.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BaseMixture'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/mixture'}: 1
+)
+[2026-09-22 08:51:09,079 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict', 'file_path': 'sklearn/mixture/base.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BaseMixture'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/mixture'}: 1
+)
+[2026-09-22 08:52:23,329 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'BaseMixture', 'method_name': 'fit_predict', 'file_path': 'sklearn/mixture/base.py'})]
+[2026-09-22 08:52:31,688 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict', 'file_path': 'sklearn/mixture/base.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BaseMixture'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit_predict'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseMixture', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/mixture'}: 1
+)

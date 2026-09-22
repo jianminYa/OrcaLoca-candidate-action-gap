@@ -1,0 +1,132 @@
+[2026-09-21 17:05:04,479 - Orcar.tracer_reranker - INFO] Func 01/09
+[2026-09-21 17:05:04,479 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/utils/functional.py' lineno=182 funcname='__wrapper__' classname='__proxy__'
+[2026-09-21 17:05:04,479 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 17:05:04,479 - Orcar.tracer_reranker - INFO]     @wraps(func)
+    def __wrapper__(*args, **kw):
+        # Creates the proxy object, instead of the actual value.
+        return __proxy__(args, kw)
+
+[2026-09-21 17:05:04,479 - Orcar.tracer_reranker - INFO] Func 02/09
+[2026-09-21 17:05:04,479 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/enums.py' lineno=47 funcname='choices' classname='ChoicesMeta'
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO]     @property
+    def choices(cls):
+        empty = [(None, cls.__empty__)] if hasattr(cls, '__empty__') else []
+        return empty + [(member.value, member.label) for member in cls]
+
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] Func 03/09
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/fields/__init__.py' lineno=971 funcname='__init__' classname='CharField'
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO]     def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.validators.append(validators.MaxLengthValidator(self.max_length))
+
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] Func 04/09
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/utils/functional.py' lineno=89 funcname='__init__' classname='__proxy__'
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO]         def __init__(self, args, kw):
+            self.__args = args
+            self.__kw = kw
+            if not self.__prepared:
+                self.__prepare_class__()
+            self.__class__.__prepared = True
+
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] Func 05/09
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/fields/__init__.py' lineno=131 funcname='__init__' classname='Field'
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO]     def __init__(self, verbose_name=None, name=None, primary_key=False,
+                 max_length=None, unique=False, blank=False, null=False,
+                 db_index=False, rel=None, default=NOT_PROVIDED, editable=True,
+                 serialize=True, unique_for_date=None, unique_for_month=None,
+                 unique_for_year=None, choices=None, help_text='', db_column=None,
+                 db_tablespace=None, auto_created=False, validators=(),
+                 error_messages=None):
+        self.name = name
+        self.verbose_name = verbose_name  # May be set by set_attributes_from_name
+        self._verbose_name = verbose_name  # Store original for deconstruction
+        self.primary_key = primary_key
+        self.max_length, self._unique = max_length, unique
+        self.blank, self.null = blank, null
+        self.remote_field = rel
+        self.is_relation = self.remote_field is not None
+        self.default = default
+        self.editable = editable
+        self.serialize = serialize
+        self.unique_for_date = unique_for_date
+        self.unique_for_month = unique_for_month
+        self.unique_for_year = unique_for_year
+        if isinstance(choices, collections.abc.Iterator):
+            choices = list(choices)
+        self.choices = choices
+        self.help_text = help_text
+        self.db_index = db_index
+        self.db_column = db_column
+        self._db_tablespace = db_tablespace
+        self.auto_created = auto_created
+
+        # Adjust the appropriate creation counter, and save our local copy.
+        if auto_created:
+            self.creation_counter = Field.auto_creation_counter
+            Field.auto_creation_counter -= 1
+        else:
+            self.creation_counter = Field.creation_counter
+            Field.creation_counter += 1
+
+        self._validators = list(validators)  # Store for deconstruction later
+
+        messages = {}
+        for c in reversed(self.__class__.__mro__):
+            messages.update(getattr(c, 'default_error_messages', {}))
+        messages.update(error_messages or {})
+        self._error_messages = error_messages  # Store for deconstruction later
+        self.error_messages = messages
+
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] Func 06/09
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/utils/functional.py' lineno=40 funcname='__get__' classname='cached_property'
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO]     def __get__(self, instance, cls=None):
+        """
+        Call the function and put the return value in instance.__dict__ so that
+        subsequent attribute access on the instance returns the cached value
+        instead of calling cached_property.__get__().
+        """
+        if instance is None:
+            return self
+        res = instance.__dict__[self.name] = self.func(instance)
+        return res
+
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] Func 07/09
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/utils/deconstruct.py' lineno=14 funcname='__new__' classname=''
+[2026-09-21 17:05:04,480 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO]         def __new__(cls, *args, **kwargs):
+            # We capture the arguments to make returning them trivial
+            obj = super(klass, cls).__new__(cls)
+            obj._constructor_args = (args, kwargs)
+            return obj
+
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] Func 08/09
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/core/validators.py' lineno=314 funcname='__init__' classname='BaseValidator'
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO]     def __init__(self, limit_value, message=None):
+        self.limit_value = limit_value
+        if message:
+            self.message = message
+
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] Func 09/09
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django/django/db/models/fields/__init__.py' lineno=583 funcname='validators' classname='Field'
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO]     @cached_property
+    def validators(self):
+        """
+        Some validators can't be created at field initialization time.
+        This method provides a way to delay their creation until required.
+        """
+        return [*self.default_validators, *self._validators]
+
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] ['__wrapper__', 'choices', '__init__', '__init__', '__init__', '__get__', '__new__', '__init__', 'validators']
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] [('__wrapper__', 2), ('choices', 5), ('__init__', 2), ('__init__', 5), ('__init__', 5), ('__get__', 2), ('__new__', 5), ('__init__', 2), ('validators', 2)]
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] [('choices', 5), ('__wrapper__', 2), ('__init__', 2), ('__init__', 5), ('__init__', 5), ('__new__', 5), ('__get__', 2), ('__init__', 2), ('validators', 2)]
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-21 17:05:04,481 - Orcar.tracer_reranker - INFO] []

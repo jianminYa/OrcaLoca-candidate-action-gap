@@ -1,0 +1,66 @@
+[2026-09-22 05:11:38,296 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'}: 1
+)
+[2026-09-22 05:11:46,332 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'MigrationRecorder', 'method_name': 'ensure_schema', 'file_path': 'django/db/migrations/recorder.py'})]
+[2026-09-22 05:11:57,255 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'method_name': 'ensure_schema', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'recorder.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'allow_migrate', 'file_path': 'django/db/utils.py'}: 1
+)
+[2026-09-22 05:12:09,972 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'method_name': 'ensure_schema', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'recorder.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'allow_migrate', 'file_path': 'django/db/utils.py'}: 1
+)
+[2026-09-22 05:12:16,889 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'})]
+[2026-09-22 05:12:31,046 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'method_name': 'ensure_schema', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'recorder.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'allow_migrate', 'file_path': 'django/db/utils.py'}: 1
+)
+[2026-09-22 05:12:43,649 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'method_name': 'ensure_schema', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'recorder.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'allow_migrate', 'file_path': 'django/db/utils.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/db'}: 1
+)
+[2026-09-22 05:13:11,782 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationRecorder', 'method_name': 'ensure_schema', 'file_path': 'django/db/migrations/recorder.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'recorder.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'allow_migrate', 'file_path': 'django/db/utils.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/db'}: 1
+)

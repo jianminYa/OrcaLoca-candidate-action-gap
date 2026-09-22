@@ -1,0 +1,6 @@
+[2026-09-22 04:49:13,622 - Orcar.agent - INFO] Current container subprocess: 351507
+[2026-09-22 04:49:35,090 - Orcar.agent - INFO] Raw Trace Analysis output:
+[2026-09-22 04:49:35,091 - Orcar.agent - INFO] summary='' suspicious_code=[] suspicious_code_from_tracer=[] related_source_code='' is_reproduce_pass=False reproduce_code='' env_reproduce_path=''
+[2026-09-22 04:49:35,091 - Orcar.agent - INFO] Current container subprocess: 351507
+[2026-09-22 04:52:06,336 - Orcar.agent - INFO] Standard output format
+[2026-09-22 04:52:06,337 - Orcar.agent - INFO] conclusion="<Observation>\nThe ErrorList class in django/forms/utils.py already supports an `error_class` parameter that appends a CSS class to 'errorlist'. In `BaseFormSet.full_clean()`, non-form errors are created in two places without passing `error_class='nonform'`: (1) `self._non_form_errors = self.error_class()` at initialization, and (2) `self._non_form_errors = self.error_class(e.error_list)` in the except block. Both should pass `error_class='nonform'` to add the 'nonform' CSS class, consistent with how Forms pass `error_class='nonfield'` for non-field errors. The search queue is empty and I have all the context needed.\n</Observation>" bug_locations=[BugLocations(file_path='django/forms/formsets.py', class_name='BaseFormSet', method_name='full_clean')]

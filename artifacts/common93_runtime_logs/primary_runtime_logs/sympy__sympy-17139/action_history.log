@@ -1,0 +1,35 @@
+[2026-09-22 11:14:29,234 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_TR56', 'file_path': 'sympy/simplify/fu.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_f', 'file_path': 'sympy/simplify/fu.py'}: 1
+)
+[2026-09-22 11:14:41,755 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_TR56', 'file_path': 'sympy/simplify/fu.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_f', 'file_path': 'sympy/simplify/fu.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fu.py', 'directory_path': 'sympy/simplify'}: 1
+)
+[2026-09-22 11:15:20,479 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_TR56', 'file_path': 'sympy/simplify/fu.py'}), SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_f', 'file_path': 'sympy/simplify/fu.py'})]
+[2026-09-22 11:15:29,245 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_TR56', 'file_path': 'sympy/simplify/fu.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_f', 'file_path': 'sympy/simplify/fu.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fu.py', 'directory_path': 'sympy/simplify'}: 1
+)
+[2026-09-22 11:15:42,202 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_TR56', 'file_path': 'sympy/simplify/fu.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_f', 'file_path': 'sympy/simplify/fu.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fu.py', 'directory_path': 'sympy/simplify'}: 1
+)

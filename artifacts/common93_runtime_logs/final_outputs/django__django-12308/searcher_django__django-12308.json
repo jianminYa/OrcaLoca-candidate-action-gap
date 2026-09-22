@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI now have all the critical information needed. The `display_for_field` function in `django/contrib/admin/utils.py` handles various field types with special cases (BooleanField, DateTimeField, DateField, TimeField, DecimalField, IntegerField, FloatField, FileField) but has NO special case for JSONField. When a JSONField value (a Python dict) is displayed as readonly in admin, it falls through to the `else` branch which calls `display_for_value(value, empty_value_display)`, which uses Python's `str()` representation producing single quotes (e.g., `{'foo': 'bar'}`) instead of proper JSON format with double quotes (e.g., `{\"foo\": \"bar\"}`). The fix needs to add an `elif isinstance(field, models.JSONField)` case in `display_for_field` that uses the field's formfield `prepare_value` or `json.dumps` directly. The search queue is empty.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/contrib/admin/utils.py",
+            "class_name": "",
+            "method_name": "display_for_field"
+        }
+    ]
+}

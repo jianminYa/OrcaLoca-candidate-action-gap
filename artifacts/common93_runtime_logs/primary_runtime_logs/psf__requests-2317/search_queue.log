@@ -1,0 +1,42 @@
+[2026-09-22 07:09:11,516 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'requests/sessions.py', 'source_code': 'method = builtin_str(method)'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'builtin_str'}
+)
+[2026-09-22 07:09:26,270 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'builtin_str'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'sessions.py', 'directory_path': 'requests'}
+)
+[2026-09-22 07:09:44,707 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'sessions.py', 'directory_path': 'requests'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'builtin_str', 'file_path': 'requests/compat.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Session', 'method_name': 'request', 'file_path': 'requests/sessions.py'}
+)
+[2026-09-22 07:11:05,942 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'builtin_str', 'file_path': 'requests/compat.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Session', 'method_name': 'request', 'file_path': 'requests/sessions.py'}
+)
+[2026-09-22 07:11:30,382 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'compat.py', 'directory_path': 'requests'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Session', 'method_name': 'request', 'file_path': 'requests/sessions.py'}
+)
+[2026-09-22 07:11:48,169 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Session', 'method_name': 'request', 'file_path': 'requests/sessions.py'}
+)

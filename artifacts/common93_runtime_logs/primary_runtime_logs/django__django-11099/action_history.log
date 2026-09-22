@@ -1,0 +1,33 @@
+[2026-09-21 16:41:54,365 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'validators.py', 'directory_path': 'django/contrib/auth'}: 1
+)
+[2026-09-21 16:42:05,692 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'ASCIIUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}), SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'UnicodeUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'})]
+[2026-09-21 16:42:12,673 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'validators.py', 'directory_path': 'django/contrib/auth'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ASCIIUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'UnicodeUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}: 1
+)
+[2026-09-21 16:42:20,601 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'validators.py', 'directory_path': 'django/contrib/auth'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ASCIIUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'UnicodeUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}: 1
+)
+[2026-09-21 16:42:29,907 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'validators.py', 'directory_path': 'django/contrib/auth'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ASCIIUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'UnicodeUsernameValidator', 'file_path': 'django/contrib/auth/validators.py'}: 1
+)

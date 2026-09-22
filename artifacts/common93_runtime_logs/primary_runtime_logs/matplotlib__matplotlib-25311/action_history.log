@@ -1,0 +1,325 @@
+[2026-09-22 06:30:09,795 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+)
+[2026-09-22 06:30:28,798 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 06:30:46,153 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+)
+[2026-09-22 06:30:57,602 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+)
+[2026-09-22 06:32:18,533 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+)
+[2026-09-22 06:32:44,170 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+)
+[2026-09-22 06:32:54,393 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+)
+[2026-09-22 06:33:09,643 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 1
+)
+[2026-09-22 06:33:28,355 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 06:34:39,184 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}: 1
+)
+[2026-09-22 06:34:53,156 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}: 1
+)
+[2026-09-22 06:35:08,431 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}: 1
+)
+[2026-09-22 06:35:20,879 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 06:35:37,577 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 06:35:53,541 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+)

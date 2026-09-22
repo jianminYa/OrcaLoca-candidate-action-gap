@@ -1,0 +1,880 @@
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/dense.py' lineno=1068 funcname='eye' classname='MutableDenseMatrix'
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] def eye(*args, **kwargs):
+    """Create square identity matrix n x n
+
+    See Also
+    ========
+
+    diag
+    zeros
+    ones
+    """
+    from .dense import Matrix
+
+    return Matrix.eye(*args, **kwargs)
+
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/dense.py' lineno=1327 funcname='ones' classname='MutableDenseMatrix'
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] def ones(*args, **kwargs):
+    """Returns a matrix of ones with ``rows`` rows and ``cols`` columns;
+    if ``cols`` is omitted a square matrix will be returned.
+
+    See Also
+    ========
+
+    zeros
+    eye
+    diag
+    """
+
+    if 'c' in kwargs:
+        kwargs['cols'] = kwargs.pop('c')
+    from .dense import Matrix
+
+    return Matrix.ones(*args, **kwargs)
+
+[2026-09-22 10:42:25,890 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=182 funcname='col_insert' classname='MatrixShaping'
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO]     def col_insert(self, pos, other):
+        """Insert one or more columns at the given column position.
+
+        Examples
+        ========
+
+        >>> from sympy import zeros, ones
+        >>> M = zeros(3)
+        >>> V = ones(3, 1)
+        >>> M.col_insert(1, V)
+        Matrix([
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 0, 0]])
+
+        See Also
+        ========
+
+        col
+        row_insert
+        """
+        # Allows you to build a matrix even if it is null matrix
+        if not self:
+            return type(self)(other)
+
+        if pos < 0:
+            pos = self.cols + pos
+        if pos < 0:
+            pos = 0
+        elif pos > self.cols:
+            pos = self.cols
+
+        if self.rows != other.rows:
+            raise ShapeError(
+                "self and other must have the same number of rows.")
+
+        return self._eval_col_insert(pos, other)
+
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=761 funcname='eye' classname='MatrixSpecial'
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO]     @classmethod
+    def eye(kls, rows, cols=None, **kwargs):
+        """Returns an identity matrix.
+
+        Args
+        ====
+
+        rows : rows of the matrix
+        cols : cols of the matrix (if None, cols=rows)
+
+        kwargs
+        ======
+        cls : class of the returned matrix
+        """
+        if cols is None:
+            cols = rows
+        klass = kwargs.get('cls', kls)
+        rows, cols = as_int(rows), as_int(cols)
+
+        return klass._eval_eye(rows, cols)
+
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=857 funcname='ones' classname='MatrixSpecial'
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO]     @classmethod
+    def ones(kls, rows, cols=None, **kwargs):
+        """Returns a matrix of ones.
+
+        Args
+        ====
+
+        rows : rows of the matrix
+        cols : cols of the matrix (if None, cols=rows)
+
+        kwargs
+        ======
+        cls : class of the returned matrix
+        """
+        if cols is None:
+            cols = rows
+        klass = kwargs.get('cls', kls)
+        rows, cols = as_int(rows), as_int(cols)
+
+        return klass._eval_ones(rows, cols)
+
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=81 funcname='_eval_col_insert' classname='MatrixShaping'
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO]     def _eval_col_insert(self, pos, other):
+        cols = self.cols
+
+        def entry(i, j):
+            if j < pos:
+                return self[i, j]
+            elif pos <= j < pos + other.cols:
+                return other[i, j - pos]
+            return self[i, j - pos - other.cols]
+
+        return self._new(self.rows, self.cols + other.cols,
+                         lambda i, j: entry(i, j))
+
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=618 funcname='_eval_eye' classname='MatrixSpecial'
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _eval_eye(cls, rows, cols):
+        def entry(i, j):
+            return S.One if i == j else S.Zero
+        return cls._new(rows, cols, entry)
+
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=642 funcname='_eval_ones' classname='MatrixSpecial'
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _eval_ones(cls, rows, cols):
+        def entry(i, j):
+            return S.One
+        return cls._new(rows, cols, entry)
+
+[2026-09-22 10:42:25,891 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=620 funcname='entry' classname='MatrixSpecial'
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO]         def entry(i, j):
+            return S.One if i == j else S.Zero
+
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=644 funcname='entry' classname='MatrixSpecial'
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO]         def entry(i, j):
+            return S.One
+
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=84 funcname='entry' classname='MatrixShaping'
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO]         def entry(i, j):
+            if j < pos:
+                return self[i, j]
+            elif pos <= j < pos + other.cols:
+                return other[i, j - pos]
+            return self[i, j - pos - other.cols]
+
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/common.py' lineno=509 funcname='shape' classname='MatrixShaping'
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO]     @property
+    def shape(self):
+        """The shape (dimensions) of the matrix as the 2-tuple (rows, cols).
+
+        Examples
+        ========
+
+        >>> from sympy.matrices import zeros
+        >>> M = zeros(2, 3)
+        >>> M.shape
+        (2, 3)
+        >>> M.rows
+        2
+        >>> M.cols
+        3
+        """
+        return (self.rows, self.cols)
+
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/matrices.py' lineno=1858 funcname='__len__' classname='MatrixBase'
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO]     def __len__(self):
+        """Return the number of elements of self.
+
+        Implemented mainly so bool(Matrix()) == False.
+        """
+        return self.rows * self.cols
+
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/compatibility.py' lineno=308 funcname='as_int' classname='NotIterable'
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] def as_int(n):
+    """
+    Convert the argument to a builtin integer.
+
+    The return value is guaranteed to be equal to the input. ValueError is
+    raised if the input has a non-integral value.
+
+    Examples
+    ========
+
+    >>> from sympy.core.compatibility import as_int
+    >>> from sympy import sqrt
+    >>> 3.0
+    3.0
+    >>> as_int(3.0) # convert to int and test for equality
+    3
+    >>> int(sqrt(10))
+    3
+    >>> as_int(sqrt(10))
+    Traceback (most recent call last):
+    ...
+    ValueError: ... is not an integer
+
+    """
+    try:
+        result = int(n)
+        if result != n:
+            raise TypeError
+    except TypeError:
+        raise ValueError('%s is not an integer' % (n,))
+    return result
+
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 10:42:25,892 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/dense.py' lineno=413 funcname='_new' classname='MutableDenseMatrix'
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _new(cls, *args, **kwargs):
+        # if the `copy` flag is set to False, the input
+        # was rows, cols, [list].  It should be used directly
+        # without creating a copy.
+        if kwargs.get('copy', True) is False:
+            if len(args) != 3:
+                raise TypeError("'copy=False' requires a matrix be initialized as rows,cols,[list]")
+            rows, cols, flat_list = args
+        else:
+            rows, cols, flat_list = cls._handle_creation_inputs(*args, **kwargs)
+            flat_list = list(flat_list) # create a shallow copy
+        self = object.__new__(cls)
+        self.rows = rows
+        self.cols = cols
+        self._mat = flat_list
+        return self
+
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/matrices.py' lineno=1928 funcname='_handle_creation_inputs' classname='MatrixBase'
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO]     @classmethod
+    def _handle_creation_inputs(cls, *args, **kwargs):
+        """Return the number of rows, cols and flat matrix elements.
+
+        Examples
+        ========
+
+        >>> from sympy import Matrix, I
+
+        Matrix can be constructed as follows:
+
+        * from a nested list of iterables
+
+        >>> Matrix( ((1, 2+I), (3, 4)) )
+        Matrix([
+        [1, 2 + I],
+        [3,     4]])
+
+        * from un-nested iterable (interpreted as a column)
+
+        >>> Matrix( [1, 2] )
+        Matrix([
+        [1],
+        [2]])
+
+        * from un-nested iterable with dimensions
+
+        >>> Matrix(1, 2, [1, 2] )
+        Matrix([[1, 2]])
+
+        * from no arguments (a 0 x 0 matrix)
+
+        >>> Matrix()
+        Matrix(0, 0, [])
+
+        * from a rule
+
+        >>> Matrix(2, 2, lambda i, j: i/(j + 1) )
+        Matrix([
+        [0,   0],
+        [1, 1/2]])
+
+        """
+        from sympy.matrices.sparse import SparseMatrix
+
+        flat_list = None
+
+        if len(args) == 1:
+            # Matrix(SparseMatrix(...))
+            if isinstance(args[0], SparseMatrix):
+                return args[0].rows, args[0].cols, flatten(args[0].tolist())
+
+            # Matrix(Matrix(...))
+            elif isinstance(args[0], MatrixBase):
+                return args[0].rows, args[0].cols, args[0]._mat
+
+            # Matrix(MatrixSymbol('X', 2, 2))
+            elif isinstance(args[0], Basic) and args[0].is_Matrix:
+                return args[0].rows, args[0].cols, args[0].as_explicit()._mat
+
+            # Matrix(numpy.ones((2, 2)))
+            elif hasattr(args[0], "__array__"):
+                # NumPy array or matrix or some other object that implements
+                # __array__. So let's first use this method to get a
+                # numpy.array() and then make a python list out of it.
+                arr = args[0].__array__()
+                if len(arr.shape) == 2:
+                    rows, cols = arr.shape[0], arr.shape[1]
+                    flat_list = [cls._sympify(i) for i in arr.ravel()]
+                    return rows, cols, flat_list
+                elif len(arr.shape) == 1:
+                    rows, cols = arr.shape[0], 1
+                    flat_list = [S.Zero] * rows
+                    for i in range(len(arr)):
+                        flat_list[i] = cls._sympify(arr[i])
+                    return rows, cols, flat_list
+                else:
+                    raise NotImplementedError(
+                        "SymPy supports just 1D and 2D matrices")
+
+            # Matrix([1, 2, 3]) or Matrix([[1, 2], [3, 4]])
+            elif is_sequence(args[0]) \
+                    and not isinstance(args[0], DeferredVector):
+                in_mat = []
+                ncol = set()
+                for row in args[0]:
+                    if isinstance(row, MatrixBase):
+                        in_mat.extend(row.tolist())
+                        if row.cols or row.rows:  # only pay attention if it's not 0x0
+                            ncol.add(row.cols)
+                    else:
+                        in_mat.append(row)
+                        try:
+                            ncol.add(len(row))
+                        except TypeError:
+                            ncol.add(1)
+                if len(ncol) > 1:
+                    raise ValueError("Got rows of variable lengths: %s" %
+                                     sorted(list(ncol)))
+                cols = ncol.pop() if ncol else 0
+                rows = len(in_mat) if cols else 0
+                if rows:
+                    if not is_sequence(in_mat[0]):
+                        cols = 1
+                        flat_list = [cls._sympify(i) for i in in_mat]
+                        return rows, cols, flat_list
+                flat_list = []
+                for j in range(rows):
+                    for i in range(cols):
+                        flat_list.append(cls._sympify(in_mat[j][i]))
+
+        elif len(args) == 3:
+            rows = as_int(args[0])
+            cols = as_int(args[1])
+
+            if rows < 0 or cols < 0:
+                raise ValueError("Cannot create a {} x {} matrix. "
+                                 "Both dimensions must be positive".format(rows, cols))
+
+            # Matrix(2, 2, lambda i, j: i+j)
+            if len(args) == 3 and isinstance(args[2], collections.Callable):
+                op = args[2]
+                flat_list = []
+                for i in range(rows):
+                    flat_list.extend(
+                        [cls._sympify(op(cls._sympify(i), cls._sympify(j)))
+                         for j in range(cols)])
+
+            # Matrix(2, 2, [1, 2, 3, 4])
+            elif len(args) == 3 and is_sequence(args[2]):
+                flat_list = args[2]
+                if len(flat_list) != rows * cols:
+                    raise ValueError(
+                        'List length should be equal to rows*columns')
+                flat_list = [cls._sympify(i) for i in flat_list]
+
+
+        # Matrix()
+        elif len(args) == 0:
+            # Empty Matrix
+            rows = cols = 0
+            flat_list = []
+
+        if flat_list is None:
+            raise TypeError("Data type not understood")
+
+        return rows, cols, flat_list
+
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/sympify.py' lineno=74 funcname='sympify' classname='CantSympify'
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] def sympify(a, locals=None, convert_xor=True, strict=False, rational=False,
+        evaluate=None):
+    """Converts an arbitrary expression to a type that can be used inside SymPy.
+
+    For example, it will convert Python ints into instance of sympy.Rational,
+    floats into instances of sympy.Float, etc. It is also able to coerce symbolic
+    expressions which inherit from Basic. This can be useful in cooperation
+    with SAGE.
+
+    It currently accepts as arguments:
+       - any object defined in sympy
+       - standard numeric python types: int, long, float, Decimal
+       - strings (like "0.09" or "2e-19")
+       - booleans, including ``None`` (will leave ``None`` unchanged)
+       - lists, sets or tuples containing any of the above
+
+    .. warning::
+        Note that this function uses ``eval``, and thus shouldn't be used on
+        unsanitized input.
+
+    If the argument is already a type that SymPy understands, it will do
+    nothing but return that value. This can be used at the beginning of a
+    function to ensure you are working with the correct type.
+
+    >>> from sympy import sympify
+
+    >>> sympify(2).is_integer
+    True
+    >>> sympify(2).is_real
+    True
+
+    >>> sympify(2.0).is_real
+    True
+    >>> sympify("2.0").is_real
+    True
+    >>> sympify("2e-45").is_real
+    True
+
+    If the expression could not be converted, a SympifyError is raised.
+
+    >>> sympify("x***2")
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: "could not parse u'x***2'"
+
+    Locals
+    ------
+
+    The sympification happens with access to everything that is loaded
+    by ``from sympy import *``; anything used in a string that is not
+    defined by that import will be converted to a symbol. In the following,
+    the ``bitcount`` function is treated as a symbol and the ``O`` is
+    interpreted as the Order object (used with series) and it raises
+    an error when used improperly:
+
+    >>> s = 'bitcount(42)'
+    >>> sympify(s)
+    bitcount(42)
+    >>> sympify("O(x)")
+    O(x)
+    >>> sympify("O + 1")
+    Traceback (most recent call last):
+    ...
+    TypeError: unbound method...
+
+    In order to have ``bitcount`` be recognized it can be imported into a
+    namespace dictionary and passed as locals:
+
+    >>> from sympy.core.compatibility import exec_
+    >>> ns = {}
+    >>> exec_('from sympy.core.evalf import bitcount', ns)
+    >>> sympify(s, locals=ns)
+    6
+
+    In order to have the ``O`` interpreted as a Symbol, identify it as such
+    in the namespace dictionary. This can be done in a variety of ways; all
+    three of the following are possibilities:
+
+    >>> from sympy import Symbol
+    >>> ns["O"] = Symbol("O")  # method 1
+    >>> exec_('from sympy.abc import O', ns)  # method 2
+    >>> ns.update(dict(O=Symbol("O")))  # method 3
+    >>> sympify("O + 1", locals=ns)
+    O + 1
+
+    If you want *all* single-letter and Greek-letter variables to be symbols
+    then you can use the clashing-symbols dictionaries that have been defined
+    there as private variables: _clash1 (single-letter variables), _clash2
+    (the multi-letter Greek names) or _clash (both single and multi-letter
+    names that are defined in abc).
+
+    >>> from sympy.abc import _clash1
+    >>> _clash1
+    {'C': C, 'E': E, 'I': I, 'N': N, 'O': O, 'Q': Q, 'S': S}
+    >>> sympify('I & Q', _clash1)
+    I & Q
+
+    Strict
+    ------
+
+    If the option ``strict`` is set to ``True``, only the types for which an
+    explicit conversion has been defined are converted. In the other
+    cases, a SympifyError is raised.
+
+    >>> print(sympify(None))
+    None
+    >>> sympify(None, strict=True)
+    Traceback (most recent call last):
+    ...
+    SympifyError: SympifyError: None
+
+    Evaluation
+    ----------
+
+    If the option ``evaluate`` is set to ``False``, then arithmetic and
+    operators will be converted into their SymPy equivalents and the
+    ``evaluate=False`` option will be added. Nested ``Add`` or ``Mul`` will
+    be denested first. This is done via an AST transformation that replaces
+    operators with their SymPy equivalents, so if an operand redefines any
+    of those operations, the redefined operators will not be used.
+
+    >>> sympify('2**2 / 3 + 5')
+    19/3
+    >>> sympify('2**2 / 3 + 5', evaluate=False)
+    2**2/3 + 5
+
+    Extending
+    ---------
+
+    To extend ``sympify`` to convert custom objects (not derived from ``Basic``),
+    just define a ``_sympy_`` method to your class. You can do that even to
+    classes that you do not own by subclassing or adding the method at runtime.
+
+    >>> from sympy import Matrix
+    >>> class MyList1(object):
+    ...     def __iter__(self):
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    ...     def _sympy_(self): return Matrix(self)
+    >>> sympify(MyList1())
+    Matrix([
+    [1],
+    [2]])
+
+    If you do not have control over the class definition you could also use the
+    ``converter`` global dictionary. The key is the class and the value is a
+    function that takes a single argument and returns the desired SymPy
+    object, e.g. ``converter[MyList] = lambda x: Matrix(x)``.
+
+    >>> class MyList2(object):   # XXX Do not do this if you control the class!
+    ...     def __iter__(self):  #     Use _sympy_!
+    ...         yield 1
+    ...         yield 2
+    ...         return
+    ...     def __getitem__(self, i): return list(self)[i]
+    >>> from sympy.core.sympify import converter
+    >>> converter[MyList2] = lambda x: Matrix(x)
+    >>> sympify(MyList2())
+    Matrix([
+    [1],
+    [2]])
+
+    Notes
+    =====
+
+    Sometimes autosimplification during sympification results in expressions
+    that are very different in structure than what was entered. Until such
+    autosimplification is no longer done, the ``kernS`` function might be of
+    some use. In the example below you can see how an expression reduces to
+    -1 by autosimplification, but does not do so when ``kernS`` is used.
+
+    >>> from sympy.core.sympify import kernS
+    >>> from sympy.abc import x
+    >>> -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+    -1
+    >>> s = '-2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1'
+    >>> sympify(s)
+    -1
+    >>> kernS(s)
+    -2*(-(-x + 1/x)/(x*(x - 1/x)**2) - 1/(x*(x - 1/x))) - 1
+
+    """
+    if evaluate is None:
+        if global_evaluate[0] is False:
+            evaluate = global_evaluate[0]
+        else:
+            evaluate = True
+    try:
+        if a in sympy_classes:
+            return a
+    except TypeError: # Type of a is unhashable
+        pass
+    try:
+        cls = a.__class__
+    except AttributeError:  # a is probably an old-style class object
+        cls = type(a)
+    if cls in sympy_classes:
+        return a
+    if cls is type(None):
+        if strict:
+            raise SympifyError(a)
+        else:
+            return a
+
+    # Support for basic numpy datatypes
+    # Note that this check exists to avoid importing NumPy when not necessary
+    if type(a).__module__ == 'numpy':
+        import numpy as np
+        if np.isscalar(a):
+            return _convert_numpy_types(a)
+
+    try:
+        return converter[cls](a)
+    except KeyError:
+        for superclass in getmro(cls):
+            try:
+                return converter[superclass](a)
+            except KeyError:
+                continue
+
+    if isinstance(a, CantSympify):
+        raise SympifyError(a)
+
+    try:
+        return a._sympy_()
+    except AttributeError:
+        pass
+
+    if not isinstance(a, string_types):
+        for coerce in (float, int):
+            try:
+                return sympify(coerce(a))
+            except (TypeError, ValueError, AttributeError, SympifyError):
+                continue
+
+    if strict:
+        raise SympifyError(a)
+
+    try:
+        from ..tensor.array import Array
+        return Array(a.flat, a.shape)  # works with e.g. NumPy arrays
+    except AttributeError:
+        pass
+
+    if iterable(a):
+        try:
+            return type(a)([sympify(x, locals=locals, convert_xor=convert_xor,
+                rational=rational) for x in a])
+        except TypeError:
+            # Not all iterables are rebuildable with their type.
+            pass
+    if isinstance(a, dict):
+        try:
+            return type(a)([sympify(x, locals=locals, convert_xor=convert_xor,
+                rational=rational) for x in a.items()])
+        except TypeError:
+            # Not all iterables are rebuildable with their type.
+            pass
+
+    # At this point we were given an arbitrary expression
+    # which does not inherit from Basic and doesn't implement
+    # _sympy_ (which is a canonical and robust way to convert
+    # anything to SymPy expression).
+    #
+    # As a last chance, we try to take "a"'s normal form via unicode()
+    # and try to parse it. If it fails, then we have no luck and
+    # return an exception
+    try:
+        from .compatibility import unicode
+        a = unicode(a)
+    except Exception as exc:
+        raise SympifyError(a, exc)
+
+    from sympy.parsing.sympy_parser import (parse_expr, TokenError,
+                                            standard_transformations)
+    from sympy.parsing.sympy_parser import convert_xor as t_convert_xor
+    from sympy.parsing.sympy_parser import rationalize as t_rationalize
+
+    transformations = standard_transformations
+
+    if rational:
+        transformations += (t_rationalize,)
+    if convert_xor:
+        transformations += (t_convert_xor,)
+
+    try:
+        a = a.replace('\n', '')
+        expr = parse_expr(a, local_dict=locals, transformations=transformations, evaluate=evaluate)
+    except (TokenError, SyntaxError) as exc:
+        raise SympifyError('could not parse %r' % a, exc)
+
+    return expr
+
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=1974 funcname='__new__' classname='Integer'
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO]     @int_trace
+    def __new__(cls, i):
+        if isinstance(i, string_types):
+            i = i.replace(' ', '')
+        # whereas we cannot, in general, make a Rational from an
+        # arbitrary expression, we can make an Integer unambiguously
+        # (except when a non-integer expression happens to round to
+        # an integer). So we proceed by taking int() of the input and
+        # let the int routines determine whether the expression can
+        # be made into an int or whether an error should be raised.
+        try:
+            ival = int(i)
+        except TypeError:
+            raise TypeError(
+                'Integer can only work with integer expressions.')
+        try:
+            return _intcache[ival]
+        except KeyError:
+            # We only work with well-behaved integer types. This converts, for
+            # example, numpy.int32 instances.
+            obj = Expr.__new__(cls)
+            obj.p = ival
+
+            _intcache[ival] = obj
+            return obj
+
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2171 funcname='__hash__' classname='Integer'
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO]     def __hash__(self):
+        return hash(self.p)
+
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2125 funcname='__eq__' classname='Integer'
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO]     def __eq__(self, other):
+        if isinstance(other, integer_types):
+            return (self.p == other)
+        elif isinstance(other, Integer):
+            return (self.p == other.p)
+        return Rational.__eq__(self, other)
+
+[2026-09-22 10:42:25,893 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2144 funcname='__lt__' classname='Integer'
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO]     def __lt__(self, other):
+        try:
+            other = _sympify(other)
+        except SympifyError:
+            raise TypeError("Invalid comparison %s < %s" % (self, other))
+        if other.is_Integer:
+            return _sympify(self.p < other.p)
+        return Rational.__lt__(self, other)
+
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/logic/boolalg.py' lineno=313 funcname='__nonzero__' classname='BooleanTrue'
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO]     def __nonzero__(self):
+        return True
+
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/dense.py' lineno=58 funcname='__getitem__' classname='DenseMatrix'
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO]     def __getitem__(self, key):
+        """Return portion of self defined by key. If the key involves a slice
+        then a list will be returned (if key is a single slice) or a matrix
+        (if key was a tuple involving a slice).
+
+        Examples
+        ========
+
+        >>> from sympy import Matrix, I
+        >>> m = Matrix([
+        ... [1, 2 + I],
+        ... [3, 4    ]])
+
+        If the key is a tuple that doesn't involve a slice then that element
+        is returned:
+
+        >>> m[1, 0]
+        3
+
+        When a tuple key involves a slice, a matrix is returned. Here, the
+        first column is selected (all rows, column 0):
+
+        >>> m[:, 0]
+        Matrix([
+        [1],
+        [3]])
+
+        If the slice is not a tuple then it selects from the underlying
+        list of elements that are arranged in row order and a list is
+        returned if a slice is involved:
+
+        >>> m[0]
+        1
+        >>> m[::2]
+        [1, 3]
+        """
+        if isinstance(key, tuple):
+            i, j = key
+            try:
+                i, j = self.key2ij(key)
+                return self._mat[i*self.cols + j]
+            except (TypeError, IndexError):
+                if (isinstance(i, Expr) and not i.is_number) or (isinstance(j, Expr) and not j.is_number):
+                    if ((j < 0) is True) or ((j >= self.shape[1]) is True) or\
+                       ((i < 0) is True) or ((i >= self.shape[0]) is True):
+                        raise ValueError("index out of boundary")
+                    from sympy.matrices.expressions.matexpr import MatrixElement
+                    return MatrixElement(self, i, j)
+
+                if isinstance(i, slice):
+                    # XXX remove list() when PY2 support is dropped
+                    i = list(range(self.rows))[i]
+                elif is_sequence(i):
+                    pass
+                else:
+                    i = [i]
+                if isinstance(j, slice):
+                    # XXX remove list() when PY2 support is dropped
+                    j = list(range(self.cols))[j]
+                elif is_sequence(j):
+                    pass
+                else:
+                    j = [j]
+                return self.extract(i, j)
+        else:
+            # row-wise decomposition of matrix
+            if isinstance(key, slice):
+                return self._mat[key]
+            return self._mat[a2idx(key)]
+
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/logic/boolalg.py' lineno=376 funcname='__nonzero__' classname='BooleanFalse'
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO]     def __nonzero__(self):
+        return False
+
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/numbers.py' lineno=2153 funcname='__ge__' classname='Integer'
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO]     def __ge__(self, other):
+        try:
+            other = _sympify(other)
+        except SympifyError:
+            raise TypeError("Invalid comparison %s >= %s" % (self, other))
+        if other.is_Integer:
+            return _sympify(self.p >= other.p)
+        return Rational.__ge__(self, other)
+
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] ['eye', 'ones', 'col_insert', 'eye', 'ones', '_eval_col_insert', '_eval_eye', '_eval_ones', 'entry', 'entry', 'entry', 'shape', '__len__', 'as_int', '_new', '_handle_creation_inputs', 'sympify', '__new__', '__hash__', '__eq__', '__lt__', '__nonzero__', '__getitem__', '__nonzero__', '__ge__']
+[2026-09-22 10:42:25,894 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 10:42:25,895 - Orcar.tracer_reranker - INFO] [('eye', 2), ('ones', 1), ('col_insert', 30), ('eye', 2), ('ones', 1), ('_eval_col_insert', 95), ('_eval_eye', 2), ('_eval_ones', 1), ('entry', 2), ('entry', 1), ('entry', 95), ('shape', 2), ('__len__', 2), ('as_int', 1), ('_new', 5), ('_handle_creation_inputs', 5), ('sympify', 2), ('__new__', 1), ('__hash__', 1), ('__eq__', 2), ('__lt__', 2), ('__nonzero__', 2), ('__getitem__', 10), ('__nonzero__', 2), ('__ge__', 2)]
+[2026-09-22 10:42:25,895 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 10:42:25,895 - Orcar.tracer_reranker - INFO] [('_eval_col_insert', 95), ('col_insert', 30), ('eye', 2), ('eye', 2), ('ones', 1), ('ones', 1), ('_eval_eye', 2), ('_eval_ones', 1), ('entry', 95), ('__len__', 2), ('as_int', 1), ('_new', 5), ('_handle_creation_inputs', 5), ('entry', 2), ('entry', 1), ('sympify', 2), ('__eq__', 2), ('__new__', 1), ('__hash__', 1), ('__getitem__', 10), ('shape', 2), ('__lt__', 2), ('__nonzero__', 2), ('__nonzero__', 2), ('__ge__', 2)]
+[2026-09-22 10:42:25,895 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 10:42:25,895 - Orcar.tracer_reranker - INFO] [('_eval_col_insert', 95), ('entry', 95)]

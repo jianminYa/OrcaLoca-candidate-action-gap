@@ -1,0 +1,63 @@
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/output_parser.py", line 256, in parse
+    json_obj: Dict = json.loads(output, strict=False)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Unterminated string starting at: line 2 column 36 (char 37)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 276, in run_agents
+    trace_analysis_output = self.run_trace_analysis_agent()
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 111, in run_trace_analysis_agent
+    response: AgentChatResponse = self.trace_analysis_agent.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 695, in chat
+    chat_response = self._chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 627, in _chat
+    cur_step_output = self._run_step(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 423, in _run_step
+    cur_step_output = self.agent_worker.run_step(step, task, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 604, in run_step
+    return self._run_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 561, in _run_step
+    new_steps = self.handle_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 501, in handle_step
+    return self.handle_step_slice(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 266, in handle_step_slice
+    slice_step: TraceAnalysisSliceStep = self._output_parser.parse(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/output_parser.py", line 263, in parse
+    json_obj: Dict = json.loads(output.replace("\\", r"\\"), strict=False)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 2 column 482 (char 483)
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2326.97it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2230.67it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2141.29it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2176.13it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2140.97it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2141.54it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2011.74it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2226.29it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2266.16it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2283.17it/s]

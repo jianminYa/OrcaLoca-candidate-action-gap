@@ -1,0 +1,92 @@
+[2026-09-21 12:55:07,511 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 1
+)
+[2026-09-21 12:55:17,644 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'nddata_withmixins.py', 'directory_path': 'astropy/nddata'}: 1
+)
+[2026-09-21 12:55:39,285 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic_mask', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'})]
+[2026-09-21 12:55:54,214 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'nddata_withmixins.py', 'directory_path': 'astropy/nddata'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic_mask', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ndarithmetic.py', 'directory_path': 'astropy/nddata/mixins'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 1
+)
+[2026-09-21 12:56:16,963 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'nddata_withmixins.py', 'directory_path': 'astropy/nddata'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic_mask', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ndarithmetic.py', 'directory_path': 'astropy/nddata/mixins'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 1
+)
+[2026-09-21 12:56:40,977 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'nddata_withmixins.py', 'directory_path': 'astropy/nddata'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic_mask', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ndarithmetic.py', 'directory_path': 'astropy/nddata/mixins'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 1
+)
+[2026-09-21 12:56:53,676 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'nddata_withmixins.py', 'directory_path': 'astropy/nddata'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic_mask', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ndarithmetic.py', 'directory_path': 'astropy/nddata/mixins'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 1
+)
+[2026-09-21 12:57:08,176 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDDataRef'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'NDArithmeticMixin'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'nddata_withmixins.py', 'directory_path': 'astropy/nddata'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic_mask', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ndarithmetic.py', 'directory_path': 'astropy/nddata/mixins'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NDArithmeticMixin', 'method_name': '_arithmetic', 'file_path': 'astropy/nddata/mixins/ndarithmetic.py'}: 1
+)

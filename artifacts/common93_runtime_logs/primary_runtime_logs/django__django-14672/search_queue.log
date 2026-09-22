@@ -1,0 +1,60 @@
+[2026-09-22 04:54:17,817 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}
+)
+[2026-09-22 04:54:31,069 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'reverse_related.py', 'directory_path': 'django/db/models/fields'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}
+)
+[2026-09-22 04:54:45,206 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ManyToManyRel', 'file_path': 'django/db/models/fields/reverse_related.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}
+)
+[2026-09-22 04:55:02,454 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': '__init__', 'file_path': 'django/db/models/fields/reverse_related.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}
+)
+[2026-09-22 04:55:14,052 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': '__init__', 'file_path': 'django/db/models/fields/reverse_related.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}
+)
+[2026-09-22 04:55:25,868 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}
+)
+[2026-09-22 04:55:25,896 - search_queue - INFO] Duplicate search result: search_action='search_class' search_action_input={'class_name': 'ManyToManyRel'} search_content='File Path: django/db/models/fields/reverse_related.py \nClass Content: \nclass ManyToManyRel(ForeignObjectRel):\n    """\n    Used by ManyToManyField to store information about the relation.\n\n    ``_meta.get_fields()`` returns this class to provide access to the field\n    flags for the reverse relation.\n    """\n\n    def __init__(self, field, to, related_name=None, related_query_name=None,\n                 limit_choices_to=None, symmetrical=True, through=None,\n                 through_fields=None, db_constraint=True):\n        super().__init__(\n            field, to,\n            related_name=related_name,\n            related_query_name=related_query_name,\n            limit_choices_to=limit_choices_to,\n        )\n\n        if through and not db_constraint:\n            raise ValueError("Can\'t supply a through model and db_constraint=False")\n        self.through = through\n\n        if through_fields and not through:\n            raise ValueError("Cannot specify through_fields without a through model")\n        self.through_fields = through_fields\n\n        self.symmetrical = symmetrical\n        self.db_constraint = db_constraint\n\n    @property\n    def identity(self):\n        return super().identity + (\n            self.through,\n            self.through_fields,\n            self.db_constraint,\n        )\n\n    def get_related_field(self):\n        """\n        Return the field in the \'to\' object to which this relationship is tied.\n        Provided for symmetry with ManyToOneRel.\n        """\n        opts = self.through._meta\n        if self.through_fields:\n            field = opts.get_field(self.through_fields[0])\n        else:\n            for field in opts.fields:\n                rel = getattr(field, \'remote_field\', None)\n                if rel and rel.model == self.model:\n                    break\n        return field.foreign_related_fields[0]\n'
+[2026-09-22 04:55:25,910 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'ManyToManyRel', 'method_name': 'identity'} search_content='File Path: django/db/models/fields/reverse_related.py \nMethod Content: \n    def identity(self):\n        return super().identity + (\n            self.through,\n            self.through_fields,\n            self.db_constraint,\n        )\n'

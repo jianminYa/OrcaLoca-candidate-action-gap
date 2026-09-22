@@ -1,0 +1,38 @@
+[2026-09-22 05:04:46,089 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+)
+[2026-09-22 05:04:59,192 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'helpers.py', 'directory_path': 'django/contrib/admin'}: 2
+)
+[2026-09-22 05:05:06,978 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'AdminReadonlyField', 'file_path': 'django/contrib/admin/helpers.py'})]
+[2026-09-22 05:05:16,528 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'helpers.py', 'directory_path': 'django/contrib/admin'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'AdminReadonlyField', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AdminReadonlyField', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+)
+[2026-09-22 05:05:24,912 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'AdminReadonlyField', 'method_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'})]
+[2026-09-22 05:05:34,441 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'helpers.py', 'directory_path': 'django/contrib/admin'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'AdminReadonlyField', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AdminReadonlyField', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AdminReadonlyField', 'method_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}: 1
+)

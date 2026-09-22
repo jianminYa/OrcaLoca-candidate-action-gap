@@ -1,0 +1,32 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "autofunc",
+            "file_path": ""
+        },
+        {
+            "keyword": "codegen",
+            "file_path": "sympy/utilities/codegen.py"
+        },
+        {
+            "keyword": "MatrixSymbol",
+            "file_path": "sympy/matrices/expressions/matexpr.py"
+        },
+        {
+            "keyword": "lambdify",
+            "file_path": "sympy/utilities/lambdify.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "routine",
+            "file_path": "sympy/utilities/codegen.py",
+            "class_name": "CodeGen"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "from sympy.utilities.codegen import codegen\nfrom sympy import MatrixSymbol\n\nx = MatrixSymbol('x', 2, 1)\nexpr = 1.0\n\n# Generate C code to inspect the signature\nresult = codegen(('autofunc', expr), language='C', argument_sequence=(x,))\nfor filename, code in result:\n    print(f\"--- {filename} ---\")\n    print(code)\n\n# Check that the generated C code has 'double *x' instead of 'double x'\nfor filename, code in result:\n    if filename.endswith('.c'):\n        if 'double x)' in code and 'double *x' not in code:\n            raise TypeError(\"only size-1 arrays can be converted to Python scalars -- \"\n                            \"Generated C signature is incorrect: array argument 'x' is declared as 'double x' instead of 'double *x'\")\n        else:\n            print(\"Signature is correct.\")\n",
+    "env_reproduce_path": "/sympy__sympy/reproducer_sympy__sympy-16792.py"
+}

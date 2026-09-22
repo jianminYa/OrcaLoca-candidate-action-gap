@@ -1,0 +1,50 @@
+[2026-09-22 04:47:19,235 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationWriter', 'method_name': 'as_string', 'file_path': 'django/db/migrations/writer.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'writer.py', 'directory_path': 'django/db/migrations'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}
+)
+[2026-09-22 04:47:31,445 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MigrationWriter', 'method_name': 'as_string', 'file_path': 'django/db/migrations/writer.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'writer.py', 'directory_path': 'django/db/migrations'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}
+)
+[2026-09-22 04:47:43,615 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'writer.py', 'directory_path': 'django/db/migrations'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}
+)
+[2026-09-22 04:47:57,507 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'writer.py', 'directory_path': 'django/db/migrations'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}
+)
+[2026-09-22 04:48:16,842 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}
+)
+[2026-09-22 04:48:46,875 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}
+)

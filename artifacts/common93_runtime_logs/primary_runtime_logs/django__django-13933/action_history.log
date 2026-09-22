@@ -1,0 +1,50 @@
+[2026-09-22 04:24:12,127 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceField'}: 1
+)
+[2026-09-22 04:24:32,235 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'ModelChoiceField', 'method_name': 'to_python', 'file_path': 'django/forms/models.py'})]
+[2026-09-22 04:24:42,067 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceField'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'to_python', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}: 1
+)
+[2026-09-22 04:24:52,847 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceField'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'to_python', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}: 1
+)
+[2026-09-22 04:25:17,138 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceField'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'to_python', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}: 1
+)
+[2026-09-22 04:25:28,068 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceField'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'to_python', 'file_path': 'django/forms/models.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}: 1
+)

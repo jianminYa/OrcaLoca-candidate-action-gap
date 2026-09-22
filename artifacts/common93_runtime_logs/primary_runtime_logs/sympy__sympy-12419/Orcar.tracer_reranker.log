@@ -1,0 +1,376 @@
+[2026-09-22 10:09:29,259 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 10:09:29,259 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=112 funcname='doit' classname='MatMul'
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO]     def doit(self, **kwargs):
+        deep = kwargs.get('deep', True)
+        if deep:
+            args = [arg.doit(**kwargs) for arg in self.args]
+        else:
+            args = self.args
+        return canonicalize(MatMul(*args))
+
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/assumptions/refine.py' lineno=7 funcname='refine' classname=''
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] def refine(expr, assumptions=True):
+    """
+    Simplify an expression using assumptions.
+
+    Gives the form of expr that would be obtained if symbols
+    in it were replaced by explicit numerical expressions satisfying
+    the assumptions.
+
+    Examples
+    ========
+
+        >>> from sympy import refine, sqrt, Q
+        >>> from sympy.abc import x
+        >>> refine(sqrt(x**2), Q.real(x))
+        Abs(x)
+        >>> refine(sqrt(x**2), Q.positive(x))
+        x
+
+    """
+    if not isinstance(expr, Basic):
+        return expr
+    if not expr.is_Atom:
+        args = [refine(arg, assumptions) for arg in expr.args]
+        # TODO: this will probably not work with Integral or Polynomial
+        expr = expr.func(*args)
+    if hasattr(expr, '_eval_refine'):
+        ref_expr = expr._eval_refine(assumptions)
+        if ref_expr is not None:
+            return ref_expr
+    name = expr.__class__.__name__
+    handler = handlers_dict.get(name, None)
+    if handler is None:
+        return expr
+    new_expr = handler(expr, assumptions)
+    if (new_expr is None) or (expr == new_expr):
+        return expr
+    if not isinstance(new_expr, Expr):
+        return new_expr
+    return refine(new_expr, assumptions)
+
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=230 funcname='__getitem__' classname='MatrixExpr'
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO]     def __getitem__(self, key):
+        if not isinstance(key, tuple) and isinstance(key, slice):
+            from sympy.matrices.expressions.slice import MatrixSlice
+            return MatrixSlice(self, key, (0, None, 1))
+        if isinstance(key, tuple) and len(key) == 2:
+            i, j = key
+            if isinstance(i, slice) or isinstance(j, slice):
+                from sympy.matrices.expressions.slice import MatrixSlice
+                return MatrixSlice(self, i, j)
+            i, j = sympify(i), sympify(j)
+            if self.valid_index(i, j) != False:
+                return self._entry(i, j)
+            else:
+                raise IndexError("Invalid indices (%s, %s)" % (i, j))
+        elif isinstance(key, (int, Integer)):
+            # row-wise decomposition of matrix
+            rows, cols = self.shape
+            if not (isinstance(rows, Integer) and isinstance(cols, Integer)):
+                raise IndexError("Single index only supported for "
+                                 "non-symbolic matrix shapes.")
+            key = sympify(key)
+            i = key // cols
+            j = key % cols
+            if self.valid_index(i, j) != False:
+                return self._entry(i, j)
+            else:
+                raise IndexError("Invalid index %s" % key)
+        elif isinstance(key, (Symbol, Expr)):
+                raise IndexError("Single index only supported for "
+                                 "non-symbolic indices.")
+        raise IndexError("Invalid index, wanted %s[i,j]" % self)
+
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/concrete/summations.py' lineno=171 funcname='doit' classname='Sum'
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO]     def doit(self, **hints):
+        if hints.get('deep', True):
+            f = self.function.doit(**hints)
+        else:
+            f = self.function
+
+        if self.function.is_Matrix:
+            return self.expand().doit()
+
+        for n, limit in enumerate(self.limits):
+            i, a, b = limit
+            dif = b - a
+            if dif.is_integer and (dif < 0) == True:
+                a, b = b + 1, a - 1
+                f = -f
+
+            newf = eval_sum(f, (i, a, b))
+            if newf is None:
+                if f == self.function:
+                    zeta_function = self.eval_zeta_function(f, (i, a, b))
+                    if zeta_function is not None:
+                        return zeta_function
+                    return self
+                else:
+                    return self.func(f, *self.limits[n:])
+            f = newf
+
+        if hints.get('deep', True):
+            # eval_sum could return partially unevaluated
+            # result with Piecewise.  In this case we won't
+            # doit() recursively.
+            if not isinstance(f, Piecewise):
+                return f.doit(**hints)
+
+        return f
+
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1667 funcname='doit' classname='Atom'
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO]     def doit(self, **hints):
+        return self
+
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/transpose.py' lineno=35 funcname='doit' classname='Transpose'
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO]     def doit(self, **hints):
+        arg = self.arg
+        if hints.get('deep', True) and isinstance(arg, Basic):
+            arg = arg.doit(**hints)
+        try:
+            result = arg._eval_transpose()
+            return result if result is not None else Transpose(arg)
+        except AttributeError:
+            return Transpose(arg)
+
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 10:09:29,260 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=429 funcname='doit' classname='MatrixSymbol'
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO]     def doit(self, **hints):
+        if hints.get('deep', True):
+            return type(self)(self.name, self.args[1].doit(**hints),
+                    self.args[2].doit(**hints))
+        else:
+            return self
+
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=478 funcname='_entry' classname='Identity'
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO]     def _entry(self, i, j):
+        if i == j:
+            return S.One
+        else:
+            return S.Zero
+
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=31 funcname='__new__' classname='MatMul'
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO]     def __new__(cls, *args, **kwargs):
+        check = kwargs.get('check', True)
+
+        args = list(map(sympify, args))
+        obj = Basic.__new__(cls, *args)
+        factor, matrices = obj.as_coeff_matrices()
+        if check:
+            validate(*matrices)
+        if not matrices:
+            return factor
+        return obj
+
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=223 funcname='valid_index' classname='MatrixExpr'
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO]     def valid_index(self, i, j):
+        def is_valid(idx):
+            return isinstance(idx, (int, Integer, Symbol, Expr))
+        return (is_valid(i) and is_valid(j) and
+                (0 <= i) != False and (i < self.rows) != False and
+                (0 <= j) != False and (j < self.cols) != False)
+
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/concrete/summations.py' lineno=846 funcname='eval_sum' classname='Sum'
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] def eval_sum(f, limits):
+    from sympy.concrete.delta import deltasummation, _has_simple_delta
+    from sympy.functions import KroneckerDelta
+
+    (i, a, b) = limits
+    if f is S.Zero:
+        return S.Zero
+    if i not in f.free_symbols:
+        return f*(b - a + 1)
+    if a == b:
+        return f.subs(i, a)
+    if isinstance(f, Piecewise):
+        if not any(i in arg.args[1].free_symbols for arg in f.args):
+            # Piecewise conditions do not depend on the dummy summation variable,
+            # therefore we can fold:     Sum(Piecewise((e, c), ...), limits)
+            #                        --> Piecewise((Sum(e, limits), c), ...)
+            newargs = []
+            for arg in f.args:
+                newexpr = eval_sum(arg.expr, limits)
+                if newexpr is None:
+                    return None
+                newargs.append((newexpr, arg.cond))
+            return f.func(*newargs)
+
+    if f.has(KroneckerDelta) and _has_simple_delta(f, limits[0]):
+        return deltasummation(f, limits)
+
+    dif = b - a
+    definite = dif.is_Integer
+    # Doing it directly may be faster if there are very few terms.
+    if definite and (dif < 100):
+        return eval_sum_direct(f, (i, a, b))
+    if isinstance(f, Piecewise):
+        return None
+    # Try to do it symbolically. Even when the number of terms is known,
+    # this can save time when b-a is big.
+    # We should try to transform to partial fractions
+    value = eval_sum_symbolic(f.expand(), (i, a, b))
+    if value is not None:
+        return value
+    # Do it directly
+    if definite:
+        return eval_sum_direct(f, (i, a, b))
+
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/transpose.py' lineno=45 funcname='arg' classname='Transpose'
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,261 - Orcar.tracer_reranker - INFO]     @property
+    def arg(self):
+        return self.args[0]
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=410 funcname='name' classname='MatrixSymbol'
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO]     @property
+    def name(self):
+        return self.args[0]
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=398 funcname='__new__' classname='MatrixSymbol'
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO]     def __new__(cls, name, n, m):
+        n, m = sympify(n), sympify(m)
+        obj = Basic.__new__(cls, name, n, m)
+        return obj
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/transpose.py' lineno=62 funcname='_eval_transpose' classname='Transpose'
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO]     def _eval_transpose(self):
+        return self.arg
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=72 funcname='as_coeff_matrices' classname='MatMul'
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO]     def as_coeff_matrices(self):
+        scalars = [x for x in self.args if not x.is_Matrix]
+        matrices = [x for x in self.args if x.is_Matrix]
+        coeff = Mul(*scalars)
+
+        return coeff, matrices
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=131 funcname='validate' classname='MatMul'
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] def validate(*matrices):
+    """ Checks for valid shapes for args of MatMul """
+    for i in range(len(matrices)-1):
+        A, B = matrices[i:i+2]
+        if A.cols != B.rows:
+            raise ShapeError("Matrices %s and %s are not aligned"%(A, B))
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=224 funcname='is_valid' classname='MatrixExpr'
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO]         def is_valid(idx):
+            return isinstance(idx, (int, Integer, Symbol, Expr))
+
+[2026-09-22 10:09:29,262 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=157 funcname='rows' classname='MatrixExpr'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO]     @property
+    def rows(self):
+        return self.shape[0]
+
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=161 funcname='cols' classname='MatrixExpr'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO]     @property
+    def cols(self):
+        return self.shape[1]
+
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=454 funcname='rows' classname='Identity'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO]     @property
+    def rows(self):
+        return self.args[0]
+
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matexpr.py' lineno=458 funcname='cols' classname='Identity'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO]     @property
+    def cols(self):
+        return self.args[0]
+
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=146 funcname='any_zeros' classname='MatMul'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] def any_zeros(mul):
+    if any([arg.is_zero or (arg.is_Matrix and arg.is_ZeroMatrix)
+                       for arg in mul.args]):
+        matrices = [arg for arg in mul.args if arg.is_Matrix]
+        return ZeroMatrix(matrices[0].rows, matrices[-1].cols)
+    return mul
+
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=208 funcname='remove_ids' classname='MatMul'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] def remove_ids(mul):
+    """ Remove Identities from a MatMul
+
+    This is a modified version of sympy.strategies.rm_id.
+    This is necesssary because MatMul may contain both MatrixExprs and Exprs
+    as args.
+
+    See Also
+    --------
+        sympy.strategies.rm_id
+    """
+    # Separate Exprs from MatrixExprs in args
+    factor, mmul = mul.as_coeff_mmul()
+    # Apply standard rm_id for MatMuls
+    result = rm_id(lambda x: x.is_Identity is True)(mmul)
+    if result != mmul:
+        return newmul(factor, *result.args)  # Recombine and return
+    else:
+        return mul
+
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/matrices/expressions/matmul.py' lineno=195 funcname='xxinv' classname='MatMul'
+[2026-09-22 10:09:29,263 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] def xxinv(mul):
+    """ Y * X * X.I -> Y """
+    factor, matrices = mul.as_coeff_matrices()
+    for i, (X, Y) in enumerate(zip(matrices[:-1], matrices[1:])):
+        try:
+            if X.is_square and Y.is_square and X == Y.inverse():
+                I = Identity(X.rows)
+                return newmul(factor, *(matrices[:i] + [I] + matrices[i+2:]))
+        except ValueError:  # Y might not be invertible
+            pass
+
+    return mul
+
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] ['doit', 'refine', '__getitem__', 'doit', 'doit', 'doit', 'doit', '_entry', '__new__', 'valid_index', 'eval_sum', 'arg', 'name', '__new__', '_eval_transpose', 'as_coeff_matrices', 'validate', 'is_valid', 'rows', 'cols', 'rows', 'cols', 'any_zeros', 'remove_ids', 'xxinv']
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] [('doit', 15), ('refine', 15), ('__getitem__', 10), ('doit', 25), ('doit', 25), ('doit', 5), ('doit', 15), ('_entry', 95), ('__new__', 5), ('valid_index', 15), ('eval_sum', 50), ('arg', 5), ('name', 2), ('__new__', 5), ('_eval_transpose', 5), ('as_coeff_matrices', 10), ('validate', 2), ('is_valid', 5), ('rows', 2), ('cols', 2), ('rows', 2), ('cols', 5), ('any_zeros', 50), ('remove_ids', 5), ('xxinv', 5)]
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] [('_entry', 95), ('eval_sum', 50), ('doit', 25), ('doit', 25), ('doit', 15), ('refine', 15), ('doit', 15), ('__getitem__', 10), ('doit', 5), ('valid_index', 15), ('__new__', 5), ('arg', 5), ('__new__', 5), ('_eval_transpose', 5), ('name', 2), ('as_coeff_matrices', 10), ('any_zeros', 50), ('is_valid', 5), ('cols', 5), ('validate', 2), ('rows', 2), ('cols', 2), ('rows', 2), ('remove_ids', 5), ('xxinv', 5)]
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 10:09:29,264 - Orcar.tracer_reranker - INFO] [('_entry', 95)]

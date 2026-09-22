@@ -1,0 +1,11 @@
+[2026-09-22 08:08:27,261 - Orcar.tracer - INFO] sensitivity_dict: {'xfail': set(), 'add_marker': set()}
+[2026-09-22 08:08:27,399 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_pytest-dev__pytest-7490.json
+[2026-09-22 08:08:29,103 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 08:08:29,271 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 08:08:29,271 - Orcar.tracer - INFO] Func 000/003
+[2026-09-22 08:08:29,271 - Orcar.tracer - INFO] (FuncSign(filename='/pytest-dev__pytest/src/_pytest/nodes.py', lineno=261, funcname='add_marker'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=39360, absolute_layer=42, called_by=[]), (0, 0, 42, 39360))
+[2026-09-22 08:08:29,272 - Orcar.tracer - INFO] Func 001/003
+[2026-09-22 08:08:29,272 - Orcar.tracer - INFO] (FuncSign(filename='/pytest-dev__pytest/src/_pytest/mark/structures.py', lineno=287, funcname='name'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=1, absolute_calling_index=39361, absolute_layer=43, called_by=[FuncSign(filename='/pytest-dev__pytest/src/_pytest/nodes.py', lineno=261, funcname='add_marker')]), (1, 1, 43, 39361))
+[2026-09-22 08:08:29,272 - Orcar.tracer - INFO] Func 002/003
+[2026-09-22 08:08:29,272 - Orcar.tracer - INFO] (FuncSign(filename='/pytest-dev__pytest/src/_pytest/mark/structures.py', lineno=538, funcname='__setitem__'), FuncScore(is_same_file_with_key_parent=False, layers_from_key_parent=1, absolute_calling_index=39362, absolute_layer=43, called_by=[FuncSign(filename='/pytest-dev__pytest/src/_pytest/nodes.py', lineno=261, funcname='add_marker')]), (1, 1, 43, 39362))
+[2026-09-22 08:08:29,272 - Orcar.tracer - INFO] Finished tracer output parsing

@@ -1,0 +1,36 @@
+[2026-09-22 04:44:20,311 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label'}: 1
+)
+[2026-09-22 04:44:31,824 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boundfield.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BoundWidget', 'file_path': 'django/forms/boundfield.py'}: 1
+)
+[2026-09-22 04:44:38,736 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'BoundWidget', 'file_path': 'django/forms/boundfield.py'})]
+[2026-09-22 04:44:45,414 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boundfield.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BoundWidget', 'file_path': 'django/forms/boundfield.py'}: 1
+)
+[2026-09-22 04:45:00,296 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'BoundWidget', 'method_name': 'id_for_label', 'file_path': 'django/forms/boundfield.py'})]
+[2026-09-22 04:45:09,247 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boundfield.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'BoundWidget', 'file_path': 'django/forms/boundfield.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label', 'file_path': 'django/forms/boundfield.py'}: 1
+)

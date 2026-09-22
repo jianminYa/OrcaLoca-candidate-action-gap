@@ -1,0 +1,4 @@
+[2026-09-22 13:17:32,677 - Orcar.environment.benchmark - INFO] Setting up env for inst sympy__sympy-22714...
+[2026-09-22 13:17:39,814 - Orcar.environment.benchmark - INFO] Repo sympy__sympy already cached
+[2026-09-22 13:17:39,814 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy to base commit: 3ff4717b6aef6086e78f01cdfa06f64ae23aed7e
+[2026-09-22 13:17:53,093 - Orcar.environment.benchmark - INFO] Env sympy__sympy__1.10 not found, installing

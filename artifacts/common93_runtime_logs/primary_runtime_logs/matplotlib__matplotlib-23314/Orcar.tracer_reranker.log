@@ -1,0 +1,993 @@
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/artist.py' lineno=1008 funcname='set_visible' classname='Artist'
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO]     def set_visible(self, b):
+        """
+        Set the artist's visibility.
+
+        Parameters
+        ----------
+        b : bool
+        """
+        self._visible = b
+        self.pchanged()
+        self.stale = True
+
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/backends/backend_agg.py' lineno=400 funcname='draw' classname='FigureCanvasAgg'
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO]     def draw(self):
+        # docstring inherited
+        self.renderer = self.get_renderer()
+        self.renderer.clear()
+        # Acquire a lock on the shared font cache.
+        with RendererAgg.lock, \
+             (self.toolbar._wait_cursor_for_draw_cm() if self.toolbar
+              else nullcontext()):
+            self.figure.draw(self.renderer)
+            # A GUI class may be need to update a window using this draw, so
+            # don't forget to call the superclass.
+            super().draw()
+
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/backend_bases.py' lineno=1976 funcname='draw' classname='FigureCanvasBase'
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO]     def draw(self, *args, **kwargs):
+        """
+        Render the `.Figure`.
+
+        This method must walk the artist tree, even if no output is produced,
+        because it triggers deferred work that users may want to access
+        before saving output to disk. For example computing limits,
+        auto-limits, and tick values.
+        """
+
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/figure.py' lineno=2895 funcname='draw' classname='Figure'
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO]     @_finalize_rasterization
+    @allow_rasterization
+    def draw(self, renderer):
+        # docstring inherited
+        self._cachedRenderer = renderer
+
+        # draw the figure bounding box, perhaps none for white figure
+        if not self.get_visible():
+            return
+
+        artists = self._get_draw_artists(renderer)
+        try:
+            renderer.open_group('figure', gid=self.get_gid())
+            if self.axes and self.get_layout_engine() is not None:
+                try:
+                    self.get_layout_engine().execute(self)
+                except ValueError:
+                    pass
+                    # ValueError can occur when resizing a window.
+
+            self.patch.draw(renderer)
+            mimage._draw_list_compositing_images(
+                renderer, self, artists, self.suppressComposite)
+
+            for sfig in self.subfigs:
+                sfig.draw(renderer)
+
+            renderer.close_group('figure')
+        finally:
+            self.stale = False
+
+        self.canvas.draw_event(renderer)
+
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 05:57:14,923 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/patches.py' lineno=584 funcname='draw' classname='Patch'
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO]     @artist.allow_rasterization
+    def draw(self, renderer):
+        # docstring inherited
+        if not self.get_visible():
+            return
+        # Patch has traditionally ignored the dashoffset.
+        with cbook._setattr_cm(
+                 self, _dash_pattern=(0, self._dash_pattern[1])), \
+             self._bind_draw_path_function(renderer) as draw_path:
+            path = self.get_path()
+            transform = self.get_transform()
+            tpath = transform.transform_path_non_affine(path)
+            affine = transform.get_affine()
+            draw_path(tpath, affine,
+                      # Work around a bug in the PDF and SVG renderers, which
+                      # do not draw the hatches if the facecolor is fully
+                      # transparent, but do if it is None.
+                      self._facecolor if self._facecolor[3] else None)
+
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/mpl_toolkits/mplot3d/axes3d.py' lineno=388 funcname='draw' classname='Axes3D'
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] LLM score: 85 / 100
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO]     @martist.allow_rasterization
+    def draw(self, renderer):
+        self._unstale_viewLim()
+
+        # draw the background patch
+        self.patch.draw(renderer)
+        self._frameon = False
+
+        # first, set the aspect
+        # this is duplicated from `axes._base._AxesBase.draw`
+        # but must be called before any of the artist are drawn as
+        # it adjusts the view limits and the size of the bounding box
+        # of the Axes
+        locator = self.get_axes_locator()
+        if locator:
+            pos = locator(self, renderer)
+            self.apply_aspect(pos)
+        else:
+            self.apply_aspect()
+
+        # add the projection matrix to the renderer
+        self.M = self.get_proj()
+
+        collections_and_patches = (
+            artist for artist in self._children
+            if isinstance(artist, (mcoll.Collection, mpatches.Patch))
+            and artist.get_visible())
+        if self.computed_zorder:
+            # Calculate projection of collections and patches and zorder
+            # them. Make sure they are drawn above the grids.
+            zorder_offset = max(axis.get_zorder()
+                                for axis in self._axis_map.values()) + 1
+            collection_zorder = patch_zorder = zorder_offset
+
+            for artist in sorted(collections_and_patches,
+                                 key=lambda artist: artist.do_3d_projection(),
+                                 reverse=True):
+                if isinstance(artist, mcoll.Collection):
+                    artist.zorder = collection_zorder
+                    collection_zorder += 1
+                elif isinstance(artist, mpatches.Patch):
+                    artist.zorder = patch_zorder
+                    patch_zorder += 1
+        else:
+            for artist in collections_and_patches:
+                artist.do_3d_projection()
+
+        if self._axis3don:
+            # Draw panes first
+            for axis in self._axis_map.values():
+                axis.draw_pane(renderer)
+            # Then axes
+            for axis in self._axis_map.values():
+                axis.draw(renderer)
+
+        # Then rest
+        super().draw(renderer)
+
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/mpl_toolkits/mplot3d/axis3d.py' lineno=298 funcname='draw' classname='Axis'
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO]     @artist.allow_rasterization
+    def draw(self, renderer):
+        self.label._transform = self.axes.transData
+        renderer.open_group("axis3d", gid=self.get_gid())
+
+        ticks = self._update_ticks()
+
+        # Get general axis information:
+        info = self._axinfo
+        index = info["i"]
+        juggled = info["juggled"]
+
+        mins, maxs, centers, deltas, tc, highs = self._get_coord_info(renderer)
+
+        minmax = np.where(highs, maxs, mins)
+        maxmin = np.where(~highs, maxs, mins)
+
+        # Create edge points for the black bolded axis line:
+        edgep1, edgep2 = self._get_axis_line_edge_points(minmax, maxmin)
+
+        # Project the edge points along the current position and
+        # create the line:
+        pep = proj3d.proj_trans_points([edgep1, edgep2], self.axes.M)
+        pep = np.asarray(pep)
+        self.line.set_data(pep[0], pep[1])
+        self.line.draw(renderer)
+
+        # Grid points where the planes meet
+        xyz0 = np.tile(minmax, (len(ticks), 1))
+        xyz0[:, index] = [tick.get_loc() for tick in ticks]
+
+        # Draw labels
+        # The transAxes transform is used because the Text object
+        # rotates the text relative to the display coordinate system.
+        # Therefore, if we want the labels to remain parallel to the
+        # axis regardless of the aspect ratio, we need to convert the
+        # edge points of the plane to display coordinates and calculate
+        # an angle from that.
+        # TODO: Maybe Text objects should handle this themselves?
+        dx, dy = (self.axes.transAxes.transform([pep[0:2, 1]]) -
+                  self.axes.transAxes.transform([pep[0:2, 0]]))[0]
+
+        lxyz = 0.5 * (edgep1 + edgep2)
+
+        # A rough estimate; points are ambiguous since 3D plots rotate
+        reltoinches = self.figure.dpi_scale_trans.inverted()
+        ax_inches = reltoinches.transform(self.axes.bbox.size)
+        ax_points_estimate = sum(72. * ax_inches)
+        deltas_per_point = 48 / ax_points_estimate
+        default_offset = 21.
+        labeldeltas = (
+            (self.labelpad + default_offset) * deltas_per_point * deltas)
+        axmask = [True, True, True]
+        axmask[index] = False
+        lxyz = move_from_center(lxyz, centers, labeldeltas, axmask)
+        tlx, tly, tlz = proj3d.proj_transform(*lxyz, self.axes.M)
+        self.label.set_position((tlx, tly))
+        if self.get_rotate_label(self.label.get_text()):
+            angle = art3d._norm_text_angle(np.rad2deg(np.arctan2(dy, dx)))
+            self.label.set_rotation(angle)
+        self.label.set_va(info['label']['va'])
+        self.label.set_ha(info['label']['ha'])
+        self.label.draw(renderer)
+
+        # Draw Offset text
+
+        # Which of the two edge points do we want to
+        # use for locating the offset text?
+        if juggled[2] == 2:
+            outeredgep = edgep1
+            outerindex = 0
+        else:
+            outeredgep = edgep2
+            outerindex = 1
+
+        pos = move_from_center(outeredgep, centers, labeldeltas, axmask)
+        olx, oly, olz = proj3d.proj_transform(*pos, self.axes.M)
+        self.offsetText.set_text(self.major.formatter.get_offset())
+        self.offsetText.set_position((olx, oly))
+        angle = art3d._norm_text_angle(np.rad2deg(np.arctan2(dy, dx)))
+        self.offsetText.set_rotation(angle)
+        # Must set rotation mode to "anchor" so that
+        # the alignment point is used as the "fulcrum" for rotation.
+        self.offsetText.set_rotation_mode('anchor')
+
+        # ----------------------------------------------------------------------
+        # Note: the following statement for determining the proper alignment of
+        # the offset text. This was determined entirely by trial-and-error
+        # and should not be in any way considered as "the way".  There are
+        # still some edge cases where alignment is not quite right, but this
+        # seems to be more of a geometry issue (in other words, I might be
+        # using the wrong reference points).
+        #
+        # (TT, FF, TF, FT) are the shorthand for the tuple of
+        #   (centpt[info['tickdir']] <= pep[info['tickdir'], outerindex],
+        #    centpt[index] <= pep[index, outerindex])
+        #
+        # Three-letters (e.g., TFT, FTT) are short-hand for the array of bools
+        # from the variable 'highs'.
+        # ---------------------------------------------------------------------
+        centpt = proj3d.proj_transform(*centers, self.axes.M)
+        if centpt[info['tickdir']] > pep[info['tickdir'], outerindex]:
+            # if FT and if highs has an even number of Trues
+            if (centpt[index] <= pep[index, outerindex]
+                    and np.count_nonzero(highs) % 2 == 0):
+                # Usually, this means align right, except for the FTT case,
+                # in which offset for axis 1 and 2 are aligned left.
+                if highs.tolist() == [False, True, True] and index in (1, 2):
+                    align = 'left'
+                else:
+                    align = 'right'
+            else:
+                # The FF case
+                align = 'left'
+        else:
+            # if TF and if highs has an even number of Trues
+            if (centpt[index] > pep[index, outerindex]
+                    and np.count_nonzero(highs) % 2 == 0):
+                # Usually mean align left, except if it is axis 2
+                if index == 2:
+                    align = 'right'
+                else:
+                    align = 'left'
+            else:
+                # The TT case
+                align = 'right'
+
+        self.offsetText.set_va('center')
+        self.offsetText.set_ha(align)
+        self.offsetText.draw(renderer)
+
+        if self.axes._draw_grid and len(ticks):
+            # Grid lines go from the end of one plane through the plane
+            # intersection (at xyz0) to the end of the other plane.  The first
+            # point (0) differs along dimension index-2 and the last (2) along
+            # dimension index-1.
+            lines = np.stack([xyz0, xyz0, xyz0], axis=1)
+            lines[:, 0, index - 2] = maxmin[index - 2]
+            lines[:, 2, index - 1] = maxmin[index - 1]
+            self.gridlines.set_segments(lines)
+            self.gridlines.set_color(info['grid']['color'])
+            self.gridlines.set_linewidth(info['grid']['linewidth'])
+            self.gridlines.set_linestyle(info['grid']['linestyle'])
+            self.gridlines.do_3d_projection()
+            self.gridlines.draw(renderer)
+
+        # Draw ticks:
+        tickdir = self._get_tickdir()
+        tickdelta = deltas[tickdir]
+        if highs[tickdir]:
+            ticksign = 1
+        else:
+            ticksign = -1
+
+        for tick in ticks:
+            # Get tick line positions
+            pos = edgep1.copy()
+            pos[index] = tick.get_loc()
+            pos[tickdir] = (
+                edgep1[tickdir]
+                + info['tick']['outward_factor'] * ticksign * tickdelta)
+            x1, y1, z1 = proj3d.proj_transform(*pos, self.axes.M)
+            pos[tickdir] = (
+                edgep1[tickdir]
+                - info['tick']['inward_factor'] * ticksign * tickdelta)
+            x2, y2, z2 = proj3d.proj_transform(*pos, self.axes.M)
+
+            # Get position of label
+            default_offset = 8.  # A rough estimate
+            labeldeltas = (
+                (tick.get_pad() + default_offset) * deltas_per_point * deltas)
+
+            axmask = [True, True, True]
+            axmask[index] = False
+            pos[tickdir] = edgep1[tickdir]
+            pos = move_from_center(pos, centers, labeldeltas, axmask)
+            lx, ly, lz = proj3d.proj_transform(*pos, self.axes.M)
+
+            tick_update_position(tick, (x1, x2), (y1, y2), (lx, ly))
+            tick.tick1line.set_linewidth(
+                info['tick']['linewidth'][tick._major])
+            tick.draw(renderer)
+
+        renderer.close_group('axis3d')
+        self.stale = False
+
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/axes/_base.py' lineno=3017 funcname='draw' classname='_AxesBase'
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO]     @martist.allow_rasterization
+    def draw(self, renderer):
+        # docstring inherited
+        if renderer is None:
+            raise RuntimeError('No renderer defined')
+        if not self.get_visible():
+            return
+        self._unstale_viewLim()
+
+        renderer.open_group('axes', gid=self.get_gid())
+
+        # prevent triggering call backs during the draw process
+        self._stale = True
+
+        # loop over self and child Axes...
+        locator = self.get_axes_locator()
+        if locator:
+            pos = locator(self, renderer)
+            self.apply_aspect(pos)
+        else:
+            self.apply_aspect()
+
+        artists = self.get_children()
+        artists.remove(self.patch)
+
+        # the frame draws the edges around the Axes patch -- we
+        # decouple these so the patch can be in the background and the
+        # frame in the foreground. Do this before drawing the axis
+        # objects so that the spine has the opportunity to update them.
+        if not (self.axison and self._frameon):
+            for spine in self.spines.values():
+                artists.remove(spine)
+
+        self._update_title_position(renderer)
+
+        if not self.axison:
+            for _axis in self._axis_map.values():
+                artists.remove(_axis)
+
+        if not self.figure.canvas.is_saving():
+            artists = [
+                a for a in artists
+                if not a.get_animated() or isinstance(a, mimage.AxesImage)]
+        artists = sorted(artists, key=attrgetter('zorder'))
+
+        # rasterize artists with negative zorder
+        # if the minimum zorder is negative, start rasterization
+        rasterization_zorder = self._rasterization_zorder
+
+        if (rasterization_zorder is not None and
+                artists and artists[0].zorder < rasterization_zorder):
+            renderer.start_rasterizing()
+            artists_rasterized = [a for a in artists
+                                  if a.zorder < rasterization_zorder]
+            artists = [a for a in artists
+                       if a.zorder >= rasterization_zorder]
+        else:
+            artists_rasterized = []
+
+        # the patch draws the background rectangle -- the frame below
+        # will draw the edges
+        if self.axison and self._frameon:
+            self.patch.draw(renderer)
+
+        if artists_rasterized:
+            for a in artists_rasterized:
+                a.draw(renderer)
+            renderer.stop_rasterizing()
+
+        mimage._draw_list_compositing_images(
+            renderer, self, artists, self.figure.suppressComposite)
+
+        renderer.close_group('axes')
+        self.stale = False
+
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/lines.py' lineno=725 funcname='draw' classname='Line2D'
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO]     @allow_rasterization
+    def draw(self, renderer):
+        # docstring inherited
+
+        if not self.get_visible():
+            return
+
+        if self._invalidy or self._invalidx:
+            self.recache()
+        self.ind_offset = 0  # Needed for contains() method.
+        if self._subslice and self.axes:
+            x0, x1 = self.axes.get_xbound()
+            i0 = self._x_filled.searchsorted(x0, 'left')
+            i1 = self._x_filled.searchsorted(x1, 'right')
+            subslice = slice(max(i0 - 1, 0), i1 + 1)
+            self.ind_offset = subslice.start
+            self._transform_path(subslice)
+        else:
+            subslice = None
+
+        if self.get_path_effects():
+            from matplotlib.patheffects import PathEffectRenderer
+            renderer = PathEffectRenderer(self.get_path_effects(), renderer)
+
+        renderer.open_group('line2d', self.get_gid())
+        if self._lineStyles[self._linestyle] != '_draw_nothing':
+            tpath, affine = (self._get_transformed_path()
+                             .get_transformed_path_and_affine())
+            if len(tpath.vertices):
+                gc = renderer.new_gc()
+                self._set_gc_clip(gc)
+                gc.set_url(self.get_url())
+
+                lc_rgba = mcolors.to_rgba(self._color, self._alpha)
+                gc.set_foreground(lc_rgba, isRGBA=True)
+
+                gc.set_antialiased(self._antialiased)
+                gc.set_linewidth(self._linewidth)
+
+                if self.is_dashed():
+                    cap = self._dashcapstyle
+                    join = self._dashjoinstyle
+                else:
+                    cap = self._solidcapstyle
+                    join = self._solidjoinstyle
+                gc.set_joinstyle(join)
+                gc.set_capstyle(cap)
+                gc.set_snap(self.get_snap())
+                if self.get_sketch_params() is not None:
+                    gc.set_sketch_params(*self.get_sketch_params())
+
+                gc.set_dashes(*self._dash_pattern)
+                renderer.draw_path(gc, tpath, affine.frozen())
+                gc.restore()
+
+        if self._marker and self._markersize > 0:
+            gc = renderer.new_gc()
+            self._set_gc_clip(gc)
+            gc.set_url(self.get_url())
+            gc.set_linewidth(self._markeredgewidth)
+            gc.set_antialiased(self._antialiased)
+
+            ec_rgba = mcolors.to_rgba(
+                self.get_markeredgecolor(), self._alpha)
+            fc_rgba = mcolors.to_rgba(
+                self._get_markerfacecolor(), self._alpha)
+            fcalt_rgba = mcolors.to_rgba(
+                self._get_markerfacecolor(alt=True), self._alpha)
+            # If the edgecolor is "auto", it is set according to the *line*
+            # color but inherits the alpha value of the *face* color, if any.
+            if (cbook._str_equal(self._markeredgecolor, "auto")
+                    and not cbook._str_lower_equal(
+                        self.get_markerfacecolor(), "none")):
+                ec_rgba = ec_rgba[:3] + (fc_rgba[3],)
+            gc.set_foreground(ec_rgba, isRGBA=True)
+            if self.get_sketch_params() is not None:
+                scale, length, randomness = self.get_sketch_params()
+                gc.set_sketch_params(scale/2, length/2, 2*randomness)
+
+            marker = self._marker
+
+            # Markers *must* be drawn ignoring the drawstyle (but don't pay the
+            # recaching if drawstyle is already "default").
+            if self.get_drawstyle() != "default":
+                with cbook._setattr_cm(
+                        self, _drawstyle="default", _transformed_path=None):
+                    self.recache()
+                    self._transform_path(subslice)
+                    tpath, affine = (self._get_transformed_path()
+                                     .get_transformed_points_and_affine())
+            else:
+                tpath, affine = (self._get_transformed_path()
+                                 .get_transformed_points_and_affine())
+
+            if len(tpath.vertices):
+                # subsample the markers if markevery is not None
+                markevery = self.get_markevery()
+                if markevery is not None:
+                    subsampled = _mark_every_path(
+                        markevery, tpath, affine, self.axes)
+                else:
+                    subsampled = tpath
+
+                snap = marker.get_snap_threshold()
+                if isinstance(snap, Real):
+                    snap = renderer.points_to_pixels(self._markersize) >= snap
+                gc.set_snap(snap)
+                gc.set_joinstyle(marker.get_joinstyle())
+                gc.set_capstyle(marker.get_capstyle())
+                marker_path = marker.get_path()
+                marker_trans = marker.get_transform()
+                w = renderer.points_to_pixels(self._markersize)
+
+                if cbook._str_equal(marker.get_marker(), ","):
+                    gc.set_linewidth(0)
+                else:
+                    # Don't scale for pixels, and don't stroke them
+                    marker_trans = marker_trans.scale(w)
+                renderer.draw_markers(gc, marker_path, marker_trans,
+                                      subsampled, affine.frozen(),
+                                      fc_rgba)
+
+                alt_marker_path = marker.get_alt_path()
+                if alt_marker_path:
+                    alt_marker_trans = marker.get_alt_transform()
+                    alt_marker_trans = alt_marker_trans.scale(w)
+                    renderer.draw_markers(
+                            gc, alt_marker_path, alt_marker_trans, subsampled,
+                            affine.frozen(), fcalt_rgba)
+
+            gc.restore()
+
+        renderer.close_group('line2d')
+        self.stale = False
+
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/text.py' lineno=674 funcname='draw' classname='Text'
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,924 - Orcar.tracer_reranker - INFO]     @artist.allow_rasterization
+    def draw(self, renderer):
+        # docstring inherited
+
+        if renderer is not None:
+            self._renderer = renderer
+        if not self.get_visible():
+            return
+        if self.get_text() == '':
+            return
+
+        renderer.open_group('text', self.get_gid())
+
+        with self._cm_set(text=self._get_wrapped_text()):
+            bbox, info, descent = self._get_layout(renderer)
+            trans = self.get_transform()
+
+            # don't use self.get_position here, which refers to text
+            # position in Text:
+            posx = float(self.convert_xunits(self._x))
+            posy = float(self.convert_yunits(self._y))
+            posx, posy = trans.transform((posx, posy))
+            if not np.isfinite(posx) or not np.isfinite(posy):
+                _log.warning("posx and posy should be finite values")
+                return
+            canvasw, canvash = renderer.get_canvas_width_height()
+
+            # Update the location and size of the bbox
+            # (`.patches.FancyBboxPatch`), and draw it.
+            if self._bbox_patch:
+                self.update_bbox_position_size(renderer)
+                self._bbox_patch.draw(renderer)
+
+            gc = renderer.new_gc()
+            gc.set_foreground(self.get_color())
+            gc.set_alpha(self.get_alpha())
+            gc.set_url(self._url)
+            self._set_gc_clip(gc)
+
+            angle = self.get_rotation()
+
+            for line, wh, x, y in info:
+
+                mtext = self if len(info) == 1 else None
+                x = x + posx
+                y = y + posy
+                if renderer.flipy():
+                    y = canvash - y
+                clean_line, ismath = self._preprocess_math(line)
+
+                if self.get_path_effects():
+                    from matplotlib.patheffects import PathEffectRenderer
+                    textrenderer = PathEffectRenderer(
+                        self.get_path_effects(), renderer)
+                else:
+                    textrenderer = renderer
+
+                if self.get_usetex():
+                    textrenderer.draw_tex(gc, x, y, clean_line,
+                                          self._fontproperties, angle,
+                                          mtext=mtext)
+                else:
+                    textrenderer.draw_text(gc, x, y, clean_line,
+                                           self._fontproperties, angle,
+                                           ismath=ismath, mtext=mtext)
+
+        gc.restore()
+        renderer.close_group('text')
+        self.stale = False
+
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/collections.py' lineno=348 funcname='draw' classname='Collection'
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO]     @artist.allow_rasterization
+    def draw(self, renderer):
+        if not self.get_visible():
+            return
+        renderer.open_group(self.__class__.__name__, self.get_gid())
+
+        self.update_scalarmappable()
+
+        transform, offset_trf, offsets, paths = self._prepare_points()
+
+        gc = renderer.new_gc()
+        self._set_gc_clip(gc)
+        gc.set_snap(self.get_snap())
+
+        if self._hatch:
+            gc.set_hatch(self._hatch)
+            gc.set_hatch_color(self._hatch_color)
+
+        if self.get_sketch_params() is not None:
+            gc.set_sketch_params(*self.get_sketch_params())
+
+        if self.get_path_effects():
+            from matplotlib.patheffects import PathEffectRenderer
+            renderer = PathEffectRenderer(self.get_path_effects(), renderer)
+
+        # If the collection is made up of a single shape/color/stroke,
+        # it can be rendered once and blitted multiple times, using
+        # `draw_markers` rather than `draw_path_collection`.  This is
+        # *much* faster for Agg, and results in smaller file sizes in
+        # PDF/SVG/PS.
+
+        trans = self.get_transforms()
+        facecolors = self.get_facecolor()
+        edgecolors = self.get_edgecolor()
+        do_single_path_optimization = False
+        if (len(paths) == 1 and len(trans) <= 1 and
+                len(facecolors) == 1 and len(edgecolors) == 1 and
+                len(self._linewidths) == 1 and
+                all(ls[1] is None for ls in self._linestyles) and
+                len(self._antialiaseds) == 1 and len(self._urls) == 1 and
+                self.get_hatch() is None):
+            if len(trans):
+                combined_transform = transforms.Affine2D(trans[0]) + transform
+            else:
+                combined_transform = transform
+            extents = paths[0].get_extents(combined_transform)
+            if (extents.width < self.figure.bbox.width
+                    and extents.height < self.figure.bbox.height):
+                do_single_path_optimization = True
+
+        if self._joinstyle:
+            gc.set_joinstyle(self._joinstyle)
+
+        if self._capstyle:
+            gc.set_capstyle(self._capstyle)
+
+        if do_single_path_optimization:
+            gc.set_foreground(tuple(edgecolors[0]))
+            gc.set_linewidth(self._linewidths[0])
+            gc.set_dashes(*self._linestyles[0])
+            gc.set_antialiased(self._antialiaseds[0])
+            gc.set_url(self._urls[0])
+            renderer.draw_markers(
+                gc, paths[0], combined_transform.frozen(),
+                mpath.Path(offsets), offset_trf, tuple(facecolors[0]))
+        else:
+            renderer.draw_path_collection(
+                gc, transform.frozen(), paths,
+                self.get_transforms(), offsets, offset_trf,
+                self.get_facecolor(), self.get_edgecolor(),
+                self._linewidths, self._linestyles,
+                self._antialiaseds, self._urls,
+                "screen")  # offset_position, kept for backcompat.
+
+        gc.restore()
+        renderer.close_group(self.__class__.__name__)
+        self.stale = False
+
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/axis.py' lineno=297 funcname='draw' classname='Tick'
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO]     @martist.allow_rasterization
+    def draw(self, renderer):
+        if not self.get_visible():
+            self.stale = False
+            return
+        renderer.open_group(self.__name__, gid=self.get_gid())
+        for artist in [self.gridline, self.tick1line, self.tick2line,
+                       self.label1, self.label2]:
+            artist.draw(renderer)
+        renderer.close_group(self.__name__)
+        self.stale = False
+
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/mpl_toolkits/mplot3d/art3d.py' lineno=517 funcname='draw' classname='Path3DCollection'
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] LLM score: 85 / 100
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO]     def draw(self, renderer):
+        with cbook._setattr_cm(self, _in_draw=True):
+            super().draw(renderer)
+
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/collections.py' lineno=976 funcname='draw' classname='_CollectionWithSizes'
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO]     @artist.allow_rasterization
+    def draw(self, renderer):
+        self.set_sizes(self._sizes, self.figure.dpi)
+        super().draw(renderer)
+
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/artist.py' lineno=386 funcname='pchanged' classname='Artist'
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO]     def pchanged(self):
+        """
+        Call all of the registered callbacks.
+
+        This function is triggered internally when a property is changed.
+
+        See Also
+        --------
+        add_callback
+        remove_callback
+        """
+        self._callbacks.process("pchanged")
+
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 05:57:14,925 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/artist.py' lineno=288 funcname='stale' classname='Artist'
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO]     @stale.setter
+    def stale(self, val):
+        self._stale = val
+
+        # if the artist is animated it does not take normal part in the
+        # draw stack and is not expected to be drawn as part of the normal
+        # draw loop (when not saving) so do not propagate this change
+        if self.get_animated():
+            return
+
+        if val and self.stale_callback is not None:
+            self.stale_callback(self, val)
+
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/backends/backend_agg.py' lineno=294 funcname='clear' classname='RendererAgg'
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO]     def clear(self):
+        self._renderer.clear()
+
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/figure.py' lineno=193 funcname='_get_draw_artists' classname='FigureBase'
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO]     def _get_draw_artists(self, renderer):
+        """Also runs apply_aspect"""
+        artists = self.get_children()
+        for sfig in self.subfigs:
+            artists.remove(sfig)
+            childa = sfig.get_children()
+            for child in childa:
+                if child in artists:
+                    artists.remove(child)
+
+        artists.remove(self.patch)
+        artists = sorted(
+            (artist for artist in artists if not artist.get_animated()),
+            key=lambda artist: artist.get_zorder())
+        for ax in self._localaxes:
+            locator = ax.get_axes_locator()
+            if locator:
+                pos = locator(ax, renderer)
+                ax.apply_aspect(pos)
+            else:
+                ax.apply_aspect()
+
+            for child in ax.get_children():
+                if hasattr(child, 'apply_aspect'):
+                    locator = child.get_axes_locator()
+                    if locator:
+                        pos = locator(child, renderer)
+                        child.apply_aspect(pos)
+                    else:
+                        child.apply_aspect()
+        return artists
+
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/figure.py' lineno=2490 funcname='axes' classname='Figure'
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO]     @property
+    def axes(self):
+        """
+        List of Axes in the Figure. You can access and modify the Axes in the
+        Figure through this list.
+
+        Do not modify the list itself. Instead, use `~Figure.add_axes`,
+        `~.Figure.add_subplot` or `~.Figure.delaxes` to add or remove an Axes.
+
+        Note: The `.Figure.axes` property and `~.Figure.get_axes` method are
+        equivalent.
+        """
+        return self._axstack.as_list()
+
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/figure.py' lineno=2439 funcname='get_layout_engine' classname='Figure'
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO]     def get_layout_engine(self):
+        return self._layout_engine
+
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/patches.py' lineno=734 funcname='get_path' classname='Rectangle'
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO]     def get_path(self):
+        """Return the vertices of the rectangle."""
+        return Path.unit_rectangle()
+
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 05:57:14,926 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/patches.py' lineno=261 funcname='get_transform' classname='Patch'
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO]     def get_transform(self):
+        """Return the `~.transforms.Transform` applied to the `Patch`."""
+        return self.get_patch_transform() + artist.Artist.get_transform(self)
+
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/mpl_toolkits/mplot3d/axes3d.py' lineno=371 funcname='apply_aspect' classname='Axes3D'
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO]     def apply_aspect(self, position=None):
+        if position is None:
+            position = self.get_position(original=True)
+
+        # in the superclass, we would go through and actually deal with axis
+        # scales and box/datalim. Those are all irrelevant - all we need to do
+        # is make sure our coordinate system is square.
+        trans = self.get_figure().transSubfigure
+        bb = mtransforms.Bbox.unit().transformed(trans)
+        # this is the physical aspect of the panel (or figure):
+        fig_aspect = bb.height / bb.width
+
+        box_aspect = 1
+        pb = position.frozen()
+        pb1 = pb.shrunk_to_aspect(box_aspect, pb, fig_aspect)
+        self._set_position(pb1.anchored(self.get_anchor(), pb), 'active')
+
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/mpl_toolkits/mplot3d/axes3d.py' lineno=827 funcname='get_proj' classname='Axes3D'
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO]     def get_proj(self):
+        """Create the projection matrix from the current viewing position."""
+
+        # Transform to uniform world coordinates 0-1, 0-1, 0-1
+        box_aspect = self._roll_to_vertical(self._box_aspect)
+        worldM = proj3d.world_transformation(
+            *self.get_xlim3d(),
+            *self.get_ylim3d(),
+            *self.get_zlim3d(),
+            pb_aspect=box_aspect,
+        )
+
+        # Look into the middle of the new coordinates:
+        R = 0.5 * box_aspect
+
+        # elev stores the elevation angle in the z plane
+        # azim stores the azimuth angle in the x,y plane
+        # roll stores the roll angle about the view axis
+        elev_rad = np.deg2rad(art3d._norm_angle(self.elev))
+        azim_rad = np.deg2rad(art3d._norm_angle(self.azim))
+        roll_rad = np.deg2rad(art3d._norm_angle(self.roll))
+
+        # Coordinates for a point that rotates around the box of data.
+        # p0, p1 corresponds to rotating the box only around the
+        # vertical axis.
+        # p2 corresponds to rotating the box only around the horizontal
+        # axis.
+        p0 = np.cos(elev_rad) * np.cos(azim_rad)
+        p1 = np.cos(elev_rad) * np.sin(azim_rad)
+        p2 = np.sin(elev_rad)
+
+        # When changing vertical axis the coordinates changes as well.
+        # Roll the values to get the same behaviour as the default:
+        ps = self._roll_to_vertical([p0, p1, p2])
+
+        # The coordinates for the eye viewing point. The eye is looking
+        # towards the middle of the box of data from a distance:
+        eye = R + self._dist * ps
+
+        # TODO: Is this being used somewhere? Can it be removed?
+        self.eye = eye
+        self.vvec = R - eye
+        self.vvec = self.vvec / np.linalg.norm(self.vvec)
+
+        # Define which axis should be vertical. A negative value
+        # indicates the plot is upside down and therefore the values
+        # have been reversed:
+        V = np.zeros(3)
+        V[self._vertical_axis] = -1 if abs(elev_rad) > 0.5 * np.pi else 1
+
+        # Generate the view and projection transformation matrices
+        if self._focal_length == np.inf:
+            # Orthographic projection
+            viewM = proj3d.view_transformation(eye, R, V, roll_rad)
+            projM = proj3d.ortho_transformation(-self._dist, self._dist)
+        else:
+            # Perspective projection
+            # Scale the eye dist to compensate for the focal length zoom effect
+            eye_focal = R + self._dist * ps * self._focal_length
+            viewM = proj3d.view_transformation(eye_focal, R, V, roll_rad)
+            projM = proj3d.persp_transformation(-self._dist,
+                                                self._dist,
+                                                self._focal_length)
+
+        # Combine all the transformation matrices to get the final projection
+        M0 = np.dot(viewM, worldM)
+        M = np.dot(projM, M0)
+        return M
+
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/mpl_toolkits/mplot3d/axis3d.py' lineno=213 funcname='_get_coord_info' classname='Axis'
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO]     def _get_coord_info(self, renderer):
+        mins, maxs = np.array([
+            self.axes.get_xbound(),
+            self.axes.get_ybound(),
+            self.axes.get_zbound(),
+        ]).T
+
+        # Get the mean value for each bound:
+        centers = 0.5 * (maxs + mins)
+
+        # Add a small offset between min/max point and the edge of the
+        # plot:
+        deltas = (maxs - mins) / 12
+        mins -= 0.25 * deltas
+        maxs += 0.25 * deltas
+
+        # Project the bounds along the current position of the cube:
+        bounds = mins[0], maxs[0], mins[1], maxs[1], mins[2], maxs[2]
+        bounds_proj = self.axes.tunit_cube(bounds, self.axes.M)
+
+        # Determine which one of the parallel planes are higher up:
+        highs = np.zeros(3, dtype=bool)
+        for i in range(3):
+            mean_z0 = np.mean(bounds_proj[self._PLANES[2 * i], 2])
+            mean_z1 = np.mean(bounds_proj[self._PLANES[2 * i + 1], 2])
+            highs[i] = mean_z0 < mean_z1
+
+        return mins, maxs, centers, deltas, bounds_proj, highs
+
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] ['set_visible', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'draw', 'pchanged', 'stale', 'clear', '_get_draw_artists', 'axes', 'get_layout_engine', 'get_path', 'get_transform', 'apply_aspect', 'get_proj', '_get_coord_info']
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] [('set_visible', 15), ('draw', 2), ('draw', 15), ('draw', 2), ('draw', 5), ('draw', 85), ('draw', 72), ('draw', 25), ('draw', 2), ('draw', 2), ('draw', 5), ('draw', 10), ('draw', 85), ('draw', 5), ('pchanged', 2), ('stale', 2), ('clear', 5), ('_get_draw_artists', 10), ('axes', 5), ('get_layout_engine', 2), ('get_path', 2), ('get_transform', 2), ('apply_aspect', 10), ('get_proj', 5), ('_get_coord_info', 2)]
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 05:57:14,927 - Orcar.tracer_reranker - INFO] [('draw', 85), ('draw', 85), ('draw', 72), ('draw', 25), ('set_visible', 15), ('draw', 15), ('draw', 10), ('draw', 5), ('draw', 5), ('draw', 5), ('draw', 2), ('draw', 2), ('draw', 2), ('draw', 2), ('_get_draw_artists', 10), ('apply_aspect', 10), ('clear', 5), ('axes', 5), ('get_proj', 5), ('pchanged', 2), ('stale', 2), ('get_layout_engine', 2), ('get_path', 2), ('get_transform', 2), ('_get_coord_info', 2)]
+[2026-09-22 05:57:14,928 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 05:57:14,928 - Orcar.tracer_reranker - INFO] [('draw', 85), ('draw', 85), ('draw', 72)]

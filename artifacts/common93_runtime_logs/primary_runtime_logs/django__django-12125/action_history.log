@@ -1,0 +1,178 @@
+[2026-09-21 17:17:45,948 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+)
+[2026-09-21 17:18:07,972 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'})]
+[2026-09-21 17:18:17,243 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 17:18:25,166 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'})]
+[2026-09-21 17:18:35,998 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+)
+[2026-09-21 17:18:47,496 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 17:18:59,367 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 2
+)
+[2026-09-21 17:19:15,842 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}: 1
+)
+[2026-09-21 17:19:27,289 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}: 2
+)
+[2026-09-21 17:19:44,044 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'deconstruct', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+)
+[2026-09-21 17:19:59,433 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'deconstruct', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+)
+[2026-09-21 17:20:50,472 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'serializer.py', 'directory_path': 'django/db/migrations'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'TypeSerializer', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'TypeSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'EnumSerializer', 'method_name': 'serialize', 'file_path': 'django/db/migrations/serializer.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'serialize_deconstructed', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DeconstructableSerializer', 'method_name': '_serialize_path', 'file_path': 'django/db/migrations/serializer.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Field', 'method_name': 'deconstruct', 'file_path': 'django/db/models/fields/__init__.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'django/db/models/fields'}: 1
+)

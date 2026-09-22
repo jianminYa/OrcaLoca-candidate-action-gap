@@ -1,0 +1,19 @@
+[2026-09-22 09:26:32,739 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseLibSVM', 'method_name': '_sparse_fit', 'file_path': 'sklearn/svm/base.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}
+)
+[2026-09-22 09:26:46,504 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'base.py', 'directory_path': 'sklearn/svm'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}
+)
+[2026-09-22 09:27:15,188 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_sparse_fit'}
+)

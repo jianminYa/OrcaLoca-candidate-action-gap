@@ -1,0 +1,217 @@
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] Func 01/08
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/separable.py' lineno=66 funcname='separability_matrix' classname=''
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] def separability_matrix(transform):
+    """
+    Compute the correlation between outputs and inputs.
+
+    Parameters
+    ----------
+    transform : `~astropy.modeling.core.Model`
+        A (compound) model.
+
+    Returns
+    -------
+    separable_matrix : ndarray
+        A boolean correlation matrix of shape (n_outputs, n_inputs).
+        Indicates the dependence of outputs on inputs. For completely
+        independent outputs, the diagonal elements are True and
+        off-diagonal elements are False.
+
+    Examples
+    --------
+    >>> from astropy.modeling.models import Shift, Scale, Rotation2D, Polynomial2D
+    >>> separability_matrix(Shift(1) & Shift(2) | Scale(1) & Scale(2))
+        array([[ True, False], [False,  True]]...)
+    >>> separability_matrix(Shift(1) & Shift(2) | Rotation2D(2))
+        array([[ True,  True], [ True,  True]]...)
+    >>> separability_matrix(Shift(1) & Shift(2) | Mapping([0, 1, 0, 1]) | \
+        Polynomial2D(1) & Polynomial2D(2))
+        array([[ True,  True], [ True,  True]]...)
+    >>> separability_matrix(Shift(1) & Shift(2) | Mapping([0, 1, 0, 1]))
+        array([[ True, False], [False,  True], [ True, False], [False,  True]]...)
+
+    """
+    if transform.n_inputs == 1 and transform.n_outputs > 1:
+        return np.ones((transform.n_outputs, transform.n_inputs),
+                       dtype=np.bool_)
+    separable_matrix = _separable(transform)
+    separable_matrix = np.where(separable_matrix != 0, True, False)
+    return separable_matrix
+
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] Func 02/08
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/separable.py' lineno=290 funcname='_separable' classname=''
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] LLM score: 70 / 100
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] def _separable(transform):
+    """
+    Calculate the separability of outputs.
+
+    Parameters
+    ----------
+    transform : `astropy.modeling.Model`
+        A transform (usually a compound model).
+
+    Returns :
+    is_separable : ndarray of dtype np.bool
+        An array of shape (transform.n_outputs,) of boolean type
+        Each element represents the separablity of the corresponding output.
+    """
+    if (transform_matrix := transform._calculate_separability_matrix()) is not NotImplemented:
+        return transform_matrix
+    elif isinstance(transform, CompoundModel):
+        sepleft = _separable(transform.left)
+        sepright = _separable(transform.right)
+        return _operators[transform.op](sepleft, sepright)
+    elif isinstance(transform, Model):
+        return _coord_matrix(transform, 'left', transform.n_outputs)
+
+[2026-09-21 12:24:25,642 - Orcar.tracer_reranker - INFO] Func 03/08
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/separable.py' lineno=219 funcname='_cstack' classname=''
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] def _cstack(left, right):
+    """
+    Function corresponding to '&' operation.
+
+    Parameters
+    ----------
+    left, right : `astropy.modeling.Model` or ndarray
+        If input is of an array, it is the output of `coord_matrix`.
+
+    Returns
+    -------
+    result : ndarray
+        Result from this operation.
+
+    """
+    noutp = _compute_n_outputs(left, right)
+
+    if isinstance(left, Model):
+        cleft = _coord_matrix(left, 'left', noutp)
+    else:
+        cleft = np.zeros((noutp, left.shape[1]))
+        cleft[: left.shape[0], : left.shape[1]] = left
+    if isinstance(right, Model):
+        cright = _coord_matrix(right, 'right', noutp)
+    else:
+        cright = np.zeros((noutp, right.shape[1]))
+        cright[-right.shape[0]:, -right.shape[1]:] = 1
+
+    return np.hstack([cleft, cright])
+
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] Func 04/08
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/separable.py' lineno=171 funcname='_coord_matrix' classname=''
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] def _coord_matrix(model, pos, noutp):
+    """
+    Create an array representing inputs and outputs of a simple model.
+
+    The array has a shape (noutp, model.n_inputs).
+
+    Parameters
+    ----------
+    model : `astropy.modeling.Model`
+        model
+    pos : str
+        Position of this model in the expression tree.
+        One of ['left', 'right'].
+    noutp : int
+        Number of outputs of the compound model of which the input model
+        is a left or right child.
+
+    """
+    if isinstance(model, Mapping):
+        axes = []
+        for i in model.mapping:
+            axis = np.zeros((model.n_inputs,))
+            axis[i] = 1
+            axes.append(axis)
+        m = np.vstack(axes)
+        mat = np.zeros((noutp, model.n_inputs))
+        if pos == 'left':
+            mat[: model.n_outputs, :model.n_inputs] = m
+        else:
+            mat[-model.n_outputs:, -model.n_inputs:] = m
+        return mat
+    if not model.separable:
+        # this does not work for more than 2 coordinates
+        mat = np.zeros((noutp, model.n_inputs))
+        if pos == 'left':
+            mat[:model.n_outputs, : model.n_inputs] = 1
+        else:
+            mat[-model.n_outputs:, -model.n_inputs:] = 1
+    else:
+        mat = np.zeros((noutp, model.n_inputs))
+
+        for i in range(model.n_inputs):
+            mat[i, i] = 1
+        if pos == 'right':
+            mat = np.roll(mat, (noutp - model.n_outputs))
+    return mat
+
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] Func 05/08
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/separable.py' lineno=105 funcname='_compute_n_outputs' classname=''
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] def _compute_n_outputs(left, right):
+    """
+    Compute the number of outputs of two models.
+
+    The two models are the left and right model to an operation in
+    the expression tree of a compound model.
+
+    Parameters
+    ----------
+    left, right : `astropy.modeling.Model` or ndarray
+        If input is of an array, it is the output of `coord_matrix`.
+
+    """
+    if isinstance(left, Model):
+        lnout = left.n_outputs
+    else:
+        lnout = left.shape[0]
+    if isinstance(right, Model):
+        rnout = right.n_outputs
+    else:
+        rnout = right.shape[0]
+    noutp = lnout + rnout
+    return noutp
+
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] Func 06/08
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/core.py' lineno=3371 funcname='n_inputs' classname='CompoundModel'
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO]     @property
+    def n_inputs(self):
+        """ The number of inputs of a model."""
+        return self._n_inputs
+
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] Func 07/08
+[2026-09-21 12:24:25,643 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/core.py' lineno=808 funcname='_calculate_separability_matrix' classname='Model'
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO]     def _calculate_separability_matrix(self):
+        """
+        This is a hook which customises the behavior of modeling.separable.
+
+        This allows complex subclasses to customise the separability matrix.
+        If it returns `NotImplemented` the default behavior is used.
+        """
+        return NotImplemented
+
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] Func 08/08
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/astropy__astropy/astropy/modeling/core.py' lineno=1531 funcname='separable' classname='Model'
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO]     @property
+    def separable(self):
+        """ A flag indicating whether a model is separable."""
+
+        if self._separable is not None:
+            return self._separable
+        raise NotImplementedError(
+            'The "separable" property is not defined for '
+            'model {}'.format(self.__class__.__name__))
+
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] ['separability_matrix', '_separable', '_cstack', '_coord_matrix', '_compute_n_outputs', 'n_inputs', '_calculate_separability_matrix', 'separable']
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] [('separability_matrix', 10), ('_separable', 70), ('_cstack', 95), ('_coord_matrix', 50), ('_compute_n_outputs', 10), ('n_inputs', 2), ('_calculate_separability_matrix', 5), ('separable', 10)]
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] [('_cstack', 95), ('_separable', 70), ('separability_matrix', 10), ('_coord_matrix', 50), ('_compute_n_outputs', 10), ('n_inputs', 2), ('_calculate_separability_matrix', 5), ('separable', 10)]
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-21 12:24:25,644 - Orcar.tracer_reranker - INFO] [('_cstack', 95), ('_separable', 70)]

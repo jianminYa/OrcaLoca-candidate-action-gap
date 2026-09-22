@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe AlterField.reduce() method in django/db/migrations/operations/fields.py clearly shows the bug. It handles RemoveField and RenameField cases but is missing a handler for when the incoming operation is also an AlterField on the same field. This means consecutive AlterField operations on the same field are never reduced/collapsed. The fix is to add a condition: if isinstance(operation, AlterField) and self.is_same_field_operation(operation): return [operation]. I have enough context to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/migrations/operations/fields.py",
+            "class_name": "AlterField",
+            "method_name": "reduce"
+        }
+    ]
+}

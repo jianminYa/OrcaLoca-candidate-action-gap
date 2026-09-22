@@ -1,0 +1,70 @@
+[2026-09-22 08:08:46,622 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+)
+[2026-09-22 08:09:15,842 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_setup', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_call', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'evaluate_xfail_marks', 'file_path': 'src/_pytest/skipping.py'}: 1
+)
+[2026-09-22 08:09:30,793 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_setup', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_call', 'file_path': 'src/_pytest/skipping.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'evaluate_xfail_marks', 'file_path': 'src/_pytest/skipping.py'}: 2
+)
+[2026-09-22 08:10:18,094 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_setup', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_call', 'file_path': 'src/_pytest/skipping.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'evaluate_xfail_marks', 'file_path': 'src/_pytest/skipping.py'}: 3
+)
+[2026-09-22 08:11:06,284 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_setup', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_call', 'file_path': 'src/_pytest/skipping.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'evaluate_xfail_marks', 'file_path': 'src/_pytest/skipping.py'}: 4
+)
+[2026-09-22 08:13:26,576 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'skipping.py', 'directory_path': 'src/_pytest'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_setup', 'file_path': 'src/_pytest/skipping.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_call', 'file_path': 'src/_pytest/skipping.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'pytest_runtest_makereport', 'file_path': 'src/_pytest/skipping.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'evaluate_xfail_marks', 'file_path': 'src/_pytest/skipping.py'}: 4
+)

@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nBoth ASCIIUsernameValidator and UnicodeUsernameValidator in django/contrib/auth/validators.py have been found. Both use the regex r'^[\\w.@+-]+$' which allows trailing newlines due to Python's $ behavior. The bug is in the `regex` class attribute of both classes - it should use \\A and \\Z instead of ^ and $ to prevent matching trailing newlines. The context is complete and no further searching is needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/contrib/auth/validators.py",
+            "class_name": "ASCIIUsernameValidator",
+            "method_name": ""
+        },
+        {
+            "file_path": "django/contrib/auth/validators.py",
+            "class_name": "UnicodeUsernameValidator",
+            "method_name": ""
+        }
+    ]
+}

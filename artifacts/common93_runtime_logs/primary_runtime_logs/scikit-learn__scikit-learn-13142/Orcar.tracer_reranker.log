@@ -1,0 +1,914 @@
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=194 funcname='fit_predict' classname='BaseMixture'
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO]     def fit_predict(self, X, y=None):
+        """Estimate model parameters using X and predict the labels for X.
+
+        The method fits the model n_init times and sets the parameters with
+        which the model has the largest likelihood or lower bound. Within each
+        trial, the method iterates between E-step and M-step for `max_iter`
+        times until the change of likelihood or lower bound is less than
+        `tol`, otherwise, a `ConvergenceWarning` is raised. After fitting, it
+        predicts the most probable label for the input data points.
+
+        .. versionadded:: 0.20
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            List of n_features-dimensional data points. Each row
+            corresponds to a single data point.
+
+        Returns
+        -------
+        labels : array, shape (n_samples,)
+            Component labels.
+        """
+        X = _check_X(X, self.n_components, ensure_min_samples=2)
+        self._check_initial_parameters(X)
+
+        # if we enable warm_start, we will have a unique initialisation
+        do_init = not(self.warm_start and hasattr(self, 'converged_'))
+        n_init = self.n_init if do_init else 1
+
+        max_lower_bound = -np.infty
+        self.converged_ = False
+
+        random_state = check_random_state(self.random_state)
+
+        n_samples, _ = X.shape
+        for init in range(n_init):
+            self._print_verbose_msg_init_beg(init)
+
+            if do_init:
+                self._initialize_parameters(X, random_state)
+
+            lower_bound = (-np.infty if do_init else self.lower_bound_)
+
+            for n_iter in range(1, self.max_iter + 1):
+                prev_lower_bound = lower_bound
+
+                log_prob_norm, log_resp = self._e_step(X)
+                self._m_step(X, log_resp)
+                lower_bound = self._compute_lower_bound(
+                    log_resp, log_prob_norm)
+
+                change = lower_bound - prev_lower_bound
+                self._print_verbose_msg_iter_end(n_iter, change)
+
+                if abs(change) < self.tol:
+                    self.converged_ = True
+                    break
+
+            self._print_verbose_msg_init_end(lower_bound)
+
+            if lower_bound > max_lower_bound:
+                max_lower_bound = lower_bound
+                best_params = self._get_parameters()
+                best_n_iter = n_iter
+
+        # Always do a final e-step to guarantee that the labels returned by
+        # fit_predict(X) are always consistent with fit(X).predict(X)
+        # for any value of max_iter and tol (and any random_state).
+        _, log_resp = self._e_step(X)
+
+        if not self.converged_:
+            warnings.warn('Initialization %d did not converge. '
+                          'Try different init parameters, '
+                          'or increase max_iter, tol '
+                          'or check for degenerate data.'
+                          % (init + 1), ConvergenceWarning)
+
+        self._set_parameters(best_params)
+        self.n_iter_ = best_n_iter
+        self.lower_bound_ = max_lower_bound
+
+        return log_resp.argmax(axis=1)
+
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=358 funcname='predict' classname='BaseMixture'
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO]     def predict(self, X):
+        """Predict the labels for the data samples in X using trained model.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+            List of n_features-dimensional data points. Each row
+            corresponds to a single data point.
+
+        Returns
+        -------
+        labels : array, shape (n_samples,)
+            Component labels.
+        """
+        self._check_is_fitted()
+        X = _check_X(X, None, self.means_.shape[1])
+        return self._estimate_weighted_log_prob(X).argmax(axis=1)
+
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=38 funcname='_check_X' classname=''
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] def _check_X(X, n_components=None, n_features=None, ensure_min_samples=1):
+    """Check the input data X.
+
+    Parameters
+    ----------
+    X : array-like, shape (n_samples, n_features)
+
+    n_components : int
+
+    Returns
+    -------
+    X : array, shape (n_samples, n_features)
+    """
+    X = check_array(X, dtype=[np.float64, np.float32],
+                    ensure_min_samples=ensure_min_samples)
+    if n_components is not None and X.shape[0] < n_components:
+        raise ValueError('Expected n_samples >= n_components '
+                         'but got n_components = %d, n_samples = %d'
+                         % (n_components, X.shape[0]))
+    if n_features is not None and X.shape[1] != n_features:
+        raise ValueError("Expected the input data X have %d features, "
+                         "but got %d features"
+                         % (n_features, X.shape[1]))
+    return X
+
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=85 funcname='_check_initial_parameters' classname='BaseMixture'
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO]     def _check_initial_parameters(self, X):
+        """Check values of the basic parameters.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+        """
+        if self.n_components < 1:
+            raise ValueError("Invalid value for 'n_components': %d "
+                             "Estimation requires at least one component"
+                             % self.n_components)
+
+        if self.tol < 0.:
+            raise ValueError("Invalid value for 'tol': %.5f "
+                             "Tolerance used by the EM must be non-negative"
+                             % self.tol)
+
+        if self.n_init < 1:
+            raise ValueError("Invalid value for 'n_init': %d "
+                             "Estimation requires at least one run"
+                             % self.n_init)
+
+        if self.max_iter < 1:
+            raise ValueError("Invalid value for 'max_iter': %d "
+                             "Estimation requires at least one iteration"
+                             % self.max_iter)
+
+        if self.reg_covar < 0.:
+            raise ValueError("Invalid value for 'reg_covar': %.5f "
+                             "regularization on covariance must be "
+                             "non-negative"
+                             % self.reg_covar)
+
+        # Check all the parameters values of the derived class
+        self._check_parameters(X)
+
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=510 funcname='_print_verbose_msg_init_beg' classname='BaseMixture'
+[2026-09-22 08:49:40,939 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _print_verbose_msg_init_beg(self, n_init):
+        """Print verbose message on initialization."""
+        if self.verbose == 1:
+            print("Initialization %d" % n_init)
+        elif self.verbose >= 2:
+            print("Initialization %d" % n_init)
+            self._init_prev_time = time()
+            self._iter_prev_time = self._init_prev_time
+
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=131 funcname='_initialize_parameters' classname='BaseMixture'
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _initialize_parameters(self, X, random_state):
+        """Initialize the model parameters.
+
+        Parameters
+        ----------
+        X : array-like, shape  (n_samples, n_features)
+
+        random_state : RandomState
+            A random number generator instance.
+        """
+        n_samples, _ = X.shape
+
+        if self.init_params == 'kmeans':
+            resp = np.zeros((n_samples, self.n_components))
+            label = cluster.KMeans(n_clusters=self.n_components, n_init=1,
+                                   random_state=random_state).fit(X).labels_
+            resp[np.arange(n_samples), label] = 1
+        elif self.init_params == 'random':
+            resp = random_state.rand(n_samples, self.n_components)
+            resp /= resp.sum(axis=1)[:, np.newaxis]
+        else:
+            raise ValueError("Unimplemented initialization method '%s'"
+                             % self.init_params)
+
+        self._initialize(X, resp)
+
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=278 funcname='_e_step' classname='BaseMixture'
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _e_step(self, X):
+        """E step.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+
+        Returns
+        -------
+        log_prob_norm : float
+            Mean of the logarithms of the probabilities of each sample in X
+
+        log_responsibility : array, shape (n_samples, n_components)
+            Logarithm of the posterior probabilities (or responsibilities) of
+            the point of each sample in X.
+        """
+        log_prob_norm, log_resp = self._estimate_log_prob_resp(X)
+        return np.mean(log_prob_norm), log_resp
+
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=519 funcname='_print_verbose_msg_iter_end' classname='BaseMixture'
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _print_verbose_msg_iter_end(self, n_iter, diff_ll):
+        """Print verbose message on initialization."""
+        if n_iter % self.verbose_interval == 0:
+            if self.verbose == 1:
+                print("  Iteration %d" % n_iter)
+            elif self.verbose >= 2:
+                cur_time = time()
+                print("  Iteration %d\t time lapse %.5fs\t ll change %.5f" % (
+                    n_iter, cur_time - self._iter_prev_time, diff_ll))
+                self._iter_prev_time = cur_time
+
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=530 funcname='_print_verbose_msg_init_end' classname='BaseMixture'
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _print_verbose_msg_init_end(self, ll):
+        """Print verbose message on the end of iteration."""
+        if self.verbose == 1:
+            print("Initialization converged: %s" % self.converged_)
+        elif self.verbose >= 2:
+            print("Initialization converged: %s\t time lapse %.5fs\t ll %.5f" %
+                  (self.converged_, time() - self._init_prev_time, ll))
+
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=445 funcname='_estimate_weighted_log_prob' classname='BaseMixture'
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _estimate_weighted_log_prob(self, X):
+        """Estimate the weighted log-probabilities, log P(X | Z) + log weights.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+
+        Returns
+        -------
+        weighted_log_prob : array, shape (n_samples, n_component)
+        """
+        return self._estimate_log_prob(X) + self._estimate_log_weights()
+
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/base.py' lineno=484 funcname='_estimate_log_prob_resp' classname='BaseMixture'
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,940 - Orcar.tracer_reranker - INFO]     def _estimate_log_prob_resp(self, X):
+        """Estimate log probabilities and responsibilities for each sample.
+
+        Compute the log probabilities, weighted log probabilities per
+        component and responsibilities for each sample in X with respect to
+        the current state of the model.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+
+        Returns
+        -------
+        log_prob_norm : array, shape (n_samples,)
+            log p(X)
+
+        log_responsibilities : array, shape (n_samples, n_components)
+            logarithm of the responsibilities
+        """
+        weighted_log_prob = self._estimate_weighted_log_prob(X)
+        log_prob_norm = logsumexp(weighted_log_prob, axis=1)
+        with np.errstate(under='ignore'):
+            # ignore underflow
+            log_resp = weighted_log_prob - log_prob_norm[:, np.newaxis]
+        return log_prob_norm, log_resp
+
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/validation.py' lineno=760 funcname='check_random_state' classname=''
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] def check_random_state(seed):
+    """Turn seed into a np.random.RandomState instance
+
+    Parameters
+    ----------
+    seed : None | int | instance of RandomState
+        If seed is None, return the RandomState singleton used by np.random.
+        If seed is an int, return a new RandomState instance seeded with seed.
+        If seed is already a RandomState instance, return it.
+        Otherwise raise ValueError.
+    """
+    if seed is None or seed is np.random:
+        return np.random.mtrand._rand
+    if isinstance(seed, (numbers.Integral, np.integer)):
+        return np.random.RandomState(seed)
+    if isinstance(seed, np.random.RandomState):
+        return seed
+    raise ValueError('%r cannot be used to seed a numpy.random.RandomState'
+                     ' instance' % seed)
+
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=660 funcname='_m_step' classname='GaussianMixture'
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO]     def _m_step(self, X, log_resp):
+        """M step.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+
+        log_resp : array-like, shape (n_samples, n_components)
+            Logarithm of the posterior probabilities (or responsibilities) of
+            the point of each sample in X.
+        """
+        n_samples, _ = X.shape
+        self.weights_, self.means_, self.covariances_ = (
+            _estimate_gaussian_parameters(X, np.exp(log_resp), self.reg_covar,
+                                          self.covariance_type))
+        self.weights_ /= n_samples
+        self.precisions_cholesky_ = _compute_precision_cholesky(
+            self.covariances_, self.covariance_type)
+
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=686 funcname='_compute_lower_bound' classname='GaussianMixture'
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO]     def _compute_lower_bound(self, _, log_prob_norm):
+        return log_prob_norm
+
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=692 funcname='_get_parameters' classname='GaussianMixture'
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO]     def _get_parameters(self):
+        return (self.weights_, self.means_, self.covariances_,
+                self.precisions_cholesky_)
+
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=696 funcname='_set_parameters' classname='GaussianMixture'
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO]     def _set_parameters(self, params):
+        (self.weights_, self.means_, self.covariances_,
+         self.precisions_cholesky_) = params
+
+        # Attributes computation
+        _, n_features = self.means_.shape
+
+        if self.covariance_type == 'full':
+            self.precisions_ = np.empty(self.precisions_cholesky_.shape)
+            for k, prec_chol in enumerate(self.precisions_cholesky_):
+                self.precisions_[k] = np.dot(prec_chol, prec_chol.T)
+
+        elif self.covariance_type == 'tied':
+            self.precisions_ = np.dot(self.precisions_cholesky_,
+                                      self.precisions_cholesky_.T)
+        else:
+            self.precisions_ = self.precisions_cholesky_ ** 2
+
+[2026-09-22 08:49:40,941 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=689 funcname='_check_is_fitted' classname='GaussianMixture'
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO]     def _check_is_fitted(self):
+        check_is_fitted(self, ['weights_', 'means_', 'precisions_cholesky_'])
+
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/validation.py' lineno=327 funcname='check_array' classname=''
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] def check_array(array, accept_sparse=False, accept_large_sparse=True,
+                dtype="numeric", order=None, copy=False, force_all_finite=True,
+                ensure_2d=True, allow_nd=False, ensure_min_samples=1,
+                ensure_min_features=1, warn_on_dtype=False, estimator=None):
+
+    """Input validation on an array, list, sparse matrix or similar.
+
+    By default, the input is checked to be a non-empty 2D array containing
+    only finite values. If the dtype of the array is object, attempt
+    converting to float, raising on failure.
+
+    Parameters
+    ----------
+    array : object
+        Input object to check / convert.
+
+    accept_sparse : string, boolean or list/tuple of strings (default=False)
+        String[s] representing allowed sparse matrix formats, such as 'csc',
+        'csr', etc. If the input is sparse but not in the allowed format,
+        it will be converted to the first listed format. True allows the input
+        to be any format. False means that a sparse matrix input will
+        raise an error.
+
+        .. deprecated:: 0.19
+           Passing 'None' to parameter ``accept_sparse`` in methods is
+           deprecated in version 0.19 "and will be removed in 0.21. Use
+           ``accept_sparse=False`` instead.
+
+    accept_large_sparse : bool (default=True)
+        If a CSR, CSC, COO or BSR sparse matrix is supplied and accepted by
+        accept_sparse, accept_large_sparse=False will cause it to be accepted
+        only if its indices are stored with a 32-bit dtype.
+
+        .. versionadded:: 0.20
+
+    dtype : string, type, list of types or None (default="numeric")
+        Data type of result. If None, the dtype of the input is preserved.
+        If "numeric", dtype is preserved unless array.dtype is object.
+        If dtype is a list of types, conversion on the first type is only
+        performed if the dtype of the input is not in the list.
+
+    order : 'F', 'C' or None (default=None)
+        Whether an array will be forced to be fortran or c-style.
+        When order is None (default), then if copy=False, nothing is ensured
+        about the memory layout of the output array; otherwise (copy=True)
+        the memory layout of the returned array is kept as close as possible
+        to the original array.
+
+    copy : boolean (default=False)
+        Whether a forced copy will be triggered. If copy=False, a copy might
+        be triggered by a conversion.
+
+    force_all_finite : boolean or 'allow-nan', (default=True)
+        Whether to raise an error on np.inf and np.nan in array. The
+        possibilities are:
+
+        - True: Force all values of array to be finite.
+        - False: accept both np.inf and np.nan in array.
+        - 'allow-nan': accept only np.nan values in array. Values cannot
+          be infinite.
+
+        .. versionadded:: 0.20
+           ``force_all_finite`` accepts the string ``'allow-nan'``.
+
+    ensure_2d : boolean (default=True)
+        Whether to raise a value error if array is not 2D.
+
+    allow_nd : boolean (default=False)
+        Whether to allow array.ndim > 2.
+
+    ensure_min_samples : int (default=1)
+        Make sure that the array has a minimum number of samples in its first
+        axis (rows for a 2D array). Setting to 0 disables this check.
+
+    ensure_min_features : int (default=1)
+        Make sure that the 2D array has some minimum number of features
+        (columns). The default value of 1 rejects empty datasets.
+        This check is only enforced when the input data has effectively 2
+        dimensions or is originally 1D and ``ensure_2d`` is True. Setting to 0
+        disables this check.
+
+    warn_on_dtype : boolean (default=False)
+        Raise DataConversionWarning if the dtype of the input data structure
+        does not match the requested dtype, causing a memory copy.
+
+    estimator : str or estimator instance (default=None)
+        If passed, include the name of the estimator in warning messages.
+
+    Returns
+    -------
+    array_converted : object
+        The converted and validated array.
+
+    """
+    # accept_sparse 'None' deprecation check
+    if accept_sparse is None:
+        warnings.warn(
+            "Passing 'None' to parameter 'accept_sparse' in methods "
+            "check_array and check_X_y is deprecated in version 0.19 "
+            "and will be removed in 0.21. Use 'accept_sparse=False' "
+            " instead.", DeprecationWarning)
+        accept_sparse = False
+
+    # store reference to original array to check if copy is needed when
+    # function returns
+    array_orig = array
+
+    # store whether originally we wanted numeric dtype
+    dtype_numeric = isinstance(dtype, str) and dtype == "numeric"
+
+    dtype_orig = getattr(array, "dtype", None)
+    if not hasattr(dtype_orig, 'kind'):
+        # not a data type (e.g. a column named dtype in a pandas DataFrame)
+        dtype_orig = None
+
+    # check if the object contains several dtypes (typically a pandas
+    # DataFrame), and store them. If not, store None.
+    dtypes_orig = None
+    if hasattr(array, "dtypes") and hasattr(array.dtypes, '__array__'):
+        dtypes_orig = np.array(array.dtypes)
+
+    if dtype_numeric:
+        if dtype_orig is not None and dtype_orig.kind == "O":
+            # if input is object, convert to float.
+            dtype = np.float64
+        else:
+            dtype = None
+
+    if isinstance(dtype, (list, tuple)):
+        if dtype_orig is not None and dtype_orig in dtype:
+            # no dtype conversion required
+            dtype = None
+        else:
+            # dtype conversion required. Let's select the first element of the
+            # list of accepted types.
+            dtype = dtype[0]
+
+    if force_all_finite not in (True, False, 'allow-nan'):
+        raise ValueError('force_all_finite should be a bool or "allow-nan"'
+                         '. Got {!r} instead'.format(force_all_finite))
+
+    if estimator is not None:
+        if isinstance(estimator, str):
+            estimator_name = estimator
+        else:
+            estimator_name = estimator.__class__.__name__
+    else:
+        estimator_name = "Estimator"
+    context = " by %s" % estimator_name if estimator is not None else ""
+
+    if sp.issparse(array):
+        _ensure_no_complex_data(array)
+        array = _ensure_sparse_format(array, accept_sparse=accept_sparse,
+                                      dtype=dtype, copy=copy,
+                                      force_all_finite=force_all_finite,
+                                      accept_large_sparse=accept_large_sparse)
+    else:
+        # If np.array(..) gives ComplexWarning, then we convert the warning
+        # to an error. This is needed because specifying a non complex
+        # dtype to the function converts complex to real dtype,
+        # thereby passing the test made in the lines following the scope
+        # of warnings context manager.
+        with warnings.catch_warnings():
+            try:
+                warnings.simplefilter('error', ComplexWarning)
+                array = np.asarray(array, dtype=dtype, order=order)
+            except ComplexWarning:
+                raise ValueError("Complex data not supported\n"
+                                 "{}\n".format(array))
+
+        # It is possible that the np.array(..) gave no warning. This happens
+        # when no dtype conversion happened, for example dtype = None. The
+        # result is that np.array(..) produces an array of complex dtype
+        # and we need to catch and raise exception for such cases.
+        _ensure_no_complex_data(array)
+
+        if ensure_2d:
+            # If input is scalar raise error
+            if array.ndim == 0:
+                raise ValueError(
+                    "Expected 2D array, got scalar array instead:\narray={}.\n"
+                    "Reshape your data either using array.reshape(-1, 1) if "
+                    "your data has a single feature or array.reshape(1, -1) "
+                    "if it contains a single sample.".format(array))
+            # If input is 1D raise error
+            if array.ndim == 1:
+                raise ValueError(
+                    "Expected 2D array, got 1D array instead:\narray={}.\n"
+                    "Reshape your data either using array.reshape(-1, 1) if "
+                    "your data has a single feature or array.reshape(1, -1) "
+                    "if it contains a single sample.".format(array))
+
+        # in the future np.flexible dtypes will be handled like object dtypes
+        if dtype_numeric and np.issubdtype(array.dtype, np.flexible):
+            warnings.warn(
+                "Beginning in version 0.22, arrays of bytes/strings will be "
+                "converted to decimal numbers if dtype='numeric'. "
+                "It is recommended that you convert the array to "
+                "a float dtype before using it in scikit-learn, "
+                "for example by using "
+                "your_array = your_array.astype(np.float64).",
+                FutureWarning)
+
+        # make sure we actually converted to numeric:
+        if dtype_numeric and array.dtype.kind == "O":
+            array = array.astype(np.float64)
+        if not allow_nd and array.ndim >= 3:
+            raise ValueError("Found array with dim %d. %s expected <= 2."
+                             % (array.ndim, estimator_name))
+        if force_all_finite:
+            _assert_all_finite(array,
+                               allow_nan=force_all_finite == 'allow-nan')
+
+    if ensure_min_samples > 0:
+        n_samples = _num_samples(array)
+        if n_samples < ensure_min_samples:
+            raise ValueError("Found array with %d sample(s) (shape=%s) while a"
+                             " minimum of %d is required%s."
+                             % (n_samples, array.shape, ensure_min_samples,
+                                context))
+
+    if ensure_min_features > 0 and array.ndim == 2:
+        n_features = array.shape[1]
+        if n_features < ensure_min_features:
+            raise ValueError("Found array with %d feature(s) (shape=%s) while"
+                             " a minimum of %d is required%s."
+                             % (n_features, array.shape, ensure_min_features,
+                                context))
+
+    if warn_on_dtype and dtype_orig is not None and array.dtype != dtype_orig:
+        msg = ("Data with input dtype %s was converted to %s%s."
+               % (dtype_orig, array.dtype, context))
+        warnings.warn(msg, DataConversionWarning)
+
+    if copy and np.may_share_memory(array, array_orig):
+        array = np.array(array, dtype=dtype, order=order)
+
+    if (warn_on_dtype and dtypes_orig is not None and
+            {array.dtype} != set(dtypes_orig)):
+        # if there was at the beginning some other types than the final one
+        # (for instance in a DataFrame that can contain several dtypes) then
+        # some data must have been converted
+        msg = ("Data with input dtype %s were all converted to %s%s."
+               % (', '.join(map(str, sorted(set(dtypes_orig)))), array.dtype,
+                  context))
+        warnings.warn(msg, DataConversionWarning, stacklevel=3)
+
+    return array
+
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=604 funcname='_check_parameters' classname='GaussianMixture'
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO]     def _check_parameters(self, X):
+        """Check the Gaussian mixture parameters are well defined."""
+        _, n_features = X.shape
+        if self.covariance_type not in ['spherical', 'tied', 'diag', 'full']:
+            raise ValueError("Invalid value for 'covariance_type': %s "
+                             "'covariance_type' should be in "
+                             "['spherical', 'tied', 'diag', 'full']"
+                             % self.covariance_type)
+
+        if self.weights_init is not None:
+            self.weights_init = _check_weights(self.weights_init,
+                                               self.n_components)
+
+        if self.means_init is not None:
+            self.means_init = _check_means(self.means_init,
+                                           self.n_components, n_features)
+
+        if self.precisions_init is not None:
+            self.precisions_init = _check_precisions(self.precisions_init,
+                                                     self.covariance_type,
+                                                     self.n_components,
+                                                     n_features)
+
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/cluster/k_means_.py' lineno=913 funcname='__init__' classname='KMeans'
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO]     def __init__(self, n_clusters=8, init='k-means++', n_init=10,
+                 max_iter=300, tol=1e-4, precompute_distances='auto',
+                 verbose=0, random_state=None, copy_x=True,
+                 n_jobs=None, algorithm='auto'):
+
+        self.n_clusters = n_clusters
+        self.init = init
+        self.max_iter = max_iter
+        self.tol = tol
+        self.precompute_distances = precompute_distances
+        self.n_init = n_init
+        self.verbose = verbose
+        self.random_state = random_state
+        self.copy_x = copy_x
+        self.n_jobs = n_jobs
+        self.algorithm = algorithm
+
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/cluster/k_means_.py' lineno=941 funcname='fit' classname='KMeans'
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO]     def fit(self, X, y=None, sample_weight=None):
+        """Compute k-means clustering.
+
+        Parameters
+        ----------
+        X : array-like or sparse matrix, shape=(n_samples, n_features)
+            Training instances to cluster. It must be noted that the data
+            will be converted to C ordering, which will cause a memory
+            copy if the given data is not C-contiguous.
+
+        y : Ignored
+            not used, present here for API consistency by convention.
+
+        sample_weight : array-like, shape (n_samples,), optional
+            The weights for each observation in X. If None, all observations
+            are assigned equal weight (default: None)
+
+        """
+        random_state = check_random_state(self.random_state)
+
+        self.cluster_centers_, self.labels_, self.inertia_, self.n_iter_ = \
+            k_means(
+                X, n_clusters=self.n_clusters, sample_weight=sample_weight,
+                init=self.init, n_init=self.n_init,
+                max_iter=self.max_iter, verbose=self.verbose,
+                precompute_distances=self.precompute_distances,
+                tol=self.tol, random_state=random_state, copy_x=self.copy_x,
+                n_jobs=self.n_jobs, algorithm=self.algorithm,
+                return_n_iter=True)
+        return self
+
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=627 funcname='_initialize' classname='GaussianMixture'
+[2026-09-22 08:49:40,942 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO]     def _initialize(self, X, resp):
+        """Initialization of the Gaussian mixture parameters.
+
+        Parameters
+        ----------
+        X : array-like, shape (n_samples, n_features)
+
+        resp : array-like, shape (n_samples, n_components)
+        """
+        n_samples, _ = X.shape
+
+        weights, means, covariances = _estimate_gaussian_parameters(
+            X, resp, self.reg_covar, self.covariance_type)
+        weights /= n_samples
+
+        self.weights_ = (weights if self.weights_init is None
+                         else self.weights_init)
+        self.means_ = means if self.means_init is None else self.means_init
+
+        if self.precisions_init is None:
+            self.covariances_ = covariances
+            self.precisions_cholesky_ = _compute_precision_cholesky(
+                covariances, self.covariance_type)
+        elif self.covariance_type == 'full':
+            self.precisions_cholesky_ = np.array(
+                [linalg.cholesky(prec_init, lower=True)
+                 for prec_init in self.precisions_init])
+        elif self.covariance_type == 'tied':
+            self.precisions_cholesky_ = linalg.cholesky(self.precisions_init,
+                                                        lower=True)
+        else:
+            self.precisions_cholesky_ = self.precisions_init
+
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=249 funcname='_estimate_gaussian_parameters' classname=''
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] def _estimate_gaussian_parameters(X, resp, reg_covar, covariance_type):
+    """Estimate the Gaussian distribution parameters.
+
+    Parameters
+    ----------
+    X : array-like, shape (n_samples, n_features)
+        The input data array.
+
+    resp : array-like, shape (n_samples, n_components)
+        The responsibilities for each data sample in X.
+
+    reg_covar : float
+        The regularization added to the diagonal of the covariance matrices.
+
+    covariance_type : {'full', 'tied', 'diag', 'spherical'}
+        The type of precision matrices.
+
+    Returns
+    -------
+    nk : array-like, shape (n_components,)
+        The numbers of data samples in the current components.
+
+    means : array-like, shape (n_components, n_features)
+        The centers of the current components.
+
+    covariances : array-like
+        The covariance matrix of the current components.
+        The shape depends of the covariance_type.
+    """
+    nk = resp.sum(axis=0) + 10 * np.finfo(resp.dtype).eps
+    means = np.dot(resp.T, X) / nk[:, np.newaxis]
+    covariances = {"full": _estimate_gaussian_covariances_full,
+                   "tied": _estimate_gaussian_covariances_tied,
+                   "diag": _estimate_gaussian_covariances_diag,
+                   "spherical": _estimate_gaussian_covariances_spherical
+                   }[covariance_type](resp, X, nk, means, reg_covar)
+    return nk, means, covariances
+
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/mixture/gaussian_mixture.py' lineno=288 funcname='_compute_precision_cholesky' classname=''
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] def _compute_precision_cholesky(covariances, covariance_type):
+    """Compute the Cholesky decomposition of the precisions.
+
+    Parameters
+    ----------
+    covariances : array-like
+        The covariance matrix of the current components.
+        The shape depends of the covariance_type.
+
+    covariance_type : {'full', 'tied', 'diag', 'spherical'}
+        The type of precision matrices.
+
+    Returns
+    -------
+    precisions_cholesky : array-like
+        The cholesky decomposition of sample precisions of the current
+        components. The shape depends of the covariance_type.
+    """
+    estimate_precision_error_message = (
+        "Fitting the mixture model failed because some components have "
+        "ill-defined empirical covariance (for instance caused by singleton "
+        "or collapsed samples). Try to decrease the number of components, "
+        "or increase reg_covar.")
+
+    if covariance_type in 'full':
+        n_components, n_features, _ = covariances.shape
+        precisions_chol = np.empty((n_components, n_features, n_features))
+        for k, covariance in enumerate(covariances):
+            try:
+                cov_chol = linalg.cholesky(covariance, lower=True)
+            except linalg.LinAlgError:
+                raise ValueError(estimate_precision_error_message)
+            precisions_chol[k] = linalg.solve_triangular(cov_chol,
+                                                         np.eye(n_features),
+                                                         lower=True).T
+    elif covariance_type == 'tied':
+        _, n_features = covariances.shape
+        try:
+            cov_chol = linalg.cholesky(covariances, lower=True)
+        except linalg.LinAlgError:
+            raise ValueError(estimate_precision_error_message)
+        precisions_chol = linalg.solve_triangular(cov_chol, np.eye(n_features),
+                                                  lower=True).T
+    else:
+        if np.any(np.less_equal(covariances, 0.0)):
+            raise ValueError(estimate_precision_error_message)
+        precisions_chol = 1. / np.sqrt(covariances)
+    return precisions_chol
+
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/validation.py' lineno=863 funcname='check_is_fitted' classname=''
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] def check_is_fitted(estimator, attributes, msg=None, all_or_any=all):
+    """Perform is_fitted validation for estimator.
+
+    Checks if the estimator is fitted by verifying the presence of
+    "all_or_any" of the passed attributes and raises a NotFittedError with the
+    given message.
+
+    Parameters
+    ----------
+    estimator : estimator instance.
+        estimator instance for which the check is performed.
+
+    attributes : attribute name(s) given as string or a list/tuple of strings
+        Eg.:
+            ``["coef_", "estimator_", ...], "coef_"``
+
+    msg : string
+        The default error message is, "This %(name)s instance is not fitted
+        yet. Call 'fit' with appropriate arguments before using this method."
+
+        For custom messages if "%(name)s" is present in the message string,
+        it is substituted for the estimator name.
+
+        Eg. : "Estimator, %(name)s, must be fitted before sparsifying".
+
+    all_or_any : callable, {all, any}, default all
+        Specify whether all or any of the given attributes must exist.
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    NotFittedError
+        If the attributes are not found.
+    """
+    if msg is None:
+        msg = ("This %(name)s instance is not fitted yet. Call 'fit' with "
+               "appropriate arguments before using this method.")
+
+    if not hasattr(estimator, 'fit'):
+        raise TypeError("%s is not an estimator instance." % (estimator))
+
+    if not isinstance(attributes, (list, tuple)):
+        attributes = [attributes]
+
+    if not all_or_any([hasattr(estimator, attr) for attr in attributes]):
+        raise NotFittedError(msg % {'name': type(estimator).__name__})
+
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] ['fit_predict', 'predict', '_check_X', '_check_initial_parameters', '_print_verbose_msg_init_beg', '_initialize_parameters', '_e_step', '_print_verbose_msg_iter_end', '_print_verbose_msg_init_end', '_estimate_weighted_log_prob', '_estimate_log_prob_resp', 'check_random_state', '_m_step', '_compute_lower_bound', '_get_parameters', '_set_parameters', '_check_is_fitted', 'check_array', '_check_parameters', '__init__', 'fit', '_initialize', '_estimate_gaussian_parameters', '_compute_precision_cholesky', 'check_is_fitted']
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] [('fit_predict', 95), ('predict', 5), ('_check_X', 2), ('_check_initial_parameters', 0), ('_print_verbose_msg_init_beg', 0), ('_initialize_parameters', 5), ('_e_step', 5), ('_print_verbose_msg_iter_end', 0), ('_print_verbose_msg_init_end', 0), ('_estimate_weighted_log_prob', 2), ('_estimate_log_prob_resp', 2), ('check_random_state', 0), ('_m_step', 0), ('_compute_lower_bound', 2), ('_get_parameters', 5), ('_set_parameters', 5), ('_check_is_fitted', 0), ('check_array', 2), ('_check_parameters', 2), ('__init__', 2), ('fit', 2), ('_initialize', 5), ('_estimate_gaussian_parameters', 2), ('_compute_precision_cholesky', 2), ('check_is_fitted', 0)]
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 08:49:40,943 - Orcar.tracer_reranker - INFO] [('fit_predict', 95), ('predict', 5), ('_initialize_parameters', 5), ('_e_step', 5), ('_check_X', 2), ('_estimate_weighted_log_prob', 2), ('_check_initial_parameters', 0), ('_print_verbose_msg_init_beg', 0), ('_print_verbose_msg_iter_end', 0), ('_print_verbose_msg_init_end', 0), ('_estimate_log_prob_resp', 2), ('_get_parameters', 5), ('_set_parameters', 5), ('_compute_lower_bound', 2), ('check_random_state', 0), ('_m_step', 0), ('_check_is_fitted', 0), ('_initialize', 5), ('check_array', 2), ('_check_parameters', 2), ('__init__', 2), ('fit', 2), ('_estimate_gaussian_parameters', 2), ('_compute_precision_cholesky', 2), ('check_is_fitted', 0)]
+[2026-09-22 08:49:40,944 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 08:49:40,944 - Orcar.tracer_reranker - INFO] [('fit_predict', 95)]

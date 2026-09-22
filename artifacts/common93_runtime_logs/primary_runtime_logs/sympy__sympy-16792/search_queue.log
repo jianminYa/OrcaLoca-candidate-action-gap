@@ -1,0 +1,21 @@
+[2026-09-22 11:07:42,205 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'CodeGen', 'method_name': 'routine', 'file_path': 'sympy/utilities/codegen.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'routine'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}
+)
+[2026-09-22 11:07:57,777 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'routine'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}
+)
+[2026-09-22 11:08:14,643 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'codegen.py', 'directory_path': 'sympy/utilities'}
+)

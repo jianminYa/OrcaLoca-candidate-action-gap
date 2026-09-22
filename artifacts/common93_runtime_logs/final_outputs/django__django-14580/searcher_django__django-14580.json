@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly identified. In `TypeSerializer.serialize()` in `django/db/migrations/serializer.py`, the special case for `models.Model` returns `(models.Model, \"models.Model\", [])` with an empty imports list. This means when `models.Model` is used as a base class in a migration (e.g., `bases=(app.models.MyMixin, models.Model)`), the string `models.Model` is output but `from django.db import models` is never added to the imports set. The `as_string` method in `MigrationWriter` only adds `from django.db import models` to the migration file if it's already present in the imports set; otherwise it just adds `from django.db import migrations`. Since `TypeSerializer` returns empty imports for `models.Model`, the import is missing and the generated migration file has a `NameError`. The fix is to change `(models.Model, \"models.Model\", [])` to `(models.Model, \"models.Model\", [\"from django.db import models\"])`. All necessary context has been gathered.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/migrations/serializer.py",
+            "class_name": "TypeSerializer",
+            "method_name": "serialize"
+        }
+    ]
+}

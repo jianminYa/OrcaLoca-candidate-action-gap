@@ -1,0 +1,23 @@
+[2026-09-22 05:06:39,144 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue'}
+)
+[2026-09-22 05:06:58,064 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceIteratorValue', 'method_name': '__init__', 'file_path': 'django/forms/models.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}
+)
+[2026-09-22 05:07:11,095 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}
+)
+[2026-09-22 05:07:32,450 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ModelChoiceIteratorValue', 'file_path': 'django/forms/models.py'}
+)
+[2026-09-22 05:07:32,460 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'ModelChoiceIteratorValue', 'file_path': 'django/forms/models.py'} search_content='File Path: django/forms/models.py \nClass Content: \nclass ModelChoiceIteratorValue:\n    def __init__(self, value, instance):\n        self.value = value\n        self.instance = instance\n\n    def __str__(self):\n        return str(self.value)\n\n    def __eq__(self, other):\n        if isinstance(other, ModelChoiceIteratorValue):\n            other = other.value\n        return self.value == other\n'

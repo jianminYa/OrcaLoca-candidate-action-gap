@@ -1,0 +1,54 @@
+[2026-09-22 11:21:19,021 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'BlockMatrix', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockmul', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'colblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'rowblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+)
+[2026-09-22 11:21:43,870 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'blockmatrix.py', 'directory_path': 'sympy/matrices/expressions'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockmul', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'colblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'rowblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+)
+[2026-09-22 11:22:10,014 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockmul', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'colblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'rowblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockadd', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+)
+[2026-09-22 11:22:22,157 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'colblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'rowblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockadd', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+)
+[2026-09-22 11:22:34,561 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': 'rowblocksizes', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockadd', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+)
+[2026-09-22 11:22:47,359 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BlockMatrix', 'method_name': '_blockadd', 'file_path': 'sympy/matrices/expressions/blockmatrix.py'}
+)

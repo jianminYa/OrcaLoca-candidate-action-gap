@@ -1,0 +1,134 @@
+[2026-09-22 04:32:34,302 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '_combine', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__and__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Exists'}
+)
+[2026-09-22 04:32:44,480 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query_utils.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__and__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Exists'}
+)
+[2026-09-22 04:33:01,798 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Q', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__and__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Exists'}
+)
+[2026-09-22 04:33:18,977 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Exists'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__and__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+)
+[2026-09-22 04:33:38,695 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'expressions.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__and__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Subquery'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__and__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__rand__'}
+)
+[2026-09-22 04:34:17,226 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__and__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Subquery'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__and__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__rand__'}
+)
+[2026-09-22 04:34:30,446 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Q', 'method_name': '__or__', 'file_path': 'django/db/models/query_utils.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Subquery'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__and__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__rand__'}
+)
+[2026-09-22 04:34:45,601 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Subquery'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__and__'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__rand__'}
+)
+[2026-09-22 04:35:25,442 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__and__'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__rand__'}
+)
+[2026-09-22 04:35:40,371 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseExpression', 'method_name': '__rand__'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Combinable', 'file_path': 'django/db/models/expressions.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__and__', 'file_path': 'django/db/models/expressions.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__rand__', 'file_path': 'django/db/models/expressions.py'}
+)
+[2026-09-22 04:35:54,304 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Combinable', 'file_path': 'django/db/models/expressions.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__and__', 'file_path': 'django/db/models/expressions.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__rand__', 'file_path': 'django/db/models/expressions.py'}
+)
+[2026-09-22 04:36:29,612 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__and__', 'file_path': 'django/db/models/expressions.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__rand__', 'file_path': 'django/db/models/expressions.py'}
+)
+[2026-09-22 04:36:47,307 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__rand__', 'file_path': 'django/db/models/expressions.py'}
+)
+[2026-09-22 04:37:03,540 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Combinable', 'method_name': '__ror__', 'file_path': 'django/db/models/expressions.py'}
+)

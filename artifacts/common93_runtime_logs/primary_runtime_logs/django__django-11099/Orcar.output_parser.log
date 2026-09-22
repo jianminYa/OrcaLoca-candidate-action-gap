@@ -1,0 +1,16 @@
+[2026-09-21 16:41:54,363 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\Z, \\
+[2026-09-21 16:41:54,363 - Orcar.output_parser - INFO] Replace with \\Z
+[2026-09-21 16:42:12,672 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\w, \\
+[2026-09-21 16:42:12,672 - Orcar.output_parser - INFO] Replace with \\w
+[2026-09-21 16:42:12,672 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\A, \\
+[2026-09-21 16:42:12,672 - Orcar.output_parser - INFO] Replace with \\A
+[2026-09-21 16:42:12,673 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\Z, \\
+[2026-09-21 16:42:12,673 - Orcar.output_parser - INFO] Replace with \\Z
+[2026-09-21 16:42:20,601 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\w, \\
+[2026-09-21 16:42:20,601 - Orcar.output_parser - INFO] Replace with \\w
+[2026-09-21 16:42:29,907 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\w, \\
+[2026-09-21 16:42:29,907 - Orcar.output_parser - INFO] Replace with \\w
+[2026-09-21 16:42:29,907 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\A, \\
+[2026-09-21 16:42:29,907 - Orcar.output_parser - INFO] Replace with \\A
+[2026-09-21 16:42:29,907 - Orcar.output_parser - INFO] Find a match with 2 backslashes: \\Z, \\
+[2026-09-21 16:42:29,907 - Orcar.output_parser - INFO] Replace with \\Z

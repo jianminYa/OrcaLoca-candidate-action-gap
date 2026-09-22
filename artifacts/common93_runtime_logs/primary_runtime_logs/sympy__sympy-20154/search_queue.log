@@ -1,0 +1,10 @@
+[2026-09-22 12:12:49,976 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'partitions', 'file_path': 'sympy/utilities/iterables.py'}
+)
+[2026-09-22 12:13:31,145 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'iterables.py', 'directory_path': 'sympy/utilities'}
+)

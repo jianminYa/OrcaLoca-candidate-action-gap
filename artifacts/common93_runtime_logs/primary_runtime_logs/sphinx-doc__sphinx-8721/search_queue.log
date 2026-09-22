@@ -1,0 +1,26 @@
+[2026-09-22 10:04:11,365 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'viewcode.py', 'directory_path': 'sphinx/ext'}
+)
+[2026-09-22 10:04:32,540 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'doctree_read', 'file_path': 'sphinx/ext/viewcode.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'collect_pages', 'file_path': 'sphinx/ext/viewcode.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}
+)
+[2026-09-22 10:04:45,568 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'collect_pages', 'file_path': 'sphinx/ext/viewcode.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}
+)
+[2026-09-22 10:04:58,140 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'should_generate_module_page', 'file_path': 'sphinx/ext/viewcode.py'}
+)

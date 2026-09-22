@@ -1,0 +1,18 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "pickle",
+            "file_path": ""
+        },
+        {
+            "keyword": "align_labels",
+            "file_path": "lib/matplotlib/figure.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [],
+    "related_source_code": "",
+    "is_reproduce_pass": false,
+    "reproduce_code": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport pickle\n\nfig = plt.figure()\nax1 = fig.add_subplot(211)\nax2 = fig.add_subplot(212)\ntime=[0,1,2,3,4]\nspeed=[40000,4300,4500,4700,4800]\nacc=[10,11,12,13,14]\nax1.plot(time,speed)\nax1.set_ylabel('speed')\nax2.plot(time,acc)\nax2.set_ylabel('acc')\n\nfig.align_labels() ##pickling works after removing this line \n\ntry:\n    pickle.dumps(fig)\n    print('Pickling successful')\nexcept TypeError as e:\n    print(f'TypeError: {e}')\n",
+    "env_reproduce_path": "/matplotlib__matplotlib/reproducer_matplotlib__matplotlib-25332.py"
+}

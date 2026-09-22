@@ -1,0 +1,7 @@
+[2026-09-22 07:05:42,955 - Orcar.environment.benchmark - INFO] Setting up env for inst psf__requests-2317...
+[2026-09-22 07:05:44,326 - Orcar.environment.benchmark - INFO] Repo psf/requests not found, cloning to /psf__requests
+[2026-09-22 07:05:52,449 - Orcar.environment.benchmark - INFO] Caching repo to host: docker cp orcar_swe_bench_run_ctr_safe:/psf__requests /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/psf__requests
+[2026-09-22 07:05:52,573 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/psf__requests to base commit: 091991be0da19de9108dbe5e3752917fea3d7fdc
+[2026-09-22 07:06:05,870 - Orcar.environment.benchmark - INFO] Env psf__requests__2.4 not found, installing
+[2026-09-22 07:08:34,905 - Orcar.environment.benchmark - INFO] Installing psf/requests at base commit...
+[2026-09-22 07:08:41,636 - Orcar.environment.benchmark - INFO] Installation step took 166.23 seconds

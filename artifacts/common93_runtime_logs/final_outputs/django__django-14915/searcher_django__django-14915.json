@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe ModelChoiceIteratorValue class in django/forms/models.py defines __eq__ but does not define __hash__. In Python, when a class defines __eq__ without __hash__, Python implicitly sets __hash__ to None, making instances unhashable. This is confirmed by the class content showing only __init__, __str__, and __eq__ methods. The error 'unhashable type: ModelChoiceIteratorValue' occurs when trying to use the value as a dictionary key or with 'in' operator against a dict. The fix is to add a __hash__ method to the class. The remaining search action in the queue is redundant as we already have the full class definition.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/forms/models.py",
+            "class_name": "ModelChoiceIteratorValue",
+            "method_name": "__eq__"
+        }
+    ]
+}

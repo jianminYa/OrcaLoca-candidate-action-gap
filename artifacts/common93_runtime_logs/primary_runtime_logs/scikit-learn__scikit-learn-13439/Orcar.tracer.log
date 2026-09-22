@@ -1,0 +1,5 @@
+[2026-09-22 08:53:55,290 - Orcar.tracer - INFO] sensitivity_dict: {'__len__': set(), 'Pipeline': {'/scikit-learn__scikit-learn/sklearn/pipeline.py'}}
+[2026-09-22 08:53:55,292 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_scikit-learn__scikit-learn-13439.json
+[2026-09-22 08:53:55,293 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 08:53:55,293 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 08:53:55,293 - Orcar.tracer - INFO] Finished tracer output parsing

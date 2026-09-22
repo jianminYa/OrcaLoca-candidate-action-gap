@@ -1,0 +1,994 @@
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=468 funcname='__init__' classname='Dataset'
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO]     def __init__(
+        self,
+        # could make a VariableArgs to use more generally, and refine these
+        # categories
+        data_vars: Mapping[Hashable, Any] = None,
+        coords: Mapping[Hashable, Any] = None,
+        attrs: Mapping[Hashable, Any] = None,
+    ):
+        """To load data from a file or file-like object, use the `open_dataset`
+        function.
+
+        Parameters
+        ----------
+        data_vars : dict-like, optional
+            A mapping from variable names to :py:class:`~xarray.DataArray`
+            objects, :py:class:`~xarray.Variable` objects or to tuples of the
+            form ``(dims, data[, attrs])`` which can be used as arguments to
+            create a new ``Variable``. Each dimension must have the same length
+            in all variables in which it appears.
+
+            The following notations are accepted:
+
+            - mapping {var name: DataArray}
+            - mapping {var name: Variable}
+            - mapping {var name: (dimension name, array-like)}
+            - mapping {var name: (tuple of dimension names, array-like)}
+            - mapping {dimension name: array-like}
+              (it will be automatically moved to coords, see below)
+
+            Each dimension must have the same length in all variables in which
+            it appears.
+        coords : dict-like, optional
+            Another mapping in similar form as the `data_vars` argument,
+            except the each item is saved on the dataset as a "coordinate".
+            These variables have an associated meaning: they describe
+            constant/fixed/independent quantities, unlike the
+            varying/measured/dependent quantities that belong in `variables`.
+            Coordinates values may be given by 1-dimensional arrays or scalars,
+            in which case `dims` do not need to be supplied: 1D arrays will be
+            assumed to give index values along the dimension with the same
+            name.
+
+            The following notations are accepted:
+
+            - mapping {coord name: DataArray}
+            - mapping {coord name: Variable}
+            - mapping {coord name: (dimension name, array-like)}
+            - mapping {coord name: (tuple of dimension names, array-like)}
+            - mapping {dimension name: array-like}
+              (the dimension name is implicitly set to be the same as the coord name)
+
+            The last notation implies that the coord name is the same as the
+            dimension name.
+
+        attrs : dict-like, optional
+            Global attributes to save on this dataset.
+        """
+
+        # TODO(shoyer): expose indexes as a public argument in __init__
+
+        if data_vars is None:
+            data_vars = {}
+        if coords is None:
+            coords = {}
+
+        both_data_and_coords = set(data_vars) & set(coords)
+        if both_data_and_coords:
+            raise ValueError(
+                "variables %r are found in both data_vars and coords"
+                % both_data_and_coords
+            )
+
+        if isinstance(coords, Dataset):
+            coords = coords.variables
+
+        variables, coord_names, dims, indexes, _ = merge_data_and_coords(
+            data_vars, coords, compat="broadcast_equals"
+        )
+
+        self._attrs = dict(attrs) if attrs is not None else None
+        self._file_obj = None
+        self._encoding = None
+        self._variables = variables
+        self._coord_names = coord_names
+        self._dims = dims
+        self._indexes = indexes
+
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=3370 funcname='to_stacked_array' classname='Dataset'
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO]     def to_stacked_array(
+        self,
+        new_dim: Hashable,
+        sample_dims: Sequence[Hashable],
+        variable_dim: str = "variable",
+        name: Hashable = None,
+    ) -> "DataArray":
+        """Combine variables of differing dimensionality into a DataArray
+        without broadcasting.
+
+        This method is similar to Dataset.to_array but does not broadcast the
+        variables.
+
+        Parameters
+        ----------
+        new_dim : Hashable
+            Name of the new stacked coordinate
+        sample_dims : Sequence[Hashable]
+            Dimensions that **will not** be stacked. Each array in the dataset
+            must share these dimensions. For machine learning applications,
+            these define the dimensions over which samples are drawn.
+        variable_dim : str, optional
+            Name of the level in the stacked coordinate which corresponds to
+            the variables.
+        name : str, optional
+            Name of the new data array.
+
+        Returns
+        -------
+        stacked : DataArray
+            DataArray with the specified dimensions and data variables
+            stacked together. The stacked coordinate is named ``new_dim``
+            and represented by a MultiIndex object with a level containing the
+            data variable names. The name of this level is controlled using
+            the ``variable_dim`` argument.
+
+        See Also
+        --------
+        Dataset.to_array
+        Dataset.stack
+        DataArray.to_unstacked_dataset
+
+        Examples
+        --------
+        >>> data = xr.Dataset(
+        ...     data_vars={
+        ...         "a": (("x", "y"), [[0, 1, 2], [3, 4, 5]]),
+        ...         "b": ("x", [6, 7]),
+        ...     },
+        ...     coords={"y": ["u", "v", "w"]},
+        ... )
+
+        >>> data
+        <xarray.Dataset>
+        Dimensions:  (x: 2, y: 3)
+        Coordinates:
+        * y        (y) <U1 'u' 'v' 'w'
+        Dimensions without coordinates: x
+        Data variables:
+            a        (x, y) int64 0 1 2 3 4 5
+            b        (x) int64 6 7
+
+        >>> data.to_stacked_array("z", sample_dims=["x"])
+        <xarray.DataArray (x: 2, z: 4)>
+        array([[0, 1, 2, 6],
+            [3, 4, 5, 7]])
+        Coordinates:
+        * z         (z) MultiIndex
+        - variable  (z) object 'a' 'a' 'a' 'b'
+        - y         (z) object 'u' 'v' 'w' nan
+        Dimensions without coordinates: x
+
+        """
+        stacking_dims = tuple(dim for dim in self.dims if dim not in sample_dims)
+
+        for variable in self:
+            dims = self[variable].dims
+            dims_include_sample_dims = set(sample_dims) <= set(dims)
+            if not dims_include_sample_dims:
+                raise ValueError(
+                    "All variables in the dataset must contain the "
+                    "dimensions {}.".format(dims)
+                )
+
+        def ensure_stackable(val):
+            assign_coords = {variable_dim: val.name}
+            for dim in stacking_dims:
+                if dim not in val.dims:
+                    assign_coords[dim] = None
+
+            expand_dims = set(stacking_dims).difference(set(val.dims))
+            expand_dims.add(variable_dim)
+            # must be list for .expand_dims
+            expand_dims = list(expand_dims)
+
+            return (
+                val.assign_coords(**assign_coords)
+                .expand_dims(expand_dims)
+                .stack({new_dim: (variable_dim,) + stacking_dims})
+            )
+
+        # concatenate the arrays
+        stackable_vars = [ensure_stackable(self[key]) for key in self.data_vars]
+        data_array = xr.concat(stackable_vars, dim=new_dim)
+
+        # coerce the levels of the MultiIndex to have the same type as the
+        # input dimensions. This code is messy, so it might be better to just
+        # input a dummy value for the singleton dimension.
+        idx = data_array.indexes[new_dim]
+        levels = [idx.levels[0]] + [
+            level.astype(self[level.name].dtype) for level in idx.levels[1:]
+        ]
+        new_idx = idx.set_levels(levels)
+        data_array[new_dim] = IndexVariable(new_dim, new_idx)
+
+        if name is not None:
+            data_array.name = name
+
+        return data_array
+
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataarray.py' lineno=1901 funcname='to_unstacked_dataset' classname='DataArray'
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO]     def to_unstacked_dataset(self, dim, level=0):
+        """Unstack DataArray expanding to Dataset along a given level of a
+        stacked coordinate.
+
+        This is the inverse operation of Dataset.to_stacked_array.
+
+        Parameters
+        ----------
+        dim : str
+            Name of existing dimension to unstack
+        level : int or str
+            The MultiIndex level to expand to a dataset along. Can either be
+            the integer index of the level or its name.
+        label : int, default 0
+            Label of the level to expand dataset along. Overrides the label
+            argument if given.
+
+        Returns
+        -------
+        unstacked: Dataset
+
+        Examples
+        --------
+        >>> import xarray as xr
+        >>> arr = xr.DataArray(
+        ...     np.arange(6).reshape(2, 3),
+        ...     coords=[("x", ["a", "b"]), ("y", [0, 1, 2])],
+        ... )
+        >>> data = xr.Dataset({"a": arr, "b": arr.isel(y=0)})
+        >>> data
+        <xarray.Dataset>
+        Dimensions:  (x: 2, y: 3)
+        Coordinates:
+          * x        (x) <U1 'a' 'b'
+          * y        (y) int64 0 1 2
+        Data variables:
+            a        (x, y) int64 0 1 2 3 4 5
+            b        (x) int64 0 3
+        >>> stacked = data.to_stacked_array("z", ["y"])
+        >>> stacked.indexes["z"]
+        MultiIndex(levels=[['a', 'b'], [0, 1, 2]],
+                labels=[[0, 0, 0, 1], [0, 1, 2, -1]],
+                names=['variable', 'y'])
+        >>> roundtripped = stacked.to_unstacked_dataset(dim="z")
+        >>> data.identical(roundtripped)
+        True
+
+        See Also
+        --------
+        Dataset.to_stacked_array
+        """
+
+        idx = self.indexes[dim]
+        if not isinstance(idx, pd.MultiIndex):
+            raise ValueError(f"'{dim}' is not a stacked coordinate")
+
+        level_number = idx._get_level_number(level)
+        variables = idx.levels[level_number]
+        variable_dim = idx.names[level_number]
+
+        # pull variables out of datarray
+        data_dict = {}
+        for k in variables:
+            data_dict[k] = self.sel({variable_dim: k}).squeeze(drop=True)
+
+        # unstacked dataset
+        return Dataset(data_dict)
+
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=461 funcname='merge_data_and_coords' classname='MergeError'
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 07:28:34,759 - Orcar.tracer_reranker - INFO] def merge_data_and_coords(data, coords, compat="broadcast_equals", join="outer"):
+    """Used in Dataset.__init__."""
+    objects = [data, coords]
+    explicit_coords = coords.keys()
+    indexes = dict(_extract_indexes_from_coords(coords))
+    return merge_core(
+        objects, compat, join, explicit_coords=explicit_coords, indexes=indexes
+    )
+
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=537 funcname='merge_core' classname='_MergeResult'
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] def merge_core(
+    objects: Iterable["CoercibleMapping"],
+    compat: str = "broadcast_equals",
+    join: str = "outer",
+    combine_attrs: Optional[str] = "override",
+    priority_arg: Optional[int] = None,
+    explicit_coords: Optional[Sequence] = None,
+    indexes: Optional[Mapping[Hashable, pd.Index]] = None,
+    fill_value: object = dtypes.NA,
+) -> _MergeResult:
+    """Core logic for merging labeled objects.
+
+    This is not public API.
+
+    Parameters
+    ----------
+    objects : list of mappings
+        All values must be convertable to labeled arrays.
+    compat : {'identical', 'equals', 'broadcast_equals', 'no_conflicts', 'override'}, optional
+        Compatibility checks to use when merging variables.
+    join : {'outer', 'inner', 'left', 'right'}, optional
+        How to combine objects with different indexes.
+    combine_attrs : {'drop', 'identical', 'no_conflicts', 'override'}, optional
+        How to combine attributes of objects
+    priority_arg : integer, optional
+        Optional argument in `objects` that takes precedence over the others.
+    explicit_coords : set, optional
+        An explicit list of variables from `objects` that are coordinates.
+    indexes : dict, optional
+        Dictionary with values given by pandas.Index objects.
+    fill_value : scalar, optional
+        Value to use for newly missing values
+
+    Returns
+    -------
+    variables : dict
+        Dictionary of Variable objects.
+    coord_names : set
+        Set of coordinate names.
+    dims : dict
+        Dictionary mapping from dimension names to sizes.
+    attrs : dict
+        Dictionary of attributes
+
+    Raises
+    ------
+    MergeError if the merge cannot be done successfully.
+    """
+    from .dataarray import DataArray
+    from .dataset import Dataset, calculate_dimensions
+
+    _assert_compat_valid(compat)
+
+    coerced = coerce_pandas_values(objects)
+    aligned = deep_align(
+        coerced, join=join, copy=False, indexes=indexes, fill_value=fill_value
+    )
+    collected = collect_variables_and_indexes(aligned)
+
+    prioritized = _get_priority_vars_and_indexes(aligned, priority_arg, compat=compat)
+    variables, out_indexes = merge_collected(collected, prioritized, compat=compat)
+    assert_unique_multiindex_level_names(variables)
+
+    dims = calculate_dimensions(variables)
+
+    coord_names, noncoord_names = determine_coords(coerced)
+    if explicit_coords is not None:
+        assert_valid_explicit_coords(variables, dims, explicit_coords)
+        coord_names.update(explicit_coords)
+    for dim, size in dims.items():
+        if dim in variables:
+            coord_names.add(dim)
+    ambiguous_coords = coord_names.intersection(noncoord_names)
+    if ambiguous_coords:
+        raise MergeError(
+            "unable to determine if these variables should be "
+            "coordinates or not in the merged result: %s" % ambiguous_coords
+        )
+
+    attrs = merge_attrs(
+        [
+            var.attrs
+            for var in coerced
+            if isinstance(var, Dataset) or isinstance(var, DataArray)
+        ],
+        combine_attrs,
+    )
+
+    return _MergeResult(variables, coord_names, dims, out_indexes, attrs)
+
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=378 funcname='__init__' classname='DataVariables'
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO]     def __init__(self, dataset: "Dataset"):
+        self._dataset = dataset
+
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=164 funcname='merge_collected' classname='MergeError'
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] def merge_collected(
+    grouped: Dict[Hashable, List[MergeElement]],
+    prioritized: Mapping[Hashable, MergeElement] = None,
+    compat: str = "minimal",
+) -> Tuple[Dict[Hashable, Variable], Dict[Hashable, pd.Index]]:
+    """Merge dicts of variables, while resolving conflicts appropriately.
+
+    Parameters
+    ----------
+
+        Type of equality check to use when checking for conflicts.
+
+    Returns
+    -------
+    Dict with keys taken by the union of keys on list_of_mappings,
+    and Variable values corresponding to those that should be found on the
+    merged result.
+    """
+    if prioritized is None:
+        prioritized = {}
+
+    _assert_compat_valid(compat)
+
+    merged_vars: Dict[Hashable, Variable] = {}
+    merged_indexes: Dict[Hashable, pd.Index] = {}
+
+    for name, elements_list in grouped.items():
+        if name in prioritized:
+            variable, index = prioritized[name]
+            merged_vars[name] = variable
+            if index is not None:
+                merged_indexes[name] = index
+        else:
+            indexed_elements = [
+                (variable, index)
+                for variable, index in elements_list
+                if index is not None
+            ]
+
+            if indexed_elements:
+                # TODO(shoyer): consider adjusting this logic. Are we really
+                # OK throwing away variable without an index in favor of
+                # indexed variables, without even checking if values match?
+                variable, index = indexed_elements[0]
+                for _, other_index in indexed_elements[1:]:
+                    if not index.equals(other_index):
+                        raise MergeError(
+                            "conflicting values for index %r on objects to be "
+                            "combined:\nfirst value: %r\nsecond value: %r"
+                            % (name, index, other_index)
+                        )
+                if compat == "identical":
+                    for other_variable, _ in indexed_elements[1:]:
+                        if not dict_equiv(variable.attrs, other_variable.attrs):
+                            raise MergeError(
+                                "conflicting attribute values on combined "
+                                "variable %r:\nfirst value: %r\nsecond value: %r"
+                                % (name, variable.attrs, other_variable.attrs)
+                            )
+                merged_vars[name] = variable
+                merged_indexes[name] = index
+            else:
+                variables = [variable for variable, _ in elements_list]
+                try:
+                    merged_vars[name] = unique_variable(name, variables, compat)
+                except MergeError:
+                    if compat != "minimal":
+                        # we need more than "minimal" compatibility (for which
+                        # we drop conflicting coordinates)
+                        raise
+
+    return merged_vars, merged_indexes
+
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=81 funcname='unique_variable' classname='MergeError'
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] def unique_variable(
+    name: Hashable,
+    variables: List[Variable],
+    compat: str = "broadcast_equals",
+    equals: bool = None,
+) -> Variable:
+    """Return the unique variable from a list of variables or raise MergeError.
+
+    Parameters
+    ----------
+    name : hashable
+        Name for this variable.
+    variables : list of xarray.Variable
+        List of Variable objects, all of which go by the same name in different
+        inputs.
+    compat : {'identical', 'equals', 'broadcast_equals', 'no_conflicts', 'override'}, optional
+        Type of equality check to use.
+    equals: None or bool,
+        corresponding to result of compat test
+
+    Returns
+    -------
+    Variable to use in the result.
+
+    Raises
+    ------
+    MergeError: if any of the variables are not equal.
+    """
+    out = variables[0]
+
+    if len(variables) == 1 or compat == "override":
+        return out
+
+    combine_method = None
+
+    if compat == "minimal":
+        compat = "broadcast_equals"
+
+    if compat == "broadcast_equals":
+        dim_lengths = broadcast_dimension_size(variables)
+        out = out.set_dims(dim_lengths)
+
+    if compat == "no_conflicts":
+        combine_method = "fillna"
+
+    if equals is None:
+        # first check without comparing values i.e. no computes
+        for var in variables[1:]:
+            equals = getattr(out, compat)(var, equiv=lazy_array_equiv)
+            if equals is not True:
+                break
+
+        if equals is None:
+            # now compare values with minimum number of computes
+            out = out.compute()
+            for var in variables[1:]:
+                equals = getattr(out, compat)(var)
+                if not equals:
+                    break
+
+    if not equals:
+        raise MergeError(
+            f"conflicting values for variable {name!r} on objects to be combined. "
+            "You can skip this check by specifying compat='override'."
+        )
+
+    if combine_method:
+        for var in variables[1:]:
+            out = getattr(out, combine_method)(var)
+
+    return out
+
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=602 funcname='dims' classname='Dataset'
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO]     @property
+    def dims(self) -> Mapping[Hashable, int]:
+        """Mapping from dimension names to lengths.
+
+        Cannot be modified directly, but is updated when adding new variables.
+
+        Note that type of this object differs from `DataArray.dims`.
+        See `Dataset.sizes` and `DataArray.sizes` for consistently named
+        properties.
+        """
+        return Frozen(SortedKeysDict(self._dims))
+
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 07:28:34,760 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=1223 funcname='__iter__' classname='Dataset'
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO]     def __iter__(self) -> Iterator[Hashable]:
+        return iter(self.data_vars)
+
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=1258 funcname='__getitem__' classname='Dataset'
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO]     def __getitem__(self, key):
+        """Access variables or coordinates this dataset as a
+        :py:class:`~xarray.DataArray`.
+
+        Indexing with a list of names will return a new ``Dataset`` object.
+        """
+        if utils.is_dict_like(key):
+            return self.isel(**cast(Mapping, key))
+
+        if hashable(key):
+            return self._construct_dataarray(key)
+        else:
+            return self._copy_listed(np.asarray(key))
+
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=1386 funcname='data_vars' classname='Dataset'
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO]     @property
+    def data_vars(self) -> DataVariables:
+        """Dictionary of DataArray objects corresponding to data variables
+        """
+        return DataVariables(self)
+
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=381 funcname='__iter__' classname='DataVariables'
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO]     def __iter__(self) -> Iterator[Hashable]:
+        return (
+            key
+            for key in self._dataset._variables
+            if key not in self._dataset._coord_names
+        )
+
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataarray.py' lineno=710 funcname='indexes' classname='DataArray'
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO]     @property
+    def indexes(self) -> Indexes:
+        """Mapping of pandas.Index objects used for label based indexing
+        """
+        if self._indexes is None:
+            self._indexes = default_indexes(self._coords, self.dims)
+        return Indexes(self._indexes)
+
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataarray.py' lineno=1068 funcname='sel' classname='DataArray'
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO]     def sel(
+        self,
+        indexers: Mapping[Hashable, Any] = None,
+        method: str = None,
+        tolerance=None,
+        drop: bool = False,
+        **indexers_kwargs: Any,
+    ) -> "DataArray":
+        """Return a new DataArray whose data is given by selecting index
+        labels along the specified dimension(s).
+
+        In contrast to `DataArray.isel`, indexers for this method should use
+        labels instead of integers.
+
+        Under the hood, this method is powered by using pandas's powerful Index
+        objects. This makes label based indexing essentially just as fast as
+        using integer indexing.
+
+        It also means this method uses pandas's (well documented) logic for
+        indexing. This means you can use string shortcuts for datetime indexes
+        (e.g., '2000-01' to select all values in January 2000). It also means
+        that slices are treated as inclusive of both the start and stop values,
+        unlike normal Python indexing.
+
+        .. warning::
+
+          Do not try to assign values when using any of the indexing methods
+          ``isel`` or ``sel``::
+
+            da = xr.DataArray([0, 1, 2, 3], dims=['x'])
+            # DO NOT do this
+            da.isel(x=[0, 1, 2])[1] = -1
+
+          Assigning values with the chained indexing using ``.sel`` or
+          ``.isel`` fails silently.
+
+        Parameters
+        ----------
+        indexers : dict, optional
+            A dict with keys matching dimensions and values given
+            by scalars, slices or arrays of tick labels. For dimensions with
+            multi-index, the indexer may also be a dict-like object with keys
+            matching index level names.
+            If DataArrays are passed as indexers, xarray-style indexing will be
+            carried out. See :ref:`indexing` for the details.
+            One of indexers or indexers_kwargs must be provided.
+        method : {None, 'nearest', 'pad'/'ffill', 'backfill'/'bfill'}, optional
+            Method to use for inexact matches:
+
+            * None (default): only exact matches
+            * pad / ffill: propagate last valid index value forward
+            * backfill / bfill: propagate next valid index value backward
+            * nearest: use nearest valid index value
+        tolerance : optional
+            Maximum distance between original and new labels for inexact
+            matches. The values of the index at the matching locations must
+            satisfy the equation ``abs(index[indexer] - target) <= tolerance``.
+        drop : bool, optional
+            If ``drop=True``, drop coordinates variables in `indexers` instead
+            of making them scalar.
+        **indexers_kwargs : {dim: indexer, ...}, optional
+            The keyword arguments form of ``indexers``.
+            One of indexers or indexers_kwargs must be provided.
+
+        Returns
+        -------
+        obj : DataArray
+            A new DataArray with the same contents as this DataArray, except the
+            data and each dimension is indexed by the appropriate indexers.
+            If indexer DataArrays have coordinates that do not conflict with
+            this object, then these coordinates will be attached.
+            In general, each array's data will be a view of the array's data
+            in this DataArray, unless vectorized indexing was triggered by using
+            an array indexer, in which case the data will be a copy.
+
+        See Also
+        --------
+        Dataset.sel
+        DataArray.isel
+
+        """
+        ds = self._to_temp_dataset().sel(
+            indexers=indexers,
+            drop=drop,
+            method=method,
+            tolerance=tolerance,
+            **indexers_kwargs,
+        )
+        return self._from_temp_dataset(ds)
+
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 07:28:34,761 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=471 funcname='_extract_indexes_from_coords' classname='MergeError'
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] def _extract_indexes_from_coords(coords):
+    """Yields the name & index of valid indexes from a mapping of coords"""
+    for name, variable in coords.items():
+        variable = as_variable(variable, name=name)
+        if variable.dims == (name,):
+            yield name, variable.to_index()
+
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=154 funcname='_assert_compat_valid' classname='MergeError'
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] def _assert_compat_valid(compat):
+    if compat not in _VALID_COMPAT:
+        raise ValueError(
+            "compat={!r} invalid: must be {}".format(compat, set(_VALID_COMPAT))
+        )
+
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=369 funcname='coerce_pandas_values' classname='MergeError'
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] def coerce_pandas_values(objects: Iterable["CoercibleMapping"]) -> List["DatasetLike"]:
+    """Convert pandas values found in a list of labeled objects.
+
+    Parameters
+    ----------
+    objects : list of Dataset or mappings
+        The mappings may contain any sort of objects coercible to
+        xarray.Variables as keys, including pandas objects.
+
+    Returns
+    -------
+    List of Dataset or dictionary objects. Any inputs or values in the inputs
+    that were pandas objects have been converted into native xarray objects.
+    """
+    from .dataarray import DataArray
+    from .dataset import Dataset
+
+    out = []
+    for obj in objects:
+        if isinstance(obj, Dataset):
+            variables: "DatasetLike" = obj
+        else:
+            variables = {}
+            if isinstance(obj, PANDAS_TYPES):
+                obj = dict(obj.iteritems())
+            for k, v in obj.items():
+                if isinstance(v, PANDAS_TYPES):
+                    v = DataArray(v)
+                variables[k] = v
+        out.append(variables)
+    return out
+
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=238 funcname='collect_variables_and_indexes' classname='MergeError'
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] def collect_variables_and_indexes(
+    list_of_mappings: "List[DatasetLike]",
+) -> Dict[Hashable, List[MergeElement]]:
+    """Collect variables and indexes from list of mappings of xarray objects.
+
+    Mappings must either be Dataset objects, or have values of one of the
+    following types:
+    - an xarray.Variable
+    - a tuple `(dims, data[, attrs[, encoding]])` that can be converted in
+      an xarray.Variable
+    - or an xarray.DataArray
+    """
+    from .dataarray import DataArray
+    from .dataset import Dataset
+
+    grouped: Dict[Hashable, List[Tuple[Variable, pd.Index]]] = {}
+
+    def append(name, variable, index):
+        values = grouped.setdefault(name, [])
+        values.append((variable, index))
+
+    def append_all(variables, indexes):
+        for name, variable in variables.items():
+            append(name, variable, indexes.get(name))
+
+    for mapping in list_of_mappings:
+        if isinstance(mapping, Dataset):
+            append_all(mapping.variables, mapping.indexes)
+            continue
+
+        for name, variable in mapping.items():
+            if isinstance(variable, DataArray):
+                coords = variable._coords.copy()  # use private API for speed
+                indexes = dict(variable.indexes)
+                # explicitly overwritten variables should take precedence
+                coords.pop(name, None)
+                indexes.pop(name, None)
+                append_all(coords, indexes)
+
+            variable = as_variable(variable, name=name)
+            if variable.dims == (name,):
+                variable = variable.to_index_variable()
+                index = variable.to_index()
+            else:
+                index = None
+            append(name, variable, index)
+
+    return grouped
+
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=402 funcname='_get_priority_vars_and_indexes' classname='MergeError'
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] def _get_priority_vars_and_indexes(
+    objects: List["DatasetLike"], priority_arg: Optional[int], compat: str = "equals"
+) -> Dict[Hashable, MergeElement]:
+    """Extract the priority variable from a list of mappings.
+
+    We need this method because in some cases the priority argument itself
+    might have conflicting values (e.g., if it is a dict with two DataArray
+    values with conflicting coordinate values).
+
+    Parameters
+    ----------
+    objects : list of dictionaries of variables
+        Dictionaries in which to find the priority variables.
+    priority_arg : int or None
+        Integer object whose variable should take priority.
+    compat : {'identical', 'equals', 'broadcast_equals', 'no_conflicts'}, optional
+        Compatibility checks to use when merging variables.
+
+    Returns
+    -------
+    A dictionary of variables and associated indexes (if any) to prioritize.
+    """
+    if priority_arg is None:
+        return {}
+
+    collected = collect_variables_and_indexes([objects[priority_arg]])
+    variables, indexes = merge_collected(collected, compat=compat)
+    grouped: Dict[Hashable, MergeElement] = {}
+    for name, variable in variables.items():
+        grouped[name] = (variable, indexes.get(name))
+    return grouped
+
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=331 funcname='determine_coords' classname='MergeError'
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] def determine_coords(
+    list_of_mappings: Iterable["DatasetLike"],
+) -> Tuple[Set[Hashable], Set[Hashable]]:
+    """Given a list of dicts with xarray object values, identify coordinates.
+
+    Parameters
+    ----------
+    list_of_mappings : list of dict or Dataset objects
+        Of the same form as the arguments to expand_variable_dicts.
+
+    Returns
+    -------
+    coord_names : set of variable names
+    noncoord_names : set of variable names
+        All variable found in the input should appear in either the set of
+        coordinate or non-coordinate names.
+    """
+    from .dataarray import DataArray
+    from .dataset import Dataset
+
+    coord_names: Set[Hashable] = set()
+    noncoord_names: Set[Hashable] = set()
+
+    for mapping in list_of_mappings:
+        if isinstance(mapping, Dataset):
+            coord_names.update(mapping.coords)
+            noncoord_names.update(mapping.data_vars)
+        else:
+            for name, var in mapping.items():
+                if isinstance(var, DataArray):
+                    coords = set(var._coords)  # use private API for speed
+                    # explicitly overwritten variables should take precedence
+                    coords.discard(name)
+                    coord_names.update(coords)
+
+    return coord_names, noncoord_names
+
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 07:28:34,762 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=479 funcname='assert_valid_explicit_coords' classname='MergeError'
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] def assert_valid_explicit_coords(variables, dims, explicit_coords):
+    """Validate explicit coordinate names/dims.
+
+    Raise a MergeError if an explicit coord shares a name with a dimension
+    but is comprised of arbitrary dimensions.
+    """
+    for coord_name in explicit_coords:
+        if coord_name in dims and variables[coord_name].dims != (coord_name,):
+            raise MergeError(
+                "coordinate %s shares a name with a dataset dimension, but is "
+                "not a 1D variable along that dimension. This is disallowed "
+                "by the xarray data model." % coord_name
+            )
+
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=494 funcname='merge_attrs' classname='MergeError'
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] LLM score: 3 / 100
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] def merge_attrs(variable_attrs, combine_attrs):
+    """Combine attributes from different variables according to combine_attrs
+    """
+    if not variable_attrs:
+        # no attributes to merge
+        return None
+
+    if combine_attrs == "drop":
+        return {}
+    elif combine_attrs == "override":
+        return variable_attrs[0]
+    elif combine_attrs == "no_conflicts":
+        result = dict(variable_attrs[0])
+        for attrs in variable_attrs[1:]:
+            try:
+                result = compat_dict_union(result, attrs)
+            except ValueError:
+                raise MergeError(
+                    "combine_attrs='no_conflicts', but some values are not "
+                    "the same. Merging %s with %s" % (str(result), str(attrs))
+                )
+        return result
+    elif combine_attrs == "identical":
+        result = dict(variable_attrs[0])
+        for attrs in variable_attrs[1:]:
+            if not dict_equiv(result, attrs):
+                raise MergeError(
+                    "combine_attrs='identical', but attrs differ. First is %s "
+                    ", other is %s." % (str(result), str(attrs))
+                )
+        return result
+    else:
+        raise ValueError("Unrecognised value for combine_attrs=%s" % combine_attrs)
+
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/merge.py' lineno=59 funcname='broadcast_dimension_size' classname=''
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] def broadcast_dimension_size(variables: List[Variable],) -> Dict[Hashable, int]:
+    """Extract dimension sizes from a dictionary of variables.
+
+    Raises ValueError if any dimensions have different sizes.
+    """
+    dims: Dict[Hashable, int] = {}
+    for var in variables:
+        for dim, size in zip(var.dims, var.shape):
+            if dim in dims and size != dims[dim]:
+                raise ValueError("index %r not aligned" % dim)
+            dims[dim] = size
+    return dims
+
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/pydata__xarray/xarray/core/dataset.py' lineno=1160 funcname='_construct_dataarray' classname='Dataset'
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO]     def _construct_dataarray(self, name: Hashable) -> "DataArray":
+        """Construct a DataArray by indexing this dataset
+        """
+        from .dataarray import DataArray
+
+        try:
+            variable = self._variables[name]
+        except KeyError:
+            _, name, variable = _get_virtual_variable(
+                self._variables, name, self._level_coords, self.dims
+            )
+
+        needed_dims = set(variable.dims)
+
+        coords: Dict[Hashable, Variable] = {}
+        for k in self.coords:
+            if set(self.variables[k].dims) <= needed_dims:
+                coords[k] = self.variables[k]
+
+        if self._indexes is None:
+            indexes = None
+        else:
+            indexes = {k: v for k, v in self._indexes.items() if k in coords}
+
+        return DataArray(variable, coords, name=name, indexes=indexes, fastpath=True)
+
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] ['__init__', 'to_stacked_array', 'to_unstacked_dataset', 'merge_data_and_coords', 'merge_core', '__init__', 'merge_collected', 'unique_variable', 'dims', '__iter__', '__getitem__', 'data_vars', '__iter__', 'indexes', 'sel', '_extract_indexes_from_coords', '_assert_compat_valid', 'coerce_pandas_values', 'collect_variables_and_indexes', '_get_priority_vars_and_indexes', 'determine_coords', 'assert_valid_explicit_coords', 'merge_attrs', 'broadcast_dimension_size', '_construct_dataarray']
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] [('__init__', 5), ('to_stacked_array', 30), ('to_unstacked_dataset', 72), ('merge_data_and_coords', 15), ('merge_core', 30), ('__init__', 2), ('merge_collected', 30), ('unique_variable', 30), ('dims', 2), ('__iter__', 2), ('__getitem__', 2), ('data_vars', 2), ('__iter__', 2), ('indexes', 5), ('sel', 5), ('_extract_indexes_from_coords', 15), ('_assert_compat_valid', 1), ('coerce_pandas_values', 2), ('collect_variables_and_indexes', 50), ('_get_priority_vars_and_indexes', 5), ('determine_coords', 5), ('assert_valid_explicit_coords', 5), ('merge_attrs', 3), ('broadcast_dimension_size', 5), ('_construct_dataarray', 15)]
+[2026-09-22 07:28:34,763 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 07:28:34,764 - Orcar.tracer_reranker - INFO] [('to_unstacked_dataset', 72), ('to_stacked_array', 30), ('merge_core', 30), ('merge_collected', 30), ('unique_variable', 30), ('collect_variables_and_indexes', 50), ('merge_data_and_coords', 15), ('__init__', 5), ('__init__', 2), ('_extract_indexes_from_coords', 15), ('indexes', 5), ('sel', 5), ('_get_priority_vars_and_indexes', 5), ('determine_coords', 5), ('assert_valid_explicit_coords', 5), ('broadcast_dimension_size', 5), ('merge_attrs', 3), ('dims', 2), ('__iter__', 2), ('__getitem__', 2), ('data_vars', 2), ('__iter__', 2), ('coerce_pandas_values', 2), ('_assert_compat_valid', 1), ('_construct_dataarray', 15)]
+[2026-09-22 07:28:34,764 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 07:28:34,764 - Orcar.tracer_reranker - INFO] [('to_unstacked_dataset', 72)]

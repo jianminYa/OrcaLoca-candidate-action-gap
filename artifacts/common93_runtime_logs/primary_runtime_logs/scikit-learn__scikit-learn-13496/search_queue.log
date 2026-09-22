@@ -1,0 +1,49 @@
+[2026-09-22 08:56:06,205 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'IsolationForest'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}
+)
+[2026-09-22 08:56:46,486 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__', 'file_path': 'sklearn/ensemble/iforest.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}
+)
+[2026-09-22 08:56:56,024 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'iforest.py', 'directory_path': 'sklearn/ensemble'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}
+)
+[2026-09-22 08:57:21,062 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': '__init__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'IsolationForest', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/iforest.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}
+)
+[2026-09-22 08:57:21,073 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'IsolationForest', 'method_name': '__init__'} search_content='File Path: sklearn/ensemble/iforest.py \nMethod Content: \n    def __init__(self,\n                 n_estimators=100,\n                 max_samples="auto",\n                 contamination="legacy",\n                 max_features=1.,\n                 bootstrap=False,\n                 n_jobs=None,\n                 behaviour=\'old\',\n                 random_state=None,\n                 verbose=0):\n        super().__init__(\n            base_estimator=ExtraTreeRegressor(\n                max_features=1,\n                splitter=\'random\',\n                random_state=random_state),\n            # here above max_features has no links with self.max_features\n            bootstrap=bootstrap,\n            bootstrap_features=False,\n            n_estimators=n_estimators,\n            max_samples=max_samples,\n            max_features=max_features,\n            n_jobs=n_jobs,\n            random_state=random_state,\n            verbose=verbose)\n\n        self.behaviour = behaviour\n        self.contamination = contamination\n'
+[2026-09-22 08:57:31,390 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BaseBagging', 'method_name': '__init__'}
+)
+[2026-09-22 08:57:47,783 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'bagging.py', 'directory_path': 'sklearn/ensemble'}
+)

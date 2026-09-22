@@ -1,0 +1,7 @@
+[2026-09-22 10:48:07,611 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 10:48:15,456 - Orcar.environment.utils - DEBUG] Run command in container: conda create --name sympy__sympy__1.4 --clone python3.9
+[2026-09-22 10:48:22,277 - Orcar.environment.utils - DEBUG] Run command in container: conda install mpmath flake8 -y
+[2026-09-22 10:50:18,645 - Orcar.environment.utils - DEBUG] Run command in container: source activate sympy__sympy__1.4 && pip install mpmath==1.3.0 flake8-comprehensions
+[2026-09-22 10:50:21,783 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 10:50:25,177 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer
+[2026-09-22 10:51:06,901 - Orcar.environment.utils - DEBUG] Run command in container: ls /tmp/tracer_output_sympy__sympy-15345.json

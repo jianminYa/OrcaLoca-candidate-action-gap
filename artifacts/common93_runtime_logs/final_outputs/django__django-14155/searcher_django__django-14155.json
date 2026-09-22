@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nI now have a complete picture of the ResolverMatch class. The bug is in the __init__ method which doesn't unwrap functools.partial objects. When a functools.partial is passed as `func`, the code falls into the `not hasattr(func, '__name__')` branch (since partial objects don't have __name__), resulting in `_func_path` being set to `functools.partial` which is unhelpful. The __repr__ method then displays this unhelpful path. The fix should unwrap functools.partial objects in __init__ to extract the underlying function and its pre-supplied arguments. I have enough context to identify the bug locations - no further searching is needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/urls/resolvers.py",
+            "class_name": "ResolverMatch",
+            "method_name": "__init__"
+        },
+        {
+            "file_path": "django/urls/resolvers.py",
+            "class_name": "ResolverMatch",
+            "method_name": "__repr__"
+        }
+    ]
+}

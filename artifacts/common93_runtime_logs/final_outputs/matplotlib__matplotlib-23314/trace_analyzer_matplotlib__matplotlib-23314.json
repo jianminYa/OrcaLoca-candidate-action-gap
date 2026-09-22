@@ -1,0 +1,30 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "set_visible",
+            "file_path": ""
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "draw",
+            "file_path": "lib/mpl_toolkits/mplot3d/axes3d.py",
+            "class_name": "Axes3D"
+        },
+        {
+            "keyword": "draw",
+            "file_path": "lib/mpl_toolkits/mplot3d/art3d.py",
+            "class_name": "Path3DCollection"
+        },
+        {
+            "keyword": "draw",
+            "file_path": "lib/mpl_toolkits/mplot3d/axis3d.py",
+            "class_name": "Axis"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfig, (ax1, ax2) = plt.subplots(1, 2, subplot_kw={'projection': '3d'})\nax1.scatter(1, 1, 1)\nax2.scatter(1, 1, 1, c='r')\nax1.set_visible(False)\n\n# Render the figure to an array without saving to file\nfig.canvas.draw()\nbuf = fig.canvas.buffer_rgba()\narr = np.asarray(buf)\n\n# The left half of the image corresponds to ax1\nwidth = arr.shape[1]\nleft_half = arr[:, :width//2, :3]\n\n# If ax1 were truly invisible, the left half should be all white (255,255,255)\n# Check if there are non-white pixels (indicating ax1 is still visible)\nnon_white = np.any(left_half != 255, axis=2)\nhas_content = np.any(non_white)\n\nif has_content:\n    print(\"BUG CONFIRMED: ax1 is still visible despite set_visible(False)\")\nelse:\n    print(\"No bug: ax1 is correctly hidden\")\n",
+    "env_reproduce_path": "/matplotlib__matplotlib/reproducer_matplotlib__matplotlib-23314.py"
+}

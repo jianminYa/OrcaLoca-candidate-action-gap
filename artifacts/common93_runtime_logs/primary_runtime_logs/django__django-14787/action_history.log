@@ -1,0 +1,79 @@
+[2026-09-22 05:02:37,233 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}: 1
+)
+[2026-09-22 05:02:47,181 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}: 2
+)
+[2026-09-22 05:03:01,417 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'decorators.py', 'directory_path': 'django/utils'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}: 1
+)
+[2026-09-22 05:03:13,634 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'decorators.py', 'directory_path': 'django/utils'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}: 2
+)
+[2026-09-22 05:03:28,084 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_multi_decorate', 'file_path': 'django/utils/decorators.py'}), SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_wrapper', 'file_path': 'django/utils/decorators.py'})]
+[2026-09-22 05:03:38,422 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'decorators.py', 'directory_path': 'django/utils'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+)
+[2026-09-22 05:03:51,750 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'classonlymethod', 'method_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'method_decorator'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'decorators.py', 'directory_path': 'django/utils'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_multi_decorate', 'file_path': 'django/utils/decorators.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_wrapper', 'file_path': 'django/utils/decorators.py'}: 1
+)

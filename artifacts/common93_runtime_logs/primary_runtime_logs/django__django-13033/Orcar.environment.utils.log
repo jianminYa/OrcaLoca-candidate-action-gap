@@ -1,0 +1,2 @@
+[2026-09-22 03:30:35,751 - Orcar.environment.utils - INFO] Found image hejiaz/swe-agent:latest with tags: ['hejiaz/swe-agent:latest'], created: 2024-08-23T00:14:47.243325975Z for linux amd64.
+[2026-09-22 03:30:36,688 - Orcar.environment.utils - DEBUG] Starting container with command: docker exec -i orcar_swe_bench_run_ctr_safe /bin/bash -l

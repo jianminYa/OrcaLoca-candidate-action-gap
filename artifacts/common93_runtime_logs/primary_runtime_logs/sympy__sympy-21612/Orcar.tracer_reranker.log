@@ -1,0 +1,842 @@
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/__init__.py' lineno=6 funcname='parse_latex' classname=''
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] @doctest_depends_on(modules=('antlr4',))
+def parse_latex(s):
+    r"""Converts the string ``s`` to a SymPy ``Expr``
+
+    Parameters
+    ==========
+
+    s : str
+        The LaTeX string to parse. In Python source containing LaTeX,
+        *raw strings* (denoted with ``r"``, like this one) are preferred,
+        as LaTeX makes liberal use of the ``\`` character, which would
+        trigger escaping in normal Python strings.
+
+    Examples
+    ========
+
+    >>> from sympy.parsing.latex import parse_latex
+    >>> expr = parse_latex(r"\frac {1 + \sqrt {\a}} {\b}")
+    >>> expr
+    (sqrt(a) + 1)/b
+    >>> expr.evalf(4, subs=dict(a=5, b=2))
+    1.618
+    """
+
+    _latex = import_module(
+        'sympy.parsing.latex._parse_latex_antlr',
+        import_kwargs={'fromlist': ['X']})
+
+    if _latex is not None:
+        return _latex.parse_latex(s)
+
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=249 funcname='_print_Mul' classname='StrPrinter'
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO]     def _print_Mul(self, expr):
+
+        prec = precedence(expr)
+
+        # Check for unevaluated Mul. In this case we need to make sure the
+        # identities are visible, multiple Rational factors are not combined
+        # etc so we display in a straight-forward form that fully preserves all
+        # args and their order.
+        args = expr.args
+        if args[0] is S.One or any(
+                isinstance(a, Number) or
+                a.is_Pow and all(ai.is_Integer for ai in a.args)
+                for a in args[1:]):
+            d, n = sift(args, lambda x:
+                isinstance(x, Pow) and bool(x.exp.as_coeff_Mul()[0] < 0),
+                binary=True)
+            for i, di in enumerate(d):
+                if di.exp.is_Number:
+                    e = -di.exp
+                else:
+                    dargs = list(di.exp.args)
+                    dargs[0] = -dargs[0]
+                    e = Mul._from_args(dargs)
+                d[i] = Pow(di.base, e, evaluate=False) if e - 1 else di.base
+
+            # don't parenthesize first factor if negative
+            if _coeff_isneg(n[0]):
+                pre = [str(n.pop(0))]
+            else:
+                pre = []
+            nfactors = pre + [self.parenthesize(a, prec, strict=False)
+                for a in n]
+
+            # don't parenthesize first of denominator unless singleton
+            if len(d) > 1 and _coeff_isneg(d[0]):
+                pre = [str(d.pop(0))]
+            else:
+                pre = []
+            dfactors = pre + [self.parenthesize(a, prec, strict=False)
+                for a in d]
+
+            n = '*'.join(nfactors)
+            d = '*'.join(dfactors)
+            if len(dfactors) > 1:
+                return '%s/(%s)' % (n, d)
+            elif dfactors:
+                return '%s/%s' % (n, d)
+            return n
+
+        c, e = expr.as_coeff_Mul()
+        if c < 0:
+            expr = _keep_coeff(-c, e)
+            sign = "-"
+        else:
+            sign = ""
+
+        a = []  # items in the numerator
+        b = []  # items that are in the denominator (if any)
+
+        pow_paren = []  # Will collect all pow with more than one base element and exp = -1
+
+        if self.order not in ('old', 'none'):
+            args = expr.as_ordered_factors()
+        else:
+            # use make_args in case expr was something like -x -> x
+            args = Mul.make_args(expr)
+
+        # Gather args for numerator/denominator
+        def apow(i):
+            b, e = i.as_base_exp()
+            eargs = list(Mul.make_args(e))
+            if eargs[0] is S.NegativeOne:
+                eargs = eargs[1:]
+            else:
+                eargs[0] = -eargs[0]
+            e = Mul._from_args(eargs)
+            if isinstance(i, Pow):
+                return i.func(b, e, evaluate=False)
+            return i.func(e, evaluate=False)
+        for item in args:
+            if (item.is_commutative and
+                    isinstance(item, Pow) and
+                    bool(item.exp.as_coeff_Mul()[0] < 0)):
+                if item.exp is not S.NegativeOne:
+                    b.append(apow(item))
+                else:
+                    if (len(item.args[0].args) != 1 and
+                            isinstance(item.base, Mul)):
+                        # To avoid situations like #14160
+                        pow_paren.append(item)
+                    b.append(item.base)
+            elif item.is_Rational and item is not S.Infinity:
+                if item.p != 1:
+                    a.append(Rational(item.p))
+                if item.q != 1:
+                    b.append(Rational(item.q))
+            else:
+                a.append(item)
+
+        a = a or [S.One]
+
+        a_str = [self.parenthesize(x, prec, strict=False) for x in a]
+        b_str = [self.parenthesize(x, prec, strict=False) for x in b]
+
+        # To parenthesize Pow with exp = -1 and having more than one Symbol
+        for item in pow_paren:
+            if item.base in b:
+                b_str[b.index(item.base)] = "(%s)" % b_str[b.index(item.base)]
+
+        if not b:
+            return sign + '*'.join(a_str)
+        elif len(b) == 1:
+            return sign + '*'.join(a_str) + "/" + b_str[0]
+        else:
+            return sign + '*'.join(a_str) + "/(%s)" % '*'.join(b_str)
+
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 13:04:10,608 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=345 funcname='convert_frac' classname='MathErrorListener'
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] def convert_frac(frac):
+    diff_op = False
+    partial_op = False
+    lower_itv = frac.lower.getSourceInterval()
+    lower_itv_len = lower_itv[1] - lower_itv[0] + 1
+    if (frac.lower.start == frac.lower.stop
+            and frac.lower.start.type == LaTeXLexer.DIFFERENTIAL):
+        wrt = get_differential_var_str(frac.lower.start.text)
+        diff_op = True
+    elif (lower_itv_len == 2 and frac.lower.start.type == LaTeXLexer.SYMBOL
+          and frac.lower.start.text == '\\partial'
+          and (frac.lower.stop.type == LaTeXLexer.LETTER
+               or frac.lower.stop.type == LaTeXLexer.SYMBOL)):
+        partial_op = True
+        wrt = frac.lower.stop.text
+        if frac.lower.stop.type == LaTeXLexer.SYMBOL:
+            wrt = wrt[1:]
+
+    if diff_op or partial_op:
+        wrt = sympy.Symbol(wrt)
+        if (diff_op and frac.upper.start == frac.upper.stop
+                and frac.upper.start.type == LaTeXLexer.LETTER
+                and frac.upper.start.text == 'd'):
+            return [wrt]
+        elif (partial_op and frac.upper.start == frac.upper.stop
+              and frac.upper.start.type == LaTeXLexer.SYMBOL
+              and frac.upper.start.text == '\\partial'):
+            return [wrt]
+        upper_text = rule2text(frac.upper)
+
+        expr_top = None
+        if diff_op and upper_text.startswith('d'):
+            expr_top = parse_latex(upper_text[1:])
+        elif partial_op and frac.upper.start.text == '\\partial':
+            expr_top = parse_latex(upper_text[len('\\partial'):])
+        if expr_top:
+            return sympy.Derivative(expr_top, wrt)
+
+    expr_top = convert_expr(frac.upper)
+    expr_bot = convert_expr(frac.lower)
+    inverse_denom = sympy.Pow(expr_bot, -1, evaluate=False)
+    if expr_top == 1:
+        return inverse_denom
+    else:
+        return sympy.Mul(expr_top, inverse_denom, evaluate=False)
+
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=887 funcname='stringify_expr' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] def stringify_expr(s, local_dict, global_dict, transformations):
+    """
+    Converts the string ``s`` to Python code, in ``local_dict``
+
+    Generally, ``parse_expr`` should be used.
+    """
+
+    tokens = []
+    input_code = StringIO(s.strip())
+    for toknum, tokval, _, _, _ in generate_tokens(input_code.readline):
+        tokens.append((toknum, tokval))
+
+    for transform in transformations:
+        tokens = transform(tokens, local_dict, global_dict)
+
+    return untokenize(tokens)
+
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=110 funcname='convert_expr' classname='MathErrorListener'
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] def convert_expr(expr):
+    return convert_add(expr.additive())
+
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=591 funcname='lambda_notation' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] def lambda_notation(tokens, local_dict, global_dict):
+    """Substitutes "lambda" with its Sympy equivalent Lambda().
+    However, the conversion doesn't take place if only "lambda"
+    is passed because that is a syntax error.
+
+    """
+    result = []
+    flag = False
+    toknum, tokval = tokens[0]
+    tokLen = len(tokens)
+
+    if toknum == NAME and tokval == 'lambda':
+        if tokLen == 2 or tokLen == 3 and tokens[1][0] == NEWLINE:
+            # In Python 3.6.7+, inputs without a newline get NEWLINE added to
+            # the tokens
+            result.extend(tokens)
+        elif tokLen > 2:
+            result.extend([
+                (NAME, 'Lambda'),
+                (OP, '('),
+                (OP, '('),
+                (OP, ')'),
+                (OP, ')'),
+            ])
+            for tokNum, tokVal in tokens[1:]:
+                if tokNum == OP and tokVal == ':':
+                    tokVal = ','
+                    flag = True
+                if not flag and tokNum == OP and tokVal in ['*', '**']:
+                    raise TokenError("Starred arguments in lambda not supported")
+                if flag:
+                    result.insert(-1, (tokNum, tokVal))
+                else:
+                    result.insert(-2, (tokNum, tokVal))
+    else:
+        result.extend(tokens)
+
+    return result
+
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=540 funcname='auto_symbol' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] def auto_symbol(tokens, local_dict, global_dict):
+    """Inserts calls to ``Symbol``/``Function`` for undefined variables."""
+    result = []
+    prevTok = (None, None)
+
+    tokens.append((None, None))  # so zip traverses all tokens
+    for tok, nextTok in zip(tokens, tokens[1:]):
+        tokNum, tokVal = tok
+        nextTokNum, nextTokVal = nextTok
+        if tokNum == NAME:
+            name = tokVal
+
+            if (name in ['True', 'False', 'None']
+                    or iskeyword(name)
+                    # Don't convert attribute access
+                    or (prevTok[0] == OP and prevTok[1] == '.')
+                    # Don't convert keyword arguments
+                    or (prevTok[0] == OP and prevTok[1] in ('(', ',')
+                        and nextTokNum == OP and nextTokVal == '=')
+                    # the name has already been defined
+                    or name in local_dict and local_dict[name] is not None):
+                result.append((NAME, name))
+                continue
+            elif name in local_dict:
+                local_dict.setdefault(None, set()).add(name)
+                if nextTokVal == '(':
+                    local_dict[name] = Function(name)
+                else:
+                    local_dict[name] = Symbol(name)
+                result.append((NAME, name))
+                continue
+            elif name in global_dict:
+                obj = global_dict[name]
+                if isinstance(obj, (AssumptionKeys, Basic, type)) or callable(obj):
+                    result.append((NAME, name))
+                    continue
+
+            result.extend([
+                (NAME, 'Symbol' if nextTokVal != '(' else 'Function'),
+                (OP, '('),
+                (NAME, repr(str(name))),
+                (OP, ')'),
+            ])
+        else:
+            result.append((tokNum, tokVal))
+
+        prevTok = (tokNum, tokVal)
+
+    return result
+
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=670 funcname='repeated_decimals' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,609 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] def repeated_decimals(tokens, local_dict, global_dict):
+    """
+    Allows 0.2[1] notation to represent the repeated decimal 0.2111... (19/90)
+
+    Run this before auto_number.
+
+    """
+    result = []
+
+    def is_digit(s):
+        return all(i in '0123456789_' for i in s)
+
+    # num will running match any DECIMAL [ INTEGER ]
+    num = []
+    for toknum, tokval in tokens:
+        if toknum == NUMBER:
+            if (not num and '.' in tokval and 'e' not in tokval.lower() and
+                'j' not in tokval.lower()):
+                num.append((toknum, tokval))
+            elif is_digit(tokval)and  len(num) == 2:
+                num.append((toknum, tokval))
+            elif is_digit(tokval) and len(num) == 3 and is_digit(num[-1][1]):
+                # Python 2 tokenizes 00123 as '00', '123'
+                # Python 3 tokenizes 01289 as '012', '89'
+                num.append((toknum, tokval))
+            else:
+                num = []
+        elif toknum == OP:
+            if tokval == '[' and len(num) == 1:
+                num.append((OP, tokval))
+            elif tokval == ']' and len(num) >= 3:
+                num.append((OP, tokval))
+            elif tokval == '.' and not num:
+                # handle .[1]
+                num.append((NUMBER, '0.'))
+            else:
+                num = []
+        else:
+            num = []
+
+        result.append((toknum, tokval))
+
+        if num and num[-1][1] == ']':
+            # pre.post[repetend] = a + b/c + d/e where a = pre, b/c = post,
+            # and d/e = repetend
+            result = result[:-len(num)]
+            pre, post = num[0][1].split('.')
+            repetend = num[2][1]
+            if len(num) == 5:
+                repetend += num[3][1]
+
+            pre = pre.replace('_', '')
+            post = post.replace('_', '')
+            repetend = repetend.replace('_', '')
+
+            zeros = '0'*len(post)
+            post, repetends = [w.lstrip('0') for w in [post, repetend]]
+                                        # or else interpreted as octal
+
+            a = pre or '0'
+            b, c = post or '0', '1' + zeros
+            d, e = repetends, ('9'*len(repetend)) + zeros
+
+            seq = [
+                (OP, '('),
+                    (NAME, 'Integer'),
+                    (OP, '('),
+                        (NUMBER, a),
+                    (OP, ')'),
+                    (OP, '+'),
+                    (NAME, 'Rational'),
+                    (OP, '('),
+                        (NUMBER, b),
+                        (OP, ','),
+                        (NUMBER, c),
+                    (OP, ')'),
+                    (OP, '+'),
+                    (NAME, 'Rational'),
+                    (OP, '('),
+                        (NUMBER, d),
+                        (OP, ','),
+                        (NUMBER, e),
+                    (OP, ')'),
+                (OP, ')'),
+            ]
+            result.extend(seq)
+            num = []
+
+    return result
+
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=761 funcname='auto_number' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] def auto_number(tokens, local_dict, global_dict):
+    """
+    Converts numeric literals to use SymPy equivalents.
+
+    Complex numbers use ``I``, integer literals use ``Integer``, and float
+    literals use ``Float``.
+
+    """
+    result = []
+
+    for toknum, tokval in tokens:
+        if toknum == NUMBER:
+            number = tokval
+            postfix = []
+
+            if number.endswith('j') or number.endswith('J'):
+                number = number[:-1]
+                postfix = [(OP, '*'), (NAME, 'I')]
+
+            if '.' in number or (('e' in number or 'E' in number) and
+                    not (number.startswith('0x') or number.startswith('0X'))):
+                seq = [(NAME, 'Float'), (OP, '('),
+                    (NUMBER, repr(str(number))), (OP, ')')]
+            else:
+                seq = [(NAME, 'Integer'), (OP, '('), (
+                    NUMBER, number), (OP, ')')]
+
+            result.extend(seq + postfix)
+        else:
+            result.append((toknum, tokval))
+
+    return result
+
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=631 funcname='factorial_notation' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] def factorial_notation(tokens, local_dict, global_dict):
+    """Allows standard notation for factorial."""
+    result = []
+    nfactorial = 0
+    for toknum, tokval in tokens:
+        if toknum == ERRORTOKEN:
+            op = tokval
+            if op == '!':
+                nfactorial += 1
+            else:
+                nfactorial = 0
+                result.append((OP, op))
+        else:
+            if nfactorial == 1:
+                result = _add_factorial_tokens('factorial', result)
+            elif nfactorial == 2:
+                result = _add_factorial_tokens('factorial2', result)
+            elif nfactorial > 2:
+                raise TokenError
+            nfactorial = 0
+            result.append((toknum, tokval))
+    return result
+
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=655 funcname='convert_xor' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] def convert_xor(tokens, local_dict, global_dict):
+    """Treats XOR, ``^``, as exponentiation, ``**``."""
+    result = []
+    for toknum, tokval in tokens:
+        if toknum == OP:
+            if tokval == '^':
+                result.append((OP, '**'))
+            else:
+                result.append((toknum, tokval))
+        else:
+            result.append((toknum, tokval))
+
+    return result
+
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=32 funcname='parenthesize' classname='StrPrinter'
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO]     def parenthesize(self, item, level, strict=False):
+        if (precedence(item) < level) or ((not strict) and precedence(item) <= level):
+            return "(%s)" % self._print(item)
+        else:
+            return self._print(item)
+
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=114 funcname='convert_add' classname='MathErrorListener'
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,610 - Orcar.tracer_reranker - INFO] def convert_add(add):
+    if add.ADD():
+        lh = convert_add(add.additive(0))
+        rh = convert_add(add.additive(1))
+        return sympy.Add(lh, rh, evaluate=False)
+    elif add.SUB():
+        lh = convert_add(add.additive(0))
+        rh = convert_add(add.additive(1))
+        return sympy.Add(lh, sympy.Mul(-1, rh, evaluate=False),
+                         evaluate=False)
+    else:
+        return convert_mp(add.mp())
+
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/sympy_parser.py' lineno=679 funcname='is_digit' classname='ParenthesisGroup'
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO]     def is_digit(s):
+        return all(i in '0123456789_' for i in s)
+
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=128 funcname='convert_mp' classname='MathErrorListener'
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] LLM score: 20 / 100
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] def convert_mp(mp):
+    if hasattr(mp, 'mp'):
+        mp_left = mp.mp(0)
+        mp_right = mp.mp(1)
+    else:
+        mp_left = mp.mp_nofunc(0)
+        mp_right = mp.mp_nofunc(1)
+
+    if mp.MUL() or mp.CMD_TIMES() or mp.CMD_CDOT():
+        lh = convert_mp(mp_left)
+        rh = convert_mp(mp_right)
+        return sympy.Mul(lh, rh, evaluate=False)
+    elif mp.DIV() or mp.CMD_DIV() or mp.COLON():
+        lh = convert_mp(mp_left)
+        rh = convert_mp(mp_right)
+        return sympy.Mul(lh, sympy.Pow(rh, -1, evaluate=False), evaluate=False)
+    else:
+        if hasattr(mp, 'unary'):
+            return convert_unary(mp.unary())
+        else:
+            return convert_unary(mp.unary_nofunc())
+
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=589 funcname='_print_Pow' classname='StrPrinter'
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO]     def _print_Pow(self, expr, rational=False):
+        """Printing helper function for ``Pow``
+
+        Parameters
+        ==========
+
+        rational : bool, optional
+            If ``True``, it will not attempt printing ``sqrt(x)`` or
+            ``x**S.Half`` as ``sqrt``, and will use ``x**(1/2)``
+            instead.
+
+            See examples for additional details
+
+        Examples
+        ========
+
+        >>> from sympy.functions import sqrt
+        >>> from sympy.printing.str import StrPrinter
+        >>> from sympy.abc import x
+
+        How ``rational`` keyword works with ``sqrt``:
+
+        >>> printer = StrPrinter()
+        >>> printer._print_Pow(sqrt(x), rational=True)
+        'x**(1/2)'
+        >>> printer._print_Pow(sqrt(x), rational=False)
+        'sqrt(x)'
+        >>> printer._print_Pow(1/sqrt(x), rational=True)
+        'x**(-1/2)'
+        >>> printer._print_Pow(1/sqrt(x), rational=False)
+        '1/sqrt(x)'
+
+        Notes
+        =====
+
+        ``sqrt(x)`` is canonicalized as ``Pow(x, S.Half)`` in SymPy,
+        so there is no need of defining a separate printer for ``sqrt``.
+        Instead, it should be handled here as well.
+        """
+        PREC = precedence(expr)
+
+        if expr.exp is S.Half and not rational:
+            return "sqrt(%s)" % self._print(expr.base)
+
+        if expr.is_commutative:
+            if -expr.exp is S.Half and not rational:
+                # Note: Don't test "expr.exp == -S.Half" here, because that will
+                # match -0.5, which we don't want.
+                return "%s/sqrt(%s)" % tuple(map(lambda arg: self._print(arg), (S.One, expr.base)))
+            if expr.exp is -S.One:
+                # Similarly to the S.Half case, don't test with "==" here.
+                return '%s/%s' % (self._print(S.One),
+                                  self.parenthesize(expr.base, PREC, strict=False))
+
+        e = self.parenthesize(expr.exp, PREC, strict=False)
+        if self.printmethod == '_sympyrepr' and expr.exp.is_Rational and expr.exp.q != 1:
+            # the parenthesized exp should be '(Rational(a, b))' so strip parens,
+            # but just check to be sure.
+            if e.startswith('(Rational'):
+                return '%s**%s' % (self.parenthesize(expr.base, PREC, strict=False), e[1:-1])
+        return '%s**%s' % (self.parenthesize(expr.base, PREC, strict=False), e)
+
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=813 funcname='_print_Symbol' classname='StrPrinter'
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO]     def _print_Symbol(self, expr):
+        return expr.name
+
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=49 funcname='_print_Add' classname='StrPrinter'
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO]     def _print_Add(self, expr, order=None):
+        terms = self._as_ordered_terms(expr, order=order)
+
+        PREC = precedence(expr)
+        l = []
+        for term in terms:
+            t = self._print(term)
+            if t.startswith('-'):
+                sign = "-"
+                t = t[1:]
+            else:
+                sign = "+"
+            if precedence(term) < PREC:
+                l.extend([sign, "(%s)" % t])
+            else:
+                l.extend([sign, t])
+        sign = l.pop(0)
+        if sign == '+':
+            sign = ""
+        return sign + ' '.join(l)
+
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 13:04:10,611 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=151 funcname='convert_unary' classname='MathErrorListener'
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] def convert_unary(unary):
+    if hasattr(unary, 'unary'):
+        nested_unary = unary.unary()
+    else:
+        nested_unary = unary.unary_nofunc()
+    if hasattr(unary, 'postfix_nofunc'):
+        first = unary.postfix()
+        tail = unary.postfix_nofunc()
+        postfix = [first] + tail
+    else:
+        postfix = unary.postfix()
+
+    if unary.ADD():
+        return convert_unary(nested_unary)
+    elif unary.SUB():
+        numabs = convert_unary(nested_unary)
+        # Use Integer(-n) instead of Mul(-1, n)
+        return -numabs
+    elif postfix:
+        return convert_postfix_list(postfix)
+
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=173 funcname='convert_postfix_list' classname='MathErrorListener'
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] def convert_postfix_list(arr, i=0):
+    if i >= len(arr):
+        raise LaTeXParsingError("Index out of bounds")
+
+    res = convert_postfix(arr[i])
+    if isinstance(res, sympy.Expr):
+        if i == len(arr) - 1:
+            return res  # nothing to multiply by
+        else:
+            if i > 0:
+                left = convert_postfix(arr[i - 1])
+                right = convert_postfix(arr[i + 1])
+                if isinstance(left, sympy.Expr) and isinstance(
+                        right, sympy.Expr):
+                    left_syms = convert_postfix(arr[i - 1]).atoms(sympy.Symbol)
+                    right_syms = convert_postfix(arr[i + 1]).atoms(
+                        sympy.Symbol)
+                    # if the left and right sides contain no variables and the
+                    # symbol in between is 'x', treat as multiplication.
+                    if len(left_syms) == 0 and len(right_syms) == 0 and str(
+                            res) == "x":
+                        return convert_postfix_list(arr, i + 1)
+            # multiply by next
+            return sympy.Mul(
+                res, convert_postfix_list(arr, i + 1), evaluate=False)
+    else:  # must be derivative
+        wrt = res[0]
+        if i == len(arr) - 1:
+            raise LaTeXParsingError("Expected expression for derivative")
+        else:
+            expr = convert_postfix_list(arr, i + 1)
+            return sympy.Derivative(expr, wrt)
+
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/printing/str.py' lineno=659 funcname='_print_Integer' classname='StrPrinter'
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO]     def _print_Integer(self, expr):
+        if self._settings.get("sympy_integers", False):
+            return "S(%s)" % (expr)
+        return str(expr.p)
+
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=222 funcname='convert_postfix' classname='MathErrorListener'
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] def convert_postfix(postfix):
+    if hasattr(postfix, 'exp'):
+        exp_nested = postfix.exp()
+    else:
+        exp_nested = postfix.exp_nofunc()
+
+    exp = convert_exp(exp_nested)
+    for op in postfix.postfix_op():
+        if op.BANG():
+            if isinstance(exp, list):
+                raise LaTeXParsingError("Cannot apply postfix to derivative")
+            exp = sympy.factorial(exp, evaluate=False)
+        elif op.eval_at():
+            ev = op.eval_at()
+            at_b = None
+            at_a = None
+            if ev.eval_at_sup():
+                at_b = do_subs(exp, ev.eval_at_sup())
+            if ev.eval_at_sub():
+                at_a = do_subs(exp, ev.eval_at_sub())
+            if at_b is not None and at_a is not None:
+                exp = sympy.Add(at_b, -1 * at_a, evaluate=False)
+            elif at_b is not None:
+                exp = at_b
+            elif at_a is not None:
+                exp = at_a
+
+    return exp
+
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=252 funcname='convert_exp' classname='MathErrorListener'
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] def convert_exp(exp):
+    if hasattr(exp, 'exp'):
+        exp_nested = exp.exp()
+    else:
+        exp_nested = exp.exp_nofunc()
+
+    if exp_nested:
+        base = convert_exp(exp_nested)
+        if isinstance(base, list):
+            raise LaTeXParsingError("Cannot raise derivative to power")
+        if exp.atom():
+            exponent = convert_atom(exp.atom())
+        elif exp.expr():
+            exponent = convert_expr(exp.expr())
+        return sympy.Pow(base, exponent, evaluate=False)
+    else:
+        if hasattr(exp, 'comp'):
+            return convert_comp(exp.comp())
+        else:
+            return convert_comp(exp.comp_nofunc())
+
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=274 funcname='convert_comp' classname='MathErrorListener'
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] def convert_comp(comp):
+    if comp.group():
+        return convert_expr(comp.group().expr())
+    elif comp.abs_group():
+        return sympy.Abs(convert_expr(comp.abs_group().expr()), evaluate=False)
+    elif comp.atom():
+        return convert_atom(comp.atom())
+    elif comp.frac():
+        return convert_frac(comp.frac())
+    elif comp.binom():
+        return convert_binom(comp.binom())
+    elif comp.floor():
+        return convert_floor(comp.floor())
+    elif comp.ceil():
+        return convert_ceil(comp.ceil())
+    elif comp.func():
+        return convert_func(comp.func())
+
+[2026-09-22 13:04:10,612 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/parsing/latex/_parse_latex_antlr.py' lineno=293 funcname='convert_atom' classname='MathErrorListener'
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] def convert_atom(atom):
+    if atom.LETTER():
+        subscriptName = ''
+        if atom.subexpr():
+            subscript = None
+            if atom.subexpr().expr():  # subscript is expr
+                subscript = convert_expr(atom.subexpr().expr())
+            else:  # subscript is atom
+                subscript = convert_atom(atom.subexpr().atom())
+            subscriptName = '_{' + StrPrinter().doprint(subscript) + '}'
+        return sympy.Symbol(atom.LETTER().getText() + subscriptName)
+    elif atom.SYMBOL():
+        s = atom.SYMBOL().getText()[1:]
+        if s == "infty":
+            return sympy.oo
+        else:
+            if atom.subexpr():
+                subscript = None
+                if atom.subexpr().expr():  # subscript is expr
+                    subscript = convert_expr(atom.subexpr().expr())
+                else:  # subscript is atom
+                    subscript = convert_atom(atom.subexpr().atom())
+                subscriptName = StrPrinter().doprint(subscript)
+                s += '_{' + subscriptName + '}'
+            return sympy.Symbol(s)
+    elif atom.NUMBER():
+        s = atom.NUMBER().getText().replace(",", "")
+        return sympy.Number(s)
+    elif atom.DIFFERENTIAL():
+        var = get_differential_var(atom.DIFFERENTIAL())
+        return sympy.Symbol('d' + var.name)
+    elif atom.mathit():
+        text = rule2text(atom.mathit().mathit_text())
+        return sympy.Symbol(text)
+    elif atom.bra():
+        val = convert_expr(atom.bra().expr())
+        return Bra(val)
+    elif atom.ket():
+        val = convert_expr(atom.ket().expr())
+        return Ket(val)
+
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] ['parse_latex', '_print_Mul', 'convert_frac', 'stringify_expr', 'convert_expr', 'lambda_notation', 'auto_symbol', 'repeated_decimals', 'auto_number', 'factorial_notation', 'convert_xor', 'parenthesize', 'convert_add', 'is_digit', 'convert_mp', '_print_Pow', '_print_Symbol', '_print_Add', 'convert_unary', 'convert_postfix_list', '_print_Integer', 'convert_postfix', 'convert_exp', 'convert_comp', 'convert_atom']
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] [('parse_latex', 2), ('_print_Mul', 50), ('convert_frac', 95), ('stringify_expr', 2), ('convert_expr', 2), ('lambda_notation', 0), ('auto_symbol', 2), ('repeated_decimals', 1), ('auto_number', 1), ('factorial_notation', 2), ('convert_xor', 2), ('parenthesize', 10), ('convert_add', 2), ('is_digit', 1), ('convert_mp', 20), ('_print_Pow', 15), ('_print_Symbol', 2), ('_print_Add', 2), ('convert_unary', 5), ('convert_postfix_list', 5), ('_print_Integer', 5), ('convert_postfix', 2), ('convert_exp', 2), ('convert_comp', 10), ('convert_atom', 2)]
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] [('convert_frac', 95), ('_print_Mul', 50), ('parse_latex', 2), ('stringify_expr', 2), ('convert_expr', 2), ('auto_symbol', 2), ('factorial_notation', 2), ('convert_xor', 2), ('repeated_decimals', 1), ('auto_number', 1), ('lambda_notation', 0), ('parenthesize', 10), ('convert_add', 2), ('is_digit', 1), ('convert_mp', 20), ('_print_Pow', 15), ('convert_unary', 5), ('_print_Symbol', 2), ('_print_Add', 2), ('convert_postfix_list', 5), ('_print_Integer', 5), ('convert_postfix', 2), ('convert_exp', 2), ('convert_comp', 10), ('convert_atom', 2)]
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 13:04:10,613 - Orcar.tracer_reranker - INFO] [('convert_frac', 95)]

@@ -1,0 +1,90 @@
+[2026-09-22 04:54:15,166 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}: 1
+)
+[2026-09-22 04:54:29,056 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'reverse_related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+)
+[2026-09-22 04:54:35,604 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'ManyToManyRel', 'file_path': 'django/db/models/fields/reverse_related.py'})]
+[2026-09-22 04:54:43,027 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'reverse_related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ManyToManyRel', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+)
+[2026-09-22 04:54:49,966 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}), SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'ManyToManyRel', 'method_name': '__init__', 'file_path': 'django/db/models/fields/reverse_related.py'})]
+[2026-09-22 04:55:00,270 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'reverse_related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ManyToManyRel', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': '__init__', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+)
+[2026-09-22 04:55:11,775 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'reverse_related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ManyToManyRel', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': '__init__', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+)
+[2026-09-22 04:55:23,613 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'ManyToManyRel'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': 'identity'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'reverse_related.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ForeignObjectRel', 'method_name': 'identity', 'file_path': 'django/db/models/fields/reverse_related.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'ManyToManyRel', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ManyToManyRel', 'method_name': '__init__', 'file_path': 'django/db/models/fields/reverse_related.py'}: 1
+)

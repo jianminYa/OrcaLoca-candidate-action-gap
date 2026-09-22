@@ -1,0 +1,26 @@
+[2026-09-22 04:24:14,538 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ModelChoiceField'}
+)
+[2026-09-22 04:24:44,037 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'to_python', 'file_path': 'django/forms/models.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}
+)
+[2026-09-22 04:24:55,052 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'models.py', 'directory_path': 'django/forms'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}
+)
+[2026-09-22 04:25:19,405 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModelChoiceField', 'method_name': 'validate', 'file_path': 'django/forms/models.py'}
+)

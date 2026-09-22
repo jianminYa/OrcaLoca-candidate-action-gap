@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI now have the full source code of the `parse_http_date` function in `django/utils/http.py`. The bug is clearly visible: when the year is a two-digit value (less than 100), the code uses hardcoded logic: `if year < 70: year += 2000` else `year += 1900`. According to RFC 7231, the correct behavior should be to compare the resulting year against the current year + 50, and if it's more than 50 years in the future, interpret it as the most recent past year with the same last two digits. The fix should replace the hardcoded 70-year threshold with a dynamic comparison against the current year.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/utils/http.py",
+            "class_name": "",
+            "method_name": "parse_http_date"
+        }
+    ]
+}

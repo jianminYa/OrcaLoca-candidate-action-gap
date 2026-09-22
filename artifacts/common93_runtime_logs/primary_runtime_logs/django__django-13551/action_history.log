@@ -1,0 +1,44 @@
+[2026-09-22 04:10:54,836 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value'}: 1
+)
+[2026-09-22 04:11:03,797 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value', 'file_path': 'django/contrib/auth/tokens.py'})]
+[2026-09-22 04:11:16,066 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value', 'file_path': 'django/contrib/auth/tokens.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'tokens.py', 'directory_path': 'django/contrib/auth'}: 1
+)
+[2026-09-22 04:11:26,896 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value', 'file_path': 'django/contrib/auth/tokens.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'tokens.py', 'directory_path': 'django/contrib/auth'}: 1
+)
+[2026-09-22 04:11:35,004 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'PasswordResetTokenGenerator', 'file_path': 'django/contrib/auth/tokens.py'})]
+[2026-09-22 04:11:48,254 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'PasswordResetTokenGenerator', 'method_name': '_make_hash_value', 'file_path': 'django/contrib/auth/tokens.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'tokens.py', 'directory_path': 'django/contrib/auth'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'PasswordResetTokenGenerator', 'file_path': 'django/contrib/auth/tokens.py'}: 1
+)

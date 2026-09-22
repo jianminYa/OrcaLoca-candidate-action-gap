@@ -1,0 +1,10 @@
+[2026-09-21 16:56:19,685 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'parse_http_date', 'file_path': 'django/utils/http.py'}
+)
+[2026-09-21 16:56:30,804 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'http.py', 'directory_path': 'django/utils'}
+)

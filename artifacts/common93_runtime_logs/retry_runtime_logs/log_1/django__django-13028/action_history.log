@@ -1,0 +1,47 @@
+[2026-09-22 03:41:43,766 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'check_filterable', 'file_path': 'django/db/models/sql/query.py'}: 1
+)
+[2026-09-22 03:42:00,532 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'check_filterable', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/sql/query.py', 'source_code': 'self.check_filterable(value)'}: 1
+)
+[2026-09-22 03:42:22,964 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'check_filterable', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/sql/query.py', 'source_code': 'self.check_filterable(value)'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'build_filter', 'file_path': 'django/db/models/sql/query.py'}: 1
+)
+[2026-09-22 03:42:35,405 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'check_filterable', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/sql/query.py', 'source_code': 'self.check_filterable(value)'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'build_filter', 'file_path': 'django/db/models/sql/query.py'}: 1
+)
+[2026-09-22 03:42:53,378 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'check_filterable', 'file_path': 'django/db/models/sql/query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'django/db/models/sql/query.py', 'source_code': 'self.check_filterable(value)'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Query', 'method_name': 'build_filter', 'file_path': 'django/db/models/sql/query.py'}: 1
+)

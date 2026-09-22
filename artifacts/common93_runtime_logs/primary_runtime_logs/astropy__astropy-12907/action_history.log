@@ -1,0 +1,109 @@
+[2026-09-21 12:25:02,159 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}: 1
+)
+[2026-09-21 12:25:49,055 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}: 1
+)
+[2026-09-21 12:25:59,192 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}: 1
+)
+[2026-09-21 12:26:42,604 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'})]
+[2026-09-21 12:27:10,277 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}: 1
+)
+[2026-09-21 12:27:22,842 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}: 1
+)
+[2026-09-21 12:27:34,102 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable', 'file_path': 'astropy/modeling/separable.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_cstack'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_separable'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'separable.py', 'directory_path': 'astropy/modeling'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_compute_n_outputs', 'file_path': 'astropy/modeling/separable.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_coord_matrix', 'file_path': 'astropy/modeling/separable.py'}: 1
+)

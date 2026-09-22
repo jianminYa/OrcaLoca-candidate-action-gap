@@ -1,0 +1,18 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "__len__",
+            "file_path": ""
+        },
+        {
+            "keyword": "Pipeline",
+            "file_path": "sklearn/pipeline.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "from sklearn.pipeline import Pipeline\nfrom sklearn.base import BaseEstimator\n\nclass DummyEstimator(BaseEstimator):\n    def fit(self, X, y=None):\n        return self\n    def transform(self, X):\n        return X\n\npipe = Pipeline([('step1', DummyEstimator()), ('step2', DummyEstimator())])\n\ntry:\n    result = len(pipe)\n    print(\"len(pipe) =\", result)\nexcept TypeError as e:\n    print(\"TypeError:\", e)\n",
+    "env_reproduce_path": "/scikit-learn__scikit-learn/reproducer_scikit-learn__scikit-learn-13439.py"
+}

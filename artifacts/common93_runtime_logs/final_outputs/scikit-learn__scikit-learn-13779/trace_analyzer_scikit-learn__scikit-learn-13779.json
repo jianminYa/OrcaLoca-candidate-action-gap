@@ -1,0 +1,28 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "set_params",
+            "file_path": ""
+        },
+        {
+            "keyword": "VotingClassifier",
+            "file_path": ""
+        },
+        {
+            "keyword": "has_fit_parameter",
+            "file_path": "sklearn/utils/validation.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "fit",
+            "file_path": "sklearn/ensemble/voting.py",
+            "class_name": "_BaseVoting"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import subprocess\nimport sys\n\n# Build the extension modules first if needed\nsubprocess.check_call([sys.executable, 'setup.py', 'build_ext', '--inplace'], cwd='/scikit-learn__scikit-learn')\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.ensemble import RandomForestClassifier, VotingClassifier\nimport numpy as np\n\nX, y = load_iris(return_X_y=True)\nvoter = VotingClassifier(\n    estimators=[('lr', LogisticRegression()),\n                ('rf', RandomForestClassifier())]\n)\nvoter.fit(X, y, sample_weight=np.ones(y.shape))\nvoter.set_params(lr=None)\nvoter.fit(X, y, sample_weight=np.ones(y.shape))\n",
+    "env_reproduce_path": "/scikit-learn__scikit-learn/reproducer_scikit-learn__scikit-learn-13779.py"
+}

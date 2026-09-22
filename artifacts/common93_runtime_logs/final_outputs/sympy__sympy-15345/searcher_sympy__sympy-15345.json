@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nNow I have a comprehensive understanding of the issue. The `Min` class (and similarly `Max`) inherits from `MinMaxBase` and `Application`. `MinMaxBase` inherits from `LatticeOp` which inherits from `AssocOp`. When the Mathematica printer dispatches for `Max`, it walks up the MRO: `_print_Max` -> `_print_MinMaxBase` -> `_print_LatticeOp` -> `_print_AssocOp` -> etc. None of these exist in `MCodePrinter`. Since `Max` doesn't directly inherit from `Function`, the `_print_Function` method in `MCodePrinter` is never reached. The printer falls back to `StrPrinter`'s default which uses parentheses format `Max(2, x)` instead of Mathematica's square bracket format `Max[x, 2]`. The bug is in `sympy/printing/mathematica.py`: the `known_functions` dictionary is missing `Max` and `Min`, and more importantly, `MCodePrinter` lacks `_print_Max` and `_print_Min` methods. Even adding to `known_functions` alone won't fix it since `_print_Function` isn't dispatched for `Max`. The fix needs to either add dedicated print methods for `Max`/`Min` or ensure the dispatch reaches `_print_Function`. The search queue is empty, so I have enough context to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/printing/mathematica.py",
+            "class_name": "",
+            "method_name": ""
+        },
+        {
+            "file_path": "sympy/printing/mathematica.py",
+            "class_name": "MCodePrinter",
+            "method_name": "_print_Function"
+        }
+    ]
+}

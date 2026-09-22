@@ -1,0 +1,21 @@
+[2026-09-22 05:04:48,450 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}
+)
+[2026-09-22 05:05:01,283 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'helpers.py', 'directory_path': 'django/contrib/admin'}
+)
+[2026-09-22 05:05:18,730 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'AdminReadonlyField', 'file_path': 'django/contrib/admin/helpers.py'}
+)
+[2026-09-22 05:05:36,682 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'AdminReadonlyField', 'method_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'}
+)
+[2026-09-22 05:05:36,686 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'AdminReadonlyField', 'method_name': 'get_admin_url', 'file_path': 'django/contrib/admin/helpers.py'} search_content='File Path: django/contrib/admin/helpers.py \nMethod Content: \n    def get_admin_url(self, remote_field, remote_obj):\n        url_name = \'admin:%s_%s_change\' % (\n            remote_field.model._meta.app_label,\n            remote_field.model._meta.model_name,\n        )\n        try:\n            url = reverse(url_name, args=[quote(remote_obj.pk)])\n            return format_html(\'<a href="{}">{}</a>\', url, remote_obj)\n        except NoReverseMatch:\n            return str(remote_obj)\n'

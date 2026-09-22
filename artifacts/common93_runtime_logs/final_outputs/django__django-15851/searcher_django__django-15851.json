@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly identified in `django/db/backends/postgresql/client.py` in the `settings_to_cmd_args_env` method of the `DatabaseClient` class. The issue is that `args += [dbname]` is executed before `args.extend(parameters)`. Since psql expects all options/parameters to come before the database name, the order needs to be swapped: `args.extend(parameters)` should come before `args += [dbname]`. The search queue is empty and the context is sufficient to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/backends/postgresql/client.py",
+            "class_name": "DatabaseClient",
+            "method_name": "settings_to_cmd_args_env"
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+[2026-09-22 04:44:23,345 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label'}
+)
+[2026-09-22 04:44:33,942 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'boundfield.py', 'directory_path': 'django/forms'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'BoundWidget', 'file_path': 'django/forms/boundfield.py'}
+)
+[2026-09-22 04:44:47,538 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'BoundWidget', 'file_path': 'django/forms/boundfield.py'}
+)
+[2026-09-22 04:45:11,669 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'BoundWidget', 'method_name': 'id_for_label', 'file_path': 'django/forms/boundfield.py'}
+)
+[2026-09-22 04:45:11,672 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'BoundWidget', 'method_name': 'id_for_label', 'file_path': 'django/forms/boundfield.py'} search_content="File Path: django/forms/boundfield.py \nMethod Content: \n    def id_for_label(self):\n        return 'id_%s_%s' % (self.data['name'], self.data['index'])\n"

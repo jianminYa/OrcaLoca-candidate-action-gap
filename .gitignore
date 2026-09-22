@@ -22,3 +22,12 @@ log*/
 artifacts/**/.supervisor_state
 artifacts/**/supervisor*.log
 artifacts/**/supervise_*.sh
+
+# The Common93 runtime-log archive is intentionally versioned.  Its retry
+# directories contain names matching the broad log*/ rule above.
+!artifacts/common93_runtime_logs/retry_runtime_logs/log_1/
+!artifacts/common93_runtime_logs/retry_runtime_logs/log_1/**
+!artifacts/common93_runtime_logs/retry_runtime_logs/log_2/
+!artifacts/common93_runtime_logs/retry_runtime_logs/log_2/**
+!artifacts/common93_runtime_logs/run_control/
+!artifacts/common93_runtime_logs/run_control/**

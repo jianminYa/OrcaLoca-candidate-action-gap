@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is now fully confirmed. The `get_admin_url` method belongs to the `AdminReadonlyField` class in `django/contrib/admin/helpers.py`. The class has `self.model_admin` available (set in `__init__`), which provides access to `self.model_admin.admin_site.name`. The `reverse()` call in `get_admin_url` is missing the `current_app` parameter, which should be `self.model_admin.admin_site.name`. This causes URLs for readonly ForeignKey fields to always point to `/admin/...` instead of the correct custom admin site URL. The remaining search in the queue is redundant as we already have the full method code.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/contrib/admin/helpers.py",
+            "class_name": "AdminReadonlyField",
+            "method_name": "get_admin_url"
+        }
+    ]
+}

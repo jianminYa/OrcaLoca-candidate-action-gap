@@ -1,0 +1,107 @@
+[2026-09-22 10:00:35,058 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+)
+[2026-09-22 10:00:49,098 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'})]
+[2026-09-22 10:01:00,002 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+)
+[2026-09-22 10:01:13,953 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+)
+[2026-09-22 10:02:38,406 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'parse_name', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__'}: 1
+)
+[2026-09-22 10:02:52,905 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'parse_name', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__'}: 1
+)
+[2026-09-22 10:03:03,797 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'parse_name', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__'}: 1
+)
+[2026-09-22 10:03:15,727 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'parse_name', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__ ='}: 1
+)
+[2026-09-22 10:03:26,561 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_object_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sphinx/ext/autodoc'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'get_module_members', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ModuleDocumenter', 'method_name': 'parse_name', 'file_path': 'sphinx/ext/autodoc/__init__.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sphinx/ext/autodoc/__init__.py', 'source_code': 'self.__all__ ='}: 2
+)

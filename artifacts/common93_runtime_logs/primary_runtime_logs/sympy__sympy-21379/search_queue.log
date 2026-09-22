@@ -1,0 +1,629 @@
+[2026-09-22 12:41:26,358 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyerrors.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'Piecewise generators do not make sense'}
+)
+[2026-09-22 12:41:39,109 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'polyerrors.py', 'directory_path': 'sympy/polys'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polytools.py', 'source_code': 'Piecewise generators do not make sense'}
+)
+[2026-09-22 12:41:51,599 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'polyerrors.py', 'directory_path': 'sympy/polys'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polytools.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_dict_from_expr'}
+)
+[2026-09-22 12:44:50,936 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polytools.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_dict_from_expr'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyutils.py', 'source_code': 'Piecewise generators do not make sense'}
+)
+[2026-09-22 12:45:37,681 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polytools.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_dict_from_expr'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyutils.py', 'source_code': 'Piecewise generators do not make sense'}
+)
+[2026-09-22 12:45:57,726 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_dict_from_expr'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyutils.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Expr', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/expr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+)
+[2026-09-22 12:46:19,319 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'polyutils.py', 'directory_path': 'sympy/polys'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_dict_from_expr'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyutils.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Expr', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/expr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+)
+[2026-09-22 12:47:32,139 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_dict_from_expr'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyutils.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Expr', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/expr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+)
+[2026-09-22 12:48:21,866 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/polys/polyutils.py', 'source_code': 'Piecewise generators do not make sense'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Expr', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/expr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+)
+[2026-09-22 12:48:41,265 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Expr', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/expr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+)
+[2026-09-22 12:48:56,435 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+)
+[2026-09-22 12:49:22,759 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+)
+[2026-09-22 12:49:49,473 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+)
+[2026-09-22 12:51:49,847 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': 'def _eval_rewrite'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+)
+[2026-09-22 12:52:11,956 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_parallel_dict_from_expr_no_gens', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+)
+[2026-09-22 12:53:07,846 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/power.py', 'source_code': 'def _eval_subs'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+)
+[2026-09-22 12:53:28,828 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'power.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+)
+[2026-09-22 12:53:57,440 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/hyperbolic.py', 'source_code': '_eval_rewrite_as_exp'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+)
+[2026-09-22 12:54:18,626 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'hyperbolic.py', 'directory_path': 'sympy/functions/elementary'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+)
+[2026-09-22 12:54:46,277 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/functions/elementary/exponential.py', 'source_code': 'as_numer_denom'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+)
+[2026-09-22 12:55:02,228 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'exponential.py', 'directory_path': 'sympy/functions/elementary'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+)
+[2026-09-22 12:55:34,942 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'cancel', 'file_path': 'sympy/polys/polytools.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+)
+[2026-09-22 12:56:06,348 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+)
+[2026-09-22 12:56:29,064 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_not_a_coeff', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+)
+[2026-09-22 12:56:47,848 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power', 'file_path': 'sympy/polys/polyutils.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+)
+[2026-09-22 12:57:08,336 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+)
+[2026-09-22 12:57:26,853 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+)
+[2026-09-22 12:57:48,990 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': 'eval', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+)
+[2026-09-22 12:58:15,884 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_expand_trig', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+)
+[2026-09-22 12:58:41,860 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/operations.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': '_eval_subs', 'file_path': 'sympy/core/mul.py'}
+)
+[2026-09-22 12:59:38,698 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': '_eval_subs', 'file_path': 'sympy/core/mul.py'}
+)
+[2026-09-22 13:00:01,491 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Pow', 'method_name': '_eval_subs', 'file_path': 'sympy/core/power.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': '_eval_subs', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_extended_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+)
+[2026-09-22 13:00:25,651 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'sinh', 'method_name': '_eval_rewrite_as_exp', 'file_path': 'sympy/functions/elementary/hyperbolic.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': '_eval_subs', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_extended_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Add', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/add.py'}
+)
+[2026-09-22 13:00:50,142 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Basic', 'method_name': '_subs', 'file_path': 'sympy/core/basic.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': '_eval_subs', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_extended_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Add', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/add.py'}
+)
+[2026-09-22 13:01:11,040 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'decompose_power'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ExpBase', 'method_name': 'as_numer_denom', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Mul', 'method_name': '_eval_subs', 'file_path': 'sympy/core/mul.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'exp', 'method_name': '_eval_is_extended_real', 'file_path': 'sympy/functions/elementary/exponential.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Add', 'method_name': 'as_numer_denom', 'file_path': 'sympy/core/add.py'}
+)

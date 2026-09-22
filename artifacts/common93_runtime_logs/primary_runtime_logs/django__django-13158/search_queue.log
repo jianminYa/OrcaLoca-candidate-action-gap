@@ -1,0 +1,100 @@
+[2026-09-22 03:59:07,099 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}
+)
+[2026-09-22 03:59:21,053 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}
+)
+[2026-09-22 03:59:33,009 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}
+)
+[2026-09-22 04:00:13,403 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 04:00:31,212 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 04:00:49,011 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}
+)
+[2026-09-22 04:01:15,924 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 04:01:31,024 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 04:01:56,331 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}
+)
+[2026-09-22 04:02:18,694 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_combinator_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 04:02:46,759 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_combinator_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+)
+[2026-09-22 04:03:07,200 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}
+)

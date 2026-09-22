@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is confirmed in the `resolve_lookup_value` method of the `Query` class in `django/db/models/sql/query.py`. The line `return type(value)(self.resolve_lookup_value(sub_value, can_reuse, allow_joins) for sub_value in value)` passes a generator iterator to the named tuple constructor. Named tuples expect individual positional arguments, not a single iterable. Regular tuples accept an iterable in their constructor, but named tuples do not. The fix is to unpack the generator with `*` so the resolved elements are passed as separate positional arguments, i.e., `return type(value)(*(...))`. The context is sufficient to identify the bug location.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/models/sql/query.py",
+            "class_name": "Query",
+            "method_name": "resolve_lookup_value"
+        }
+    ]
+}

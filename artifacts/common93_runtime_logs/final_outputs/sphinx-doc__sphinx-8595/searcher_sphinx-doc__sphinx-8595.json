@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is now fully confirmed. In `ModuleDocumenter.get_object_members`, the condition `if not self.__all__:` on line evaluates to `True` for both `None` (no __all__ defined) and `[]` (empty __all__). When __all__ is an empty list `[]`, `not []` is `True`, so the code enters the branch that returns all members as implicit module members. Instead, when __all__ is empty, no members should be documented. The fix should change `if not self.__all__:` to `if self.__all__ is None:`. I still need to confirm where `self.__all__` is populated with the module's actual `__all__` value - likely in an `import_object` or similar method.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sphinx/ext/autodoc/__init__.py",
+            "class_name": "ModuleDocumenter",
+            "method_name": "get_object_members"
+        }
+    ]
+}

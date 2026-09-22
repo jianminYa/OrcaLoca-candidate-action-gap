@@ -1,0 +1,3 @@
+[2026-09-22 10:03:35,493 - Orcar.environment.benchmark - INFO] Setting up env for inst sphinx-doc__sphinx-8721...
+[2026-09-22 10:03:42,223 - Orcar.environment.benchmark - INFO] Repo sphinx-doc__sphinx already cached
+[2026-09-22 10:03:42,223 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sphinx-doc__sphinx to base commit: 82ef497a8c88f0f6e50d84520e7276bfbf65025d

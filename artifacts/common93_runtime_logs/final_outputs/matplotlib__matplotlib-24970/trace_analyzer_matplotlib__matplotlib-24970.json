@@ -1,0 +1,40 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "to_rgba",
+            "file_path": "lib/matplotlib/colors.py"
+        },
+        {
+            "keyword": "_i_bad",
+            "file_path": "lib/matplotlib/colors.py"
+        },
+        {
+            "keyword": "_i_over",
+            "file_path": "lib/matplotlib/colors.py"
+        },
+        {
+            "keyword": "get_cmap",
+            "file_path": "lib/matplotlib/pyplot.py"
+        },
+        {
+            "keyword": "_i_under",
+            "file_path": "lib/matplotlib/colors.py"
+        },
+        {
+            "keyword": "to_rgba_array",
+            "file_path": "lib/matplotlib/colors.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "__call__",
+            "file_path": "lib/matplotlib/colors.py",
+            "class_name": "Colormap"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import matplotlib.pyplot as plt\nimport numpy as np\nimport warnings\n\nwarnings.filterwarnings('error', category=DeprecationWarning)\n\ntry:\n    plt.get_cmap()(np.empty((0, ), dtype=np.uint8))\n    print(\"No warnings raised\")\nexcept DeprecationWarning as e:\n    print(f\"DeprecationWarning: {e}\")\n",
+    "env_reproduce_path": "/matplotlib__matplotlib/reproducer_matplotlib__matplotlib-24970.py"
+}

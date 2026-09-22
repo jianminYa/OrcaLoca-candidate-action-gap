@@ -1,0 +1,20 @@
+[2026-09-22 05:29:06,687 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'submit_row', 'file_path': 'django/contrib/admin/templatetags/admin_modify.py'}: 1
+)
+[2026-09-22 05:29:16,457 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'submit_row', 'file_path': 'django/contrib/admin/templatetags/admin_modify.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'admin_modify.py', 'directory_path': 'django/contrib/admin/templatetags'}: 1
+)
+[2026-09-22 05:29:24,111 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'submit_row', 'file_path': 'django/contrib/admin/templatetags/admin_modify.py'})]
+[2026-09-22 05:30:32,552 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'submit_row', 'file_path': 'django/contrib/admin/templatetags/admin_modify.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'admin_modify.py', 'directory_path': 'django/contrib/admin/templatetags'}: 1
+)

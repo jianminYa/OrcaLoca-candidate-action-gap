@@ -1,0 +1,23 @@
+[2026-09-22 04:38:10,761 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'ResolverMatch'}
+)
+[2026-09-22 04:38:35,737 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ResolverMatch', 'method_name': '__init__', 'file_path': 'django/urls/resolvers.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'resolvers.py', 'directory_path': 'django/urls'}
+)
+[2026-09-22 04:38:46,796 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'resolvers.py', 'directory_path': 'django/urls'}
+)
+[2026-09-22 04:39:10,170 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'ResolverMatch', 'file_path': 'django/urls/resolvers.py'}
+)
+[2026-09-22 04:39:10,178 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'ResolverMatch', 'file_path': 'django/urls/resolvers.py'} search_content='File Path: django/urls/resolvers.py \nClass Content: \nclass ResolverMatch:\n    def __init__(self, func, args, kwargs, url_name=None, app_names=None, namespaces=None, route=None, tried=None):\n        self.func = func\n        self.args = args\n        self.kwargs = kwargs\n        self.url_name = url_name\n        self.route = route\n        self.tried = tried\n\n        # If a URLRegexResolver doesn\'t have a namespace or app_name, it passes\n        # in an empty value.\n        self.app_names = [x for x in app_names if x] if app_names else []\n        self.app_name = \':\'.join(self.app_names)\n        self.namespaces = [x for x in namespaces if x] if namespaces else []\n        self.namespace = \':\'.join(self.namespaces)\n\n        if not hasattr(func, \'__name__\'):\n            # A class-based view\n            self._func_path = func.__class__.__module__ + \'.\' + func.__class__.__name__\n        else:\n            # A function-based view\n            self._func_path = func.__module__ + \'.\' + func.__name__\n\n        view_path = url_name or self._func_path\n        self.view_name = \':\'.join(self.namespaces + [view_path])\n\n    def __getitem__(self, index):\n        return (self.func, self.args, self.kwargs)[index]\n\n    def __repr__(self):\n        return "ResolverMatch(func=%s, args=%s, kwargs=%s, url_name=%s, app_names=%s, namespaces=%s, route=%s)" % (\n            self._func_path, self.args, self.kwargs, self.url_name,\n            self.app_names, self.namespaces, self.route,\n        )\n'

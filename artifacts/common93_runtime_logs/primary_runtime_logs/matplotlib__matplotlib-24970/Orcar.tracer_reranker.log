@@ -1,0 +1,527 @@
+[2026-09-22 06:21:05,899 - Orcar.tracer_reranker - INFO] Func 01/18
+[2026-09-22 06:21:05,899 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/pyplot.py' lineno=2137 funcname='get_cmap' classname='backend_mod'
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] def get_cmap(name=None, lut=None):
+    return cm._get_cmap(name=name, lut=lut)
+
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] Func 02/18
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=683 funcname='__call__' classname='Colormap'
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] LLM score: 95 / 100
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO]     def __call__(self, X, alpha=None, bytes=False):
+        """
+        Parameters
+        ----------
+        X : float or int, `~numpy.ndarray` or scalar
+            The data value(s) to convert to RGBA.
+            For floats, *X* should be in the interval ``[0.0, 1.0]`` to
+            return the RGBA values ``X*100`` percent along the Colormap line.
+            For integers, *X* should be in the interval ``[0, Colormap.N)`` to
+            return RGBA values *indexed* from the Colormap with index ``X``.
+        alpha : float or array-like or None
+            Alpha must be a scalar between 0 and 1, a sequence of such
+            floats with shape matching X, or None.
+        bytes : bool
+            If False (default), the returned RGBA values will be floats in the
+            interval ``[0, 1]`` otherwise they will be uint8s in the interval
+            ``[0, 255]``.
+
+        Returns
+        -------
+        Tuple of RGBA values if X is scalar, otherwise an array of
+        RGBA values with a shape of ``X.shape + (4, )``.
+        """
+        if not self._isinit:
+            self._init()
+
+        # Take the bad mask from a masked array, or in all other cases defer
+        # np.isnan() to after we have converted to an array.
+        mask_bad = X.mask if np.ma.is_masked(X) else None
+        xa = np.array(X, copy=True)
+        if mask_bad is None:
+            mask_bad = np.isnan(xa)
+        if not xa.dtype.isnative:
+            xa = xa.byteswap().newbyteorder()  # Native byteorder is faster.
+        if xa.dtype.kind == "f":
+            with np.errstate(invalid="ignore"):
+                xa *= self.N
+                # Negative values are out of range, but astype(int) would
+                # truncate them towards zero.
+                xa[xa < 0] = -1
+                # xa == 1 (== N after multiplication) is not out of range.
+                xa[xa == self.N] = self.N - 1
+                # Avoid converting large positive values to negative integers.
+                np.clip(xa, -1, self.N, out=xa)
+                xa = xa.astype(int)
+        # Set the over-range indices before the under-range;
+        # otherwise the under-range values get converted to over-range.
+        xa[xa > self.N - 1] = self._i_over
+        xa[xa < 0] = self._i_under
+        xa[mask_bad] = self._i_bad
+
+        lut = self._lut
+        if bytes:
+            lut = (lut * 255).astype(np.uint8)
+
+        rgba = lut.take(xa, axis=0, mode='clip')
+
+        if alpha is not None:
+            alpha = np.clip(alpha, 0, 1)
+            if bytes:
+                alpha *= 255  # Will be cast to uint8 upon assignment.
+            if alpha.shape not in [(), xa.shape]:
+                raise ValueError(
+                    f"alpha is array-like but its shape {alpha.shape} does "
+                    f"not match that of X {xa.shape}")
+            rgba[..., -1] = alpha
+
+            # If the "bad" color is all zeros, then ignore alpha input.
+            if (lut[-1] == 0).all() and np.any(mask_bad):
+                if np.iterable(mask_bad) and mask_bad.shape == xa.shape:
+                    rgba[mask_bad] = (0, 0, 0, 0)
+                else:
+                    rgba[..., :] = (0, 0, 0, 0)
+
+        if not np.iterable(X):
+            rgba = tuple(rgba)
+        return rgba
+
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] Func 03/18
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=399 funcname='to_rgba_array' classname='ColorSequenceRegistry'
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] def to_rgba_array(c, alpha=None):
+    """
+    Convert *c* to a (n, 4) array of RGBA colors.
+
+    Parameters
+    ----------
+    c : Matplotlib color or array of colors
+        If *c* is a masked array, an `~numpy.ndarray` is returned with a
+        (0, 0, 0, 0) row for each masked value or row in *c*.
+
+    alpha : float or sequence of floats, optional
+        If *alpha* is given, force the alpha value of the returned RGBA tuple
+        to *alpha*.
+
+        If None, the alpha value from *c* is used. If *c* does not have an
+        alpha channel, then alpha defaults to 1.
+
+        *alpha* is ignored for the color value ``"none"`` (case-insensitive),
+        which always maps to ``(0, 0, 0, 0)``.
+
+        If *alpha* is a sequence and *c* is a single color, *c* will be
+        repeated to match the length of *alpha*.
+
+    Returns
+    -------
+    array
+        (n, 4) array of RGBA colors,  where each channel (red, green, blue,
+        alpha) can assume values between 0 and 1.
+    """
+    # Special-case inputs that are already arrays, for performance.  (If the
+    # array has the wrong kind or shape, raise the error during one-at-a-time
+    # conversion.)
+    if np.iterable(alpha):
+        alpha = np.asarray(alpha).ravel()
+    if (isinstance(c, np.ndarray) and c.dtype.kind in "if"
+            and c.ndim == 2 and c.shape[1] in [3, 4]):
+        mask = c.mask.any(axis=1) if np.ma.is_masked(c) else None
+        c = np.ma.getdata(c)
+        if np.iterable(alpha):
+            if c.shape[0] == 1 and alpha.shape[0] > 1:
+                c = np.tile(c, (alpha.shape[0], 1))
+            elif c.shape[0] != alpha.shape[0]:
+                raise ValueError("The number of colors must match the number"
+                                 " of alpha values if there are more than one"
+                                 " of each.")
+        if c.shape[1] == 3:
+            result = np.column_stack([c, np.zeros(len(c))])
+            result[:, -1] = alpha if alpha is not None else 1.
+        elif c.shape[1] == 4:
+            result = c.copy()
+            if alpha is not None:
+                result[:, -1] = alpha
+        if mask is not None:
+            result[mask] = 0
+        if np.any((result < 0) | (result > 1)):
+            raise ValueError("RGBA values should be within 0-1 range")
+        return result
+    # Handle single values.
+    # Note that this occurs *after* handling inputs that are already arrays, as
+    # `to_rgba(c, alpha)` (below) is expensive for such inputs, due to the need
+    # to format the array in the ValueError message(!).
+    if cbook._str_lower_equal(c, "none"):
+        return np.zeros((0, 4), float)
+    try:
+        if np.iterable(alpha):
+            return np.array([to_rgba(c, a) for a in alpha], float)
+        else:
+            return np.array([to_rgba(c, alpha)], float)
+    except (ValueError, TypeError):
+        pass
+
+    if isinstance(c, str):
+        raise ValueError(f"{c!r} is not a valid color value.")
+
+    if len(c) == 0:
+        return np.zeros((0, 4), float)
+
+    # Quick path if the whole sequence can be directly converted to a numpy
+    # array in one shot.
+    if isinstance(c, Sequence):
+        lens = {len(cc) if isinstance(cc, (list, tuple)) else -1 for cc in c}
+        if lens == {3}:
+            rgba = np.column_stack([c, np.ones(len(c))])
+        elif lens == {4}:
+            rgba = np.array(c)
+        else:
+            rgba = np.array([to_rgba(cc) for cc in c])
+    else:
+        rgba = np.array([to_rgba(cc) for cc in c])
+
+    if alpha is not None:
+        rgba[:, 3] = alpha
+    return rgba
+
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] Func 04/18
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=265 funcname='to_rgba' classname='ColorSequenceRegistry'
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] def to_rgba(c, alpha=None):
+    """
+    Convert *c* to an RGBA color.
+
+    Parameters
+    ----------
+    c : Matplotlib color or ``np.ma.masked``
+
+    alpha : float, optional
+        If *alpha* is given, force the alpha value of the returned RGBA tuple
+        to *alpha*.
+
+        If None, the alpha value from *c* is used. If *c* does not have an
+        alpha channel, then alpha defaults to 1.
+
+        *alpha* is ignored for the color value ``"none"`` (case-insensitive),
+        which always maps to ``(0, 0, 0, 0)``.
+
+    Returns
+    -------
+    tuple
+        Tuple of floats ``(r, g, b, a)``, where each channel (red, green, blue,
+        alpha) can assume values between 0 and 1.
+    """
+    # Special-case nth color syntax because it should not be cached.
+    if _is_nth_color(c):
+        prop_cycler = mpl.rcParams['axes.prop_cycle']
+        colors = prop_cycler.by_key().get('color', ['k'])
+        c = colors[int(c[1:]) % len(colors)]
+    try:
+        rgba = _colors_full_map.cache[c, alpha]
+    except (KeyError, TypeError):  # Not in cache, or unhashable.
+        rgba = None
+    if rgba is None:  # Suppress exception chaining of cache lookup failure.
+        rgba = _to_rgba_no_colorcycle(c, alpha)
+        try:
+            _colors_full_map.cache[c, alpha] = rgba
+        except TypeError:
+            pass
+    return rgba
+
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] Func 05/18
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=1163 funcname='_init' classname='ListedColormap'
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO]     def _init(self):
+        self._lut = np.zeros((self.N + 3, 4), float)
+        self._lut[:-3] = to_rgba_array(self.colors)
+        self._isinit = True
+        self._set_extremes()
+
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] Func 06/18
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=213 funcname='_is_nth_color' classname='ColorSequenceRegistry'
+[2026-09-22 06:21:05,900 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] def _is_nth_color(c):
+    """Return whether *c* can be interpreted as an item in the color cycle."""
+    return isinstance(c, str) and re.match(r"\AC[0-9]+\Z", c)
+
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] Func 07/18
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=307 funcname='_to_rgba_no_colorcycle' classname='ColorSequenceRegistry'
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] def _to_rgba_no_colorcycle(c, alpha=None):
+    """
+    Convert *c* to an RGBA color, with no support for color-cycle syntax.
+
+    If *alpha* is given, force the alpha value of the returned RGBA tuple
+    to *alpha*. Otherwise, the alpha value from *c* is used, if it has alpha
+    information, or defaults to 1.
+
+    *alpha* is ignored for the color value ``"none"`` (case-insensitive),
+    which always maps to ``(0, 0, 0, 0)``.
+    """
+    orig_c = c
+    if c is np.ma.masked:
+        return (0., 0., 0., 0.)
+    if isinstance(c, str):
+        if c.lower() == "none":
+            return (0., 0., 0., 0.)
+        # Named color.
+        try:
+            # This may turn c into a non-string, so we check again below.
+            c = _colors_full_map[c]
+        except KeyError:
+            if len(orig_c) != 1:
+                try:
+                    c = _colors_full_map[c.lower()]
+                except KeyError:
+                    pass
+    if isinstance(c, str):
+        # hex color in #rrggbb format.
+        match = re.match(r"\A#[a-fA-F0-9]{6}\Z", c)
+        if match:
+            return (tuple(int(n, 16) / 255
+                          for n in [c[1:3], c[3:5], c[5:7]])
+                    + (alpha if alpha is not None else 1.,))
+        # hex color in #rgb format, shorthand for #rrggbb.
+        match = re.match(r"\A#[a-fA-F0-9]{3}\Z", c)
+        if match:
+            return (tuple(int(n, 16) / 255
+                          for n in [c[1]*2, c[2]*2, c[3]*2])
+                    + (alpha if alpha is not None else 1.,))
+        # hex color with alpha in #rrggbbaa format.
+        match = re.match(r"\A#[a-fA-F0-9]{8}\Z", c)
+        if match:
+            color = [int(n, 16) / 255
+                     for n in [c[1:3], c[3:5], c[5:7], c[7:9]]]
+            if alpha is not None:
+                color[-1] = alpha
+            return tuple(color)
+        # hex color with alpha in #rgba format, shorthand for #rrggbbaa.
+        match = re.match(r"\A#[a-fA-F0-9]{4}\Z", c)
+        if match:
+            color = [int(n, 16) / 255
+                     for n in [c[1]*2, c[2]*2, c[3]*2, c[4]*2]]
+            if alpha is not None:
+                color[-1] = alpha
+            return tuple(color)
+        # string gray.
+        try:
+            c = float(c)
+        except ValueError:
+            pass
+        else:
+            if not (0 <= c <= 1):
+                raise ValueError(
+                    f"Invalid string grayscale value {orig_c!r}. "
+                    f"Value must be within 0-1 range")
+            return c, c, c, alpha if alpha is not None else 1.
+        raise ValueError(f"Invalid RGBA argument: {orig_c!r}")
+    # turn 2-D array into 1-D array
+    if isinstance(c, np.ndarray):
+        if c.ndim == 2 and c.shape[0] == 1:
+            c = c.reshape(-1)
+    # tuple color.
+    if not np.iterable(c):
+        raise ValueError(f"Invalid RGBA argument: {orig_c!r}")
+    if len(c) not in [3, 4]:
+        raise ValueError("RGBA sequence should have length 3 or 4")
+    if not all(isinstance(x, Number) for x in c):
+        # Checks that don't work: `map(float, ...)`, `np.array(..., float)` and
+        # `np.array(...).astype(float)` would all convert "0.5" to 0.5.
+        raise ValueError(f"Invalid RGBA argument: {orig_c!r}")
+    # Return a tuple to prevent the cached value from being modified.
+    c = tuple(map(float, c))
+    if len(c) == 3 and alpha is None:
+        alpha = 1
+    if alpha is not None:
+        c = c[:3] + (alpha,)
+    if any(elem < 0 or elem > 1 for elem in c):
+        raise ValueError("RGBA values should be within 0-1 range")
+    return c
+
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] Func 08/18
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=838 funcname='_set_extremes' classname='Colormap'
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO]     def _set_extremes(self):
+        if self._rgba_under:
+            self._lut[self._i_under] = self._rgba_under
+        else:
+            self._lut[self._i_under] = self._lut[0]
+        if self._rgba_over:
+            self._lut[self._i_over] = self._rgba_over
+        else:
+            self._lut[self._i_over] = self._lut[self.N - 1]
+        self._lut[self._i_bad] = self._rgba_bad
+
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] Func 09/18
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/cm.py' lineno=267 funcname='_get_cmap' classname='ColormapRegistry'
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] def _get_cmap(name=None, lut=None):
+    """
+    Get a colormap instance, defaulting to rc values if *name* is None.
+
+    Parameters
+    ----------
+    name : `matplotlib.colors.Colormap` or str or None, default: None
+        If a `.Colormap` instance, it will be returned. Otherwise, the name of
+        a colormap known to Matplotlib, which will be resampled by *lut*. The
+        default, None, means :rc:`image.cmap`.
+    lut : int or None, default: None
+        If *name* is not already a Colormap instance and *lut* is not None, the
+        colormap will be resampled to have *lut* entries in the lookup table.
+
+    Returns
+    -------
+    Colormap
+    """
+    if name is None:
+        name = mpl.rcParams['image.cmap']
+    if isinstance(name, colors.Colormap):
+        return name
+    _api.check_in_list(sorted(_colormaps), name=name)
+    if lut is None:
+        return _colormaps[name]
+    else:
+        return _colormaps[name].resampled(lut)
+
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] Func 10/18
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/cbook.py' lineno=1790 funcname='_str_lower_equal' classname='GrouperView'
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] def _str_lower_equal(obj, s):
+    """
+    Return whether *obj* is a string equal, when lowercased, to string *s*.
+
+    This helper solely exists to handle the case where *obj* is a numpy array,
+    because in such cases, a naive ``obj == s`` would yield an array, which
+    cannot be used in a boolean context.
+    """
+    return isinstance(obj, str) and obj.lower() == s
+
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] Func 11/18
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=725 funcname='__getitem__' classname='RcParams'
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO]     def __getitem__(self, key):
+        if key in _deprecated_map:
+            version, alt_key, alt_val, inverse_alt = _deprecated_map[key]
+            _api.warn_deprecated(
+                version, name=key, obj_type="rcparam", alternative=alt_key)
+            return inverse_alt(self._get(alt_key))
+
+        elif key in _deprecated_ignore_map:
+            version, alt_key = _deprecated_ignore_map[key]
+            _api.warn_deprecated(
+                version, name=key, obj_type="rcparam", alternative=alt_key)
+            return self._get(alt_key) if alt_key else None
+
+        # In theory, this should only ever be used after the global rcParams
+        # has been set up, but better be safe e.g. in presence of breakpoints.
+        elif key == "backend" and self is globals().get("rcParams"):
+            val = self._get(key)
+            if val is rcsetup._auto_backend_sentinel:
+                from matplotlib import pyplot as plt
+                plt.switch_backend(rcsetup._auto_backend_sentinel)
+
+        return self._get(key)
+
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] Func 12/18
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/cm.py' lineno=84 funcname='__iter__' classname='ColormapRegistry'
+[2026-09-22 06:21:05,901 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO]     def __iter__(self):
+        return iter(self._cmaps)
+
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] Func 13/18
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/cm.py' lineno=87 funcname='__len__' classname='ColormapRegistry'
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] LLM score: 0 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO]     def __len__(self):
+        return len(self._cmaps)
+
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] Func 14/18
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/_api/__init__.py' lineno=101 funcname='check_in_list' classname='classproperty'
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] def check_in_list(_values, *, _print_supported_values=True, **kwargs):
+    """
+    For each *key, value* pair in *kwargs*, check that *value* is in *_values*.
+
+    Parameters
+    ----------
+    _values : iterable
+        Sequence of values to check on.
+    _print_supported_values : bool, default: True
+        Whether to print *_values* when raising ValueError.
+    **kwargs : dict
+        *key, value* pairs as keyword arguments to find in *_values*.
+
+    Raises
+    ------
+    ValueError
+        If any *value* in *kwargs* is not found in *_values*.
+
+    Examples
+    --------
+    >>> _api.check_in_list(["foo", "bar"], arg=arg, other_arg=other_arg)
+    """
+    if not kwargs:
+        raise TypeError("No argument to check!")
+    values = _values
+    for key, val in kwargs.items():
+        if val not in values:
+            msg = f"{val!r} is not a valid value for {key}"
+            if _print_supported_values:
+                msg += f"; supported values are {', '.join(map(repr, values))}"
+            raise ValueError(msg)
+
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] Func 15/18
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/cm.py' lineno=78 funcname='__getitem__' classname='ColormapRegistry'
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO]     def __getitem__(self, item):
+        try:
+            return self._cmaps[item].copy()
+        except KeyError:
+            raise KeyError(f"{item!r} is not a known colormap name") from None
+
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] Func 16/18
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/__init__.py' lineno=674 funcname='_get' classname='RcParams'
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO]     def _get(self, key):
+        """
+        Directly read data bypassing deprecation, backend and validation
+        logic.
+
+        Notes
+        -----
+        As end user or downstream library you almost always should use
+        ``val = rcParams[key]`` and not ``_get()``.
+
+        There are only very few special cases that need direct data access.
+        These cases previously used ``dict.__getitem__(rcParams, key, val)``,
+        which is now deprecated and replaced by ``rcParams._get(key)``.
+
+        Even though private, we guarantee API stability for ``rcParams._get``,
+        i.e. it is subject to Matplotlib's API and deprecation policy.
+
+        :meta public:
+        """
+        return dict.__getitem__(self, key)
+
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] Func 17/18
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=943 funcname='copy' classname='Colormap'
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO]     def copy(self):
+        """Return a copy of the colormap."""
+        return self.__copy__()
+
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] Func 18/18
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib/lib/matplotlib/colors.py' lineno=761 funcname='__copy__' classname='Colormap'
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 06:21:05,902 - Orcar.tracer_reranker - INFO]     def __copy__(self):
+        cls = self.__class__
+        cmapobject = cls.__new__(cls)
+        cmapobject.__dict__.update(self.__dict__)
+        if self._isinit:
+            cmapobject._lut = np.copy(self._lut)
+        return cmapobject
+
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] ['get_cmap', '__call__', 'to_rgba_array', 'to_rgba', '_init', '_is_nth_color', '_to_rgba_no_colorcycle', '_set_extremes', '_get_cmap', '_str_lower_equal', '__getitem__', '__iter__', '__len__', 'check_in_list', '__getitem__', '_get', 'copy', '__copy__']
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] [('get_cmap', 2), ('__call__', 95), ('to_rgba_array', 2), ('to_rgba', 2), ('_init', 5), ('_is_nth_color', 0), ('_to_rgba_no_colorcycle', 2), ('_set_extremes', 5), ('_get_cmap', 2), ('_str_lower_equal', 1), ('__getitem__', 2), ('__iter__', 0), ('__len__', 0), ('check_in_list', 1), ('__getitem__', 1), ('_get', 1), ('copy', 1), ('__copy__', 2)]
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] [('__call__', 95), ('get_cmap', 2), ('to_rgba_array', 2), ('to_rgba', 2), ('_init', 5), ('_to_rgba_no_colorcycle', 2), ('_is_nth_color', 0), ('_set_extremes', 5), ('_get_cmap', 2), ('_str_lower_equal', 1), ('__getitem__', 2), ('check_in_list', 1), ('__getitem__', 1), ('__iter__', 0), ('__len__', 0), ('_get', 1), ('copy', 1), ('__copy__', 2)]
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 06:21:05,903 - Orcar.tracer_reranker - INFO] [('__call__', 95)]

@@ -1,0 +1,259 @@
+[2026-09-22 03:59:04,230 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 1
+)
+[2026-09-22 03:59:19,001 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 1
+)
+[2026-09-22 03:59:30,980 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 1
+)
+[2026-09-22 04:00:11,198 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+)
+[2026-09-22 04:00:28,771 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 1
+)
+[2026-09-22 04:00:46,485 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 2
+)
+[2026-09-22 04:01:13,361 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+)
+[2026-09-22 04:01:28,586 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+)
+[2026-09-22 04:01:53,827 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 3
+)
+[2026-09-22 04:02:16,015 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_combinator_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+)
+[2026-09-22 04:02:43,943 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_combinator_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+)
+[2026-09-22 04:03:04,383 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_combinator_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+)
+[2026-09-22 04:03:23,774 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'none'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': 'union'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'set_empty'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'QuerySet', 'method_name': '_combinator_query'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'query.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'is_empty', 'file_path': 'django/db/models/sql/query.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'compiler.py', 'directory_path': 'django/db/models/sql'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'as_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'get_combinator_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SQLCompiler', 'method_name': 'execute_sql', 'file_path': 'django/db/models/sql/compiler.py'}: 2
+)

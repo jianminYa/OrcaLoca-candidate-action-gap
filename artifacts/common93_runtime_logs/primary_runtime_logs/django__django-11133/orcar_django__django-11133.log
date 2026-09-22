@@ -1,0 +1,7 @@
+/tmp/tracer_output_django__django-11133.json
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  92%|█████████▏| 183/199 [00:00<00:00, 1824.22it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1884.15it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2079.94it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2094.31it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2083.44it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2022.86it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2001.41it/s]

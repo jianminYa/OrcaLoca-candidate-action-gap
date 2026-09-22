@@ -1,0 +1,101 @@
+[2026-09-22 06:30:12,395 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableLegend'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}
+)
+[2026-09-22 06:30:31,421 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'legend.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}
+)
+[2026-09-22 06:30:48,453 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'set_draggable'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}
+)
+[2026-09-22 06:31:00,090 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}
+)
+[2026-09-22 06:32:21,129 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'offsetbox.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}
+)
+[2026-09-22 06:32:46,699 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': '__getstate__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}
+)
+[2026-09-22 06:32:56,779 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__init__'}
+)
+[2026-09-22 06:33:12,338 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_connect_picklable'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}
+)
+[2026-09-22 06:33:31,131 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}
+)
+[2026-09-22 06:33:31,135 - search_queue - INFO] Duplicate search result: search_action='search_class' search_action_input={'class_name': 'DraggableBase', 'file_path': 'lib/matplotlib/offsetbox.py'} search_content="File Path: lib/matplotlib/offsetbox.py \nClass Skeleton: \nClass Signature: DraggableBase\nDocstring: Helper base class for a draggable artist (legend, offsetbox).\n\nDerived classes must override the following methods::\n\n    def save_offset(self):\n        '''\n        Called when the object is picked for dragging; should save the\n        reference position of the artist.\n        '''\n\n    def update_offset(self, dx, dy):\n        '''\n        Called during the dragging; (*dx*, *dy*) is the pixel offset from\n        the point where the mouse drag started.\n        '''\n\nOptionally, you may override the following method::\n\n    def finalize_offset(self):\n        '''Called when the mouse is released.'''\n\nIn the current implementation of `.DraggableLegend` and\n`DraggableAnnotation`, `update_offset` places the artists in display\ncoordinates, and `finalize_offset` recalculates their position in axes\ncoordinate and set a relevant attribute.\n\nMethod: __init__\nMethod Signature: __init__(self, ref_artist, use_blit)\nDocstring: None\n\nMethod: on_motion\nMethod Signature: on_motion(self, evt)\nDocstring: None\n\nMethod: on_pick\nMethod Signature: on_pick(self, evt)\nDocstring: None\n\nMethod: on_release\nMethod Signature: on_release(self, event)\nDocstring: None\n\nMethod: _check_still_parented\nMethod Signature: _check_still_parented(self)\nDocstring: None\n\nMethod: disconnect\nMethod Signature: disconnect(self)\nDocstring: Disconnect the callbacks.\n\nMethod: save_offset\nMethod Signature: save_offset(self)\nDocstring: None\n\nMethod: update_offset\nMethod Signature: update_offset(self, dx, dy)\nDocstring: None\n\nMethod: finalize_offset\nMethod Signature: finalize_offset(self)\nDocstring: None\n"
+[2026-09-22 06:34:41,771 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Legend', 'method_name': 'get_draggable'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}
+)
+[2026-09-22 06:34:55,762 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__getstate__'}
+)
+[2026-09-22 06:35:11,072 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}
+)
+[2026-09-22 06:35:23,501 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}
+)
+[2026-09-22 06:35:40,308 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DraggableBase', 'method_name': '__getstate__'}
+)

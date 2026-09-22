@@ -1,0 +1,708 @@
+[2026-09-22 09:54:04,683 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/_config.py' lineno=48 funcname='set_config' classname=''
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] def set_config(
+    assume_finite=None,
+    working_memory=None,
+    print_changed_only=None,
+    display=None,
+    pairwise_dist_chunk_size=None,
+    enable_cython_pairwise_dist=None,
+    array_api_dispatch=None,
+    transform_output=None,
+):
+    """Set global scikit-learn configuration
+
+    .. versionadded:: 0.19
+
+    Parameters
+    ----------
+    assume_finite : bool, default=None
+        If True, validation for finiteness will be skipped,
+        saving time, but leading to potential crashes. If
+        False, validation for finiteness will be performed,
+        avoiding error.  Global default: False.
+
+        .. versionadded:: 0.19
+
+    working_memory : int, default=None
+        If set, scikit-learn will attempt to limit the size of temporary arrays
+        to this number of MiB (per job when parallelised), often saving both
+        computation time and memory on expensive operations that can be
+        performed in chunks. Global default: 1024.
+
+        .. versionadded:: 0.20
+
+    print_changed_only : bool, default=None
+        If True, only the parameters that were set to non-default
+        values will be printed when printing an estimator. For example,
+        ``print(SVC())`` while True will only print 'SVC()' while the default
+        behaviour would be to print 'SVC(C=1.0, cache_size=200, ...)' with
+        all the non-changed parameters.
+
+        .. versionadded:: 0.21
+
+    display : {'text', 'diagram'}, default=None
+        If 'diagram', estimators will be displayed as a diagram in a Jupyter
+        lab or notebook context. If 'text', estimators will be displayed as
+        text. Default is 'diagram'.
+
+        .. versionadded:: 0.23
+
+    pairwise_dist_chunk_size : int, default=None
+        The number of row vectors per chunk for the accelerated pairwise-
+        distances reduction backend. Default is 256 (suitable for most of
+        modern laptops' caches and architectures).
+
+        Intended for easier benchmarking and testing of scikit-learn internals.
+        End users are not expected to benefit from customizing this configuration
+        setting.
+
+        .. versionadded:: 1.1
+
+    enable_cython_pairwise_dist : bool, default=None
+        Use the accelerated pairwise-distances reduction backend when
+        possible. Global default: True.
+
+        Intended for easier benchmarking and testing of scikit-learn internals.
+        End users are not expected to benefit from customizing this configuration
+        setting.
+
+        .. versionadded:: 1.1
+
+    array_api_dispatch : bool, default=None
+        Use Array API dispatching when inputs follow the Array API standard.
+        Default is False.
+
+        See the :ref:`User Guide <array_api>` for more details.
+
+        .. versionadded:: 1.2
+
+    transform_output : str, default=None
+        Configure output of `transform` and `fit_transform`.
+
+        See :ref:`sphx_glr_auto_examples_miscellaneous_plot_set_output.py`
+        for an example on how to use the API.
+
+        - `"default"`: Default output format of a transformer
+        - `"pandas"`: DataFrame output
+        - `None`: Transform configuration is unchanged
+
+        .. versionadded:: 1.2
+
+    See Also
+    --------
+    config_context : Context manager for global scikit-learn configuration.
+    get_config : Retrieve current values of the global configuration.
+    """
+    local_config = _get_threadlocal_config()
+
+    if assume_finite is not None:
+        local_config["assume_finite"] = assume_finite
+    if working_memory is not None:
+        local_config["working_memory"] = working_memory
+    if print_changed_only is not None:
+        local_config["print_changed_only"] = print_changed_only
+    if display is not None:
+        local_config["display"] = display
+    if pairwise_dist_chunk_size is not None:
+        local_config["pairwise_dist_chunk_size"] = pairwise_dist_chunk_size
+    if enable_cython_pairwise_dist is not None:
+        local_config["enable_cython_pairwise_dist"] = enable_cython_pairwise_dist
+    if array_api_dispatch is not None:
+        local_config["array_api_dispatch"] = array_api_dispatch
+    if transform_output is not None:
+        local_config["transform_output"] = transform_output
+
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1328 funcname='make_union' classname='FeatureUnion'
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] def make_union(*transformers, n_jobs=None, verbose=False):
+    """Construct a FeatureUnion from the given transformers.
+
+    This is a shorthand for the FeatureUnion constructor; it does not require,
+    and does not permit, naming the transformers. Instead, they will be given
+    names automatically based on their types. It also does not allow weighting.
+
+    Parameters
+    ----------
+    *transformers : list of estimators
+        One or more estimators.
+
+    n_jobs : int, default=None
+        Number of jobs to run in parallel.
+        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
+        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
+        for more details.
+
+        .. versionchanged:: v0.20
+           `n_jobs` default changed from 1 to None.
+
+    verbose : bool, default=False
+        If True, the time elapsed while fitting each transformer will be
+        printed as it is completed.
+
+    Returns
+    -------
+    f : FeatureUnion
+        A :class:`FeatureUnion` object for concatenating the results of multiple
+        transformer objects.
+
+    See Also
+    --------
+    FeatureUnion : Class for concatenating the results of multiple transformer
+        objects.
+
+    Examples
+    --------
+    >>> from sklearn.decomposition import PCA, TruncatedSVD
+    >>> from sklearn.pipeline import make_union
+    >>> make_union(PCA(), TruncatedSVD())
+     FeatureUnion(transformer_list=[('pca', PCA()),
+                                   ('truncatedsvd', TruncatedSVD())])
+    """
+    return FeatureUnion(_name_estimators(transformers), n_jobs=n_jobs, verbose=verbose)
+
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/_set_output.py' lineno=140 funcname='wrapped' classname=''
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO]     @wraps(f)
+    def wrapped(self, X, *args, **kwargs):
+        data_to_wrap = f(self, X, *args, **kwargs)
+        if isinstance(data_to_wrap, tuple):
+            # only wrap the first output for cross decomposition
+            return (
+                _wrap_data_with_container(method, data_to_wrap[0], X, self),
+                *data_to_wrap[1:],
+            )
+
+        return _wrap_data_with_container(method, data_to_wrap, X, self)
+
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/_set_output.py' lineno=137 funcname='_wrap_method_output' classname=''
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] LLM score: 35 / 100
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] def _wrap_method_output(f, method):
+    """Wrapper used by `_SetOutputMixin` to automatically wrap methods."""
+
+    @wraps(f)
+    def wrapped(self, X, *args, **kwargs):
+        data_to_wrap = f(self, X, *args, **kwargs)
+        if isinstance(data_to_wrap, tuple):
+            # only wrap the first output for cross decomposition
+            return (
+                _wrap_data_with_container(method, data_to_wrap[0], X, self),
+                *data_to_wrap[1:],
+            )
+
+        return _wrap_data_with_container(method, data_to_wrap, X, self)
+
+    return wrapped
+
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1198 funcname='fit_transform' classname='FeatureUnion'
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO]     def fit_transform(self, X, y=None, **fit_params):
+        """Fit all transformers, transform the data and concatenate results.
+
+        Parameters
+        ----------
+        X : iterable or array-like, depending on transformers
+            Input data to be transformed.
+
+        y : array-like of shape (n_samples, n_outputs), default=None
+            Targets for supervised learning.
+
+        **fit_params : dict, default=None
+            Parameters to pass to the fit method of the estimator.
+
+        Returns
+        -------
+        X_t : array-like or sparse matrix of \
+                shape (n_samples, sum_n_components)
+            The `hstack` of results of transformers. `sum_n_components` is the
+            sum of `n_components` (output dimension) over transformers.
+        """
+        results = self._parallel_func(X, y, fit_params, _fit_transform_one)
+        if not results:
+            # All transformers are None
+            return np.zeros((X.shape[0], 0))
+
+        Xs, transformers = zip(*results)
+        self._update_transformer_list(transformers)
+
+        return self._hstack(Xs)
+
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/_set_output.py' lineno=99 funcname='_wrap_data_with_container' classname=''
+[2026-09-22 09:54:04,684 - Orcar.tracer_reranker - INFO] LLM score: 72 / 100
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] def _wrap_data_with_container(method, data_to_wrap, original_input, estimator):
+    """Wrap output with container based on an estimator's or global config.
+
+    Parameters
+    ----------
+    method : {"transform"}
+        Estimator's method to get container output for.
+
+    data_to_wrap : {ndarray, dataframe}
+        Data to wrap with container.
+
+    original_input : {ndarray, dataframe}
+        Original input of function.
+
+    estimator : estimator instance
+        Estimator with to get the output configuration from.
+
+    Returns
+    -------
+    output : {ndarray, dataframe}
+        If the output config is "default" or the estimator is not configured
+        for wrapping return `data_to_wrap` unchanged.
+        If the output config is "pandas", return `data_to_wrap` as a pandas
+        DataFrame.
+    """
+    output_config = _get_output_config(method, estimator)
+
+    if output_config["dense"] == "default" or not _auto_wrap_is_configured(estimator):
+        return data_to_wrap
+
+    # dense_config == "pandas"
+    return _wrap_in_pandas_container(
+        data_to_wrap=data_to_wrap,
+        index=getattr(original_input, "index", None),
+        columns=estimator.get_feature_names_out,
+    )
+
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1279 funcname='_hstack' classname='FeatureUnion'
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO]     def _hstack(self, Xs):
+        config = _get_output_config("transform", self)
+        if config["dense"] == "pandas" and all(hasattr(X, "iloc") for X in Xs):
+            pd = check_pandas_support("transform")
+            return pd.concat(Xs, axis=1)
+
+        if any(sparse.issparse(f) for f in Xs):
+            Xs = sparse.hstack(Xs).tocsr()
+        else:
+            Xs = np.hstack(Xs)
+        return Xs
+
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/_set_output.py' lineno=10 funcname='_wrap_in_pandas_container' classname=''
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] LLM score: 90 / 100
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] def _wrap_in_pandas_container(
+    data_to_wrap,
+    *,
+    columns,
+    index=None,
+):
+    """Create a Pandas DataFrame.
+
+    If `data_to_wrap` is a DataFrame, then the `columns` and `index` will be changed
+    inplace. If `data_to_wrap` is a ndarray, then a new DataFrame is created with
+    `columns` and `index`.
+
+    Parameters
+    ----------
+    data_to_wrap : {ndarray, dataframe}
+        Data to be wrapped as pandas dataframe.
+
+    columns : callable, ndarray, or None
+        The column names or a callable that returns the column names. The
+        callable is useful if the column names require some computation.
+        If `columns` is a callable that raises an error, `columns` will have
+        the same semantics as `None`. If `None` and `data_to_wrap` is already a
+        dataframe, then the column names are not changed. If `None` and
+        `data_to_wrap` is **not** a dataframe, then columns are
+        `range(n_features)`.
+
+    index : array-like, default=None
+        Index for data.
+
+    Returns
+    -------
+    dataframe : DataFrame
+        Container with column names or unchanged `output`.
+    """
+    if issparse(data_to_wrap):
+        raise ValueError("Pandas output does not support sparse data.")
+
+    if callable(columns):
+        try:
+            columns = columns()
+        except Exception:
+            columns = None
+
+    pd = check_pandas_support("Setting output container to 'pandas'")
+
+    if isinstance(data_to_wrap, pd.DataFrame):
+        if columns is not None:
+            data_to_wrap.columns = columns
+        if index is not None:
+            data_to_wrap.index = index
+        return data_to_wrap
+
+    return pd.DataFrame(data_to_wrap, index=index, columns=columns)
+
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/_config.py' lineno=22 funcname='_get_threadlocal_config' classname=''
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] def _get_threadlocal_config():
+    """Get a threadlocal **mutable** configuration. If the configuration
+    does not exist, copy the default global configuration."""
+    if not hasattr(_threadlocal, "global_config"):
+        _threadlocal.global_config = _global_config.copy()
+    return _threadlocal.global_config
+
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=824 funcname='_name_estimators' classname='Pipeline'
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] def _name_estimators(estimators):
+    """Generate names for estimators."""
+
+    names = [
+        estimator if isinstance(estimator, str) else type(estimator).__name__.lower()
+        for estimator in estimators
+    ]
+    namecount = defaultdict(int)
+    for est, name in zip(estimators, names):
+        namecount[name] += 1
+
+    for k, v in list(namecount.items()):
+        if v == 1:
+            del namecount[k]
+
+    for i in reversed(range(len(estimators))):
+        name = names[i]
+        if name in namecount:
+            names[i] += "-%d" % namecount[name]
+            namecount[name] -= 1
+
+    return list(zip(names, estimators))
+
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1022 funcname='__init__' classname='FeatureUnion'
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO]     def __init__(
+        self, transformer_list, *, n_jobs=None, transformer_weights=None, verbose=False
+    ):
+        self.transformer_list = transformer_list
+        self.n_jobs = n_jobs
+        self.transformer_weights = transformer_weights
+        self.verbose = verbose
+
+[2026-09-22 09:54:04,685 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1234 funcname='_parallel_func' classname='FeatureUnion'
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO]     def _parallel_func(self, X, y, fit_params, func):
+        """Runs func in parallel on X and y"""
+        self.transformer_list = list(self.transformer_list)
+        self._validate_transformers()
+        self._validate_transformer_weights()
+        transformers = list(self._iter())
+
+        return Parallel(n_jobs=self.n_jobs)(
+            delayed(func)(
+                transformer,
+                X,
+                y,
+                weight,
+                message_clsname="FeatureUnion",
+                message=self._log_message(name, idx, len(transformers)),
+                **fit_params,
+            )
+            for idx, (name, transformer, weight) in enumerate(transformers, 1)
+        )
+
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1291 funcname='_update_transformer_list' classname='FeatureUnion'
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO]     def _update_transformer_list(self, transformers):
+        transformers = iter(transformers)
+        self.transformer_list[:] = [
+            (name, old if old == "drop" else next(transformers))
+            for name, old in self.transformer_list
+        ]
+
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/_set_output.py' lineno=65 funcname='_get_output_config' classname=''
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] def _get_output_config(method, estimator=None):
+    """Get output config based on estimator and global configuration.
+
+    Parameters
+    ----------
+    method : {"transform"}
+        Estimator's method for which the output container is looked up.
+
+    estimator : estimator instance or None
+        Estimator to get the output configuration from. If `None`, check global
+        configuration is used.
+
+    Returns
+    -------
+    config : dict
+        Dictionary with keys:
+
+        - "dense": specifies the dense container for `method`. This can be
+          `"default"` or `"pandas"`.
+    """
+    est_sklearn_output_config = getattr(estimator, "_sklearn_output_config", {})
+    if method in est_sklearn_output_config:
+        dense_config = est_sklearn_output_config[method]
+    else:
+        dense_config = get_config()[f"{method}_output"]
+
+    if dense_config not in {"default", "pandas"}:
+        raise ValueError(
+            f"output config must be 'default' or 'pandas' got {dense_config}"
+        )
+
+    return {"dense": dense_config}
+
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/_set_output.py' lineno=155 funcname='_auto_wrap_is_configured' classname=''
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] def _auto_wrap_is_configured(estimator):
+    """Return True if estimator is configured for auto-wrapping the transform method.
+
+    `_SetOutputMixin` sets `_sklearn_auto_wrap_output_keys` to `set()` if auto wrapping
+    is manually disabled.
+    """
+    auto_wrap_output_keys = getattr(estimator, "_sklearn_auto_wrap_output_keys", set())
+    return (
+        hasattr(estimator, "get_feature_names_out")
+        and "transform" in auto_wrap_output_keys
+    )
+
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1101 funcname='_validate_transformers' classname='FeatureUnion'
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO]     def _validate_transformers(self):
+        names, transformers = zip(*self.transformer_list)
+
+        # validate names
+        self._validate_names(names)
+
+        # validate estimators
+        for t in transformers:
+            if t in ("drop", "passthrough"):
+                continue
+            if not (hasattr(t, "fit") or hasattr(t, "fit_transform")) or not hasattr(
+                t, "transform"
+            ):
+                raise TypeError(
+                    "All estimators should implement fit and "
+                    "transform. '%s' (type %s) doesn't" % (t, type(t))
+                )
+
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1119 funcname='_validate_transformer_weights' classname='FeatureUnion'
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO]     def _validate_transformer_weights(self):
+        if not self.transformer_weights:
+            return
+
+        transformer_names = set(name for name, _ in self.transformer_list)
+        for name in self.transformer_weights:
+            if name not in transformer_names:
+                raise ValueError(
+                    f'Attempting to weight transformer "{name}", '
+                    "but it is not present in transformer_list."
+                )
+
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 09:54:04,686 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1131 funcname='_iter' classname='FeatureUnion'
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO]     def _iter(self):
+        """
+        Generate (name, trans, weight) tuples excluding None and
+        'drop' transformers.
+        """
+
+        get_weight = (self.transformer_weights or {}).get
+
+        for name, trans in self.transformer_list:
+            if trans == "drop":
+                continue
+            if trans == "passthrough":
+                trans = FunctionTransformer(feature_names_out="one-to-one")
+            yield (name, trans, get_weight(name))
+
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1059 funcname='get_params' classname='FeatureUnion'
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO]     def get_params(self, deep=True):
+        """Get parameters for this estimator.
+
+        Returns the parameters given in the constructor as well as the
+        estimators contained within the `transformer_list` of the
+        `FeatureUnion`.
+
+        Parameters
+        ----------
+        deep : bool, default=True
+            If True, will return the parameters for this estimator and
+            contained subobjects that are estimators.
+
+        Returns
+        -------
+        params : mapping of string to any
+            Parameter names mapped to their values.
+        """
+        return self._get_params("transformer_list", deep=deep)
+
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=904 funcname='_fit_transform_one' classname='Pipeline'
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] def _fit_transform_one(
+    transformer, X, y, weight, message_clsname="", message=None, **fit_params
+):
+    """
+    Fits ``transformer`` to ``X`` and ``y``. The transformed result is returned
+    with the fitted transformer. If ``weight`` is not ``None``, the result will
+    be multiplied by ``weight``.
+    """
+    with _print_elapsed_time(message_clsname, message):
+        if hasattr(transformer, "fit_transform"):
+            res = transformer.fit_transform(X, y, **fit_params)
+        else:
+            res = transformer.fit(X, y, **fit_params).transform(X)
+
+    if weight is None:
+        return res, transformer
+    return res * weight, transformer
+
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1229 funcname='_log_message' classname='FeatureUnion'
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO]     def _log_message(self, name, idx, total):
+        if not self.verbose:
+            return None
+        return "(step %d of %d) Processing %s" % (idx, total, name)
+
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/__init__.py' lineno=1166 funcname='check_pandas_support' classname=''
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] def check_pandas_support(caller_name):
+    """Raise ImportError with detailed error message if pandas is not installed.
+
+    Plot utilities like :func:`fetch_openml` should lazily import
+    pandas and call this helper before any computation.
+
+    Parameters
+    ----------
+    caller_name : str
+        The name of the caller that requires pandas.
+
+    Returns
+    -------
+    pandas
+        The pandas package.
+    """
+    try:
+        import pandas  # noqa
+
+        return pandas
+    except ImportError as e:
+        raise ImportError("{} requires pandas.".format(caller_name)) from e
+
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/pipeline.py' lineno=1146 funcname='get_feature_names_out' classname='FeatureUnion'
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] LLM score: 8 / 100
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO]     def get_feature_names_out(self, input_features=None):
+        """Get output feature names for transformation.
+
+        Parameters
+        ----------
+        input_features : array-like of str or None, default=None
+            Input features.
+
+        Returns
+        -------
+        feature_names_out : ndarray of str objects
+            Transformed feature names.
+        """
+        feature_names = []
+        for name, trans, _ in self._iter():
+            if not hasattr(trans, "get_feature_names_out"):
+                raise AttributeError(
+                    "Transformer %s (type %s) does not provide get_feature_names_out."
+                    % (str(name), type(trans).__name__)
+                )
+            feature_names.extend(
+                [f"{name}__{f}" for f in trans.get_feature_names_out(input_features)]
+            )
+        return np.asarray(feature_names, dtype=object)
+
+[2026-09-22 09:54:04,687 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/base.py' lineno=870 funcname='fit_transform' classname='TransformerMixin'
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO]     def fit_transform(self, X, y=None, **fit_params):
+        """
+        Fit to data, then transform it.
+
+        Fits transformer to `X` and `y` with optional parameters `fit_params`
+        and returns a transformed version of `X`.
+
+        Parameters
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input samples.
+
+        y :  array-like of shape (n_samples,) or (n_samples, n_outputs), \
+                default=None
+            Target values (None for unsupervised transformations).
+
+        **fit_params : dict
+            Additional fit parameters.
+
+        Returns
+        -------
+        X_new : ndarray array of shape (n_samples, n_features_new)
+            Transformed array.
+        """
+        # non-optimized default implementation; override when a better
+        # method is possible for a given clustering algorithm
+        if y is None:
+            # fit method of arity 1 (unsupervised transformation)
+            return self.fit(X, **fit_params).transform(X)
+        else:
+            # fit method of arity 2 (supervised transformation)
+            return self.fit(X, y, **fit_params).transform(X)
+
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/scikit-learn__scikit-learn/sklearn/utils/parallel.py' lineno=40 funcname='__call__' classname='Parallel'
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO]     def __call__(self, iterable):
+        """Dispatch the tasks and return the results.
+
+        Parameters
+        ----------
+        iterable : iterable
+            Iterable containing tuples of (delayed_function, args, kwargs) that should
+            be consumed.
+
+        Returns
+        -------
+        results : list
+            List of results of the tasks.
+        """
+        # Capture the thread-local scikit-learn configuration at the time
+        # Parallel.__call__ is issued since the tasks can be dispatched
+        # in a different thread depending on the backend and on the value of
+        # pre_dispatch and n_jobs.
+        config = get_config()
+        iterable_with_config = (
+            (_with_config(delayed_func, config), args, kwargs)
+            for delayed_func, args, kwargs in iterable
+        )
+        return super().__call__(iterable_with_config)
+
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] ['set_config', 'make_union', 'wrapped', '_wrap_method_output', 'fit_transform', '_wrap_data_with_container', '_hstack', '_wrap_in_pandas_container', '_get_threadlocal_config', '_name_estimators', '__init__', '_parallel_func', '_update_transformer_list', '_get_output_config', '_auto_wrap_is_configured', '_validate_transformers', '_validate_transformer_weights', '_iter', 'get_params', '_fit_transform_one', '_log_message', 'check_pandas_support', 'get_feature_names_out', 'fit_transform', '__call__']
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] [('set_config', 2), ('make_union', 2), ('wrapped', 50), ('_wrap_method_output', 35), ('fit_transform', 25), ('_wrap_data_with_container', 72), ('_hstack', 30), ('_wrap_in_pandas_container', 90), ('_get_threadlocal_config', 2), ('_name_estimators', 1), ('__init__', 2), ('_parallel_func', 5), ('_update_transformer_list', 2), ('_get_output_config', 10), ('_auto_wrap_is_configured', 15), ('_validate_transformers', 1), ('_validate_transformer_weights', 1), ('_iter', 5), ('get_params', 1), ('_fit_transform_one', 15), ('_log_message', 1), ('check_pandas_support', 2), ('get_feature_names_out', 8), ('fit_transform', 5), ('__call__', 10)]
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] [('_wrap_in_pandas_container', 90), ('_wrap_data_with_container', 72), ('wrapped', 50), ('_wrap_method_output', 35), ('_hstack', 30), ('fit_transform', 25), ('set_config', 2), ('make_union', 2), ('_auto_wrap_is_configured', 15), ('_get_output_config', 10), ('_parallel_func', 5), ('_get_threadlocal_config', 2), ('__init__', 2), ('_update_transformer_list', 2), ('_name_estimators', 1), ('_iter', 5), ('_validate_transformers', 1), ('_validate_transformer_weights', 1), ('get_feature_names_out', 8), ('fit_transform', 5), ('check_pandas_support', 2), ('__call__', 10), ('get_params', 1), ('_fit_transform_one', 15), ('_log_message', 1)]
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 09:54:04,688 - Orcar.tracer_reranker - INFO] [('_wrap_in_pandas_container', 90), ('_wrap_data_with_container', 72)]

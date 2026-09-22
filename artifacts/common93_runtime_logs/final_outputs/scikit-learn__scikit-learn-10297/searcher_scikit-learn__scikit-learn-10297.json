@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is now fully confirmed with all necessary context. RidgeClassifierCV's __init__ method accepts parameters (alphas, fit_intercept, normalize, scoring, cv, class_weight) but does NOT include store_cv_values. When it calls super(RidgeClassifierCV, self).__init__(), it passes alphas, fit_intercept, normalize, scoring, and cv, but NOT store_cv_values. The parent class _BaseRidgeCV.__init__ does accept store_cv_values=False and its fit() method uses self.store_cv_values to control whether cross-validation values are stored. The fix is to add store_cv_values=False parameter to RidgeClassifierCV.__init__ and pass it through to super().__init__(). The search queue is empty and I have enough context to provide the final answer.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sklearn/linear_model/ridge.py",
+            "class_name": "RidgeClassifierCV",
+            "method_name": "__init__"
+        }
+    ]
+}

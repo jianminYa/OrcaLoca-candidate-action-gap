@@ -1,0 +1,7 @@
+[2026-09-22 08:23:28,757 - Orcar.tracer - INFO] sensitivity_dict: {'store_cv_values': set(), '__init__': set(), 'RidgeClassifierCV': {'/scikit-learn__scikit-learn/sklearn/linear_model/ridge.py'}, 'fit': {'/scikit-learn__scikit-learn/sklearn/linear_model/ridge.py'}}
+[2026-09-22 08:23:28,759 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_scikit-learn__scikit-learn-10297.json
+[2026-09-22 08:23:28,759 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 08:23:28,760 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 08:23:28,760 - Orcar.tracer - INFO] Func 000/001
+[2026-09-22 08:23:28,760 - Orcar.tracer - INFO] (FuncSign(filename='/root/miniconda3/envs/scikit-learn__scikit-learn__0.20/lib/python3.6/_weakrefset.py', lineno=16, funcname='__init__'), FuncScore(is_same_file_with_key_parent=True, layers_from_key_parent=0, absolute_calling_index=5, absolute_layer=3, called_by=[]), (0, 0, 3, 5))
+[2026-09-22 08:23:28,760 - Orcar.tracer - INFO] Finished tracer output parsing

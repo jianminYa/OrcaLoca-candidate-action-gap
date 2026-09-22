@@ -1,0 +1,3 @@
+[2026-09-22 05:10:53,346 - Orcar.environment.benchmark - INFO] Setting up env for inst django__django-15252...
+[2026-09-22 05:11:00,436 - Orcar.environment.benchmark - INFO] Repo django__django already cached
+[2026-09-22 05:11:00,436 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/django__django to base commit: 361bb8f786f112ee275be136795c0b1ecefff928

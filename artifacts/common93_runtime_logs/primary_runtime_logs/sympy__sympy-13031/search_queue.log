@@ -1,0 +1,361 @@
+[2026-09-22 10:21:59,283 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'hstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'vstack'}
+)
+[2026-09-22 10:22:12,034 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'common.py', 'directory_path': 'sympy/matrices'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'vstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'row_join'}
+)
+[2026-09-22 10:22:28,905 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'vstack'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'row_join'}
+)
+[2026-09-22 10:22:42,047 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'row_join'}
+)
+[2026-09-22 10:23:00,271 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'NewMatrix', 'method_name': 'row_join', 'file_path': 'sympy/holonomic/linearsolver.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'row_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_join', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:23:15,874 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'linearsolver.py', 'directory_path': 'sympy/holonomic'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'row_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_join', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:23:30,454 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'row_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_join', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:23:52,241 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_row_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/sparse.py'}
+)
+[2026-09-22 10:24:10,774 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_row_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/sparse.py'}
+)
+[2026-09-22 10:24:27,799 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/sparse.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': '_eval_row_join'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_row_join'}
+)
+[2026-09-22 10:24:47,463 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'sparse.py', 'directory_path': 'sympy/matrices'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': '_eval_row_join'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_row_join'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'col_join', 'file_path': 'sympy/matrices/sparse.py'}
+)
+[2026-09-22 10:25:11,797 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': '_eval_row_join'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_row_join'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'col_join', 'file_path': 'sympy/matrices/sparse.py'}
+)
+[2026-09-22 10:25:26,858 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': '_eval_row_join'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_row_join'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'col_join', 'file_path': 'sympy/matrices/sparse.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix'}
+)
+[2026-09-22 10:25:40,842 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'SparseMatrix', 'method_name': '_eval_row_join'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'col_join', 'file_path': 'sympy/matrices/sparse.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix'}
+)
+[2026-09-22 10:25:58,125 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableSparseMatrix', 'method_name': 'col_join', 'file_path': 'sympy/matrices/sparse.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix'}
+)
+[2026-09-22 10:26:16,803 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join'}
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix'}
+)
+[2026-09-22 10:26:38,020 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 4, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix'}
+)
+[2026-09-22 10:26:57,949 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/matrices/__init__.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/physics/quantum/tests/test_printing.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/utilities/tests/test_lambdify.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+)
+[2026-09-22 10:27:21,215 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/physics/quantum/tests/test_printing.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/utilities/tests/test_lambdify.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sympy/matrices'}
+)
+[2026-09-22 10:27:56,836 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/physics/quantum/tests/test_printing.py'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/utilities/tests/test_lambdify.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dense.py', 'directory_path': 'sympy/matrices'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_col_join', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:28:24,455 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'file_path': 'sympy/utilities/tests/test_lambdify.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dense.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_col_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+)
+[2026-09-22 10:28:42,932 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'DenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_col_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dense.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+)
+[2026-09-22 10:29:06,457 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 4, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': '_eval_col_join', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dense.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+)
+[2026-09-22 10:29:27,390 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dense.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DenseMatrix', 'file_path': 'sympy/matrices/dense.py'}
+)
+[2026-09-22 10:29:52,029 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'dense.py', 'directory_path': 'sympy/matrices'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DenseMatrix', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MatrixShaping', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof'}
+)
+[2026-09-22 10:30:37,591 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'DenseMatrix', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MatrixShaping', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof'}
+)
+[2026-09-22 10:31:24,762 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_printing.py', 'directory_path': 'sympy/physics/quantum/tests'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MatrixShaping', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+)
+[2026-09-22 10:31:24,765 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'MatrixShaping', 'method_name': 'hstack', 'file_path': 'sympy/matrices/common.py'} search_content='File Path: sympy/matrices/common.py \nMethod Content: \n    def hstack(cls, *args):\n        """Return a matrix formed by joining args horizontally (i.e.\n        by repeated application of row_join).\n\n        Examples\n        ========\n\n        >>> from sympy.matrices import Matrix, eye\n        >>> Matrix.hstack(eye(2), 2*eye(2))\n        Matrix([\n        [1, 0, 2, 0],\n        [0, 1, 0, 2]])\n        """\n        if len(args) == 0:\n            return cls._new()\n\n        kls = type(args[0])\n        return reduce(kls.row_join, args)\n'
+[2026-09-22 10:31:55,549 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'test_lambdify.py', 'directory_path': 'sympy/utilities/tests'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MatrixShaping', 'file_path': 'sympy/matrices/common.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+)
+[2026-09-22 10:33:18,712 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_class
+Search Action Input: {'class_name': 'MatrixShaping', 'file_path': 'sympy/matrices/common.py'}
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof'}
+  Value: 3, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+)
+[2026-09-22 10:34:06,893 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 4, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof'}
+  Value: 4, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_insert', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:34:33,892 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 4, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MutableDenseMatrix', 'method_name': 'row_join', 'file_path': 'sympy/matrices/dense.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_insert', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:35:00,826 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'col_insert', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:35:24,064 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'classof', 'file_path': 'sympy/matrices/common.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'row_insert', 'file_path': 'sympy/matrices/common.py'}
+)
+[2026-09-22 10:35:45,606 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'MatrixShaping', 'method_name': 'row_insert', 'file_path': 'sympy/matrices/common.py'}
+)

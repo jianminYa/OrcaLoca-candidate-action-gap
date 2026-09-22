@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly identified in `_BaseVoting.fit` in `sklearn/ensemble/voting.py`. When `sample_weight is not None`, the code iterates over `self.estimators` with `for name, step in self.estimators:` and calls `has_fit_parameter(step, 'sample_weight')` without checking if `step is None`. When an estimator has been set to `None` via `set_params(lr=None)`, this causes `AttributeError: 'NoneType' object has no attribute 'fit'`. The Parallel call later in the same method already correctly handles None estimators with `if clf is not None`, but the sample_weight validation loop does not. The fix should add `if step is not None` before calling `has_fit_parameter`. No further searching is needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sklearn/ensemble/voting.py",
+            "class_name": "_BaseVoting",
+            "method_name": "fit"
+        }
+    ]
+}

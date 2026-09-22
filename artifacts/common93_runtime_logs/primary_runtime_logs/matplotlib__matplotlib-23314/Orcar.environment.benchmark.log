@@ -1,0 +1,4 @@
+[2026-09-22 05:55:13,274 - Orcar.environment.benchmark - INFO] Setting up env for inst matplotlib__matplotlib-23314...
+[2026-09-22 05:55:20,041 - Orcar.environment.benchmark - INFO] Repo matplotlib__matplotlib already cached
+[2026-09-22 05:55:20,042 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/matplotlib__matplotlib to base commit: 97fc1154992f64cfb2f86321155a7404efeb2d8a
+[2026-09-22 05:56:38,526 - Orcar.environment.benchmark - INFO] Copying file to host: docker cp orcar_swe_bench_run_ctr_safe://tmp/tracer_output_matplotlib__matplotlib-23314.json /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_matplotlib__matplotlib-23314.json

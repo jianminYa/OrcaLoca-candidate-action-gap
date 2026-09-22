@@ -1,0 +1,26 @@
+[2026-09-21 13:01:27,296 - Orcar.code_scorer - INFO] Total batch chat time: 5.00s
+[2026-09-21 13:01:27,297 - Orcar.code_scorer - INFO] in_token_cnt=341 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] Total batch chat time: 31.07s
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=404 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=450 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=353 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=352 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=345 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=378 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=357 out_token_cnt=1
+[2026-09-21 13:02:09,597 - Orcar.code_scorer - INFO] in_token_cnt=358 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=353 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=844 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=429 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=347 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=389 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=347 out_token_cnt=1
+[2026-09-21 13:02:09,598 - Orcar.code_scorer - INFO] in_token_cnt=348 out_token_cnt=1
+[2026-09-21 13:02:09,599 - Orcar.code_scorer - INFO] in_token_cnt=392 out_token_cnt=1
+[2026-09-21 13:02:09,599 - Orcar.code_scorer - INFO] in_token_cnt=419 out_token_cnt=1
+[2026-09-21 13:02:09,599 - Orcar.code_scorer - INFO] in_token_cnt=357 out_token_cnt=1
+[2026-09-21 13:02:09,599 - Orcar.code_scorer - INFO] in_token_cnt=355 out_token_cnt=1
+[2026-09-21 13:02:09,599 - Orcar.code_scorer - INFO] in_token_cnt=355 out_token_cnt=1
+[2026-09-21 13:02:30,050 - Orcar.code_scorer - INFO] Total batch chat time: 6.46s
+[2026-09-21 13:02:30,051 - Orcar.code_scorer - INFO] in_token_cnt=351 out_token_cnt=1
+[2026-09-21 13:02:30,051 - Orcar.code_scorer - INFO] in_token_cnt=354 out_token_cnt=1

@@ -1,0 +1,1352 @@
+[2026-09-22 12:37:28,806 - Orcar.tracer_reranker - INFO] Func 01/25
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/cache.py' lineno=23 funcname='clear_cache' classname='_cache'
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO]     def clear_cache(self):
+        """clear cache content"""
+        for item in self:
+            myfunc = item
+            while hasattr(myfunc, '__wrapped__'):
+                if hasattr(myfunc, 'cache_clear'):
+                    myfunc.cache_clear()
+                    break
+                else:
+                    myfunc = myfunc.__wrapped__
+
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] Func 02/25
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=761 funcname='subs' classname='Basic'
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO]     def subs(self, *args, **kwargs):
+        """
+        Substitutes old for new in an expression after sympifying args.
+
+        `args` is either:
+          - two arguments, e.g. foo.subs(old, new)
+          - one iterable argument, e.g. foo.subs(iterable). The iterable may be
+             o an iterable container with (old, new) pairs. In this case the
+               replacements are processed in the order given with successive
+               patterns possibly affecting replacements already made.
+             o a dict or set whose key/value items correspond to old/new pairs.
+               In this case the old/new pairs will be sorted by op count and in
+               case of a tie, by number of args and the default_sort_key. The
+               resulting sorted list is then processed as an iterable container
+               (see previous).
+
+        If the keyword ``simultaneous`` is True, the subexpressions will not be
+        evaluated until all the substitutions have been made.
+
+        Examples
+        ========
+
+        >>> from sympy import pi, exp, limit, oo
+        >>> from sympy.abc import x, y
+        >>> (1 + x*y).subs(x, pi)
+        pi*y + 1
+        >>> (1 + x*y).subs({x:pi, y:2})
+        1 + 2*pi
+        >>> (1 + x*y).subs([(x, pi), (y, 2)])
+        1 + 2*pi
+        >>> reps = [(y, x**2), (x, 2)]
+        >>> (x + y).subs(reps)
+        6
+        >>> (x + y).subs(reversed(reps))
+        x**2 + 2
+
+        >>> (x**2 + x**4).subs(x**2, y)
+        y**2 + y
+
+        To replace only the x**2 but not the x**4, use xreplace:
+
+        >>> (x**2 + x**4).xreplace({x**2: y})
+        x**4 + y
+
+        To delay evaluation until all substitutions have been made,
+        set the keyword ``simultaneous`` to True:
+
+        >>> (x/y).subs([(x, 0), (y, 0)])
+        0
+        >>> (x/y).subs([(x, 0), (y, 0)], simultaneous=True)
+        nan
+
+        This has the added feature of not allowing subsequent substitutions
+        to affect those already made:
+
+        >>> ((x + y)/y).subs({x + y: y, y: x + y})
+        1
+        >>> ((x + y)/y).subs({x + y: y, y: x + y}, simultaneous=True)
+        y/(x + y)
+
+        In order to obtain a canonical result, unordered iterables are
+        sorted by count_op length, number of arguments and by the
+        default_sort_key to break any ties. All other iterables are left
+        unsorted.
+
+        >>> from sympy import sqrt, sin, cos
+        >>> from sympy.abc import a, b, c, d, e
+
+        >>> A = (sqrt(sin(2*x)), a)
+        >>> B = (sin(2*x), b)
+        >>> C = (cos(2*x), c)
+        >>> D = (x, d)
+        >>> E = (exp(x), e)
+
+        >>> expr = sqrt(sin(2*x))*sin(exp(x)*x)*cos(2*x) + sin(2*x)
+
+        >>> expr.subs(dict([A, B, C, D, E]))
+        a*c*sin(d*e) + b
+
+        The resulting expression represents a literal replacement of the
+        old arguments with the new arguments. This may not reflect the
+        limiting behavior of the expression:
+
+        >>> (x**3 - 3*x).subs({x: oo})
+        nan
+
+        >>> limit(x**3 - 3*x, x, oo)
+        oo
+
+        If the substitution will be followed by numerical
+        evaluation, it is better to pass the substitution to
+        evalf as
+
+        >>> (1/x).evalf(subs={x: 3.0}, n=21)
+        0.333333333333333333333
+
+        rather than
+
+        >>> (1/x).subs({x: 3.0}).evalf(21)
+        0.333333333333333314830
+
+        as the former will ensure that the desired level of precision is
+        obtained.
+
+        See Also
+        ========
+        replace: replacement capable of doing wildcard-like matching,
+                 parsing of match, and conditional replacements
+        xreplace: exact node replacement in expr tree; also capable of
+                  using matching rules
+        sympy.core.evalf.EvalfMixin.evalf: calculates the given formula to a desired level of precision
+
+        """
+        from sympy.core.compatibility import _nodes, default_sort_key
+        from sympy.core.containers import Dict
+        from sympy.core.symbol import Dummy, Symbol
+        from sympy.utilities.misc import filldedent
+
+        unordered = False
+        if len(args) == 1:
+            sequence = args[0]
+            if isinstance(sequence, set):
+                unordered = True
+            elif isinstance(sequence, (Dict, Mapping)):
+                unordered = True
+                sequence = sequence.items()
+            elif not iterable(sequence):
+                raise ValueError(filldedent("""
+                   When a single argument is passed to subs
+                   it should be a dictionary of old: new pairs or an iterable
+                   of (old, new) tuples."""))
+        elif len(args) == 2:
+            sequence = [args]
+        else:
+            raise ValueError("subs accepts either 1 or 2 arguments")
+
+        sequence = list(sequence)
+        for i, s in enumerate(sequence):
+            if isinstance(s[0], str):
+                # when old is a string we prefer Symbol
+                s = Symbol(s[0]), s[1]
+            try:
+                s = [sympify(_, strict=not isinstance(_, (str, type)))
+                     for _ in s]
+            except SympifyError:
+                # if it can't be sympified, skip it
+                sequence[i] = None
+                continue
+            # skip if there is no change
+            sequence[i] = None if _aresame(*s) else tuple(s)
+        sequence = list(filter(None, sequence))
+
+        if unordered:
+            sequence = dict(sequence)
+            # order so more complex items are first and items
+            # of identical complexity are ordered so
+            # f(x) < f(y) < x < y
+            # \___ 2 __/    \_1_/  <- number of nodes
+            #
+            # For more complex ordering use an unordered sequence.
+            k = list(ordered(sequence, default=False, keys=(
+                lambda x: -_nodes(x),
+                lambda x: default_sort_key(x),
+                )))
+            sequence = [(k, sequence[k]) for k in k]
+
+        if kwargs.pop('simultaneous', False):  # XXX should this be the default for dict subs?
+            reps = {}
+            rv = self
+            kwargs['hack2'] = True
+            m = Dummy('subs_m')
+            for old, new in sequence:
+                com = new.is_commutative
+                if com is None:
+                    com = True
+                d = Dummy('subs_d', commutative=com)
+                # using d*m so Subs will be used on dummy variables
+                # in things like Derivative(f(x, y), x) in which x
+                # is both free and bound
+                rv = rv._subs(old, d*m, **kwargs)
+                if not isinstance(rv, Basic):
+                    break
+                reps[d] = new
+            reps[m] = S.One  # get rid of m
+            return rv.xreplace(reps)
+        else:
+            rv = self
+            for old, new in sequence:
+                rv = rv._subs(old, new, **kwargs)
+                if not isinstance(rv, Basic):
+                    break
+            return rv
+
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] Func 03/25
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/function.py' lineno=450 funcname='__new__' classname='Function'
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO]     @cacheit
+    def __new__(cls, *args, **options):
+        # Handle calls like Function('f')
+        if cls is Function:
+            return UndefinedFunction(*args, **options)
+
+        n = len(args)
+        if n not in cls.nargs:
+            # XXX: exception message must be in exactly this format to
+            # make it work with NumPy's functions like vectorize(). See,
+            # for example, https://github.com/numpy/numpy/issues/1697.
+            # The ideal solution would be just to attach metadata to
+            # the exception and change NumPy to take advantage of this.
+            temp = ('%(name)s takes %(qual)s %(args)s '
+                   'argument%(plural)s (%(given)s given)')
+            raise TypeError(temp % {
+                'name': cls,
+                'qual': 'exactly' if len(cls.nargs) == 1 else 'at least',
+                'args': min(cls.nargs),
+                'plural': 's'*(min(cls.nargs) != 1),
+                'given': n})
+
+        evaluate = options.get('evaluate', global_parameters.evaluate)
+        result = super().__new__(cls, *args, **options)
+        if evaluate and isinstance(result, cls) and result.args:
+            pr2 = min(cls._should_evalf(a) for a in result.args)
+            if pr2 > 0:
+                pr = max(cls._should_evalf(a) for a in result.args)
+                result = result.evalf(mlib.libmpf.prec_to_dps(pr))
+
+        return result
+
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] Func 04/25
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=954 funcname='_subs' classname='Basic'
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO]     @cacheit
+    def _subs(self, old, new, **hints):
+        """Substitutes an expression old -> new.
+
+        If self is not equal to old then _eval_subs is called.
+        If _eval_subs doesn't want to make any special replacement
+        then a None is received which indicates that the fallback
+        should be applied wherein a search for replacements is made
+        amongst the arguments of self.
+
+        >>> from sympy import Add
+        >>> from sympy.abc import x, y, z
+
+        Examples
+        ========
+
+        Add's _eval_subs knows how to target x + y in the following
+        so it makes the change:
+
+        >>> (x + y + z).subs(x + y, 1)
+        z + 1
+
+        Add's _eval_subs doesn't need to know how to find x + y in
+        the following:
+
+        >>> Add._eval_subs(z*(x + y) + 3, x + y, 1) is None
+        True
+
+        The returned None will cause the fallback routine to traverse the args and
+        pass the z*(x + y) arg to Mul where the change will take place and the
+        substitution will succeed:
+
+        >>> (z*(x + y) + 3).subs(x + y, 1)
+        z + 3
+
+        ** Developers Notes **
+
+        An _eval_subs routine for a class should be written if:
+
+            1) any arguments are not instances of Basic (e.g. bool, tuple);
+
+            2) some arguments should not be targeted (as in integration
+               variables);
+
+            3) if there is something other than a literal replacement
+               that should be attempted (as in Piecewise where the condition
+               may be updated without doing a replacement).
+
+        If it is overridden, here are some special cases that might arise:
+
+            1) If it turns out that no special change was made and all
+               the original sub-arguments should be checked for
+               replacements then None should be returned.
+
+            2) If it is necessary to do substitutions on a portion of
+               the expression then _subs should be called. _subs will
+               handle the case of any sub-expression being equal to old
+               (which usually would not be the case) while its fallback
+               will handle the recursion into the sub-arguments. For
+               example, after Add's _eval_subs removes some matching terms
+               it must process the remaining terms so it calls _subs
+               on each of the un-matched terms and then adds them
+               onto the terms previously obtained.
+
+           3) If the initial expression should remain unchanged then
+              the original expression should be returned. (Whenever an
+              expression is returned, modified or not, no further
+              substitution of old -> new is attempted.) Sum's _eval_subs
+              routine uses this strategy when a substitution is attempted
+              on any of its summation variables.
+        """
+
+        def fallback(self, old, new):
+            """
+            Try to replace old with new in any of self's arguments.
+            """
+            hit = False
+            args = list(self.args)
+            for i, arg in enumerate(args):
+                if not hasattr(arg, '_eval_subs'):
+                    continue
+                arg = arg._subs(old, new, **hints)
+                if not _aresame(arg, args[i]):
+                    hit = True
+                    args[i] = arg
+            if hit:
+                rv = self.func(*args)
+                hack2 = hints.get('hack2', False)
+                if hack2 and self.is_Mul and not rv.is_Mul:  # 2-arg hack
+                    coeff = S.One
+                    nonnumber = []
+                    for i in args:
+                        if i.is_Number:
+                            coeff *= i
+                        else:
+                            nonnumber.append(i)
+                    nonnumber = self.func(*nonnumber)
+                    if coeff is S.One:
+                        return nonnumber
+                    else:
+                        return self.func(coeff, nonnumber, evaluate=False)
+                return rv
+            return self
+
+        if _aresame(self, old):
+            return new
+
+        rv = self._eval_subs(old, new)
+        if rv is None:
+            rv = fallback(self, old, new)
+        return rv
+
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] Func 05/25
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/assumptions.py' lineno=452 funcname='getit' classname='StdFactKB'
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO]     def getit(self):
+        try:
+            return self._assumptions[fact]
+        except KeyError:
+            if self._assumptions is self.default_assumptions:
+                self._assumptions = self.default_assumptions.copy()
+            return _ask(fact, self)
+
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] Func 06/25
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/function.py' lineno=270 funcname='__new__' classname='Application'
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 12:37:28,807 - Orcar.tracer_reranker - INFO]     @cacheit
+    def __new__(cls, *args, **options):
+        from sympy.sets.fancysets import Naturals0
+        from sympy.sets.sets import FiniteSet
+
+        args = list(map(sympify, args))
+        evaluate = options.pop('evaluate', global_parameters.evaluate)
+        # WildFunction (and anything else like it) may have nargs defined
+        # and we throw that value away here
+        options.pop('nargs', None)
+
+        if options:
+            raise ValueError("Unknown options: %s" % options)
+
+        if evaluate:
+            evaluated = cls.eval(*args)
+            if evaluated is not None:
+                return evaluated
+
+        obj = super().__new__(cls, *args, **options)
+
+        # make nargs uniform here
+        sentinel = object()
+        objnargs = getattr(obj, "nargs", sentinel)
+        if objnargs is not sentinel:
+            # things passing through here:
+            #  - functions subclassed from Function (e.g. myfunc(1).nargs)
+            #  - functions like cos(1).nargs
+            #  - AppliedUndef with given nargs like Function('f', nargs=1)(1).nargs
+            # Canonicalize nargs here
+            if is_sequence(objnargs):
+                nargs = tuple(ordered(set(objnargs)))
+            elif objnargs is not None:
+                nargs = (as_int(objnargs),)
+            else:
+                nargs = None
+        else:
+            # things passing through here:
+            #  - WildFunction('f').nargs
+            #  - AppliedUndef with no nargs like Function('f')(1).nargs
+            nargs = obj._nargs  # note the underscore here
+        # convert to FiniteSet
+        obj.nargs = FiniteSet(*nargs) if nargs else Naturals0()
+        return obj
+
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] Func 07/25
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1026 funcname='fallback' classname='Basic'
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO]         def fallback(self, old, new):
+            """
+            Try to replace old with new in any of self's arguments.
+            """
+            hit = False
+            args = list(self.args)
+            for i, arg in enumerate(args):
+                if not hasattr(arg, '_eval_subs'):
+                    continue
+                arg = arg._subs(old, new, **hints)
+                if not _aresame(arg, args[i]):
+                    hit = True
+                    args[i] = arg
+            if hit:
+                rv = self.func(*args)
+                hack2 = hints.get('hack2', False)
+                if hack2 and self.is_Mul and not rv.is_Mul:  # 2-arg hack
+                    coeff = S.One
+                    nonnumber = []
+                    for i in args:
+                        if i.is_Number:
+                            coeff *= i
+                        else:
+                            nonnumber.append(i)
+                    nonnumber = self.func(*nonnumber)
+                    if coeff is S.One:
+                        return nonnumber
+                    else:
+                        return self.func(coeff, nonnumber, evaluate=False)
+                return rv
+            return self
+
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] Func 08/25
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/assumptions.py' lineno=464 funcname='_ask' classname='StdFactKB'
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] def _ask(fact, obj):
+    """
+    Find the truth value for a property of an object.
+
+    This function is called when a request is made to see what a fact
+    value is.
+
+    For this we use several techniques:
+
+    First, the fact-evaluation function is tried, if it exists (for
+    example _eval_is_integer). Then we try related facts. For example
+
+        rational   -->   integer
+
+    another example is joined rule:
+
+        integer & !odd  --> even
+
+    so in the latter case if we are looking at what 'even' value is,
+    'integer' and 'odd' facts will be asked.
+
+    In all cases, when we settle on some fact value, its implications are
+    deduced, and the result is cached in ._assumptions.
+    """
+    assumptions = obj._assumptions
+    handler_map = obj._prop_handler
+
+    # Store None into the assumptions so that recursive attempts at
+    # evaluating the same fact don't trigger infinite recursion.
+    assumptions._tell(fact, None)
+
+    # First try the assumption evaluation function if it exists
+    try:
+        evaluate = handler_map[fact]
+    except KeyError:
+        pass
+    else:
+        a = evaluate(obj)
+        if a is not None:
+            assumptions.deduce_all_facts(((fact, a),))
+            return a
+
+    # Try assumption's prerequisites
+    prereq = list(_assume_rules.prereq[fact])
+    shuffle(prereq)
+    for pk in prereq:
+        if pk in assumptions:
+            continue
+        if pk in handler_map:
+            _ask(pk, obj)
+
+            # we might have found the value of fact
+            ret_val = assumptions.get(fact)
+            if ret_val is not None:
+                return ret_val
+
+    # Note: the result has already been cached
+    return None
+
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] Func 09/25
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/functions/elementary/exponential.py' lineno=266 funcname='eval' classname='exp'
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO]     @classmethod
+    def eval(cls, arg):
+        from sympy.calculus import AccumBounds
+        from sympy.sets.setexpr import SetExpr
+        from sympy.matrices.matrices import MatrixBase
+        from sympy import im, logcombine, re
+        if isinstance(arg, MatrixBase):
+            return arg.exp()
+        elif global_parameters.exp_is_pow:
+            return Pow(S.Exp1, arg)
+        elif arg.is_Number:
+            if arg is S.NaN:
+                return S.NaN
+            elif arg.is_zero:
+                return S.One
+            elif arg is S.One:
+                return S.Exp1
+            elif arg is S.Infinity:
+                return S.Infinity
+            elif arg is S.NegativeInfinity:
+                return S.Zero
+        elif arg is S.ComplexInfinity:
+            return S.NaN
+        elif isinstance(arg, log):
+            return arg.args[0]
+        elif isinstance(arg, AccumBounds):
+            return AccumBounds(exp(arg.min), exp(arg.max))
+        elif isinstance(arg, SetExpr):
+            return arg._eval_func(cls)
+        elif arg.is_Mul:
+            coeff = arg.as_coefficient(S.Pi*S.ImaginaryUnit)
+            if coeff:
+                if (2*coeff).is_integer:
+                    if coeff.is_even:
+                        return S.One
+                    elif coeff.is_odd:
+                        return S.NegativeOne
+                    elif (coeff + S.Half).is_even:
+                        return -S.ImaginaryUnit
+                    elif (coeff + S.Half).is_odd:
+                        return S.ImaginaryUnit
+                elif coeff.is_Rational:
+                    ncoeff = coeff % 2 # restrict to [0, 2pi)
+                    if ncoeff > 1: # restrict to (-pi, pi]
+                        ncoeff -= 2
+                    if ncoeff != coeff:
+                        return cls(ncoeff*S.Pi*S.ImaginaryUnit)
+
+            # Warning: code in risch.py will be very sensitive to changes
+            # in this (see DifferentialExtension).
+
+            # look for a single log factor
+
+            coeff, terms = arg.as_coeff_Mul()
+
+            # but it can't be multiplied by oo
+            if coeff in [S.NegativeInfinity, S.Infinity]:
+                if terms.is_number:
+                    if coeff is S.NegativeInfinity:
+                        terms = -terms
+                    if re(terms).is_zero and terms is not S.Zero:
+                        return S.NaN
+                    if re(terms).is_positive and im(terms) is not S.Zero:
+                        return S.ComplexInfinity
+                    if re(terms).is_negative:
+                        return S.Zero
+                return None
+
+            coeffs, log_term = [coeff], None
+            for term in Mul.make_args(terms):
+                term_ = logcombine(term)
+                if isinstance(term_, log):
+                    if log_term is None:
+                        log_term = term_.args[0]
+                    else:
+                        return None
+                elif term.is_comparable:
+                    coeffs.append(term)
+                else:
+                    return None
+
+            return log_term**Mul(*coeffs) if log_term else None
+
+        elif arg.is_Add:
+            out = []
+            add = []
+            argchanged = False
+            for a in arg.args:
+                if a is S.One:
+                    add.append(a)
+                    continue
+                newa = cls(a)
+                if isinstance(newa, cls):
+                    if newa.args[0] != a:
+                        add.append(newa.args[0])
+                        argchanged = True
+                    else:
+                        add.append(a)
+                else:
+                    out.append(newa)
+            if out or argchanged:
+                return Mul(*out)*cls(Add(*add), evaluate=False)
+
+        if arg.is_zero:
+            return S.One
+
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] Func 10/25
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/functions/elementary/hyperbolic.py' lineno=243 funcname='_eval_is_real' classname='sinh'
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO]     def _eval_is_real(self):
+        arg = self.args[0]
+        if arg.is_real:
+            return True
+
+        # if `im` is of the form n*pi
+        # else, check if it is a number
+        re, im = arg.as_real_imag()
+        return (im%pi).is_zero
+
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] Func 11/25
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/expr.py' lineno=277 funcname='__mod__' classname='Expr'
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO]     @sympify_return([('other', 'Expr')], NotImplemented)
+    @call_highest_priority('__rmod__')
+    def __mod__(self, other):
+        return Mod(self, other)
+
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] Func 12/25
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/mod.py' lineno=37 funcname='eval' classname='Mod'
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO] LLM score: 30 / 100
+[2026-09-22 12:37:28,808 - Orcar.tracer_reranker - INFO]     @classmethod
+    def eval(cls, p, q):
+        from sympy.core.add import Add
+        from sympy.core.mul import Mul
+        from sympy.core.singleton import S
+        from sympy.core.exprtools import gcd_terms
+        from sympy.polys.polytools import gcd
+
+        def doit(p, q):
+            """Try to return p % q if both are numbers or +/-p is known
+            to be less than or equal q.
+            """
+
+            if q.is_zero:
+                raise ZeroDivisionError("Modulo by zero")
+            if p.is_finite is False or q.is_finite is False or p is nan or q is nan:
+                return nan
+            if p is S.Zero or p == q or p == -q or (p.is_integer and q == 1):
+                return S.Zero
+
+            if q.is_Number:
+                if p.is_Number:
+                    return p%q
+                if q == 2:
+                    if p.is_even:
+                        return S.Zero
+                    elif p.is_odd:
+                        return S.One
+
+            if hasattr(p, '_eval_Mod'):
+                rv = getattr(p, '_eval_Mod')(q)
+                if rv is not None:
+                    return rv
+
+            # by ratio
+            r = p/q
+            if r.is_integer:
+                return S.Zero
+            try:
+                d = int(r)
+            except TypeError:
+                pass
+            else:
+                if isinstance(d, int):
+                    rv = p - d*q
+                    if (rv*q < 0) == True:
+                        rv += q
+                    return rv
+
+            # by difference
+            # -2|q| < p < 2|q|
+            d = abs(p)
+            for _ in range(2):
+                d -= abs(q)
+                if d.is_negative:
+                    if q.is_positive:
+                        if p.is_positive:
+                            return d + q
+                        elif p.is_negative:
+                            return -d
+                    elif q.is_negative:
+                        if p.is_positive:
+                            return d
+                        elif p.is_negative:
+                            return -d + q
+                    break
+
+        rv = doit(p, q)
+        if rv is not None:
+            return rv
+
+        # denest
+        if isinstance(p, cls):
+            qinner = p.args[1]
+            if qinner % q == 0:
+                return cls(p.args[0], q)
+            elif (qinner*(q - qinner)).is_nonnegative:
+                # |qinner| < |q| and have same sign
+                return p
+        elif isinstance(-p, cls):
+            qinner = (-p).args[1]
+            if qinner % q == 0:
+                return cls(-(-p).args[0], q)
+            elif (qinner*(q + qinner)).is_nonpositive:
+                # |qinner| < |q| and have different sign
+                return p
+        elif isinstance(p, Add):
+            # separating into modulus and non modulus
+            both_l = non_mod_l, mod_l = [], []
+            for arg in p.args:
+                both_l[isinstance(arg, cls)].append(arg)
+            # if q same for all
+            if mod_l and all(inner.args[1] == q for inner in mod_l):
+                net = Add(*non_mod_l) + Add(*[i.args[0] for i in mod_l])
+                return cls(net, q)
+
+        elif isinstance(p, Mul):
+            # separating into modulus and non modulus
+            both_l = non_mod_l, mod_l = [], []
+            for arg in p.args:
+                both_l[isinstance(arg, cls)].append(arg)
+
+            if mod_l and all(inner.args[1] == q for inner in mod_l):
+                # finding distributive term
+                non_mod_l = [cls(x, q) for x in non_mod_l]
+                mod = []
+                non_mod = []
+                for j in non_mod_l:
+                    if isinstance(j, cls):
+                        mod.append(j.args[0])
+                    else:
+                        non_mod.append(j)
+                prod_mod = Mul(*mod)
+                prod_non_mod = Mul(*non_mod)
+                prod_mod1 = Mul(*[i.args[0] for i in mod_l])
+                net = prod_mod1*prod_mod
+                return prod_non_mod*cls(net, q)
+
+            if q.is_Integer and q is not S.One:
+                _ = []
+                for i in non_mod_l:
+                    if i.is_Integer and (i % q is not S.Zero):
+                        _.append(i%q)
+                    else:
+                        _.append(i)
+                non_mod_l = _
+
+            p = Mul(*(non_mod_l + mod_l))
+
+        # XXX other possibilities?
+
+        # extract gcd; any further simplification should be done by the user
+        G = gcd(p, q)
+        if G != 1:
+            p, q = [
+                gcd_terms(i/G, clear=False, fraction=False) for i in (p, q)]
+        pwas, qwas = p, q
+
+        # simplify terms
+        # (x + y + 2) % x -> Mod(y + 2, x)
+        if p.is_Add:
+            args = []
+            for i in p.args:
+                a = cls(i, q)
+                if a.count(cls) > i.count(cls):
+                    args.append(i)
+                else:
+                    args.append(a)
+            if args != list(p.args):
+                p = Add(*args)
+
+        else:
+            # handle coefficients if they are not Rational
+            # since those are not handled by factor_terms
+            # e.g. Mod(.6*x, .3*y) -> 0.3*Mod(2*x, y)
+            cp, p = p.as_coeff_Mul()
+            cq, q = q.as_coeff_Mul()
+            ok = False
+            if not cp.is_Rational or not cq.is_Rational:
+                r = cp % cq
+                if r == 0:
+                    G *= cq
+                    p *= int(cp/cq)
+                    ok = True
+            if not ok:
+                p = cp*p
+                q = cq*q
+
+        # simple -1 extraction
+        if p.could_extract_minus_sign() and q.could_extract_minus_sign():
+            G, p, q = [-i for i in (G, p, q)]
+
+        # check again to see if p and q can now be handled as numbers
+        rv = doit(p, q)
+        if rv is not None:
+            return rv*G
+
+        # put 1.0 from G on inside
+        if G.is_Float and G == 1:
+            p *= G
+            return cls(p, q, evaluate=False)
+        elif G.is_Mul and G.args[0].is_Float and G.args[0] == 1:
+            p = G.args[0]*p
+            G = Mul._from_args(G.args[1:])
+        return G*cls(p, q, evaluate=(p, q) != (pwas, qwas))
+
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] Func 13/25
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=5280 funcname='gcd' classname='PurePoly'
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] LLM score: 15 / 100
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] @public
+def gcd(f, g=None, *gens, **args):
+    """
+    Compute GCD of ``f`` and ``g``.
+
+    Examples
+    ========
+
+    >>> from sympy import gcd
+    >>> from sympy.abc import x
+
+    >>> gcd(x**2 - 1, x**2 - 3*x + 2)
+    x - 1
+
+    """
+    if hasattr(f, '__iter__'):
+        if g is not None:
+            gens = (g,) + gens
+
+        return gcd_list(f, *gens, **args)
+    elif g is None:
+        raise TypeError("gcd() takes 2 arguments or a sequence of arguments")
+
+    options.allowed_flags(args, ['polys'])
+
+    try:
+        (F, G), opt = parallel_poly_from_expr((f, g), *gens, **args)
+
+        # gcd for domain Q[irrational] (purely algebraic irrational)
+        a, b = map(sympify, (f, g))
+        if a.is_algebraic and a.is_irrational and b.is_algebraic and b.is_irrational:
+            frc = (a/b).ratsimp()
+            if frc.is_rational:
+                # abs ensures that the returned gcd is always non-negative
+                return abs(a/frc.as_numer_denom()[0])
+
+    except PolificationFailed as exc:
+        domain, (a, b) = construct_domain(exc.exprs)
+
+        try:
+            return domain.to_sympy(domain.gcd(a, b))
+        except NotImplementedError:
+            raise ComputationFailed('gcd', 2, exc)
+
+    result = F.gcd(G)
+
+    if not opt.polys:
+        return result.as_expr()
+    else:
+        return result
+
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] Func 14/25
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=4336 funcname='parallel_poly_from_expr' classname='PurePoly'
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] @public
+def parallel_poly_from_expr(exprs, *gens, **args):
+    """Construct polynomials from expressions. """
+    opt = options.build_options(gens, args)
+    return _parallel_poly_from_expr(exprs, opt)
+
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] Func 15/25
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=2885 funcname='gcd' classname='Poly'
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO]     def gcd(f, g):
+        """
+        Returns the polynomial GCD of ``f`` and ``g``.
+
+        Examples
+        ========
+
+        >>> from sympy import Poly
+        >>> from sympy.abc import x
+
+        >>> Poly(x**2 - 1, x).gcd(Poly(x**2 - 3*x + 2, x))
+        Poly(x - 1, x, domain='ZZ')
+
+        """
+        _, per, F, G = f._unify(g)
+
+        if hasattr(f.rep, 'gcd'):
+            result = F.gcd(G)
+        else:  # pragma: no cover
+            raise OperationNotSupported(f, 'gcd')
+
+        return per(result)
+
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] Func 16/25
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=4343 funcname='_parallel_poly_from_expr' classname='PurePoly'
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] LLM score: 50 / 100
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] def _parallel_poly_from_expr(exprs, opt):
+    """Construct polynomials from expressions. """
+    from sympy.functions.elementary.piecewise import Piecewise
+
+    if len(exprs) == 2:
+        f, g = exprs
+
+        if isinstance(f, Poly) and isinstance(g, Poly):
+            f = f.__class__._from_poly(f, opt)
+            g = g.__class__._from_poly(g, opt)
+
+            f, g = f.unify(g)
+
+            opt.gens = f.gens
+            opt.domain = f.domain
+
+            if opt.polys is None:
+                opt.polys = True
+
+            return [f, g], opt
+
+    origs, exprs = list(exprs), []
+    _exprs, _polys = [], []
+
+    failed = False
+
+    for i, expr in enumerate(origs):
+        expr = sympify(expr)
+
+        if isinstance(expr, Basic):
+            if expr.is_Poly:
+                _polys.append(i)
+            else:
+                _exprs.append(i)
+
+                if opt.expand:
+                    expr = expr.expand()
+        else:
+            failed = True
+
+        exprs.append(expr)
+
+    if failed:
+        raise PolificationFailed(opt, origs, exprs, True)
+
+    if _polys:
+        # XXX: this is a temporary solution
+        for i in _polys:
+            exprs[i] = exprs[i].as_expr()
+
+    reps, opt = _parallel_dict_from_expr(exprs, opt)
+    if not opt.gens:
+        raise PolificationFailed(opt, origs, exprs, True)
+
+    for k in opt.gens:
+        if isinstance(k, Piecewise):
+            raise PolynomialError("Piecewise generators do not make sense")
+
+    coeffs_list, lengths = [], []
+
+    all_monoms = []
+    all_coeffs = []
+
+    for rep in reps:
+        monoms, coeffs = list(zip(*list(rep.items())))
+
+        coeffs_list.extend(coeffs)
+        all_monoms.append(monoms)
+
+        lengths.append(len(coeffs))
+
+    domain = opt.domain
+
+    if domain is None:
+        opt.domain, coeffs_list = construct_domain(coeffs_list, opt=opt)
+    else:
+        coeffs_list = list(map(domain.from_sympy, coeffs_list))
+
+    for k in lengths:
+        all_coeffs.append(coeffs_list[:k])
+        coeffs_list = coeffs_list[k:]
+
+    polys = []
+
+    for monoms, coeffs in zip(all_monoms, all_coeffs):
+        rep = dict(list(zip(monoms, coeffs)))
+        poly = Poly._from_dict(rep, opt)
+        polys.append(poly)
+
+    if opt.polys is None:
+        opt.polys = bool(_polys)
+
+    return polys, opt
+
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] Func 17/25
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1864 funcname='_aresame' classname='Atom'
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] LLM score: 3 / 100
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] def _aresame(a, b):
+    """Return True if a and b are structurally the same, else False.
+
+    Examples
+    ========
+
+    In SymPy (as in Python) two numbers compare the same if they
+    have the same underlying base-2 representation even though
+    they may not be the same type:
+
+    >>> from sympy import S
+    >>> 2.0 == S(2)
+    True
+    >>> 0.5 == S.Half
+    True
+
+    This routine was written to provide a query for such cases that
+    would give false when the types do not match:
+
+    >>> from sympy.core.basic import _aresame
+    >>> _aresame(S(2.0), S(2))
+    False
+
+    """
+    from .numbers import Number
+    from .function import AppliedUndef, UndefinedFunction as UndefFunc
+    if isinstance(a, Number) and isinstance(b, Number):
+        return a == b and a.__class__ == b.__class__
+    for i, j in zip_longest(preorder_traversal(a), preorder_traversal(b)):
+        if i != j or type(i) != type(j):
+            if ((isinstance(i, UndefFunc) and isinstance(j, UndefFunc)) or
+                (isinstance(i, AppliedUndef) and isinstance(j, AppliedUndef))):
+                if i.class_key() != j.class_key():
+                    return False
+            else:
+                return False
+    return True
+
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] Func 18/25
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/function.py' lineno=214 funcname='nargs' classname='FunctionClass'
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 12:37:28,809 - Orcar.tracer_reranker - INFO]     @property
+    def nargs(self):
+        """Return a set of the allowed number of arguments for the function.
+
+        Examples
+        ========
+
+        >>> from sympy.core.function import Function
+        >>> f = Function('f')
+
+        If the function can take any number of arguments, the set of whole
+        numbers is returned:
+
+        >>> Function('f').nargs
+        Naturals0
+
+        If the function was initialized to accept one or more arguments, a
+        corresponding set will be returned:
+
+        >>> Function('f', nargs=1).nargs
+        FiniteSet(1)
+        >>> Function('f', nargs=(2, 1)).nargs
+        FiniteSet(1, 2)
+
+        The undefined function, after application, also has the nargs
+        attribute; the actual number of arguments is always available by
+        checking the ``args`` attribute:
+
+        >>> f = Function('f')
+        >>> f(1).nargs
+        Naturals0
+        >>> len(f(1).args)
+        1
+        """
+        from sympy.sets.sets import FiniteSet
+        # XXX it would be nice to handle this in __init__ but there are import
+        # problems with trying to import FiniteSet there
+        return FiniteSet(*self._nargs) if self._nargs else S.Naturals0
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 19/25
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=709 funcname='args' classname='Basic'
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO]     @property
+    def args(self):
+        """Returns a tuple of arguments of 'self'.
+
+        Examples
+        ========
+
+        >>> from sympy import cot
+        >>> from sympy.abc import x, y
+
+        >>> cot(x).args
+        (x,)
+
+        >>> cot(x).args[0]
+        x
+
+        >>> (x*y).args
+        (x, y)
+
+        >>> (x*y).args[1]
+        y
+
+        Notes
+        =====
+
+        Never use self._args, always use self.args.
+        Only use _args in __new__ when creating a new function.
+        Don't override .args() from Basic (so that it's easy to
+        change the interface in the future if needed).
+        """
+        return self._args
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 20/25
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/assumptions.py' lineno=436 funcname='copy' classname='StdFactKB'
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] LLM score: 2 / 100
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO]     def copy(self):
+        return self.__class__(self)
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 21/25
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=683 funcname='func' classname='Basic'
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] LLM score: 1 / 100
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO]     @property
+    def func(self):
+        """
+        The top-level function in an expression.
+
+        The following should hold for all objects::
+
+            >> x == x.func(*x.args)
+
+        Examples
+        ========
+
+        >>> from sympy.abc import x
+        >>> a = 2*x
+        >>> a.func
+        <class 'sympy.core.mul.Mul'>
+        >>> a.args
+        (2, x)
+        >>> a.func(*a.args)
+        2*x
+        >>> a == a.func(*a.args)
+        True
+
+        """
+        return self.__class__
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 22/25
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/basic.py' lineno=1066 funcname='_eval_subs' classname='Basic'
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] LLM score: 5 / 100
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO]     def _eval_subs(self, old, new):
+        """Override this stub if you want to do anything more than
+        attempt a replacement of old with new in the arguments of self.
+
+        See also
+        ========
+
+        _subs
+        """
+        return None
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 23/25
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/core/mod.py' lineno=45 funcname='doit' classname='Mod'
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] LLM score: 25 / 100
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO]         def doit(p, q):
+            """Try to return p % q if both are numbers or +/-p is known
+            to be less than or equal q.
+            """
+
+            if q.is_zero:
+                raise ZeroDivisionError("Modulo by zero")
+            if p.is_finite is False or q.is_finite is False or p is nan or q is nan:
+                return nan
+            if p is S.Zero or p == q or p == -q or (p.is_integer and q == 1):
+                return S.Zero
+
+            if q.is_Number:
+                if p.is_Number:
+                    return p%q
+                if q == 2:
+                    if p.is_even:
+                        return S.Zero
+                    elif p.is_odd:
+                        return S.One
+
+            if hasattr(p, '_eval_Mod'):
+                rv = getattr(p, '_eval_Mod')(q)
+                if rv is not None:
+                    return rv
+
+            # by ratio
+            r = p/q
+            if r.is_integer:
+                return S.Zero
+            try:
+                d = int(r)
+            except TypeError:
+                pass
+            else:
+                if isinstance(d, int):
+                    rv = p - d*q
+                    if (rv*q < 0) == True:
+                        rv += q
+                    return rv
+
+            # by difference
+            # -2|q| < p < 2|q|
+            d = abs(p)
+            for _ in range(2):
+                d -= abs(q)
+                if d.is_negative:
+                    if q.is_positive:
+                        if p.is_positive:
+                            return d + q
+                        elif p.is_negative:
+                            return -d
+                    elif q.is_negative:
+                        if p.is_positive:
+                            return d
+                        elif p.is_negative:
+                            return -d + q
+                    break
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 24/25
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=1047 funcname='as_expr' classname='Poly'
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] LLM score: 3 / 100
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO]     def as_expr(f, *gens):
+        """
+        Convert a Poly instance to an Expr instance.
+
+        Examples
+        ========
+
+        >>> from sympy import Poly
+        >>> from sympy.abc import x, y
+
+        >>> f = Poly(x**2 + 2*x*y**2 - y, x, y)
+
+        >>> f.as_expr()
+        x**2 + 2*x*y**2 - y
+        >>> f.as_expr({x: 5})
+        10*y**2 - y + 25
+        >>> f.as_expr(5, 6)
+        379
+
+        """
+        if not gens:
+            return f.expr
+
+        if len(gens) == 1 and isinstance(gens[0], dict):
+            mapping = gens[0]
+            gens = list(f.gens)
+
+            for gen, value in mapping.items():
+                try:
+                    index = gens.index(gen)
+                except ValueError:
+                    raise GeneratorsError(
+                        "%s doesn't have %s as generator" % (f, gen))
+                else:
+                    gens[index] = value
+
+        return basic_from_dict(f.rep.to_sympy_dict(), *gens)
+
+[2026-09-22 12:37:28,810 - Orcar.tracer_reranker - INFO] Func 25/25
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] filename='/data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy/sympy/polys/polytools.py' lineno=453 funcname='_unify' classname='Poly'
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] LLM score: 10 / 100
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO]     def _unify(f, g):
+        g = sympify(g)
+
+        if not g.is_Poly:
+            try:
+                return f.rep.dom, f.per, f.rep, f.rep.per(f.rep.dom.from_sympy(g))
+            except CoercionFailed:
+                raise UnificationFailed("can't unify %s with %s" % (f, g))
+
+        if isinstance(f.rep, DMP) and isinstance(g.rep, DMP):
+            gens = _unify_gens(f.gens, g.gens)
+
+            dom, lev = f.rep.dom.unify(g.rep.dom, gens), len(gens) - 1
+
+            if f.gens != gens:
+                f_monoms, f_coeffs = _dict_reorder(
+                    f.rep.to_dict(), f.gens, gens)
+
+                if f.rep.dom != dom:
+                    f_coeffs = [dom.convert(c, f.rep.dom) for c in f_coeffs]
+
+                F = DMP(dict(list(zip(f_monoms, f_coeffs))), dom, lev)
+            else:
+                F = f.rep.convert(dom)
+
+            if g.gens != gens:
+                g_monoms, g_coeffs = _dict_reorder(
+                    g.rep.to_dict(), g.gens, gens)
+
+                if g.rep.dom != dom:
+                    g_coeffs = [dom.convert(c, g.rep.dom) for c in g_coeffs]
+
+                G = DMP(dict(list(zip(g_monoms, g_coeffs))), dom, lev)
+            else:
+                G = g.rep.convert(dom)
+        else:
+            raise UnificationFailed("can't unify %s with %s" % (f, g))
+
+        cls = f.__class__
+
+        def per(rep, dom=dom, gens=gens, remove=None):
+            if remove is not None:
+                gens = gens[:remove] + gens[remove + 1:]
+
+                if not gens:
+                    return dom.to_sympy(rep)
+
+            return cls.new(rep, *gens)
+
+        return dom, per, F, G
+
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] ['clear_cache', 'subs', '__new__', '_subs', 'getit', '__new__', 'fallback', '_ask', 'eval', '_eval_is_real', '__mod__', 'eval', 'gcd', 'parallel_poly_from_expr', 'gcd', '_parallel_poly_from_expr', '_aresame', 'nargs', 'args', 'copy', 'func', '_eval_subs', 'doit', 'as_expr', '_unify']
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] ----------------Before sort-----------------------
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] [('clear_cache', 2), ('subs', 5), ('__new__', 10), ('_subs', 10), ('getit', 5), ('__new__', 5), ('fallback', 15), ('_ask', 25), ('eval', 30), ('_eval_is_real', 30), ('__mod__', 2), ('eval', 30), ('gcd', 15), ('parallel_poly_from_expr', 5), ('gcd', 5), ('_parallel_poly_from_expr', 50), ('_aresame', 3), ('nargs', 2), ('args', 2), ('copy', 2), ('func', 1), ('_eval_subs', 5), ('doit', 25), ('as_expr', 3), ('_unify', 10)]
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] ----------------After sort------------------------
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] [('_parallel_poly_from_expr', 50), ('eval', 30), ('_eval_is_real', 30), ('eval', 30), ('_ask', 25), ('fallback', 15), ('gcd', 15), ('__new__', 10), ('_subs', 10), ('subs', 5), ('getit', 5), ('__new__', 5), ('parallel_poly_from_expr', 5), ('gcd', 5), ('doit', 25), ('clear_cache', 2), ('__mod__', 2), ('_unify', 10), ('_eval_subs', 5), ('_aresame', 3), ('as_expr', 3), ('nargs', 2), ('args', 2), ('copy', 2), ('func', 1)]
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] ----------------After filter------------------------
+[2026-09-22 12:37:28,811 - Orcar.tracer_reranker - INFO] []

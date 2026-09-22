@@ -1,0 +1,7 @@
+[2026-09-22 08:26:27,170 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 08:26:35,275 - Orcar.environment.utils - DEBUG] Run command in container: conda create -n scikit-learn__scikit-learn__0.21 python=3.6 -y
+[2026-09-22 08:32:47,385 - Orcar.environment.utils - DEBUG] Run command in container: conda install numpy scipy cython pytest pandas matplotlib -y
+[2026-09-22 08:33:59,987 - Orcar.environment.utils - DEBUG] Run command in container: source activate scikit-learn__scikit-learn__0.21 && pip install cython numpy==1.19.2 setuptools scipy==1.5.2
+[2026-09-22 08:34:03,291 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -v --no-use-pep517 --no-build-isolation -e .
+[2026-09-22 08:41:42,888 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer
+[2026-09-22 08:48:33,251 - Orcar.environment.utils - DEBUG] Run command in container: ls /tmp/tracer_output_scikit-learn__scikit-learn-13142.json

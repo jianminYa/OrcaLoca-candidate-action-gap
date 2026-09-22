@@ -1,0 +1,39 @@
+[2026-09-22 06:21:33,171 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Colormap', 'method_name': '__call__', 'file_path': 'lib/matplotlib/colors.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': 'xa[xa > self.N - 1] = self._i_over'}
+)
+[2026-09-22 06:21:48,254 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'colors.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': 'xa[xa > self.N - 1] = self._i_over'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Colormap', 'method_name': '__init__', 'file_path': 'lib/matplotlib/colors.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': '_i_over'}
+)
+[2026-09-22 06:22:22,249 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': 'xa[xa > self.N - 1] = self._i_over'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Colormap', 'method_name': '__init__', 'file_path': 'lib/matplotlib/colors.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': '_i_over'}
+)
+[2026-09-22 06:22:32,555 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Colormap', 'method_name': '__init__', 'file_path': 'lib/matplotlib/colors.py'}
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': '_i_over'}
+)
+[2026-09-22 06:22:48,428 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_source_code
+Search Action Input: {'file_path': 'lib/matplotlib/colors.py', 'source_code': '_i_over'}
+)

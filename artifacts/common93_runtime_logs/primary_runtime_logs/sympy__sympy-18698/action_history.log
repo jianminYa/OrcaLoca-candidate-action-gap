@@ -1,0 +1,251 @@
+[2026-09-22 11:56:07,228 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 1
+)
+[2026-09-22 11:56:54,147 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+)
+[2026-09-22 11:57:28,249 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 1
+)
+[2026-09-22 11:58:10,043 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+)
+[2026-09-22 11:58:51,513 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+)
+[2026-09-22 11:59:22,287 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 1
+)
+[2026-09-22 12:00:59,133 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 1
+)
+[2026-09-22 12:01:16,987 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}: 1
+)
+[2026-09-22 12:02:03,717 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}: 1
+)
+[2026-09-22 12:02:22,673 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 4
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}: 1
+)
+[2026-09-22 12:04:34,439 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 5
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_generic_factor_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_symbolic_factor_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+)
+[2026-09-22 12:04:45,460 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 5
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_generic_factor_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_symbolic_factor_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+)
+[2026-09-22 12:05:04,345 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dmp_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'sqfreetools.py', 'directory_path': 'sympy/polys'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Poly', 'method_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'sqf_list', 'file_path': 'sympy/polys/polytools.py'}: 5
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dup_gf_sqf_list', 'file_path': 'sympy/polys/sqfreetools.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'polytools.py', 'directory_path': 'sympy/polys'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_generic_factor_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_symbolic_factor_list', 'file_path': 'sympy/polys/polytools.py'}: 1
+)

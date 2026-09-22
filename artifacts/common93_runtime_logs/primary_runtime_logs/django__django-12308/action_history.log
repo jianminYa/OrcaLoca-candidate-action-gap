@@ -1,0 +1,281 @@
+[2026-09-22 02:57:03,583 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+)
+[2026-09-22 02:57:13,496 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+)
+[2026-09-22 02:57:32,062 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'})]
+[2026-09-22 02:57:41,720 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 1
+)
+[2026-09-22 02:57:43,905 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_class', search_action_input={'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'})]
+[2026-09-22 02:57:53,384 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 2
+)
+[2026-09-22 02:58:08,982 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+)
+[2026-09-22 02:58:32,770 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+)
+[2026-09-22 02:58:49,622 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+)
+[2026-09-22 02:59:03,626 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/fields'}: 1
+)
+[2026-09-22 02:59:46,744 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/fields'}: 1
+)
+[2026-09-22 03:00:57,917 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/fields'}: 1
+)
+[2026-09-22 03:01:23,588 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/fields'}: 1
+)
+[2026-09-22 03:02:05,184 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/fields'}: 1
+)
+[2026-09-22 03:02:43,563 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_callable
+Search Action Input: {'query_name': 'display_for_field', 'file_path': 'django/contrib/admin/utils.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'utils.py', 'directory_path': 'django/contrib/admin'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'JSONField', 'method_name': 'prepare_value', 'file_path': 'django/forms/fields.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/forms/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/contrib/postgres/fields/jsonb.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'JSONField', 'file_path': 'django/db/models/fields/json.py'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'fields.py', 'directory_path': 'django/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'json.py', 'directory_path': 'django/db/models/fields'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/forms'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'jsonb.py', 'directory_path': 'django/contrib/postgres/fields'}: 1
+)

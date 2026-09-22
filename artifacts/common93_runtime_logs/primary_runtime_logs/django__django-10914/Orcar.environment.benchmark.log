@@ -1,0 +1,6 @@
+[2026-09-21 12:57:16,772 - Orcar.environment.benchmark - INFO] Setting up env for inst django__django-10914...
+[2026-09-21 12:57:24,140 - Orcar.environment.benchmark - INFO] Caching repo to host: docker cp orcar_swe_bench_run_ctr:/django__django /data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/django__django
+[2026-09-21 12:57:27,009 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_retry1/.orcar/django__django to base commit: e7fd69d051eaa67cb17f172a39b57253e9cb831a
+[2026-09-21 12:57:40,606 - Orcar.environment.benchmark - INFO] Env django__django__3.0 not found, installing
+[2026-09-21 13:00:26,091 - Orcar.environment.benchmark - INFO] Installing django/django at base commit...
+[2026-09-21 13:00:36,345 - Orcar.environment.benchmark - INFO] Installation step took 185.61 seconds

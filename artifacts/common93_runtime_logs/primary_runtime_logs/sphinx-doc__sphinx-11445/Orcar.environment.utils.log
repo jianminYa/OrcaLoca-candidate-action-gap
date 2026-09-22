@@ -1,0 +1,7 @@
+[2026-09-22 09:56:24,735 - Orcar.environment.utils - DEBUG] Run command in container: git clone https://github.com/sphinx-doc/sphinx.git sphinx-doc__sphinx
+[2026-09-22 09:56:51,275 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 09:56:58,995 - Orcar.environment.utils - DEBUG] Run command in container: conda create --name sphinx-doc__sphinx__7.1 --clone python3.9
+[2026-09-22 09:57:05,622 - Orcar.environment.utils - DEBUG] Run command in container: source activate sphinx-doc__sphinx__7.1 && pip install tox==4.16.0 tox-current-env==0.0.11
+[2026-09-22 09:57:11,282 - Orcar.environment.utils - DEBUG] Run command in container: sed -i 's/pytest/pytest -rA/' tox.ini
+[2026-09-22 09:57:12,163 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .[test]
+[2026-09-22 09:57:23,251 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer

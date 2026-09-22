@@ -1,0 +1,15 @@
+{
+    "conclusion": "<Observation>\nNow I have a complete picture of the bug. The issue is clear:\\n\\n1. `doctree_read` correctly checks if the builder is epub and `viewcode_enable_epub=False`, returning early to avoid populating `_viewcode_modules`.\\n2. However, when running `make html epub`, the html build runs first and populates `env._viewcode_modules` with all module data.\\n3. When the epub build runs afterward, `doctree_read` correctly returns early for epub, BUT the `_viewcode_modules` data from the html build persists in the shared environment.\\n4. The `collect_pages` function is called during the epub build and generates module pages because it iterates over `env._viewcode_modules` without checking whether the current builder is epub with `viewcode_enable_epub=False`.\\n5. Similarly, `should_generate_module_page` doesn't check for epub builder type either.\\n\\nThe fix should be in `collect_pages` - it needs to add an early return check similar to `doctree_read`: if the builder is epub and `viewcode_enable_epub=False`, it should return immediately without generating any pages.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sphinx/ext/viewcode.py",
+            "class_name": "",
+            "method_name": "collect_pages"
+        },
+        {
+            "file_path": "sphinx/ext/viewcode.py",
+            "class_name": "",
+            "method_name": "doctree_read"
+        }
+    ]
+}

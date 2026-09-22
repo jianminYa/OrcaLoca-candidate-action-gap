@@ -1,0 +1,20 @@
+{
+    "conclusion": "<Observation>\nThe search for DeferredAttribute in 'django/db/models/fields_descriptors.py' failed because the correct path is 'django/db/models/query_utils.py', which was already found in a previous search. I now have a complete picture of the issue. The DeferredAttribute class has no __set__ method, so enum values are stored directly in instance.__dict__ without conversion. CharField.to_python checks isinstance(value, str) which returns True for TextChoices members (since TextChoices inherits from str), so it returns the enum member as-is. The core problem is that Python's enum.__str__ overrides str.__str__, so str(MyChoice.FIRST_CHOICE) returns 'MyChoice.FIRST_CHOICE' instead of 'first'. Neither Choices, TextChoices, nor IntegerChoices define a __str__ method in django/db/models/enums.py. The fix should be in django/db/models/enums.py - adding __str__ to Choices, TextChoices, or IntegerChoices to return the value's string representation. The search queue is now empty and I have sufficient context to conclude.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/models/enums.py",
+            "class_name": "Choices",
+            "method_name": ""
+        },
+        {
+            "file_path": "django/db/models/enums.py",
+            "class_name": "TextChoices",
+            "method_name": ""
+        },
+        {
+            "file_path": "django/db/models/enums.py",
+            "class_name": "IntegerChoices",
+            "method_name": ""
+        }
+    ]
+}

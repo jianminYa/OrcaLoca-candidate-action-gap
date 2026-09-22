@@ -1,0 +1,5 @@
+[2026-09-22 08:06:00,038 - Orcar.tracer - INFO] sensitivity_dict: {}
+[2026-09-22 08:06:00,255 - Orcar.tracer - INFO] Found tracer output at /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_pytest-dev__pytest-7432.json
+[2026-09-22 08:06:01,906 - Orcar.tracer - INFO] Successfully parsed tracer output into func_tree
+[2026-09-22 08:06:02,149 - Orcar.tracer - INFO] Got sorted funcs:
+[2026-09-22 08:06:02,149 - Orcar.tracer - INFO] Finished tracer output parsing

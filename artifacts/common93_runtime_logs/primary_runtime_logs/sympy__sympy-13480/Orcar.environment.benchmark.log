@@ -1,0 +1,4 @@
+[2026-09-22 10:36:22,976 - Orcar.environment.benchmark - INFO] Setting up env for inst sympy__sympy-13480...
+[2026-09-22 10:36:29,930 - Orcar.environment.benchmark - INFO] Repo sympy__sympy already cached
+[2026-09-22 10:36:29,931 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy to base commit: f57fe3f4b3f2cab225749e1b3b38ae1bf80b62f0
+[2026-09-22 10:37:35,876 - Orcar.environment.benchmark - INFO] Copying file to host: docker cp orcar_swe_bench_run_ctr_safe://tmp/tracer_output_sympy__sympy-13480.json /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_sympy__sympy-13480.json

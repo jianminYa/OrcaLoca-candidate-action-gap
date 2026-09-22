@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nI now have a clear picture of the bug. In `convert_frac`, when `expr_top == 1`, the function returns just `inverse_denom` (which is `Pow(expr_bot, -1, evaluate=False)`). For the inner fraction `\\frac{1}{c^2}`, this returns `Pow(c**2, -1)` = `1/(c**2)`. When this result is then used as `expr_bot` in the outer fraction `\\frac{\\frac{a^3+b}{c}}{\\frac{1}{c^2}}`, the outer `convert_frac` computes `inverse_denom = Pow(Pow(c**2, -1), -1) = c**2`, and then `Mul((a**3+b)/c, c**2, evaluate=False)` which prints as `((a**3 + b)/c)/1/(c**2)` - losing the proper grouping. The fix should change the `if expr_top == 1: return inverse_denom` branch to instead return `sympy.Mul(expr_top, inverse_denom, evaluate=False)` so that the fraction structure `1 * (1/c^2)` is preserved as a `Mul` object, which when inverted as a denominator in an outer fraction would correctly invert the entire expression. The `convert_mp` function has a similar pattern for division but is not directly involved in this bug since `\\frac` is handled by `convert_frac`.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sympy/parsing/latex/_parse_latex_antlr.py",
+            "class_name": "",
+            "method_name": "convert_frac"
+        }
+    ]
+}

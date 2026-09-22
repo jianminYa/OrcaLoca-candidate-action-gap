@@ -1,0 +1,21 @@
+[2026-09-22 05:23:01,152 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UserChangeForm', 'method_name': '__init__'}
+)
+[2026-09-22 05:23:12,182 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'forms.py', 'directory_path': 'django/contrib/auth'}
+)
+[2026-09-22 05:23:32,072 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'UserChangeForm', 'file_path': 'django/contrib/auth/forms.py'}
+)
+[2026-09-22 05:23:45,723 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'UserChangeForm', 'method_name': '__init__', 'file_path': 'django/contrib/auth/forms.py'}
+)
+[2026-09-22 05:23:45,726 - search_queue - INFO] Duplicate search result: search_action='search_method_in_class' search_action_input={'class_name': 'UserChangeForm', 'method_name': '__init__', 'file_path': 'django/contrib/auth/forms.py'} search_content='File Path: django/contrib/auth/forms.py \nMethod Content: \n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        password = self.fields.get("password")\n        if password:\n            password.help_text = password.help_text.format("../password/")\n        user_permissions = self.fields.get("user_permissions")\n        if user_permissions:\n            user_permissions.queryset = user_permissions.queryset.select_related(\n                "content_type"\n            )\n'

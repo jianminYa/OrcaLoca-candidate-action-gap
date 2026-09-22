@@ -1,0 +1,24 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "lambdify",
+            "file_path": "sympy/utilities/lambdify.py"
+        },
+        {
+            "keyword": "_lambdifygenerated",
+            "file_path": ""
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "_recursive_to_string",
+            "file_path": "sympy/utilities/lambdify.py",
+            "class_name": ""
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import inspect\nfrom sympy import lambdify\n\nsource = inspect.getsource(lambdify([], tuple([1])))\nprint(repr(source))\n\n# Check if the bug is present (missing trailing comma for single-element tuple)\nassert '(1,)' in source, f\"Bug reproduced: single-element tuple missing trailing comma. Got: {source}\"\n",
+    "env_reproduce_path": "/sympy__sympy/reproducer_sympy__sympy-23262.py"
+}

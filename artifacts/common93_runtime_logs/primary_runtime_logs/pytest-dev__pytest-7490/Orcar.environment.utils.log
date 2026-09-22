@@ -1,0 +1,6 @@
+[2026-09-22 08:07:07,462 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 08:07:15,510 - Orcar.environment.utils - DEBUG] Run command in container: conda create --name pytest-dev__pytest__6.0 --clone python3.9
+[2026-09-22 08:07:22,008 - Orcar.environment.utils - DEBUG] Run command in container: source activate pytest-dev__pytest__6.0 && pip install attrs==23.1.0 iniconfig==2.0.0 more-itertools==10.1.0 packaging==23.1 pluggy==0.13.1 py==1.11.0 toml==0.10.2
+[2026-09-22 08:07:25,275 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 08:07:31,928 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer
+[2026-09-22 08:08:26,535 - Orcar.environment.utils - DEBUG] Run command in container: ls /tmp/tracer_output_pytest-dev__pytest-7490.json

@@ -1,0 +1,1261 @@
+[2026-09-22 12:21:28,148 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+)
+[2026-09-22 12:21:30,566 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'})]
+[2026-09-22 12:21:44,868 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+)
+[2026-09-22 12:22:17,817 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:22:28,074 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:22:35,987 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:22:46,295 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:23:20,010 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+)
+[2026-09-22 12:23:31,651 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 4
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+)
+[2026-09-22 12:23:45,418 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 5
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+)
+[2026-09-22 12:24:07,969 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+)
+[2026-09-22 12:24:27,201 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 7
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:24:44,783 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 8
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:24:47,353 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'})]
+[2026-09-22 12:25:01,976 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 9
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:26:38,291 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 10
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:26:53,242 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 11
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:27:04,553 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 12
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:27:20,480 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 13
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 4
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:27:22,876 - action_history - INFO] Disambiguation: [SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}), SearchActionStep(search_action='search_class', search_action_input={'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'})]
+[2026-09-22 12:27:36,872 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 14
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 5
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+)
+[2026-09-22 12:28:48,015 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 15
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:29:02,727 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 16
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:29:29,433 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 17
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:29:44,847 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 18
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:29:58,782 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 19
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:30:16,989 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 20
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+)
+[2026-09-22 12:30:48,003 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 21
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:32:10,651 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 22
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:32:35,540 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 23
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 2
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:33:18,147 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 24
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 3
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:33:32,790 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 25
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 4
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 4
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}: 1
+)
+[2026-09-22 12:33:58,555 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/core/symbol.py'}: 26
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/calculus.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Symbol', 'file_path': 'sympy/assumptions/tests/test_query.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'symbol.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': 'class Symbol'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/symbol.py', 'source_code': '__slots__'}: 6
+  Search Action: search_class
+Search Action Input: {'class_name': 'Str', 'file_path': 'sympy/core/symbol.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'AtomicExpr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Atom'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'expr.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/core/expr.py'}: 5
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Expr', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/expr.py', 'source_code': '__slots__'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/core/basic.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/core/basic.py'}: 5
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/sets.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/order.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/common.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Basic', 'file_path': 'sympy/assumptions/handlers/ntheory.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'basic.py', 'directory_path': 'sympy/core'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'boolalg.py', 'directory_path': 'sympy/logic'}: 1
+  Search Action: search_source_code
+Search Action Input: {'file_path': 'sympy/logic/boolalg.py', 'source_code': '__slots__'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Boolean', 'file_path': 'sympy/logic/boolalg.py'}: 1
+)

@@ -1,0 +1,132 @@
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 276, in run_agents
+    trace_analysis_output = self.run_trace_analysis_agent()
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 111, in run_trace_analysis_agent
+    response: AgentChatResponse = self.trace_analysis_agent.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 695, in chat
+    chat_response = self._chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 627, in _chat
+    cur_step_output = self._run_step(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 423, in _run_step
+    cur_step_output = self.agent_worker.run_step(step, task, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 604, in run_step
+    return self._run_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 561, in _run_step
+    new_steps = self.handle_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 501, in handle_step
+    return self.handle_step_slice(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 259, in handle_step_slice
+    chat_response = self.chat_with_count(
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/trace_analysis_agent.py", line 84, in chat_with_count
+    response, token_cnt = self._token_counter.count_chat(
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/formatter.py", line 139, in count_chat
+    raise e
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/formatter.py", line 129, in count_chat
+    response = llm.chat(messages)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/llms/callbacks.py", line 175, in wrapped_llm_chat
+    f_return_val = f(_self, messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 386, in chat
+    return chat_fn(messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 112, in wrapper
+    return retry(f)(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 482, in _chat
+    response = client.chat.completions.create(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 502 - {'error': {'type': 'upstream_error', 'code': '502001', 'message': 'The upstream model service is abnormal or unreachable. Please try again. If the issue persists, contact platform support for troubleshooting. Submit a ticket: https://console.cloud.tencent.com/workorder/category?level1_id=1&level2_id=3333&data_title=%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0+TokenHub&source=14', 'message_zh': '上游模型服务异常或不可达，请重试。如多次失败，请联系平台售后协助排查，工单提交地址：https://console.cloud.tencent.com/workorder/category?level1_id=1&level2_id=3333&data_title=%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0+TokenHub&source=14', 'source': 'upstream', 'request_id': 'aff1e974-5867-47d8-8469-096f30f2b640'}}
+Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 285, in run_agents
+    search_output = self.run_search_agent(trace_analysis_output)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/agent.py", line 160, in run_search_agent
+    search_agent_chat_response: AgentChatResponse = self.search_agent.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 695, in chat
+    chat_response = self._chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 627, in _chat
+    cur_step_output = self._run_step(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/agent/runner/base.py", line 423, in _run_step
+    cur_step_output = self.agent_worker.run_step(step, task, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/callbacks/utils.py", line 42, in wrapper
+    return func(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/search_agent.py", line 1549, in run_step
+    return self._run_step(step, task)
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/search_agent.py", line 1433, in _run_step
+    chat_response = self._llm.chat(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/instrumentation/dispatcher.py", line 323, in wrapper
+    result = func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/core/llms/callbacks.py", line 175, in wrapped_llm_chat
+    f_return_val = f(_self, messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 386, in chat
+    return chat_fn(messages, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 112, in wrapper
+    return retry(f)(self, *args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/llama_index/llms/openai/base.py", line 482, in _chat
+    response = client.chat.completions.create(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 502 - {'error': {'type': 'upstream_error', 'code': '502001', 'message': 'The upstream model service is abnormal or unreachable. Please try again. If the issue persists, contact platform support for troubleshooting. Submit a ticket: https://console.cloud.tencent.com/workorder/category?level1_id=1&level2_id=3333&data_title=%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0+TokenHub&source=14', 'message_zh': '上游模型服务异常或不可达，请重试。如多次失败，请联系平台售后协助排查，工单提交地址：https://console.cloud.tencent.com/workorder/category?level1_id=1&level2_id=3333&data_title=%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0+TokenHub&source=14', 'source': 'upstream', 'request_id': 'd5e1341e-bd95-4554-a5e6-7d5d5f9321f2'}}

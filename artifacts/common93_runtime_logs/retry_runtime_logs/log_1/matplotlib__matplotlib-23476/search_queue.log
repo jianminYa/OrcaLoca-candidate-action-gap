@@ -1,0 +1,104 @@
+[2026-09-22 06:50:03,476 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}
+)
+[2026-09-22 06:50:15,892 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}
+)
+[2026-09-22 06:50:34,702 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}
+)
+[2026-09-22 06:50:51,705 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio', 'file_path': 'lib/matplotlib/backends/backend_macosx.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '_set_dpi'}
+)
+[2026-09-22 06:51:13,615 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '_set_dpi'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio', 'file_path': 'lib/matplotlib/backends/backend_macosx.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_set_device_pixel_ratio', 'file_path': 'lib/matplotlib/backend_bases.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}
+)
+[2026-09-22 06:51:26,728 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio', 'file_path': 'lib/matplotlib/backends/backend_macosx.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_set_device_pixel_ratio', 'file_path': 'lib/matplotlib/backend_bases.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}
+)
+[2026-09-22 06:51:45,591 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_set_device_pixel_ratio', 'file_path': 'lib/matplotlib/backend_bases.py'}
+  Value: 3, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}
+)
+[2026-09-22 06:52:07,487 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 4, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_bases.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_original_dpi', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__', 'file_path': 'lib/matplotlib/backend_bases.py'}
+)
+[2026-09-22 06:52:36,786 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_bases.py', 'directory_path': 'lib/matplotlib'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_original_dpi', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__', 'file_path': 'lib/matplotlib/backend_bases.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__init__', 'file_path': 'lib/matplotlib/figure.py'}
+)
+[2026-09-22 06:53:08,763 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_original_dpi', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__', 'file_path': 'lib/matplotlib/backend_bases.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__init__', 'file_path': 'lib/matplotlib/figure.py'}
+)
+[2026-09-22 06:53:23,000 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__', 'file_path': 'lib/matplotlib/backend_bases.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__init__', 'file_path': 'lib/matplotlib/figure.py'}
+)
+[2026-09-22 06:53:37,553 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__init__', 'file_path': 'lib/matplotlib/figure.py'}
+)

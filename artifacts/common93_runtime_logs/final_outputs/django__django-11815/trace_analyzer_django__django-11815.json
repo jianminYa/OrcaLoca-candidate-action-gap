@@ -1,0 +1,46 @@
+{
+    "summary": "",
+    "suspicious_code": [
+        {
+            "keyword": "MigrationWriter",
+            "file_path": "django/db/migrations/writer.py"
+        },
+        {
+            "keyword": "Status",
+            "file_path": ""
+        },
+        {
+            "keyword": "get_prep_value",
+            "file_path": ""
+        },
+        {
+            "keyword": "EnumSerializer",
+            "file_path": "django/db/migrations/serializer.py"
+        },
+        {
+            "keyword": "gettext_lazy",
+            "file_path": "django/utils/translation/__init__.py"
+        }
+    ],
+    "suspicious_code_from_tracer": [
+        {
+            "keyword": "serialize",
+            "file_path": "django/db/migrations/serializer.py",
+            "class_name": "EnumSerializer"
+        },
+        {
+            "keyword": "serialize",
+            "file_path": "django/db/migrations/serializer.py",
+            "class_name": "BaseSimpleSerializer"
+        },
+        {
+            "keyword": "serializer_factory",
+            "file_path": "django/db/migrations/serializer.py",
+            "class_name": "Serializer"
+        }
+    ],
+    "related_source_code": "",
+    "is_reproduce_pass": true,
+    "reproduce_code": "import django\nfrom django.conf import settings\n\nsettings.configure(\n    USE_I18N=True,\n    DATABASES={\n        'default': {\n            'ENGINE': 'django.db.backends.sqlite3',\n            'NAME': ':memory:',\n        }\n    },\n    INSTALLED_APPS=[\n        'django.contrib.contenttypes',\n        'django.contrib.auth',\n    ],\n    DEFAULT_AUTO_FIELD='django.db.models.AutoField',\n)\ndjango.setup()\n\nfrom enum import Enum\nfrom django.utils.translation import gettext_lazy as _\nfrom django.db.migrations.writer import MigrationWriter\nfrom django.db import models\n\n\nclass Status(Enum):\n    GOOD = _('Good')\n    BAD = _('Bad')\n\n    def __str__(self):\n        return self.name\n\n\n# Test how the migration serializer handles the enum default value\nfield = models.CharField(default=Status.GOOD, max_length=128)\nstring, imports = MigrationWriter.serialize(field)\n\nprint(\"Serialized field:\", string)\nprint(\"Imports:\", imports)\n\n# The issue is that the serialized output uses Status('Good') instead of Status['GOOD']\n# Check if the serialized output contains the value-based call\nif \"Status('Good')\" in string or 'Status(_(' in string:\n    print(\"\\nBUG CONFIRMED: Migration uses the value of enum (which is translatable) instead of the name.\")\n    print(\"This will break when the value is translated to another language.\")\n    print(\"Expected: Status['GOOD']\")\n    print(\"Got:\", string)\nelse:\n    print(\"\\nBehavior seems correct or different from expected.\")\n",
+    "env_reproduce_path": "/django__django/reproducer_django__django-11815.py"
+}

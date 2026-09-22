@@ -1,0 +1,68 @@
+[2026-09-22 07:01:31,326 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'align_labels'}
+)
+[2026-09-22 07:01:44,213 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureBase', 'method_name': 'align_xlabels', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureBase', 'method_name': 'align_ylabels', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper'}
+)
+[2026-09-22 07:02:06,435 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureBase', 'method_name': 'align_xlabels', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureBase', 'method_name': 'align_ylabels', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper'}
+)
+[2026-09-22 07:02:18,424 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureBase', 'method_name': 'align_ylabels', 'file_path': 'lib/matplotlib/figure.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper'}
+)
+[2026-09-22 07:02:27,560 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper'}
+)
+[2026-09-22 07:02:47,682 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'cbook.py', 'directory_path': 'lib/matplotlib'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Grouper', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/cbook.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Grouper', 'method_name': '__reduce__', 'file_path': 'lib/matplotlib/cbook.py'}
+)
+[2026-09-22 07:04:10,696 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Grouper', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/cbook.py'}
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Grouper', 'method_name': '__reduce__', 'file_path': 'lib/matplotlib/cbook.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper', 'file_path': 'lib/matplotlib/cbook.py'}
+)
+[2026-09-22 07:04:20,177 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Grouper', 'method_name': '__reduce__', 'file_path': 'lib/matplotlib/cbook.py'}
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper', 'file_path': 'lib/matplotlib/cbook.py'}
+)
+[2026-09-22 07:04:32,601 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Grouper', 'file_path': 'lib/matplotlib/cbook.py'}
+)
+[2026-09-22 07:04:32,614 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'Grouper', 'file_path': 'lib/matplotlib/cbook.py'} search_content='File Path: lib/matplotlib/cbook.py \nClass Content: \nclass Grouper:\n    """\n    A disjoint-set data structure.\n\n    Objects can be joined using :meth:`join`, tested for connectedness\n    using :meth:`joined`, and all disjoint sets can be retrieved by\n    using the object as an iterator.\n\n    The objects being joined must be hashable and weak-referenceable.\n\n    Examples\n    --------\n    >>> from matplotlib.cbook import Grouper\n    >>> class Foo:\n    ...     def __init__(self, s):\n    ...         self.s = s\n    ...     def __repr__(self):\n    ...         return self.s\n    ...\n    >>> a, b, c, d, e, f = [Foo(x) for x in \'abcdef\']\n    >>> grp = Grouper()\n    >>> grp.join(a, b)\n    >>> grp.join(b, c)\n    >>> grp.join(d, e)\n    >>> list(grp)\n    [[a, b, c], [d, e]]\n    >>> grp.joined(a, b)\n    True\n    >>> grp.joined(a, c)\n    True\n    >>> grp.joined(a, d)\n    False\n    """\n\n    def __init__(self, init=()):\n        self._mapping = {weakref.ref(x): [weakref.ref(x)] for x in init}\n\n    def __contains__(self, item):\n        return weakref.ref(item) in self._mapping\n\n    def clean(self):\n        """Clean dead weak references from the dictionary."""\n        mapping = self._mapping\n        to_drop = [key for key in mapping if key() is None]\n        for key in to_drop:\n            val = mapping.pop(key)\n            val.remove(key)\n\n    def join(self, a, *args):\n        """\n        Join given arguments into the same set.  Accepts one or more arguments.\n        """\n        mapping = self._mapping\n        set_a = mapping.setdefault(weakref.ref(a), [weakref.ref(a)])\n\n        for arg in args:\n            set_b = mapping.get(weakref.ref(arg), [weakref.ref(arg)])\n            if set_b is not set_a:\n                if len(set_b) > len(set_a):\n                    set_a, set_b = set_b, set_a\n                set_a.extend(set_b)\n                for elem in set_b:\n                    mapping[elem] = set_a\n\n        self.clean()\n\n    def joined(self, a, b):\n        """Return whether *a* and *b* are members of the same set."""\n        self.clean()\n        return (self._mapping.get(weakref.ref(a), object())\n                is self._mapping.get(weakref.ref(b)))\n\n    def remove(self, a):\n        self.clean()\n        set_a = self._mapping.pop(weakref.ref(a), None)\n        if set_a:\n            set_a.remove(weakref.ref(a))\n\n    def __iter__(self):\n        """\n        Iterate over each of the disjoint sets as a list.\n\n        The iterator is invalid if interleaved with calls to join().\n        """\n        self.clean()\n        unique_groups = {id(group): group for group in self._mapping.values()}\n        for group in unique_groups.values():\n            yield [x() for x in group]\n\n    def get_siblings(self, a):\n        """Return all of the items joined with *a*, including itself."""\n        self.clean()\n        siblings = self._mapping.get(weakref.ref(a), [weakref.ref(a)])\n        return [x() for x in siblings]\n'

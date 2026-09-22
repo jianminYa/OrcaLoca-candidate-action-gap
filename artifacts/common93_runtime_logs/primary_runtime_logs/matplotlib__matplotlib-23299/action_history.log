@@ -1,0 +1,294 @@
+[2026-09-22 05:48:26,248 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 1
+)
+[2026-09-22 05:48:39,531 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 05:48:56,204 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 05:49:16,084 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 05:49:42,510 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+)
+[2026-09-22 05:50:39,891 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+)
+[2026-09-22 05:53:24,235 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+)
+[2026-09-22 05:53:40,445 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+)
+[2026-09-22 05:53:58,705 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+)
+[2026-09-22 05:54:15,704 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+)
+[2026-09-22 05:54:46,724 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_pylab_helpers.py', 'directory_path': 'lib/matplotlib'}: 1
+)
+[2026-09-22 05:55:02,059 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__getitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': '__setitem__', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend', 'file_path': 'lib/matplotlib/pyplot.py'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'switch_backend'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'Gcf'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '__init__.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'pyplot.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'rc_context', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'get_backend', 'file_path': 'lib/matplotlib/__init__.py'}: 3
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RcParams', 'method_name': 'update', 'file_path': 'lib/matplotlib/__init__.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': '_pylab_helpers.py', 'directory_path': 'lib/matplotlib'}: 1
+)

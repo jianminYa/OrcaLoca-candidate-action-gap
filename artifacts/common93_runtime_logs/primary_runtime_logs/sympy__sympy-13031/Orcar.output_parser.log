@@ -1,0 +1,55 @@
+[2026-09-22 10:20:39,011 - Orcar.output_parser - INFO] Traceback (most recent call last):
+  File "/data/workspace/orcaloca-repro/OrcaLoca/Orcar/output_parser.py", line 256, in parse
+    json_obj: Dict = json.loads(output, strict=False)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/data/workspace/orcaloca-repro/envs/orca/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
+Trying to escape all backslashes
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:07,411 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:24,484 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,120 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Replace with \\n
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Find a match with 1 backslashes: \n, \
+[2026-09-22 10:24:44,121 - Orcar.output_parser - INFO] Replace with \\n

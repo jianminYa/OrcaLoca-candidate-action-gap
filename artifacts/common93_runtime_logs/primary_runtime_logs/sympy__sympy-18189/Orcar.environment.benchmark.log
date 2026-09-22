@@ -1,0 +1,7 @@
+[2026-09-22 11:30:08,449 - Orcar.environment.benchmark - INFO] Setting up env for inst sympy__sympy-18189...
+[2026-09-22 11:30:15,519 - Orcar.environment.benchmark - INFO] Repo sympy__sympy already cached
+[2026-09-22 11:30:15,519 - Orcar.environment.benchmark - INFO] Checking out /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/sympy__sympy to base commit: 1923822ddf8265199dbd9ef9ce09641d3fd042b9
+[2026-09-22 11:30:29,028 - Orcar.environment.benchmark - INFO] Env sympy__sympy__1.6 not found, installing
+[2026-09-22 11:32:37,949 - Orcar.environment.benchmark - INFO] Installing sympy/sympy at base commit...
+[2026-09-22 11:32:43,869 - Orcar.environment.benchmark - INFO] Installation step took 145.45 seconds
+[2026-09-22 11:33:26,218 - Orcar.environment.benchmark - INFO] Copying file to host: docker cp orcar_swe_bench_run_ctr_safe://tmp/tracer_output_sympy__sympy-18189.json /data/workspace/orcaloca-repro/runtime_home_common93_safe/.orcar/tracer/tracer_output_sympy__sympy-18189.json

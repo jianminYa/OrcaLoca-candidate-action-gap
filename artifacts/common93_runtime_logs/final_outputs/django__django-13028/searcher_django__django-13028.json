@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is now fully clear. The `check_filterable` method in `Query` class at `django/db/models/sql/query.py` uses `getattr(expression, 'filterable', True)` to check if something can be used in a WHERE clause. When `build_filter` calls `self.check_filterable(value)` where `value` is a model instance (like `ProductMetaDataType`) that happens to have a model field named `filterable` (a BooleanField with default=False), `getattr` picks up the model instance's field value (False) instead of the intended Django internal `filterable` property that exists on Expression objects. The fix should be in `check_filterable` to only check the `filterable` attribute on objects that are actually Django expressions (i.e., have `resolve_expression` method), not on arbitrary model instances passed as filter values.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/db/models/sql/query.py",
+            "class_name": "Query",
+            "method_name": "check_filterable"
+        }
+    ]
+}

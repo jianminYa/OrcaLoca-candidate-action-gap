@@ -1,0 +1,72 @@
+[2026-09-22 09:19:23,577 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}: 1
+)
+[2026-09-22 09:19:35,922 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}: 1
+)
+[2026-09-22 09:19:55,854 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}: 1
+)
+[2026-09-22 09:20:04,302 - action_history - INFO] Top file functions: [SearchActionStep(search_action='search_callable', search_action_input={'query_name': '_BaseVoting', 'file_path': 'sklearn/ensemble/voting.py'})]
+[2026-09-22 09:20:13,991 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_BaseVoting', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+)
+[2026-09-22 09:20:27,519 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'})]
+[2026-09-22 09:20:37,487 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_BaseVoting', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+)
+[2026-09-22 09:20:56,316 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseVoting', 'method_name': 'fit', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': 'VotingClassifier'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'VotingClassifier', 'method_name': 'fit'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'voting.py', 'directory_path': 'sklearn/ensemble'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_BaseVoting', 'file_path': 'sklearn/ensemble/voting.py'}: 1
+)

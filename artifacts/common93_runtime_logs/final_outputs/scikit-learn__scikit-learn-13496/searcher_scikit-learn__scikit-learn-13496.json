@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe full picture is now clear. The IsolationForest.__init__() method in sklearn/ensemble/iforest.py does not include `warm_start` as a parameter and does not pass it to the super().__init__() call to BaseBagging. BaseBagging.__init__() in sklearn/ensemble/bagging.py accepts `warm_start=False` and sets `self.warm_start = warm_start`. The fix is straightforward: add `warm_start=False` to IsolationForest.__init__() signature and pass it to the super().__init__() call. The search queue is empty, so we have all the context needed.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "sklearn/ensemble/iforest.py",
+            "class_name": "IsolationForest",
+            "method_name": "__init__"
+        }
+    ]
+}

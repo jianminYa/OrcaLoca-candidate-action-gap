@@ -1,0 +1,139 @@
+[2026-09-22 06:04:06,716 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 1
+)
+[2026-09-22 06:04:21,433 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__'}: 1
+)
+[2026-09-22 06:04:36,428 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi_scale'}: 1
+)
+[2026-09-22 06:04:59,442 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi_scale'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi'}: 1
+)
+[2026-09-22 06:05:24,681 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi_scale'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_bases.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_set_dpi'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '_set_device_pixel_ratio'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}: 1
+)
+[2026-09-22 06:05:45,197 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi_scale'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_bases.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_set_dpi'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '_set_device_pixel_ratio'}: 2
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}: 2
+)
+[2026-09-22 06:06:46,283 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__setstate__', 'file_path': 'lib/matplotlib/figure.py'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Figure', 'method_name': '__getstate__', 'file_path': 'lib/matplotlib/figure.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_macosx.py', 'directory_path': 'lib/matplotlib/backends'}: 3
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'figure.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '__init__'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi_scale'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': 'device_pixel_ratio'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_dpi'}: 1
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'backend_bases.py', 'directory_path': 'lib/matplotlib'}: 1
+  Search Action: search_callable
+Search Action Input: {'query_name': '_set_dpi'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'FigureCanvasBase', 'method_name': '_set_device_pixel_ratio'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': 'dpi', 'file_path': 'lib/matplotlib/figure.py'}: 3
+  Search Action: search_callable
+Search Action Input: {'query_name': '_original_dpi'}: 1
+)

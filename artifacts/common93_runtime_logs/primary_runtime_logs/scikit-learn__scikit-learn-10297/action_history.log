@@ -1,0 +1,73 @@
+[2026-09-22 08:23:45,758 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}: 1
+)
+[2026-09-22 08:23:54,076 - action_history - INFO] Top class methods: [SearchActionStep(search_action='search_method_in_class', search_action_input={'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'})]
+[2026-09-22 08:24:04,712 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 1
+)
+[2026-09-22 08:24:18,935 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 1
+)
+[2026-09-22 08:24:40,034 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 1
+)
+[2026-09-22 08:25:08,603 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 1
+)
+[2026-09-22 08:25:22,181 - action_history - DEBUG] Action history: 
+ SearchActionHistory(
+  Search Action: search_class
+Search Action Input: {'class_name': 'RidgeClassifierCV'}: 1
+  Search Action: search_class
+Search Action Input: {'class_name': '_BaseRidgeCV'}: 2
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': 'RidgeClassifierCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 2
+  Search Action: search_file_contents
+Search Action Input: {'file_name': 'ridge.py', 'directory_path': 'sklearn/linear_model'}: 1
+  Search Action: search_method_in_class
+Search Action Input: {'class_name': '_BaseRidgeCV', 'method_name': '__init__', 'file_path': 'sklearn/linear_model/ridge.py'}: 1
+)

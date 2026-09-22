@@ -1,0 +1,38 @@
+[2026-09-22 10:10:52,628 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'Identity', 'method_name': '_entry', 'file_path': 'sympy/matrices/expressions/matexpr.py'}
+  Value: 1, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_entry'}
+  Value: 1, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Identity'}
+)
+[2026-09-22 10:11:04,969 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': '_entry'}
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Identity'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'matexpr.py', 'directory_path': 'sympy/matrices/expressions'}
+)
+[2026-09-22 10:11:29,827 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_class
+Search Action Input: {'class_name': 'Identity'}
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'matexpr.py', 'directory_path': 'sympy/matrices/expressions'}
+)
+[2026-09-22 10:11:47,871 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_file_contents
+Search Action Input: {'file_name': 'matexpr.py', 'directory_path': 'sympy/matrices/expressions'}
+)
+[2026-09-22 10:12:04,211 - search_queue - DEBUG] search queue: 
+ SearchQueue(
+  Value: 2, Action: Search Action: search_callable
+Search Action Input: {'query_name': 'Identity', 'file_path': 'sympy/matrices/expressions/matexpr.py'}
+  Value: 1, Action: Search Action: search_method_in_class
+Search Action Input: {'class_name': 'ZeroMatrix', 'method_name': '_entry', 'file_path': 'sympy/matrices/expressions/matexpr.py'}
+)
+[2026-09-22 10:12:04,230 - search_queue - INFO] Duplicate search result: search_action='search_callable' search_action_input={'query_name': 'Identity', 'file_path': 'sympy/matrices/expressions/matexpr.py'} search_content='File Path: sympy/matrices/expressions/matexpr.py \nClass Content: \nclass Identity(MatrixExpr):\n    """The Matrix Identity I - multiplicative identity\n\n    >>> from sympy.matrices import Identity, MatrixSymbol\n    >>> A = MatrixSymbol(\'A\', 3, 5)\n    >>> I = Identity(3)\n    >>> I*A\n    A\n    """\n\n    is_Identity = True\n\n    def __new__(cls, n):\n        return super(Identity, cls).__new__(cls, sympify(n))\n\n    @property\n    def rows(self):\n        return self.args[0]\n\n    @property\n    def cols(self):\n        return self.args[0]\n\n    @property\n    def shape(self):\n        return (self.args[0], self.args[0])\n\n    def _eval_transpose(self):\n        return self\n\n    def _eval_trace(self):\n        return self.rows\n\n    def _eval_inverse(self):\n        return self\n\n    def conjugate(self):\n        return self\n\n    def _entry(self, i, j):\n        if i == j:\n            return S.One\n        else:\n            return S.Zero\n\n    def _eval_determinant(self):\n        return S.One\n'

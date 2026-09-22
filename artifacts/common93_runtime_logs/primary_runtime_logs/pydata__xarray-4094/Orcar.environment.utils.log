@@ -1,0 +1,8 @@
+[2026-09-22 07:12:08,594 - Orcar.environment.utils - DEBUG] Run command in container: git clone https://github.com/pydata/xarray.git pydata__xarray
+[2026-09-22 07:12:27,784 - Orcar.environment.utils - DEBUG] Run command in container: apt update; apt install build-essential -y
+[2026-09-22 07:12:37,008 - Orcar.environment.utils - DEBUG] Run command in container: conda create -c conda-forge -n pydata__xarray__0.12 python=3.10 -y
+[2026-09-22 07:13:32,368 - Orcar.environment.utils - DEBUG] Run command in container: conda env update -f /root/environment.yml
+[2026-09-22 07:24:15,902 - Orcar.environment.utils - DEBUG] Run command in container: source activate pydata__xarray__0.12 && pip install numpy==1.23.0 packaging==23.1 pandas==1.5.3 pytest==7.4.0 python-dateutil==2.8.2 pytz==2023.3 six==1.16.0 scipy==1.11.1 setuptools==68.0.0 dask==2022.8.1
+[2026-09-22 07:24:41,490 - Orcar.environment.utils - DEBUG] Run command in container: python -m pip install -e .
+[2026-09-22 07:24:48,756 - Orcar.environment.utils - DEBUG] Run command in container: pip install viztracer
+[2026-09-22 07:25:57,412 - Orcar.environment.utils - DEBUG] Run command in container: ls /tmp/tracer_output_pydata__xarray-4094.json

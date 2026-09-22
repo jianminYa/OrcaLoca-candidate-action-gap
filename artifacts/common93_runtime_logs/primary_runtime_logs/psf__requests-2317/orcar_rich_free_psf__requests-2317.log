@@ -1,0 +1,139 @@
+Cloning into 'psf__requests'...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Hit:1 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Reading package lists...
+Building dependency tree...
+Reading state information...
+All packages are up to date.
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.9ubuntu3).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Source:      /root/miniconda3/envs/python3.9
+Destination: /root/miniconda3/envs/psf__requests__2.4
+Packages: 20
+Files: 0
+
+Downloading and Extracting Packages: ...working... done
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate psf__requests__2.4
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Channels:
+ - defaults
+ - conda-forge
+Platform: linux-64
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /root/miniconda3/envs/psf__requests__2.4
+
+  added / updated specs:
+    - pytest
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2026.8.13  |       h06a4308_0         107 KB
+    exceptiongroup-1.3.0       |   py39h06a4308_0          40 KB
+    iniconfig-2.1.0            |   py39h06a4308_0          19 KB
+    openssl-3.0.18             |       hd6dcaed_0         4.5 MB
+    packaging-25.0             |   py39h06a4308_1         160 KB
+    pluggy-1.5.0               |   py39h06a4308_0          37 KB
+    pygments-2.19.1            |   py39h06a4308_0         1.9 MB
+    pytest-8.4.2               |   py39h06a4308_0         1.0 MB
+    tomli-2.2.1                |   py39h06a4308_0          29 KB
+    typing-extensions-4.15.0   |   py39h06a4308_0          11 KB
+    typing_extensions-4.15.0   |   py39h06a4308_0          79 KB
+    ------------------------------------------------------------
+                                           Total:         7.9 MB
+
+The following NEW packages will be INSTALLED:
+
+  exceptiongroup     pkgs/main/linux-64::exceptiongroup-1.3.0-py39h06a4308_0 
+  iniconfig          pkgs/main/linux-64::iniconfig-2.1.0-py39h06a4308_0 
+  packaging          pkgs/main/linux-64::packaging-25.0-py39h06a4308_1 
+  pluggy             pkgs/main/linux-64::pluggy-1.5.0-py39h06a4308_0 
+  pygments           pkgs/main/linux-64::pygments-2.19.1-py39h06a4308_0 
+  pytest             pkgs/main/linux-64::pytest-8.4.2-py39h06a4308_0 
+  tomli              pkgs/main/linux-64::tomli-2.2.1-py39h06a4308_0 
+  typing-extensions  pkgs/main/linux-64::typing-extensions-4.15.0-py39h06a4308_0 
+  typing_extensions  pkgs/main/linux-64::typing_extensions-4.15.0-py39h06a4308_0 
+
+The following packages will be UPDATED:
+
+  ca-certificates                       2024.7.2-h06a4308_0 --> 2026.8.13-h06a4308_0 
+  openssl                                 3.0.14-h5eee18b_0 --> 3.0.18-hd6dcaed_0 
+
+
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Processing /psf__requests
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Building wheels for collected packages: requests
+  Building wheel for requests (setup.py): started
+  Building wheel for requests (setup.py): finished with status 'done'
+  Created wheel for requests: filename=requests-2.4.3-py2.py3-none-any.whl size=453222 sha256=0e7830fd07922637de413b429ebc86643b4489ef9b2f4c1007c28d7583b272ae
+  Stored in directory: /tmp/pip-ephem-wheel-cache-m1j10mj6/wheels/91/38/0b/5e9df08bcd84f69ff2ac9724b53b07bfbd0140b38729e9e960
+Successfully built requests
+Installing collected packages: requests
+Successfully installed requests-2.4.3
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Collecting viztracer
+  Downloading viztracer-1.0.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+Collecting objprint>=0.3.0 (from viztracer)
+  Using cached objprint-0.3.0-py3-none-any.whl.metadata (25 kB)
+Downloading viztracer-1.0.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.4/10.4 MB 100.4 MB/s eta 0:00:00
+Using cached objprint-0.3.0-py3-none-any.whl (41 kB)
+Installing collected packages: objprint, viztracer
+Successfully installed objprint-0.3.0 viztracer-1.0.4
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2220.60it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2232.07it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2273.15it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2091.17it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2092.34it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2249.30it/s]
+
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2267.57it/s]

@@ -1,0 +1,10 @@
+{
+    "conclusion": "<Observation>\nThe bug is clearly identified. BoundWidget.id_for_label() in django/forms/boundfield.py hardcodes the id as 'id_%s_%s' % (self.data['name'], self.data['index']) instead of using the id already computed and available in self.data['attrs']['id']. This means when a custom auto_id is set on a form, or when the widget's options method sets a specific id, the BoundWidget.id_for_label property ignores it entirely. The fix is to change the return value to self.data['attrs']['id']. All necessary context has been gathered from previous searches.\n</Observation>",
+    "bug_locations": [
+        {
+            "file_path": "django/forms/boundfield.py",
+            "class_name": "BoundWidget",
+            "method_name": "id_for_label"
+        }
+    ]
+}
