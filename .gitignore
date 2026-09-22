@@ -12,3 +12,13 @@ artifact/assets
 artifact/artifact
 # unignore a file
 !requirements.txt
+
+# Experiment/runtime outputs are intentionally kept out of Git.
+output*/
+log*/
+.pytest_cache/
+**/__pycache__/
+*.egg-info/
+artifacts/**/.supervisor_state
+artifacts/**/supervisor*.log
+artifacts/**/supervise_*.sh

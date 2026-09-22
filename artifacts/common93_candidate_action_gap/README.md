@@ -19,11 +19,11 @@ The completed offline review is in:
 
 - `detailed_gold_available_events.md`: all seven gold-available events and
   candidate/score/action details;
-- `gap_case_audit.md`: source and parsed-patch verification of all three Gap
+- `manual_audit.md`: source and parsed-patch verification of all three Gap
   cases;
 - `downstream_trace_analysis.md`: later exact-action scan and the limits of
   the saved execution evidence;
-- `updated_summary.md`: final RQ answers and descriptive score comparison.
+- `summary.md`: final RQ answers and descriptive score comparison.
 
 The run artifacts do not persist the complete action history or every tool
 execution payload. Accordingly, downstream analysis reports “no later exact
