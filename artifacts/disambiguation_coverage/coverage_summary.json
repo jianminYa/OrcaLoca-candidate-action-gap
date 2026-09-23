@@ -1,0 +1,82 @@
+{
+  "dataset": "SWE-bench Common",
+  "num_instances": 93,
+  "selected_attempts": {
+    "primary_runtime_logs": 89,
+    "retry_runtime_logs/log_1": 4
+  },
+  "executed_search_actions": 639,
+  "executed_search_actions_in_scope": 614,
+  "result_producing_search_actions": 594,
+  "duplicate_executions": 45,
+  "non_exact_actions": 156,
+  "exact_actions": 458,
+  "actual_multi_candidate_events": 27,
+  "logged_disambiguation_events": 27,
+  "matched_events": 27,
+  "missing_events": 0,
+  "extra_unmatched_logged_events": 0,
+  "coverage": 1.0,
+  "by_search_type": {
+    "search_callable": {
+      "executed": 147,
+      "result_producing": 122,
+      "non_exact": 61,
+      "exact": 86,
+      "multi_candidate": 21,
+      "logged_disambiguation": 21,
+      "missing": 0,
+      "non_exact_multi_candidate": 16,
+      "exact_multi_candidate": 5
+    },
+    "search_class": {
+      "executed": 91,
+      "result_producing": 86,
+      "non_exact": 49,
+      "exact": 42,
+      "multi_candidate": 5,
+      "logged_disambiguation": 5,
+      "missing": 0,
+      "non_exact_multi_candidate": 5,
+      "exact_multi_candidate": 0
+    },
+    "search_file_contents": {
+      "executed": 160,
+      "result_producing": 159,
+      "non_exact": 1,
+      "exact": 159,
+      "multi_candidate": 0,
+      "logged_disambiguation": 0,
+      "missing": 0,
+      "non_exact_multi_candidate": 0,
+      "exact_multi_candidate": 0
+    },
+    "search_method_in_class": {
+      "executed": 216,
+      "result_producing": 202,
+      "non_exact": 45,
+      "exact": 171,
+      "multi_candidate": 1,
+      "logged_disambiguation": 1,
+      "missing": 0,
+      "non_exact_multi_candidate": 1,
+      "exact_multi_candidate": 0
+    }
+  },
+  "funnel": {
+    "all_executed_search_actions": 639,
+    "four_disambiguation_capable_search_actions": 614,
+    "non_exact_name_or_path_free_actions": 156,
+    "non_exact_actions_with_multiple_candidates": 22,
+    "actual_multi_candidate_events": 27
+  },
+  "original_candidate_action_gap_rate": "3/7 = 42.86%",
+  "gap_rate_requires_revision": false,
+  "source_commit": "bf8855d4a8ac658acc5c2b6f845820229a2c18e2",
+  "source_conditions": {
+    "raw_evidence": "Search content with <Disambiguation> in selected Orcar.search_agent.log",
+    "duplicate_evidence": "Duplicate search result entries in selected search_queue.log",
+    "instrumentation_comparison": "artifacts/common93_candidate_action_gap/disambiguation_events.jsonl",
+    "retry_policy": "Use retry log_1 for the four Common93 instances whose primary search log has no executable Search content; exclude other supplemental retries."
+  }
+}

@@ -205,6 +205,8 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 
 主诊断流和结果的快捷链接：[`disambiguation_events.jsonl`](artifacts/common93_candidate_action_gap/disambiguation_events.jsonl)、[`summary.json`](artifacts/common93_candidate_action_gap/summary.json)。
 
+Disambiguation instrumentation 覆盖审计：[`coverage_analysis.md`](artifacts/disambiguation_coverage/coverage_analysis.md)。
+
 ## 12. 仓库结构
 
 ```text
@@ -238,9 +240,15 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 │   ├── run_control/
 │   ├── MANIFEST.md
 │   └── SHA256SUMS
+├── artifacts/disambiguation_coverage/
+│   ├── coverage_summary.json
+│   ├── coverage_analysis.md
+│   ├── executed_search_actions.jsonl
+│   └── actual_disambiguation_events.jsonl
 ├── scripts/
 │   ├── analyze_gap.py
 │   ├── build_gold_entities.py
+│   ├── audit_disambiguation_coverage.py
 │   └── compute_localization_metrics.py
 ├── patches/
 │   └── orcaloca_gap_logging.patch
