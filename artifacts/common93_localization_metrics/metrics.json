@@ -1,0 +1,41 @@
+{
+  "dataset": "SWE-bench Common",
+  "num_instances": 93,
+  "source": {
+    "gold": "artifacts/common93_candidate_action_gap/gold_entities.json",
+    "predictions": "artifacts/common93_runtime_logs/final_outputs/*/searcher_*.json",
+    "definition": "upstream_orcaloca/artifact/parse_output.py"
+  },
+  "output_status": {
+    "valid": 93,
+    "missing": 0,
+    "invalid": 0,
+    "missing_instance_ids": [],
+    "invalid_instance_ids": []
+  },
+  "file_localization": {
+    "match": 87,
+    "match_denominator": 93,
+    "match_rate": 0.9354838709677419,
+    "any_hit": 87,
+    "any_hit_rate": 0.9354838709677419,
+    "mean_precision": 0.8924731182795699,
+    "std_precision": 0.2728726352784843
+  },
+  "function_localization": {
+    "match_upstream_all_instances": 79,
+    "match_upstream_rate_all_instances": 0.8494623655913979,
+    "mean_precision_upstream_all_instances": 0.5591397849462365,
+    "std_precision_upstream_all_instances": 0.29496487579236996,
+    "evaluable_instances": 92,
+    "match_evaluable": 78,
+    "match_rate_evaluable": 0.8478260869565217,
+    "any_hit_evaluable": 84,
+    "any_hit_rate_evaluable": 0.9130434782608695,
+    "mean_precision_evaluable": 0.5652173913043478,
+    "std_precision_evaluable": 0.29071430617271754,
+    "non_evaluable_instances": [
+      "django__django-10914"
+    ]
+  }
+}

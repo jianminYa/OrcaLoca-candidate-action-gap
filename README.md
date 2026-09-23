@@ -147,7 +147,24 @@ Gap stage counts:
 
 机器可读结果在 [`summary.json`](artifacts/common93_candidate_action_gap/summary.json)，详细候选和 score 在 [`detailed_gold_available_events.md`](artifacts/common93_candidate_action_gap/detailed_gold_available_events.md)，汇总解释在 [`docs/results.md`](docs/results.md)。
 
-## 8. Gap 案例分析
+## 8. File / Function Localization 指标
+
+上面的 Candidate-to-Action Gap 是 disambiguation **event** 级指标；本节是对 Common93 最终 `bug_locations` 的 **instance** 级离线定位指标。它们回答的问题不同，不能互相替代。
+
+按 OrcaLoca 原有 `parse_output.py` 定义，本次 93 个最终 `searcher_*.json` 全部存在且有效：
+
+| 指标 | 结果 | 含义 |
+|---|---:|---|
+| File Match | **87 / 93 = 93.55%** | patch 涉及的全部 gold 文件都出现在最终 `bug_locations` |
+| Mean File Precision | **89.25%** | 最终列出的文件中 gold 文件的平均比例 |
+| Function Match（原 parser 口径） | **79 / 93 = 84.95%** | 一个 instance 的全部 gold function entities 都被覆盖 |
+| Mean Function Precision（原 parser 口径） | **55.91%** | 最终列出的 function entities 中 gold entities 的平均比例 |
+
+Function Match 不是“命中任意一个函数”：一个 patch 有多个 gold function/method 时要求全部覆盖。由于 1 个 instance 没有 function-level gold node，排除它后的 function-evaluable 口径为 **78 / 92 = 84.78%**；至少命中一个 gold function 的 any-hit 为 **84 / 92 = 91.30%**。详细定义、标准差、限制和逐 instance 明细见 [`docs/localization_metrics.md`](docs/localization_metrics.md)。
+
+计算结果：[`metrics.json`](artifacts/common93_localization_metrics/metrics.json)；逐 instance 结果：[`instance_metrics.jsonl`](artifacts/common93_localization_metrics/instance_metrics.jsonl)；离线脚本：[`compute_localization_metrics.py`](scripts/compute_localization_metrics.py)。
+
+## 9. Gap 案例分析
 
 三件 Gap 均通过 patch-derived gold metadata 和对应 base commit 的源码人工核验：
 
@@ -157,7 +174,7 @@ Gap stage counts:
 
 完整人工审计见 [`manual_audit.md`](artifacts/common93_candidate_action_gap/manual_audit.md) 和 [`docs/gap_cases.md`](docs/gap_cases.md)。
 
-## 9. 后续 Trace 分析
+## 10. 后续 Trace 分析
 
 服务器上的原始搜索日志已经随本仓库上传。3 个 Gap 的 `search_agent`、`action_history`、`search_queue` 和 `CodeScorer` 日志可从下一节的关键链接访问。需要区分两类证据：
 
@@ -174,7 +191,7 @@ observed later-recovered cases = 0 / 3
 
 因此可以检查原始搜索过程，但仍不能仅凭日志自动证明每个 action 都获得了成功执行回执。当前最强可证结论是：结构化诊断流中没有 later exact gold action；Action-to-Execution Gap 仍不能从现有产物可靠计算。详见 [`docs/trace_analysis.md`](docs/trace_analysis.md)。
 
-## 10. 完整运行日志与关键链接
+## 11. 完整运行日志与关键链接
 
 Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93_runtime_logs/`](artifacts/common93_runtime_logs/)。其中包含 1,674 个主运行日志文件、183 个最终输出文件，以及 162 个补充/重试日志文件，总大小约 54 MiB。目录和 SHA-256 校验值见 [`MANIFEST.md`](artifacts/common93_runtime_logs/MANIFEST.md) 和 [`SHA256SUMS`](artifacts/common93_runtime_logs/SHA256SUMS)。
 
@@ -188,7 +205,7 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 
 主诊断流和结果的快捷链接：[`disambiguation_events.jsonl`](artifacts/common93_candidate_action_gap/disambiguation_events.jsonl)、[`summary.json`](artifacts/common93_candidate_action_gap/summary.json)。
 
-## 11. 仓库结构
+## 12. 仓库结构
 
 ```text
 .
@@ -196,6 +213,7 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 ├── docs/
 │   ├── methodology.md
 │   ├── results.md
+│   ├── localization_metrics.md
 │   ├── gap_cases.md
 │   ├── trace_analysis.md
 │   └── code_changes.md
@@ -209,6 +227,9 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 │   ├── common93_instance_ids.txt
 │   ├── run_config.json
 │   └── manual_audit.md
+├── artifacts/common93_localization_metrics/
+│   ├── metrics.json
+│   └── instance_metrics.jsonl
 ├── artifacts/common93_runtime_logs/
 │   ├── primary_runtime_logs/
 │   ├── final_outputs/
@@ -219,7 +240,8 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 │   └── SHA256SUMS
 ├── scripts/
 │   ├── analyze_gap.py
-│   └── build_gold_entities.py
+│   ├── build_gold_entities.py
+│   └── compute_localization_metrics.py
 ├── patches/
 │   └── orcaloca_gap_logging.patch
 └── upstream_orcaloca/
@@ -229,9 +251,9 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 
 原 OrcaLoca 源码保留在 `upstream_orcaloca/`，作为可追溯的 upstream snapshot；仓库首页和主要文档不再以它为主体。
 
-## 12. 如何复现
+## 13. 如何复现
 
-### 12.1 只做离线分析
+### 13.1 只做 Candidate-to-Action 离线分析
 
 不需要 API：
 
@@ -240,7 +262,16 @@ python3 scripts/analyze_gap.py \
   --artifact-dir artifacts/common93_candidate_action_gap
 ```
 
-### 12.2 重新构造 gold entities
+计算最终 file/function localization 指标：
+
+```bash
+python3 scripts/compute_localization_metrics.py \
+  --gold-dir artifacts/common93_candidate_action_gap \
+  --runtime-dir artifacts/common93_runtime_logs \
+  --output-dir artifacts/common93_localization_metrics
+```
+
+### 13.2 重新构造 gold entities
 
 这不是本次已完成实验的一部分。需要外部数据集缓存和目标仓库 checkout；运行前将 upstream snapshot 加入 Python path：
 
@@ -251,17 +282,17 @@ PYTHONPATH=upstream_orcaloca python3 scripts/build_gold_entities.py \
   --output-dir /path/to/artifacts
 ```
 
-### 12.3 重新运行 Agent
+### 13.3 重新运行 Agent
 
 当前仓库不提供 secret。若未来需要重跑，应在仓库外配置 OpenAI-compatible provider、model、base URL 和 API key，并使用 `run_config.json` 中记录的非 secret 参数；不要将凭据写入仓库或日志。
 
-## 13. 与原始 OrcaLoca 的关系
+## 14. 与原始 OrcaLoca 的关系
 
 原始项目快照在 [`upstream_orcaloca/`](upstream_orcaloca/)，原始 README 保存在 [`upstream_orcaloca/ORIGINAL_README.md`](upstream_orcaloca/ORIGINAL_README.md)。本实验以 OrcaLoca 的原始 ranking 行为为对象，仅增加观测日志和必要的运行兼容 plumbing。
 
 差异说明和可审阅 patch 见 [`docs/code_changes.md`](docs/code_changes.md) 与 [`patches/orcaloca_gap_logging.patch`](patches/orcaloca_gap_logging.patch)。
 
-## 14. 当前结论与限制
+## 15. 当前结论与限制
 
 当前结论是：在 Common93 本次运行中，共有 7 个 gold 已进入 ranked disambiguation raw candidates 的事件，其中 3 个没有转化为对应 precise action；3 个均由 threshold 过滤造成。
 

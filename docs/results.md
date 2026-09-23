@@ -26,6 +26,21 @@ Candidate-to-Action Gap Rate     = 3 / 7 = 42.86%
 
 详细 candidate-by-candidate 分数见 [`detailed_gold_available_events.md`](../artifacts/common93_candidate_action_gap/detailed_gold_available_events.md)。
 
+## File / Function Localization
+
+这组指标来自 Common93 已保存的最终 `searcher_*.json`，不是重新运行得到的结果，也不是 Candidate-to-Action Gap 的 event-level 指标。按 OrcaLoca 原有 `upstream_orcaloca/artifact/parse_output.py` 的定义：
+
+| 指标 | 结果 |
+|---|---:|
+| File Match | **87 / 93 = 93.55%** |
+| Mean File Precision | **89.25%**（标准差 27.29%） |
+| Function Match（原 parser 口径） | **79 / 93 = 84.95%** |
+| Mean Function Precision（原 parser 口径） | **55.91%**（标准差 29.50%） |
+
+93 个最终 `searcher_*.json` 全部存在且有效。Function Match 的严格含义是：一个 instance 的全部 patch-derived function entities 都必须出现在最终 `bug_locations`；不是命中任意一个函数就算成功。原 parser 的 93-instance 分母包含 1 个没有 function-level gold node 的 instance，因此另提供 function-evaluable 口径：排除 `django__django-10914` 后，Function Match 为 **78 / 92 = 84.78%**，至少命中一个 gold function 的 any-hit 为 **84 / 92 = 91.30%**，Mean Function Precision 为 **56.52%**。
+
+完整定义、计算方式和逐 instance 结果见 [`docs/localization_metrics.md`](localization_metrics.md)、[`metrics.json`](../artifacts/common93_localization_metrics/metrics.json) 和 [`instance_metrics.jsonl`](../artifacts/common93_localization_metrics/instance_metrics.jsonl)。
+
 ## 分数模式
 
 三个 Gap 事件的最佳 gold score 是 `72, 75, 75`，均不满足严格 `score > 75`；四个 non-Gap 事件的 gold score 是 `95, 95, 90, 95`，均通过 threshold。这个对比是小样本描述性结果，不是统计显著性或 scorer benchmark。
