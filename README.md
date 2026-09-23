@@ -172,7 +172,7 @@ Function Match 不是“命中任意一个函数”：一个 patch 有多个 gol
 2. `sympy__sympy-13031`：`MutableSparseMatrix::row_join` score 75，rank 2；非 gold 的 `NewMatrix::row_join` score 85 被选中；
 3. `sympy__sympy-13647`：嵌套的 `MatrixShaping::_eval_col_insert::entry` 出现多个 canonical candidate，最佳 score 75，因严格 threshold 被过滤。
 
-完整人工审计见 [`manual_audit.md`](artifacts/common93_candidate_action_gap/manual_audit.md) 和 [`docs/gap_cases.md`](docs/gap_cases.md)。
+完整人工审计见 [`manual_audit.md`](artifacts/common93_candidate_action_gap/manual_audit.md)；结合结构化 event、`search_agent.log` 和 `action_history.log` 的三案例逐步分析见 [`docs/gap_cases.md`](docs/gap_cases.md)。
 
 ## 10. 后续 Trace 分析
 
@@ -251,48 +251,13 @@ Common93 主运行的 93 个 instance 日志已经上传到 [`artifacts/common93
 
 原 OrcaLoca 源码保留在 `upstream_orcaloca/`，作为可追溯的 upstream snapshot；仓库首页和主要文档不再以它为主体。
 
-## 13. 如何复现
-
-### 13.1 只做 Candidate-to-Action 离线分析
-
-不需要 API：
-
-```bash
-python3 scripts/analyze_gap.py \
-  --artifact-dir artifacts/common93_candidate_action_gap
-```
-
-计算最终 file/function localization 指标：
-
-```bash
-python3 scripts/compute_localization_metrics.py \
-  --gold-dir artifacts/common93_candidate_action_gap \
-  --runtime-dir artifacts/common93_runtime_logs \
-  --output-dir artifacts/common93_localization_metrics
-```
-
-### 13.2 重新构造 gold entities
-
-这不是本次已完成实验的一部分。需要外部数据集缓存和目标仓库 checkout；运行前将 upstream snapshot 加入 Python path：
-
-```bash
-PYTHONPATH=upstream_orcaloca python3 scripts/build_gold_entities.py \
-  --dataset SWE-bench_common \
-  --repo-root /path/to/repositories \
-  --output-dir /path/to/artifacts
-```
-
-### 13.3 重新运行 Agent
-
-当前仓库不提供 secret。若未来需要重跑，应在仓库外配置 OpenAI-compatible provider、model、base URL 和 API key，并使用 `run_config.json` 中记录的非 secret 参数；不要将凭据写入仓库或日志。
-
-## 14. 与原始 OrcaLoca 的关系
+## 13. 与原始 OrcaLoca 的关系
 
 原始项目快照在 [`upstream_orcaloca/`](upstream_orcaloca/)，原始 README 保存在 [`upstream_orcaloca/ORIGINAL_README.md`](upstream_orcaloca/ORIGINAL_README.md)。本实验以 OrcaLoca 的原始 ranking 行为为对象，仅增加观测日志和必要的运行兼容 plumbing。
 
 差异说明和可审阅 patch 见 [`docs/code_changes.md`](docs/code_changes.md) 与 [`patches/orcaloca_gap_logging.patch`](patches/orcaloca_gap_logging.patch)。
 
-## 15. 当前结论与限制
+## 14. 当前结论与限制
 
 当前结论是：在 Common93 本次运行中，共有 7 个 gold 已进入 ranked disambiguation raw candidates 的事件，其中 3 个没有转化为对应 precise action；3 个均由 threshold 过滤造成。
 

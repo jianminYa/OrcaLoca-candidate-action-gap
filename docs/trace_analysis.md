@@ -21,7 +21,7 @@
 
 统计为：later exact gold action observed `0/3`；observed later-recovered `0/3`；saved diagnostic stream 中没有 later exact action `3/3`。
 
-结合原始 `search_agent`、`action_history` 和 `search_queue` 日志，可以进行人工核验；但这不能证明 arbitrary non-disambiguation tool call 从未访问过 gold。当前最强可证结论是：**没有 later exact gold action 出现在保存的结构化诊断流中**。原始日志的入口见 [`README.md`](../README.md) 的“完整运行日志与关键链接”部分。
+这里的 `0/3` 严格指“结构化 diagnostic event stream 中没有 later exact gold action”。原始 `action_history.log` 是更宽的自由文本 history：例如 `sympy__sympy-13031` 在初始 `row_join` Gap 后面仍出现过 `MutableSparseMatrix::row_join` 的 action request。它说明该案例不能据此判断 gold 永久丢失，但由于没有标准化返回状态，不能把 request 当成成功执行 receipt。结合原始 `search_agent`、`action_history` 和 `search_queue` 日志，可以进行人工核验；但这不能证明 arbitrary non-disambiguation tool call 从未访问过 gold。当前最强可证结论仍是：**没有 later exact gold action 出现在保存的结构化诊断流中**。三例的逐日志分析见 [`docs/gap_cases.md`](gap_cases.md)，原始日志入口见 [`README.md`](../README.md) 的“完整运行日志与关键链接”部分。
 
 ## Final localization
 
